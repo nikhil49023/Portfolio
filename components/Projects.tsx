@@ -1,0 +1,301 @@
+'use client';
+
+import { useMemo, useRef, useState } from 'react';
+import Link from 'next/link';
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
+import {
+  Search, X, Calendar, ArrowUpRight,
+} from 'lucide-react';
+import { PROJECTS } from '@/lib/projects';
+import { ImageCarousel } from '@/components/projects/ImageCarousel';
+
+/* ── Animations ── */
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+};
+const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.14 } } };
+
+/* ── Terminal preview (card-sized) ── */
+function MiniTerminal() {
+  return (
+    <div className="w-full h-full flex items-center justify-center bg-[#0d1117] overflow-hidden p-4">
+      <div className="w-full max-w-xs select-none">
+        <div className="flex items-center gap-2 px-3 py-2 bg-[#1e1e2e] rounded-t-xl border-b border-[#2a2a3e]">
+          <div className="flex gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+          </div>
+          <span className="text-[#585b70] text-[10px] font-mono ml-1">saara-ai</span>
+        </div>
+        <div className="bg-[#0d1117] px-3 py-2.5 font-mono text-[10px] space-y-1 rounded-b-xl border border-[#2a2a3e] border-t-0">
+          <div><span className="text-[#89dceb]">❯</span> <span className="text-[#cdd6f4]">pip install saara-ai</span></div>
+          <div className="text-[#a6e3a1]">✔ saara-ai-1.0.0 installed</div>
+          <div><span className="text-[#89dceb]">❯</span> <span className="text-[#cdd6f4]">saara run --input doc.pdf</span></div>
+          {[
+            { c: '#89b4fa', t: '👁  Vision Agent  → 847 blocks' },
+            { c: '#cba6f7', t: '🏷  Labeler       → 2,341 pairs' },
+            { c: '#89dceb', t: '🎓  QLoRA         → epoch 3/5' },
+            { c: '#a6e3a1', t: '🚀  Deploy        → HuggingFace' },
+          ].map(({ c, t }) => <div key={t} style={{ color: c }}>{t}</div>)}
+          <div className="text-[#a6e3a1]">✓ Done in 4m 32s</div>
+          <span className="w-1.5 h-3 bg-[#cdd6f4]/70 animate-pulse rounded-sm inline-block" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Tilt card ── */
+function TiltCard({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const rx = useMotionValue(0);
+  const ry = useMotionValue(0);
+  const rotX = useSpring(rx, { damping: 40, stiffness: 260 });
+  const rotY = useSpring(ry, { damping: 40, stiffness: 260 });
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = ref.current!.getBoundingClientRect();
+    rx.set(-(e.clientY - r.top - r.height / 2) / 30);
+    ry.set((e.clientX - r.left - r.width / 2) / 30);
+  };
+  const onLeave = () => { rx.set(0); ry.set(0); };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{ rotateX: rotX, rotateY: rotY, transformPerspective: 1200 }}
+      className="h-full"
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ── Main Component ── */
+export function Projects() {
+  const [query, setQuery] = useState('');
+  const categories = useMemo(
+    () => ['All', ...Array.from(new Set(PROJECTS.map((p) => p.category.split('·')[0].trim())))],
+    [],
+  );
+  const [activeCategory, setActiveCategory] = useState<string>(categories[0]);
+
+  const filtered = PROJECTS.filter((p) => {
+    const q = query.toLowerCase();
+    const matchesCategory = activeCategory === 'All' || p.category.startsWith(activeCategory);
+    const matchesQuery = (
+      p.name.toLowerCase().includes(q) ||
+      p.tagline.toLowerCase().includes(q) ||
+      p.tags.some((t) => t.toLowerCase().includes(q)) ||
+      p.category.toLowerCase().includes(q)
+    );
+    return (
+      matchesCategory && matchesQuery
+    );
+  });
+
+  return (
+    <section id="projects" className="section">
+      <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
+
+        {/* Header */}
+        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
+          <div>
+            <p className="eyebrow mb-2">Projects</p>
+            <h2 className="display-heading text-3xl sm:text-4xl font-extrabold text-[#1e1b4b] tracking-tight">
+              What I&apos;ve built
+            </h2>
+            <p className="mt-2 text-[#6b6894] text-sm">
+              {PROJECTS.length} projects &middot; click any card for the full breakdown
+            </p>
+          </div>
+
+          {/* Search */}
+          <div className="relative w-full sm:w-72 shrink-0">
+            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Search by name, stack, type…"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="w-full pl-9 pr-8 py-2.5 rounded-xl border border-violet-100 bg-white/80 backdrop-blur-xl text-sm text-[#1e1b4b] placeholder:text-[#9896ac] focus:outline-none focus:ring-2 focus:ring-violet-400/20 focus:border-violet-300 transition-all"
+              style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.8), 0 1px 3px rgba(0,0,0,0.04)' }}
+            />
+            {query && (
+              <button
+                onClick={() => setQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+              >
+                <X size={13} />
+              </button>
+            )}
+          </div>
+        </motion.div>
+
+        <motion.div variants={fadeUp} className="mb-8 flex flex-wrap items-center gap-2">
+          {categories.map((category) => {
+            const active = category === activeCategory;
+            return (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className="rounded-full border px-3 py-1.5 text-xs font-semibold transition-all"
+                style={
+                  active
+                    ? { background: 'linear-gradient(135deg, #7c3aed, #6d28d9)', color: '#fff', borderColor: 'transparent' }
+                    : { background: 'rgba(124,58,237,0.04)', color: '#6b6894', borderColor: 'rgba(124,58,237,0.12)' }
+                }
+              >
+                {category}
+              </button>
+            );
+          })}
+        </motion.div>
+
+        {/* Cards */}
+        <AnimatePresence mode="popLayout">
+          {filtered.length === 0 ? (
+            <motion.div
+              key="empty"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="text-center py-20 text-slate-400"
+            >
+              <Search size={32} className="mx-auto mb-3 opacity-40" />
+              <p className="font-medium">
+                No projects match &ldquo;{query}&rdquo; in {activeCategory}
+              </p>
+            </motion.div>
+          ) : (
+            <div key="grid" className="grid md:grid-cols-2 gap-6">
+              {filtered.map((p) => (
+                <motion.div key={p.slug} variants={fadeUp} layout className="h-full">
+                  <TiltCard>
+                    <Link href={`/projects/${p.slug}`} className="block h-full">
+                      <div
+                        className="card rounded-2xl overflow-hidden group cursor-pointer h-full flex flex-col hover:-translate-y-1 transition-transform duration-300"
+                      >
+                        {/* Media */}
+                        <div
+                          className="relative w-full h-56 overflow-hidden shrink-0"
+                          style={{ background: `linear-gradient(145deg, ${p.accent}18 0%, ${p.accent}08 100%)` }}
+                        >
+                          {/* Hover glow */}
+                          <div
+                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"
+                            style={{ background: `radial-gradient(ellipse at 50% 100%, ${p.accent}25 0%, transparent 65%)` }}
+                          />
+
+                          {p.media === 'images' && p.images
+                            ? <ImageCarousel images={p.images} accent={p.accent} heightClass="h-56" interval={2400} />
+                            : <MiniTerminal />}
+
+                          {/* Category badge */}
+                          <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-black/55 backdrop-blur-sm text-white pointer-events-none">
+                            <p.icon size={11} />
+                            {p.category}
+                          </div>
+
+                          {/* Explore overlay */}
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+                            <div className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-black/60 backdrop-blur-sm text-white text-sm font-semibold">
+                              <ArrowUpRight size={15} />
+                              Explore Project
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-5 flex flex-col flex-1">
+                          <div className="flex items-start justify-between gap-3 mb-2">
+                            <div className="flex items-center gap-2.5">
+                              <div
+                                className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+                                style={{ background: `${p.accent}18` }}
+                              >
+                                <p.icon size={17} style={{ color: p.accent }} />
+                              </div>
+                              <div>
+                                <h3 className="display-heading font-extrabold text-slate-800 text-lg leading-tight">{p.name}</h3>
+                                <p className="text-[11px] font-semibold mt-0.5 leading-tight" style={{ color: p.accent }}>
+                                  {p.tagline}
+                                </p>
+                              </div>
+                            </div>
+                            <span className="flex items-center gap-1 text-xs text-slate-400 font-medium whitespace-nowrap mt-0.5 shrink-0">
+                              <Calendar size={11} />
+                              {p.date}
+                            </span>
+                          </div>
+
+                          <p className="text-sm text-slate-500 leading-relaxed mt-3 mb-4 line-clamp-2 flex-1">
+                            {p.shortDesc}
+                          </p>
+
+                          {/* Tags */}
+                          <div className="flex flex-wrap gap-1.5 mb-4">
+                            {p.tags.slice(0, 5).map((t) => (
+                              <span
+                                key={t}
+                                className="px-2 py-0.5 rounded-md text-[11px] font-semibold"
+                                style={{ color: p.accent, background: `${p.accent}12` }}
+                              >
+                                {t}
+                              </span>
+                            ))}
+                            {p.tags.length > 5 && (
+                              <span className="px-2 py-0.5 rounded-md text-[11px] font-semibold text-slate-500 bg-slate-100">
+                                +{p.tags.length - 5}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Footer */}
+                          <div className="flex items-center justify-between pt-3 border-t border-slate-100">
+                            <div className="flex gap-2">
+                              {p.links.map((link) => (
+                                <a
+                                  key={link.label}
+                                  href={link.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:scale-105"
+                                  style={
+                                    link.primary
+                                      ? { background: p.accent, color: '#fff' }
+                                      : { border: `1.5px solid ${p.accent}44`, color: p.accent }
+                                  }
+                                >
+                                  <link.icon size={12} />
+                                  {link.label}
+                                </a>
+                              ))}
+                            </div>
+                            <span
+                              className="flex items-center gap-1 text-xs font-semibold transition-all group-hover:gap-2"
+                              style={{ color: p.accent }}
+                            >
+                              Full breakdown
+                              <ArrowUpRight size={13} />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </TiltCard>
+                </motion.div>
+              ))}
+            </div>
+          )}
+        </AnimatePresence>
+
+      </motion.div>
+    </section>
+  );
+}

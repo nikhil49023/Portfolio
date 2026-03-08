@@ -1,0 +1,18 @@
+services:
+  portfolio:
+    build: .
+    container_name: portfolio-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - portfolio_node_modules:/app/node_modules
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    environment:
+      - NODE_ENV=development
+    command: sh -c "npm install && npm run dev"
+
+volumes:
+  portfolio_node_modules:
