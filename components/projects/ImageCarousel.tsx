@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Expand } from 'lucide-react';
 
@@ -52,11 +53,12 @@ export function ImageCarousel({ images, accent, heightClass = 'h-80', interval =
             className="relative w-full max-w-sm h-[80vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={images[current]}
               alt={`Screenshot ${current + 1}`}
-              className="absolute inset-0 w-full h-full object-contain"
+              fill
+              unoptimized
+              className="object-contain"
             />
             <button
               onClick={() => go(-1)}
@@ -121,13 +123,14 @@ export function ImageCarousel({ images, accent, heightClass = 'h-80', interval =
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -18 }}
                   transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0"
+                  className="relative w-full h-full"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={images[current]}
                     alt={`Screenshot ${current + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover object-top"
+                    fill
+                    unoptimized
+                    className="object-cover object-top"
                   />
                 </motion.div>
               </AnimatePresence>
@@ -230,11 +233,12 @@ export function ImageCarousel({ images, accent, heightClass = 'h-80', interval =
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="absolute inset-0"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={images[current]}
               alt={`Screenshot ${current + 1}`}
-              className="absolute inset-0 w-full h-full object-cover object-top"
+              fill
+              unoptimized
+              className="object-cover object-top"
             />
           </motion.div>
         </AnimatePresence>
