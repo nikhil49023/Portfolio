@@ -11,7 +11,7 @@ const fadeUp = {
 
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
 
-function Tilt3D({ children, className }: { children: React.ReactNode; className?: string }) {
+function Tilt3D({ children, className, style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {
   const ref = useRef<HTMLDivElement>(null);
   const rx = useMotionValue(0);
   const ry = useMotionValue(0);
@@ -26,7 +26,7 @@ function Tilt3D({ children, className }: { children: React.ReactNode; className?
         ry.set(((e.clientX - r.left - r.width / 2) / r.width) * 10);
       }}
       onMouseLeave={() => { rx.set(0); ry.set(0); }}
-      style={{ rotateX: rotX, rotateY: rotY, transformPerspective: 900, transformStyle: 'preserve-3d' }}
+      style={{ rotateX: rotX, rotateY: rotY, transformPerspective: 900, transformStyle: 'preserve-3d', ...style }}
       className={className}
     >
       {children}

@@ -269,7 +269,6 @@ export function Services() {
                     </span>
                   ))}
                 </div>
-              </div>
             </Tilt3D>
             </motion.div>
           ))}
