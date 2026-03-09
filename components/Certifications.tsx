@@ -16,7 +16,7 @@ export function Certifications() {
       <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
         <motion.div variants={fadeUp} className="mb-10">
           <p className="eyebrow mb-2">Recognition</p>
-          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-[#1e1b4b] sm:text-4xl">
+          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-[#0f172a] sm:text-4xl">
             Awards and certifications
           </h2>
         </motion.div>
@@ -24,18 +24,18 @@ export function Certifications() {
         {/* Main award card */}
         <motion.div
           variants={fadeUp}
-          className="mb-5 overflow-hidden rounded-3xl border shadow-[0_4px_24px_rgba(124,58,237,0.1)]"
+          className="mb-5 overflow-hidden rounded-3xl border shadow-[0_4px_24px_rgba(2,132,199,0.1)]"
           style={{
             background: 'rgba(255,255,255,0.95)',
             backdropFilter: 'blur(20px) saturate(180%)',
             WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-            borderColor: 'rgba(124,58,237,0.14)',
+            borderColor: 'rgba(2, 132, 199, 0.14)',
           }}
         >
           {/* Gradient header */}
           <div
             className="relative overflow-hidden px-7 py-6"
-            style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #8b5cf6 45%, #a855f7 100%)' }}
+            style={{ background: 'linear-gradient(135deg, #075985 0%, #0284c7 45%, #0d9488 100%)' }}
           >
             <div className="absolute -right-8 -top-10 h-32 w-32 rounded-full bg-white/15 blur-2xl" />
             <div className="absolute -bottom-8 -left-4 h-24 w-24 rounded-full bg-white/15 blur-xl" />
@@ -64,13 +64,13 @@ export function Certifications() {
           {/* Details */}
           <div className="px-7 py-5">
             <div className="flex items-start gap-3">
-              <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-violet-50 text-violet-600">
+              <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-sky-50 text-sky-600">
                 <Users size={15} />
               </div>
               <div>
-                <p className="text-sm font-bold text-[#1e1b4b]">Top 90 of 70,000+</p>
-                <p className="mt-0.5 text-xs leading-relaxed text-[#6b6894]">
-                  Selected as a national finalist across India in the AI application track.
+                <p className="text-sm font-bold text-[#0f172a]">Top 90 of 70,000+</p>
+                <p className="mt-0.5 text-xs leading-relaxed text-[#64748b]">
+                  Selected as a national finalist across India in the production application track.
                 </p>
               </div>
             </div>
@@ -81,7 +81,7 @@ export function Certifications() {
               href="https://openai-buildathon.nxtwave.tech/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-600 transition-colors hover:text-violet-700"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-sky-600 transition-colors hover:text-sky-700"
             >
               <ExternalLink size={13} />
               View Buildathon
@@ -93,12 +93,12 @@ export function Certifications() {
         <motion.div variants={fadeUp} className="card rounded-2xl p-4 max-w-xs">
           <div
             className="mb-2 grid h-8 w-8 place-items-center rounded-lg text-[10px] font-black tracking-wide"
-            style={{ background: '#a855f710', color: '#a855f7' }}
+            style={{ background: '#f59e0b10', color: '#f59e0b' }}
           >
             PY
           </div>
-          <p className="text-sm font-bold text-[#1e1b4b]">PyPI Publisher</p>
-          <p className="mt-1 text-xs text-[#9896ac]">saara-ai open source package</p>
+          <p className="text-sm font-bold text-[#0f172a]">PyPI Publisher</p>
+          <p className="mt-1 text-xs text-[#64748b]">saara-ai open source package</p>
         </motion.div>
       </motion.div>
     </section>

@@ -14,42 +14,41 @@ import { ImageCarousel } from '@/components/projects/ImageCarousel';
 /* ── Terminal mockup (SAARA) ── */
 function TerminalMockup() {
   return (
-    <div className="w-full h-full flex items-center justify-center bg-[#0d1117] p-8 overflow-hidden">
+    <div className="w-full h-full flex items-center justify-center bg-[#0f172a] p-8 overflow-hidden">
       <div className="w-full max-w-xl select-none">
-        <div className="flex items-center gap-2 px-5 py-3 bg-[#1e1e2e] rounded-t-2xl border-b border-[#2a2a3e]">
+        <div className="flex items-center gap-2 px-5 py-3 bg-[#1e293b] rounded-t-2xl border-b border-[#334155]">
           <div className="flex gap-2">
-            <div className="w-3.5 h-3.5 rounded-full bg-[#ff5f57]" />
-            <div className="w-3.5 h-3.5 rounded-full bg-[#febc2e]" />
-            <div className="w-3.5 h-3.5 rounded-full bg-[#28c840]" />
+            <div className="w-3.5 h-3.5 rounded-full bg-[#f87171]" />
+            <div className="w-3.5 h-3.5 rounded-full bg-[#fbbf24]" />
+            <div className="w-3.5 h-3.5 rounded-full bg-[#34d399]" />
           </div>
-          <span className="text-[#585b70] text-sm font-mono ml-2">saara-ai — terminal</span>
+          <span className="text-slate-400 text-sm font-mono ml-2">saara-ai — terminal</span>
         </div>
-        <div className="bg-[#0d1117] px-5 py-4 font-mono text-sm space-y-2 rounded-b-2xl border border-[#2a2a3e] border-t-0">
-          <div><span className="text-[#89dceb]">❯</span> <span className="text-[#cdd6f4]">pip install saara-ai</span></div>
-          <div className="text-[#6c7086]">Collecting saara-ai...</div>
+        <div className="bg-[#0f172a] px-5 py-4 font-mono text-sm space-y-2 rounded-b-2xl border border-[#334155] border-t-0">
+          <div><span className="text-sky-400">❯</span> <span className="text-slate-200">pip install saara-ai</span></div>
+          <div className="text-slate-500">Collecting saara-ai...</div>
           <div className="flex items-center gap-3">
             <div className="flex gap-0.5">
               {Array.from({ length: 24 }).map((_, i) => (
-                <div key={i} className={`w-2 h-3 rounded-sm ${i < 20 ? 'bg-[#89b4fa]' : 'bg-[#313244]'}`} />
+                <div key={i} className={`w-2 h-3 rounded-sm ${i < 20 ? 'bg-sky-500' : 'bg-slate-800'}`} />
               ))}
             </div>
-            <span className="text-[#6c7086]">85%</span>
+            <span className="text-slate-500">85%</span>
           </div>
-          <div className="text-[#a6e3a1]">✔ Successfully installed saara-ai-1.0.0</div>
-          <div className="mt-2"><span className="text-[#89dceb]">❯</span> <span className="text-[#cdd6f4]">saara run --input thesis.pdf</span></div>
+          <div className="text-emerald-400">✔ Successfully installed saara-ai</div>
+          <div className="mt-2"><span className="text-sky-400">❯</span> <span className="text-slate-200">saara run --input data.pdf</span></div>
           {[
-            { color: '#89b4fa', text: '👁  Vision Agent    PDF → 847 text blocks extracted' },
-            { color: '#cba6f7', text: '🏷  Labeler Agent   2,341 training samples generated' },
-            { color: '#f9e2af', text: '⚖  Judge Loop      Quality 94.2% · running teacher...' },
-            { color: '#89dceb', text: '🎓  Fine-tune       QLoRA · RTX 3050 · epoch 3/5 ████░' },
-            { color: '#a6e3a1', text: '🚀  Deploy          → huggingface.co/saara-ai' },
+            { color: '#38bdf8', text: '⚗  Parsing Engine    PDF → 847 structural blocks extracted' },
+            { color: '#2dd4bf', text: '⚙  Data Processor    2,341 validated pairs generated' },
+            { color: '#fbbf24', text: '📦  Quality Loop      Coherence 94.2% · running validation...' },
+            { color: '#34d399', text: '🚀  Export Layer      JSON / CSV / HuggingFace Dataset' },
           ].map(({ color, text }) => (
             <div key={text} style={{ color }}>{text}</div>
           ))}
-          <div className="text-[#a6e3a1] mt-2">✓ Complete in 4m 32s</div>
+          <div className="text-emerald-400 mt-2">✓ Complete</div>
           <div className="flex items-center gap-1.5">
-            <span className="text-[#89dceb]">❯</span>
-            <span className="w-2.5 h-4 bg-[#cdd6f4]/70 animate-pulse rounded-sm inline-block" />
+            <span className="text-sky-400">❯</span>
+            <span className="w-2.5 h-4 bg-sky-400/70 animate-pulse rounded-sm inline-block" />
           </div>
         </div>
       </div>
@@ -187,13 +186,13 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           transition={{ duration: 0.45 }}
           className="sticky top-4 z-30"
         >
-          <div className="overflow-x-auto rounded-2xl border border-white/90 bg-white/80 px-2 py-2 shadow-[0_10px_24px_rgba(13,29,44,0.08)] backdrop-blur-xl">
+          <div className="overflow-x-auto rounded-2xl border border-white/90 bg-white/80 px-2 py-2 shadow-[0_10px_24px_rgba(3,105,161,0.08)] backdrop-blur-xl">
             <div className="flex w-max min-w-full items-center gap-1.5">
               {SECTION_LINKS.map((item) => (
                 <a
                   key={item.id}
                   href={`#${item.id}`}
-                  className="rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-600 transition-colors hover:bg-[#e8f3ff] hover:text-[#0a5fcf]"
+                  className="rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-600 transition-colors hover:bg-[#e0f2fe] hover:text-[#0369a1]"
                 >
                   {item.label}
                 </a>

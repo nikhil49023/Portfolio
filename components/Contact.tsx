@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Package, Cpu, ArrowRight } from 'lucide-react';
+import { Github, Linkedin, Package, Mail, ArrowRight } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -11,10 +11,10 @@ const fadeUp = {
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 
 const LINKS = [
-  { icon: Github, label: 'GitHub', sub: 'nikhil49023', href: 'https://github.com/nikhil49023', accent: '#7c3aed' },
-  { icon: Linkedin, label: 'LinkedIn', sub: 'kilanisainikhil', href: 'https://linkedin.com/in/kilanisainikhil', accent: '#0891b2' },
-  { icon: Package, label: 'PyPI', sub: 'SaiNikhil', href: 'https://pypi.org/user/SaiNikhil/', accent: '#d97706' },
-  { icon: Cpu, label: 'HuggingFace', sub: 'kilanisainikhil', href: 'https://huggingface.co/kilanisainikhil', accent: '#a855f7' },
+  { icon: Github, label: 'GitHub', sub: 'nikhil49023', href: 'https://github.com/nikhil49023', accent: '#0284c7' },
+  { icon: Linkedin, label: 'LinkedIn', sub: 'kilanisainikhil', href: 'https://linkedin.com/in/kilanisainikhil', accent: '#0d9488' },
+  { icon: Package, label: 'PyPI', sub: 'SaiNikhil', href: 'https://pypi.org/user/SaiNikhil/', accent: '#f59e0b' },
+  { icon: Mail, label: 'Email', sub: 'kilanisainikhil@gmail.com', href: 'mailto:kilanisainikhil@gmail.com', accent: '#075985' },
 ];
 
 export function Contact() {
@@ -23,7 +23,7 @@ export function Contact() {
       <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
         <motion.div variants={fadeUp} className="mb-10">
           <p className="eyebrow mb-2">Contact</p>
-          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-[#1e1b4b] sm:text-4xl">
+          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-[#0f172a] sm:text-4xl">
             Let&apos;s work together
           </h2>
         </motion.div>
@@ -31,15 +31,14 @@ export function Contact() {
         <div className="grid items-start gap-6 md:grid-cols-[1fr_1.2fr]">
           {/* LinkedIn card */}
           <motion.div variants={fadeUp} className="card rounded-3xl p-7">
-            <div className="mb-5 grid h-11 w-11 place-items-center rounded-xl bg-violet-50 text-violet-600">
+            <div className="mb-5 grid h-11 w-11 place-items-center rounded-xl bg-sky-50 text-sky-600">
               <Linkedin size={18} />
             </div>
 
-            <h3 className="display-heading mb-2 text-2xl font-extrabold text-[#1e1b4b]">Connect with me</h3>
-            <p className="mb-6 text-sm leading-relaxed text-[#6b6894]">
-              Open to internships, collaborations, and high-impact AI product work. LinkedIn is the best way to reach me.
-              You can also email at{' '}
-              <span className="font-semibold text-[#4b4776]">kilanisainikhil@gmail.com</span>.
+            <h3 className="display-heading mb-2 text-2xl font-extrabold text-[#0f172a]">Connect with me</h3>
+            <p className="mb-6 text-sm leading-relaxed text-[#64748b]">
+              Open to internships, freelance collaborations, and high-impact product engineering work. 
+              LinkedIn is the best way to reach me for professional inquiries.
             </p>
 
             <a
@@ -77,8 +76,8 @@ export function Contact() {
                 >
                   <Icon size={16} />
                 </div>
-                <p className="text-sm font-bold text-[#1e1b4b]">{label}</p>
-                <p className="text-xs text-[#9896ac]">{sub}</p>
+                <p className="text-sm font-bold text-[#0f172a]">{label}</p>
+                <p className="text-xs text-[#64748b] whitespace-nowrap overflow-hidden text-ellipsis">{sub}</p>
               </motion.a>
             ))}
           </motion.div>
@@ -87,8 +86,8 @@ export function Contact() {
         {/* Footer */}
         <motion.div
           variants={fadeUp}
-          className="mt-16 flex flex-col items-center justify-between gap-2 border-t pt-6 text-xs text-[#9896ac] sm:flex-row"
-          style={{ borderColor: 'rgba(124,58,237,0.12)' }}
+          className="mt-16 flex flex-col items-center justify-between gap-2 border-t pt-6 text-xs text-[#64748b] sm:flex-row"
+          style={{ borderColor: 'rgba(2, 132, 199, 0.12)' }}
         >
           <span>© 2026 Kilani Sai Nikhil</span>
           <span>Built with Next.js, Framer Motion, and Tailwind CSS</span>

@@ -19,28 +19,28 @@ const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.14 } } };
 /* ── Terminal preview (card-sized) ── */
 function MiniTerminal() {
   return (
-    <div className="w-full h-full flex items-center justify-center bg-[#0d1117] overflow-hidden p-4">
+    <div className="w-full h-full flex items-center justify-center bg-[#0f172a] overflow-hidden p-4">
       <div className="w-full max-w-xs select-none">
-        <div className="flex items-center gap-2 px-3 py-2 bg-[#1e1e2e] rounded-t-xl border-b border-[#2a2a3e]">
+        <div className="flex items-center gap-2 px-3 py-2 bg-[#1e293b] rounded-t-xl border-b border-[#334155]">
           <div className="flex gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#f87171]" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#fbbf24]" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#34d399]" />
           </div>
-          <span className="text-[#585b70] text-[10px] font-mono ml-1">saara-ai</span>
+          <span className="text-slate-400 text-[10px] font-mono ml-1">saara-ai</span>
         </div>
-        <div className="bg-[#0d1117] px-3 py-2.5 font-mono text-[10px] space-y-1 rounded-b-xl border border-[#2a2a3e] border-t-0">
-          <div><span className="text-[#89dceb]">❯</span> <span className="text-[#cdd6f4]">pip install saara-ai</span></div>
-          <div className="text-[#a6e3a1]">✔ saara-ai-1.0.0 installed</div>
-          <div><span className="text-[#89dceb]">❯</span> <span className="text-[#cdd6f4]">saara run --input doc.pdf</span></div>
+        <div className="bg-[#0f172a] px-3 py-2.5 font-mono text-[10px] space-y-1 rounded-b-xl border border-[#334155] border-t-0">
+          <div><span className="text-sky-400">❯</span> <span className="text-slate-200">pip install saara-ai</span></div>
+          <div className="text-emerald-400">✔ package installed successfully</div>
+          <div><span className="text-sky-400">❯</span> <span className="text-slate-200">saara run --input data.pdf</span></div>
           {[
-            { c: '#89b4fa', t: '👁  Vision Agent  → 847 blocks' },
-            { c: '#cba6f7', t: '🏷  Labeler       → 2,341 pairs' },
-            { c: '#89dceb', t: '🎓  QLoRA         → epoch 3/5' },
-            { c: '#a6e3a1', t: '🚀  Deploy        → HuggingFace' },
+            { c: '#38bdf8', t: '⚗  Parsing Engine  → OK' },
+            { c: '#2dd4bf', t: '⚙  Data Processor  → 100%' },
+            { c: '#fbbf24', t: '📦  Validation     → passed' },
+            { c: '#34d399', t: '🚀  Export         → JSON/CSV' },
           ].map(({ c, t }) => <div key={t} style={{ color: c }}>{t}</div>)}
-          <div className="text-[#a6e3a1]">✓ Done in 4m 32s</div>
-          <span className="w-1.5 h-3 bg-[#cdd6f4]/70 animate-pulse rounded-sm inline-block" />
+          <div className="text-emerald-400">✓ Done</div>
+          <span className="w-1.5 h-3 bg-sky-400/70 animate-pulse rounded-sm inline-block" />
         </div>
       </div>
     </div>
@@ -106,10 +106,10 @@ export function Projects() {
         <motion.div variants={fadeUp} className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
           <div>
             <p className="eyebrow mb-2">Projects</p>
-            <h2 className="display-heading text-3xl sm:text-4xl font-extrabold text-[#1e1b4b] tracking-tight">
+            <h2 className="display-heading text-3xl sm:text-4xl font-extrabold text-[#0f172a] tracking-tight">
               What I&apos;ve built
             </h2>
-            <p className="mt-2 text-[#6b6894] text-sm">
+            <p className="mt-2 text-[#64748b] text-sm">
               {PROJECTS.length} projects &middot; click any card for the full breakdown
             </p>
           </div>
@@ -122,7 +122,7 @@ export function Projects() {
               placeholder="Search by name, stack, type…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2.5 rounded-xl border border-violet-100 bg-white/80 backdrop-blur-xl text-sm text-[#1e1b4b] placeholder:text-[#9896ac] focus:outline-none focus:ring-2 focus:ring-violet-400/20 focus:border-violet-300 transition-all"
+              className="w-full pl-9 pr-8 py-2.5 rounded-xl border border-sky-100 bg-white/80 backdrop-blur-xl text-sm text-[#0f172a] placeholder:text-[#64748b] focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-300 transition-all"
               style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.8), 0 1px 3px rgba(0,0,0,0.04)' }}
             />
             {query && (
@@ -146,8 +146,8 @@ export function Projects() {
                 className="rounded-full border px-3 py-1.5 text-xs font-semibold transition-all"
                 style={
                   active
-                    ? { background: 'linear-gradient(135deg, #7c3aed, #6d28d9)', color: '#fff', borderColor: 'transparent' }
-                    : { background: 'rgba(124,58,237,0.04)', color: '#6b6894', borderColor: 'rgba(124,58,237,0.12)' }
+                    ? { background: 'linear-gradient(135deg, #0284c7, #075985)', color: '#fff', borderColor: 'transparent' }
+                    : { background: 'rgba(2, 132, 199, 0.04)', color: '#64748b', borderColor: 'rgba(2, 132, 199, 0.12)' }
                 }
               >
                 {category}

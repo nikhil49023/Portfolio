@@ -17,31 +17,30 @@ const tagAnim = {
 
 const CATEGORIES = [
   {
-    title: 'ML and LLMs',
-    icon: 'ML',
-    color: { text: '#7c3aed', bg: 'rgba(124,58,237,0.08)', border: 'rgba(124,58,237,0.18)' },
+    title: 'Mobile & Frontend',
+    icon: 'APP',
+    color: { text: '#0284c7', bg: 'rgba(2, 132, 199, 0.08)', border: 'rgba(2, 132, 199, 0.18)' },
     skills: [
-      'Agentic Frameworks', 'Vision LLMs', 'RAG Pipelines',
-      'QLoRA Fine-tuning', 'Groq and GPT-4o',
-      'HuggingFace', 'Ollama', 'Sarvam AI', 'Local Inference',
+      'Flutter', 'Dart', 'State Management', 'Mobile UI/UX', 'Figma to Code',
+      'SQLite', 'Animations', 'Interactive UI', 'React Basics',
     ],
   },
   {
-    title: 'Building',
-    icon: 'APP',
-    color: { text: '#0891b2', bg: 'rgba(8,145,178,0.08)', border: 'rgba(8,145,178,0.18)' },
+    title: 'Backend & Systems',
+    icon: 'SYS',
+    color: { text: '#0d9488', bg: 'rgba(13, 148, 136, 0.08)', border: 'rgba(13, 148, 136, 0.18)' },
     skills: [
-      'Python', 'C++ Basics', 'Flutter', 'Dart', 'FastAPI',
-      'SQLite', 'REST APIs', 'MVP Development', 'AI-assisted Development',
+      'FastAPI', 'Python', 'Asynchronous Programming', 'REST APIs', 'PostgreSQL',
+      'Redis', 'Celery', 'Docker', 'System Architecture',
     ],
   },
   {
     title: 'Dev Tools',
     icon: 'OPS',
-    color: { text: '#d97706', bg: 'rgba(217,119,6,0.08)', border: 'rgba(217,119,6,0.18)' },
+    color: { text: '#d97706', bg: 'rgba(217, 119, 6, 0.08)', border: 'rgba(217, 119, 6, 0.18)' },
     skills: [
-      'Git and GitHub', 'Ubuntu and Linux',
-      'PyPI Publishing', 'Claude CLI', 'Copilot CLI', 'HuggingFace Hub',
+        'Git & GitHub', 'Ubuntu / Linux', 'PyPI Publishing', 
+        'CI/CD Basics', 'Unit Testing', 'Product Engineering'
     ],
   },
 ];
@@ -75,7 +74,7 @@ export function Skills() {
       <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
         <motion.div variants={fadeUp} className="mb-10">
           <p className="eyebrow mb-2">Skills</p>
-          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-[#1e1b4b] sm:text-4xl">My toolkit</h2>
+          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-[#0f172a] sm:text-4xl">Technical Proficiency</h2>
         </motion.div>
 
         <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
@@ -91,8 +90,8 @@ export function Skills() {
                     {cat.icon}
                   </motion.div>
                   <div>
-                    <h3 className="text-sm font-bold text-[#1e1b4b]">{cat.title}</h3>
-                    <p className="text-xs text-[#9896ac]">{cat.skills.length} skills</p>
+                    <h3 className="text-sm font-bold text-[#0f172a]">{cat.title}</h3>
+                    <p className="text-xs text-[#64748b]">{cat.skills.length} skills</p>
                   </div>
                 </div>
 
@@ -121,8 +120,8 @@ export function Skills() {
           ))}
         </div>
 
-        <motion.p variants={fadeUp} className="mt-8 text-center text-sm text-[#9896ac]">
-          I build working AI products fast — Python is my core language, and I use AI tooling to ship across the full stack.
+        <motion.p variants={fadeUp} className="mt-8 text-center text-sm text-[#64748b]">
+          I build high-performance products with a focus on clean architecture and scalable systems across the full stack.
         </motion.p>
       </motion.div>
     </section>

@@ -15,17 +15,22 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: 'Kilani Sai Nikhil — AI Developer',
+  title: 'Kilani Sai Nikhil — Full-Stack Developer',
   description:
-    'B.Tech student & AI Developer specializing in LLMs, Agentic Architectures, and Open-Source tooling. Builder of WealthIn and SAARA.',
-  keywords: ['AI Developer', 'LLMs', 'Flutter', 'FastAPI', 'Agentic', 'Portfolio', 'Kilani Sai Nikhil'],
+    'B.Tech student & Full-Stack Developer specializing in high-performance Flutter apps, scalable FastAPI backends, and production-grade software engineering.',
+  keywords: ['Full-Stack Developer', 'Flutter', 'FastAPI', 'Python', 'Backend Architect', 'Portfolio', 'Kilani Sai Nikhil'],
   authors: [{ name: 'Kilani Sai Nikhil' }],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${plusJakartaSans.variable} ${sora.variable}`}>{children}</body>
+      <body className={`${plusJakartaSans.variable} ${sora.variable}`}>
+        <div className="fixed inset-0 -z-10 pointer-events-none">
+          <div className="absolute inset-0 bg-[#f0f9ff]" />
+        </div>
+        {children}
+      </body>
     </html>
   );
 }

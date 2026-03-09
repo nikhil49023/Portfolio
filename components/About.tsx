@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { MapPin, GraduationCap, Github, Linkedin, Package, Cpu, Sparkles } from 'lucide-react';
+import { MapPin, GraduationCap, Github, Linkedin, Package, Sparkles } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24, rotateX: 6 },
@@ -40,7 +40,7 @@ export function About() {
       <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
         <motion.div variants={fadeUp} className="mb-10">
           <p className="eyebrow mb-2">About</p>
-          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-[#1e1b4b] sm:text-4xl">Who I am</h2>
+          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-[#0f172a] sm:text-4xl">Who I am</h2>
         </motion.div>
 
         <div className="grid items-start gap-6 md:grid-cols-[1fr_1fr]">
@@ -53,7 +53,7 @@ export function About() {
                   animate={{ rotate: 360 }}
                   transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
                   className="absolute -inset-0.5 rounded-full"
-                  style={{ background: 'conic-gradient(from 0deg, #7c3aed, #a855f7, #0891b2, #7c3aed)' }}
+                  style={{ background: 'conic-gradient(from 0deg, #0284c7, #0d9488, #f59e0b, #0284c7)' }}
                 />
                 <div className="relative z-10 w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-md">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -65,41 +65,40 @@ export function About() {
                 </div>
               </div>
               <div>
-                <h3 className="display-heading text-xl font-extrabold text-[#1e1b4b]">Kilani Sai Nikhil</h3>
-                <p className="mt-0.5 text-sm font-semibold text-violet-600">AI Developer and Open-Source Builder</p>
+                <h3 className="display-heading text-xl font-extrabold text-[#0f172a]">Kilani Sai Nikhil</h3>
+                <p className="mt-0.5 text-sm font-semibold text-sky-600">Full-Stack Developer and Open-Source Builder</p>
               </div>
             </div>
 
-            <p className="mb-6 text-sm leading-relaxed text-[#6b6894]">
-              I am a B.Tech student focused on large language models, agentic architectures, and robust software systems. I care about
-              shipping useful products — from backend AI orchestration to polished mobile experiences.
+            <p className="mb-6 text-sm leading-relaxed text-[#64748b]">
+              I am a B.Tech student focused on building robust and scalable software systems. I care about
+              shipping useful products — from asynchronous backend orchestration to polished mobile experiences.
             </p>
 
             <div className="space-y-2.5 text-sm">
-              <p className="flex items-center gap-2.5 text-[#6b6894]">
-                <MapPin size={14} className="text-violet-500" /> Hyderabad, India
+              <p className="flex items-center gap-2.5 text-[#64748b]">
+                <MapPin size={14} className="text-sky-500" /> Hyderabad, India
               </p>
-              <p className="flex items-center gap-2.5 text-[#6b6894]">
-                <Linkedin size={14} className="text-violet-500" />
-                <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="font-semibold text-violet-600 hover:underline">
+              <p className="flex items-center gap-2.5 text-[#64748b]">
+                <Linkedin size={14} className="text-sky-500" />
+                <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-600 hover:underline">
                   linkedin.com/in/kilanisainikhil
                 </a>
               </p>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-2 border-t border-violet-50 pt-5">
+            <div className="mt-6 flex flex-wrap gap-2 border-t border-sky-50 pt-5">
               {[
                 { icon: Github, href: 'https://github.com/nikhil49023', label: 'GitHub' },
                 { icon: Linkedin, href: 'https://linkedin.com/in/kilanisainikhil', label: 'LinkedIn' },
                 { icon: Package, href: 'https://pypi.org/user/SaiNikhil/', label: 'PyPI' },
-                { icon: Cpu, href: 'https://huggingface.co/kilanisainikhil', label: 'HuggingFace' },
               ].map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-violet-100 bg-violet-50/60 px-3 py-1.5 text-xs font-semibold text-[#6b6894] transition-all hover:border-violet-300 hover:bg-violet-50 hover:text-violet-700"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-sky-100 bg-sky-50/60 px-3 py-1.5 text-xs font-semibold text-[#64748b] transition-all hover:border-sky-300 hover:bg-sky-50 hover:text-sky-700"
                 >
                   <Icon size={12} />
                   {label}
@@ -114,13 +113,13 @@ export function About() {
             <motion.div variants={fadeUp}>
               <Tilt3D className="card rounded-3xl p-6">
                 <div className="flex items-start gap-3.5">
-                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-violet-50 text-violet-600">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-sky-50 text-sky-600">
                     <GraduationCap size={18} />
                   </div>
                   <div>
                     <p className="eyebrow mb-1">Education</p>
-                    <p className="text-sm font-bold text-[#1e1b4b]">Nxt Wave Institute of Advanced Technologies</p>
-                    <p className="mt-0.5 text-xs text-[#9896ac]">B.Tech, 2025-2029, Hyderabad</p>
+                    <p className="text-sm font-bold text-[#0f172a]">Nxt Wave Institute of Advanced Technologies</p>
+                    <p className="mt-0.5 text-xs text-[#64748b]">B.Tech, 2025-2029, Hyderabad</p>
                   </div>
                 </div>
               </Tilt3D>
@@ -132,17 +131,15 @@ export function About() {
               <p className="eyebrow mb-3.5">What I build</p>
               <div className="grid grid-cols-2 gap-2">
                 {[
-                  { icon: 'AI', text: 'Agentic LLM systems', color: '#7c3aed' },
-                  { icon: 'APP', text: 'Flutter mobile apps', color: '#0891b2' },
-                  { icon: 'API', text: 'FastAPI services', color: '#a855f7' },
-                  { icon: 'ML', text: 'Model pipelines', color: '#059669' },
-                  { icon: 'OSS', text: 'Open source tools', color: '#d97706' },
-                  { icon: 'IND', text: 'Indic AI workflows', color: '#ec4899' },
+                  { icon: 'APP', text: 'Flutter mobile apps', color: '#0284c7' },
+                  { icon: 'API', text: 'FastAPI services', color: '#0d9488' },
+                  { icon: 'OSS', text: 'Open source tools', color: '#f59e0b' },
+                  { icon: 'SYS', text: 'Scalable Systems', color: '#075985' },
                 ].map((item) => (
                   <div
                     key={item.text}
-                    className="rounded-xl border px-3 py-2 text-xs font-semibold text-[#4b4776] transition-all hover:border-violet-200"
-                    style={{ background: 'rgba(124,58,237,0.03)', borderColor: 'rgba(124,58,237,0.08)' }}
+                    className="rounded-xl border px-3 py-2 text-xs font-semibold text-[#64748b] transition-all hover:border-sky-200"
+                    style={{ background: 'rgba(2, 132, 199, 0.03)', borderColor: 'rgba(2, 132, 199, 0.08)' }}
                   >
                     <p className="text-[10px] font-extrabold tracking-wide" style={{ color: item.color }}>{item.icon}</p>
                     <p className="mt-0.5 leading-snug">{item.text}</p>
@@ -157,20 +154,20 @@ export function About() {
               <Tilt3D
                 className="rounded-3xl border p-5"
                 style={{
-                  background: 'linear-gradient(145deg, rgba(124,58,237,0.07), rgba(168,85,247,0.06))',
+                  background: 'linear-gradient(145deg, rgba(2, 132, 199, 0.07), rgba(13, 148, 136, 0.06))',
                   backdropFilter: 'blur(16px) saturate(160%)',
                   WebkitBackdropFilter: 'blur(16px) saturate(160%)',
-                  borderColor: 'rgba(124,58,237,0.18)',
-                  boxShadow: '0 2px 12px rgba(124,58,237,0.08)',
+                  borderColor: 'rgba(2, 132, 199, 0.18)',
+                  boxShadow: '0 2px 12px rgba(2, 132, 199, 0.08)',
                 } as React.CSSProperties}
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-violet-100 text-violet-600">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-sky-100 text-sky-600">
                     <Sparkles size={18} />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-[#1e1b4b]">National Finalist</p>
-                    <p className="text-xs text-[#6b6894]">Top 90 of 70,000+ at OpenAI x NxtWave Buildathon 2026</p>
+                    <p className="text-sm font-bold text-[#0f172a]">National Finalist</p>
+                    <p className="text-xs text-[#64748b]">Top 90 of 70,000+ at OpenAI x NxtWave Buildathon 2026</p>
                   </div>
                 </div>
               </Tilt3D>
