@@ -1,13 +1,37 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { Rocket, Brain, Zap, Smartphone, Package, Sparkles, ArrowRight, CheckCircle2, Mail } from 'lucide-react';
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 28, rotateX: 6 },
+  show: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.09 } } };
+
+function Tilt3D({ children, className, style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const rx = useMotionValue(0);
+  const ry = useMotionValue(0);
+  const rotX = useSpring(rx, { damping: 35, stiffness: 220 });
+  const rotY = useSpring(ry, { damping: 35, stiffness: 220 });
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={(e) => {
+        const r = ref.current!.getBoundingClientRect();
+        rx.set(-((e.clientY - r.top - r.height / 2) / r.height) * 10);
+        ry.set(((e.clientX - r.left - r.width / 2) / r.width) * 10);
+      }}
+      onMouseLeave={() => { rx.set(0); ry.set(0); }}
+      style={{ rotateX: rotX, rotateY: rotY, transformPerspective: 900, transformStyle: 'preserve-3d', ...style }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 const SERVICES = [
   {
@@ -92,8 +116,8 @@ export function Services() {
         <div className="grid gap-5 lg:grid-cols-[1.55fr_1fr] mb-5">
           {/* Featured card */}
           <motion.div variants={fadeUp}>
-            <div
-              className="relative h-full overflow-hidden rounded-3xl border p-7 transition-all duration-300 hover:-translate-y-1"
+            <Tilt3D
+              className="relative h-full overflow-hidden rounded-3xl border p-7"
               style={{
                 background: 'linear-gradient(145deg, rgba(124,58,237,0.07), rgba(124,58,237,0.02))',
                 borderColor: 'rgba(124,58,237,0.2)',
@@ -164,13 +188,13 @@ export function Services() {
                   <ArrowRight size={14} />
                 </a>
               </div>
-            </div>
+            </Tilt3D>
           </motion.div>
 
           {/* Agentic AI */}
           <motion.div variants={fadeUp}>
-            <div
-              className="relative h-full overflow-hidden rounded-3xl border p-6 transition-all duration-300 hover:-translate-y-1"
+            <Tilt3D
+              className="relative h-full overflow-hidden rounded-3xl border p-6"
               style={{
                 background: 'linear-gradient(145deg, rgba(8,145,178,0.07), rgba(8,145,178,0.02))',
                 borderColor: 'rgba(8,145,178,0.18)',
@@ -207,7 +231,7 @@ export function Services() {
                   ))}
                 </div>
               </div>
-            </div>
+            </Tilt3D>
           </motion.div>
         </div>
 
@@ -215,8 +239,8 @@ export function Services() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {SERVICES.slice(2).map((svc) => (
             <motion.div key={svc.title} variants={fadeUp}>
-              <div
-                className="relative h-full overflow-hidden rounded-3xl border p-5 transition-all duration-300 hover:-translate-y-1"
+              <Tilt3D
+                className="relative h-full overflow-hidden rounded-3xl border p-5"
                 style={{
                   background: `linear-gradient(145deg, ${svc.accent}08, ${svc.accent}02)`,
                   borderColor: `${svc.accent}20`,
@@ -246,6 +270,7 @@ export function Services() {
                   ))}
                 </div>
               </div>
+            </Tilt3D>
             </motion.div>
           ))}
         </div>

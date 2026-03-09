@@ -1,14 +1,38 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { MapPin, GraduationCap, Mail, Github, Linkedin, Package, Cpu, Sparkles } from 'lucide-react';
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 24, rotateX: 6 },
+  show: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
+
+function Tilt3D({ children, className }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const rx = useMotionValue(0);
+  const ry = useMotionValue(0);
+  const rotX = useSpring(rx, { damping: 35, stiffness: 220 });
+  const rotY = useSpring(ry, { damping: 35, stiffness: 220 });
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={(e) => {
+        const r = ref.current!.getBoundingClientRect();
+        rx.set(-((e.clientY - r.top - r.height / 2) / r.height) * 10);
+        ry.set(((e.clientX - r.left - r.width / 2) / r.width) * 10);
+      }}
+      onMouseLeave={() => { rx.set(0); ry.set(0); }}
+      style={{ rotateX: rotX, rotateY: rotY, transformPerspective: 900, transformStyle: 'preserve-3d' }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export function About() {
   return (
@@ -21,13 +45,24 @@ export function About() {
 
         <div className="grid items-start gap-6 md:grid-cols-[1fr_1fr]">
           {/* Profile card */}
-          <motion.div variants={fadeUp} className="card rounded-3xl p-7">
+          <motion.div variants={fadeUp}>
+          <Tilt3D className="card rounded-3xl p-7">
             <div className="mb-5 flex items-start gap-4">
-              <div
-                className="grid h-14 w-14 place-items-center rounded-2xl text-2xl font-black text-white shadow-md"
-                style={{ background: 'linear-gradient(145deg, #7c3aed, #6d28d9)' }}
-              >
-                N
+              <div className="relative shrink-0">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+                  className="absolute -inset-0.5 rounded-full"
+                  style={{ background: 'conic-gradient(from 0deg, #7c3aed, #a855f7, #0891b2, #7c3aed)' }}
+                />
+                <div className="relative z-10 w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-md">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://raw.githubusercontent.com/nikhil49023/Portfolio/main/public/profile.jpeg"
+                    alt="Kilani Sai Nikhil"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
               <div>
                 <h3 className="display-heading text-xl font-extrabold text-[#1e1b4b]">Kilani Sai Nikhil</h3>
@@ -71,25 +106,29 @@ export function About() {
                 </a>
               ))}
             </div>
+          </Tilt3D>
           </motion.div>
 
           <div className="space-y-4">
             {/* Education */}
-            <motion.div variants={fadeUp} className="card rounded-3xl p-6">
-              <div className="flex items-start gap-3.5">
-                <div className="grid h-10 w-10 place-items-center rounded-xl bg-violet-50 text-violet-600">
-                  <GraduationCap size={18} />
+            <motion.div variants={fadeUp}>
+              <Tilt3D className="card rounded-3xl p-6">
+                <div className="flex items-start gap-3.5">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-violet-50 text-violet-600">
+                    <GraduationCap size={18} />
+                  </div>
+                  <div>
+                    <p className="eyebrow mb-1">Education</p>
+                    <p className="text-sm font-bold text-[#1e1b4b]">Nxt Wave Institute of Advanced Technologies</p>
+                    <p className="mt-0.5 text-xs text-[#9896ac]">B.Tech, 2025-2029, Hyderabad</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="eyebrow mb-1">Education</p>
-                  <p className="text-sm font-bold text-[#1e1b4b]">Nxt Wave Institute of Advanced Technologies</p>
-                  <p className="mt-0.5 text-xs text-[#9896ac]">B.Tech, 2025-2029, Hyderabad</p>
-                </div>
-              </div>
+              </Tilt3D>
             </motion.div>
 
             {/* What I build */}
-            <motion.div variants={fadeUp} className="card rounded-3xl p-6">
+            <motion.div variants={fadeUp}>
+            <Tilt3D className="card rounded-3xl p-6">
               <p className="eyebrow mb-3.5">What I build</p>
               <div className="grid grid-cols-2 gap-2">
                 {[
@@ -110,29 +149,31 @@ export function About() {
                   </div>
                 ))}
               </div>
+            </Tilt3D>
             </motion.div>
 
             {/* National Finalist */}
-            <motion.div
-              variants={fadeUp}
-              className="rounded-3xl border p-5"
-              style={{
-                background: 'linear-gradient(145deg, rgba(124,58,237,0.07), rgba(168,85,247,0.06))',
-                backdropFilter: 'blur(16px) saturate(160%)',
-                WebkitBackdropFilter: 'blur(16px) saturate(160%)',
-                borderColor: 'rgba(124,58,237,0.18)',
-                boxShadow: '0 2px 12px rgba(124,58,237,0.08)',
-              }}
-            >
-              <div className="flex items-center gap-3.5">
-                <div className="grid h-10 w-10 place-items-center rounded-xl bg-violet-100 text-violet-600">
-                  <Sparkles size={18} />
+            <motion.div variants={fadeUp}>
+              <Tilt3D
+                className="rounded-3xl border p-5"
+                style={{
+                  background: 'linear-gradient(145deg, rgba(124,58,237,0.07), rgba(168,85,247,0.06))',
+                  backdropFilter: 'blur(16px) saturate(160%)',
+                  WebkitBackdropFilter: 'blur(16px) saturate(160%)',
+                  borderColor: 'rgba(124,58,237,0.18)',
+                  boxShadow: '0 2px 12px rgba(124,58,237,0.08)',
+                } as React.CSSProperties}
+              >
+                <div className="flex items-center gap-3.5">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-violet-100 text-violet-600">
+                    <Sparkles size={18} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-[#1e1b4b]">National Finalist</p>
+                    <p className="text-xs text-[#6b6894]">Top 90 of 70,000+ at OpenAI x NxtWave Buildathon 2026</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm font-bold text-[#1e1b4b]">National Finalist</p>
-                  <p className="text-xs text-[#6b6894]">Top 90 of 70,000+ at OpenAI x NxtWave Buildathon 2026</p>
-                </div>
-              </div>
+              </Tilt3D>
             </motion.div>
           </div>
         </div>

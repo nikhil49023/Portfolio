@@ -182,3 +182,32 @@ body {
   font-family: var(--font-display), var(--font-sans), sans-serif;
   letter-spacing: -0.025em;
 }
+
+/* ── 3D / Perspective ── */
+.perspective-1200 {
+  perspective: 1200px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* ── Smooth 3D entrance for sections ── */
+section {
+  will-change: auto;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  h1 { font-size: clamp(1.8rem, 8vw, 3rem); }
+}
+
+/* ── Resume print styles ── */
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: white !important; margin: 0 !important; }
+  .no-print { display: none !important; }
+}

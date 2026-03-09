@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, FileText } from 'lucide-react';
 
 const LINKS = [
   { label: 'About', href: '#about' },
@@ -74,13 +75,22 @@ export function Navbar() {
           ))}
         </nav>
 
-        <a
-          href="mailto:kilanisainikhil@gmail.com"
-          className="btn-primary hidden items-center gap-1.5 px-4 py-2 text-sm md:inline-flex"
-        >
-          Hire me
-          <ArrowUpRight size={14} />
-        </a>
+        <div className="hidden items-center gap-2 md:flex">
+          <Link
+            href="/resume"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-violet-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-violet-600 hover:bg-violet-50 transition-all"
+          >
+            <FileText size={13} />
+            Resume
+          </Link>
+          <a
+            href="mailto:kilanisainikhil@gmail.com"
+            className="btn-primary inline-flex items-center gap-1.5 px-4 py-2 text-sm"
+          >
+            Hire me
+            <ArrowUpRight size={14} />
+          </a>
+        </div>
 
         {/* Mobile hamburger */}
         <button
@@ -114,6 +124,12 @@ export function Navbar() {
                 {item.label}
               </button>
             ))}
+            <Link
+              href="/resume"
+              className="mt-1 block rounded-xl border border-violet-200 bg-white px-3.5 py-2.5 text-center text-sm font-semibold text-violet-600"
+            >
+              📄 Resume
+            </Link>
             <a
               href="mailto:kilanisainikhil@gmail.com"
               className="btn-primary mt-1 block rounded-xl px-3.5 py-2.5 text-center text-sm"
