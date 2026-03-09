@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, Package, Cpu, ArrowRight } from 'lucide-react';
+import { Github, Linkedin, Package, Cpu, ArrowRight } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -29,24 +29,27 @@ export function Contact() {
         </motion.div>
 
         <div className="grid items-start gap-6 md:grid-cols-[1fr_1.2fr]">
-          {/* Email card */}
+          {/* LinkedIn card */}
           <motion.div variants={fadeUp} className="card rounded-3xl p-7">
             <div className="mb-5 grid h-11 w-11 place-items-center rounded-xl bg-violet-50 text-violet-600">
-              <Mail size={18} />
+              <Linkedin size={18} />
             </div>
 
-            <h3 className="display-heading mb-2 text-2xl font-extrabold text-[#1e1b4b]">Say hello</h3>
+            <h3 className="display-heading mb-2 text-2xl font-extrabold text-[#1e1b4b]">Connect with me</h3>
             <p className="mb-6 text-sm leading-relaxed text-[#6b6894]">
-              Open to internships, collaborations, and high-impact AI product work. Reach me directly at{' '}
-              <a href="mailto:kilanisainikhil@gmail.com" className="font-semibold text-violet-600 hover:underline">
-                kilanisainikhil@gmail.com
-              </a>
-              .
+              Open to internships, collaborations, and high-impact AI product work. LinkedIn is the best way to reach me.
+              You can also email at{' '}
+              <span className="font-semibold text-[#4b4776]">kilanisainikhil@gmail.com</span>.
             </p>
 
-            <a href="mailto:kilanisainikhil@gmail.com" className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">
-              <Mail size={14} />
-              Send email
+            <a
+              href="https://linkedin.com/in/kilanisainikhil"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm"
+            >
+              <Linkedin size={14} />
+              Connect on LinkedIn
               <ArrowRight size={13} />
             </a>
           </motion.div>

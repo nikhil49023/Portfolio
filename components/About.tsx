@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { MapPin, GraduationCap, Mail, Github, Linkedin, Package, Cpu, Sparkles } from 'lucide-react';
+import { MapPin, GraduationCap, Github, Linkedin, Package, Cpu, Sparkles } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24, rotateX: 6 },
@@ -80,9 +80,9 @@ export function About() {
                 <MapPin size={14} className="text-violet-500" /> Hyderabad, India
               </p>
               <p className="flex items-center gap-2.5 text-[#6b6894]">
-                <Mail size={14} className="text-violet-500" />
-                <a href="mailto:kilanisainikhil@gmail.com" className="font-semibold text-violet-600 hover:underline">
-                  kilanisainikhil@gmail.com
+                <Linkedin size={14} className="text-violet-500" />
+                <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="font-semibold text-violet-600 hover:underline">
+                  linkedin.com/in/kilanisainikhil
                 </a>
               </p>
             </div>

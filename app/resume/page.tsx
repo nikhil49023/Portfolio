@@ -10,7 +10,7 @@ export default function ResumePage() {
   return (
     <>
       {/* Print / Save-as-PDF button — hidden when printing */}
-      <div className="no-print fixed bottom-6 right-6 z-50 flex gap-3">
+      <div className="no-print fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex gap-2 sm:gap-3">
         <button
           onClick={() => window.print()}
           className="flex items-center gap-2 rounded-xl bg-violet-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:bg-violet-700 transition-colors"
@@ -26,19 +26,19 @@ export default function ResumePage() {
       </div>
 
       {/* Resume document */}
-      <main className="resume-page mx-auto max-w-[800px] bg-white px-12 py-10 text-[#1a1a2e] font-sans">
+      <main className="resume-page mx-auto max-w-[800px] bg-white px-4 py-6 sm:px-8 sm:py-8 md:px-12 md:py-10 text-[#1a1a2e] font-sans">
 
         {/* ── Header ── */}
         <header className="mb-6 border-b-2 border-violet-600 pb-5">
-          <div className="flex items-start justify-between gap-4">
+          <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <h1 className="text-3xl font-black tracking-tight text-[#1a1a2e]">Kilani Sai Nikhil</h1>
               <p className="mt-1 text-base font-semibold text-violet-600">AI Developer · LLM Engineer · Flutter Builder</p>
             </div>
             <div className="text-right text-xs text-slate-500 space-y-1 shrink-0">
               <p>Hyderabad, India</p>
-              <a href="mailto:kilanisainikhil@gmail.com" className="block text-violet-600 hover:underline">
-                kilanisainikhil@gmail.com
+              <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="block text-violet-600 hover:underline">
+                linkedin.com/in/kilanisainikhil
               </a>
             </div>
           </div>
@@ -120,9 +120,9 @@ export default function ResumePage() {
         {/* ── Skills ── */}
         <Section title="Skills">
           <div className="space-y-2">
-            <SkillRow label="AI / ML / LLMs" skills="Agentic Frameworks · LLMops · Vision LLMs · RAG Pipelines · QLoRA Fine-tuning · Groq · GPT-4o · HuggingFace · Ollama · Sarvam AI · Local Inference" />
-            <SkillRow label="Full-Stack" skills="Flutter · Dart · FastAPI · Python · REST APIs · SQLite · PostgreSQL · Redis · Celery · Cross-platform" />
-            <SkillRow label="DevTools" skills="Git · GitHub · Docker · Ubuntu / Linux · PyPI Publishing · Claude CLI · HuggingFace Hub" />
+            <SkillRow label="AI / ML / LLMs" skills="Agentic Frameworks · Vision LLMs · RAG Pipelines · QLoRA Fine-tuning · Groq · GPT-4o · HuggingFace · Ollama · Sarvam AI · Local Inference" />
+            <SkillRow label="Building" skills="Python · C++ Basics · Flutter · Dart · FastAPI · SQLite · REST APIs · MVP Development · AI-assisted Development" />
+            <SkillRow label="DevTools" skills="Git · GitHub · Ubuntu / Linux · PyPI Publishing · Claude CLI · HuggingFace Hub" />
           </div>
         </Section>
 
@@ -134,16 +134,6 @@ export default function ResumePage() {
               sub="Top 90 of 70,000+ participants across India · AI Application Track"
               date="17 Feb 2026"
               link="https://openai-buildathon.nxtwave.tech/"
-            />
-            <AwardItem
-              title="MeitY Showcase — India AI Impact Summit"
-              sub="Invited to present AI solutions at Sushma Swaraj Bhawan, New Delhi"
-              date="2026"
-            />
-            <AwardItem
-              title="OpenAI Academy Certified Participant"
-              sub="Certified through the OpenAI × NxtWave program"
-              date="2026"
             />
             <AwardItem
               title="Open Source Contributor — saara-ai on PyPI"

@@ -21,18 +21,18 @@ const CATEGORIES = [
     icon: 'ML',
     color: { text: '#7c3aed', bg: 'rgba(124,58,237,0.08)', border: 'rgba(124,58,237,0.18)' },
     skills: [
-      'Agentic Frameworks', 'LLMops', 'Vision LLMs', 'Local Inference',
-      'RAG Pipelines', 'QLoRA Fine-tuning', 'Groq and GPT-4o',
-      'HuggingFace', 'Ollama', 'Sarvam AI',
+      'Agentic Frameworks', 'Vision LLMs', 'RAG Pipelines',
+      'QLoRA Fine-tuning', 'Groq and GPT-4o',
+      'HuggingFace', 'Ollama', 'Sarvam AI', 'Local Inference',
     ],
   },
   {
-    title: 'Full Stack',
+    title: 'Building',
     icon: 'APP',
     color: { text: '#0891b2', bg: 'rgba(8,145,178,0.08)', border: 'rgba(8,145,178,0.18)' },
     skills: [
-      'Flutter', 'Dart', 'FastAPI', 'Python', 'SQL',
-      'SQLite and Local DB', 'REST APIs', 'Cross-platform', 'AI-assisted Development',
+      'Python', 'C++ Basics', 'Flutter', 'Dart', 'FastAPI',
+      'SQLite', 'REST APIs', 'MVP Development', 'AI-assisted Development',
     ],
   },
   {
@@ -40,7 +40,7 @@ const CATEGORIES = [
     icon: 'OPS',
     color: { text: '#d97706', bg: 'rgba(217,119,6,0.08)', border: 'rgba(217,119,6,0.18)' },
     skills: [
-      'Git and GitHub', 'Ubuntu and Linux', 'Docker',
+      'Git and GitHub', 'Ubuntu and Linux',
       'PyPI Publishing', 'Claude CLI', 'Copilot CLI', 'HuggingFace Hub',
     ],
   },
@@ -122,7 +122,7 @@ export function Skills() {
         </div>
 
         <motion.p variants={fadeUp} className="mt-8 text-center text-sm text-[#9896ac]">
-          Currently exploring multimodal agents and efficient fine-tuning strategies.
+          I build working AI products fast — Python is my core language, and I use AI tooling to ship across the full stack.
         </motion.p>
       </motion.div>
     </section>

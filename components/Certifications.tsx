@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ExternalLink, Users, MapPin, Sparkles } from 'lucide-react';
+import { ExternalLink, Users, Sparkles } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -62,7 +62,7 @@ export function Certifications() {
           </div>
 
           {/* Details */}
-          <div className="grid gap-5 px-7 py-5 sm:grid-cols-2">
+          <div className="px-7 py-5">
             <div className="flex items-start gap-3">
               <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-violet-50 text-violet-600">
                 <Users size={15} />
@@ -71,18 +71,6 @@ export function Certifications() {
                 <p className="text-sm font-bold text-[#1e1b4b]">Top 90 of 70,000+</p>
                 <p className="mt-0.5 text-xs leading-relaxed text-[#6b6894]">
                   Selected as a national finalist across India in the AI application track.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-cyan-50 text-cyan-600">
-                <MapPin size={15} />
-              </div>
-              <div>
-                <p className="text-sm font-bold text-[#1e1b4b]">India AI Impact Summit</p>
-                <p className="mt-0.5 text-xs leading-relaxed text-[#6b6894]">
-                  Invited to showcase AI solutions at Sushma Swaraj Bhawan, New Delhi.
                 </p>
               </div>
             </div>
@@ -101,25 +89,17 @@ export function Certifications() {
           </div>
         </motion.div>
 
-        {/* Mini cards */}
-        <div className="grid gap-4 sm:grid-cols-3">
-          {[
-            { icon: 'OA', title: 'OpenAI Academy', sub: 'Certified participant', accent: '#7c3aed' },
-            { icon: 'IN', title: 'MeitY Showcase', sub: 'India AI Summit, New Delhi', accent: '#0891b2' },
-            { icon: 'PY', title: 'PyPI Publisher', sub: 'saara-ai open source package', accent: '#a855f7' },
-          ].map((item) => (
-            <motion.div key={item.title} variants={fadeUp} className="card rounded-2xl p-4">
-              <div
-                className="mb-2 grid h-8 w-8 place-items-center rounded-lg text-[10px] font-black tracking-wide"
-                style={{ background: `${item.accent}10`, color: item.accent }}
-              >
-                {item.icon}
-              </div>
-              <p className="text-sm font-bold text-[#1e1b4b]">{item.title}</p>
-              <p className="mt-1 text-xs text-[#9896ac]">{item.sub}</p>
-            </motion.div>
-          ))}
-        </div>
+        {/* Mini card */}
+        <motion.div variants={fadeUp} className="card rounded-2xl p-4 max-w-xs">
+          <div
+            className="mb-2 grid h-8 w-8 place-items-center rounded-lg text-[10px] font-black tracking-wide"
+            style={{ background: '#a855f710', color: '#a855f7' }}
+          >
+            PY
+          </div>
+          <p className="text-sm font-bold text-[#1e1b4b]">PyPI Publisher</p>
+          <p className="mt-1 text-xs text-[#9896ac]">saara-ai open source package</p>
+        </motion.div>
       </motion.div>
     </section>
   );

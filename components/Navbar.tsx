@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, FileText } from 'lucide-react';
+import { ArrowUpRight, FileText, Linkedin } from 'lucide-react';
 
 const LINKS = [
   { label: 'About', href: '#about' },
@@ -58,7 +58,7 @@ export function Navbar() {
           </div>
           <div className="leading-none">
             <p className="display-heading text-sm font-extrabold text-[#1e1b4b]">Kilani Sai Nikhil</p>
-            <p className="text-[11px] font-semibold tracking-wide text-[#9896ac]">AI systems · product engineering</p>
+            <p className="hidden sm:block text-[11px] font-semibold tracking-wide text-[#9896ac]">AI systems · product engineering</p>
           </div>
         </button>
 
@@ -84,11 +84,13 @@ export function Navbar() {
             Resume
           </Link>
           <a
-            href="mailto:kilanisainikhil@gmail.com"
+            href="https://linkedin.com/in/kilanisainikhil"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-primary inline-flex items-center gap-1.5 px-4 py-2 text-sm"
           >
+            <Linkedin size={13} />
             Hire me
-            <ArrowUpRight size={14} />
           </a>
         </div>
 
@@ -131,7 +133,9 @@ export function Navbar() {
               📄 Resume
             </Link>
             <a
-              href="mailto:kilanisainikhil@gmail.com"
+              href="https://linkedin.com/in/kilanisainikhil"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-primary mt-1 block rounded-xl px-3.5 py-2.5 text-center text-sm"
             >
               Hire me

@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Github, Linkedin, Package, Cpu, Mail, ArrowRight, MapPin, Download } from 'lucide-react';
+import { Github, Linkedin, Package, Cpu, ArrowRight, MapPin, Download } from 'lucide-react';
 
 const fadeUp = (delay = 0) => ({
   hidden: { opacity: 0, y: 24, rotateX: 8 },
@@ -260,10 +260,12 @@ export function Hero() {
             <motion.a
               whileHover={{ scale: 1.04, y: -1 }}
               whileTap={{ scale: 0.97 }}
-              href="mailto:kilanisainikhil@gmail.com"
+              href="https://linkedin.com/in/kilanisainikhil"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-secondary inline-flex items-center gap-2 px-5 py-2.5 text-sm"
             >
-              <Mail size={14} /> Get in touch
+              <Linkedin size={14} /> Connect
             </motion.a>
             <motion.div whileHover={{ scale: 1.04, y: -1 }} whileTap={{ scale: 0.97 }}>
               <Link

@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { Rocket, Brain, Zap, Smartphone, Package, Sparkles, ArrowRight, CheckCircle2, Mail } from 'lucide-react';
+import { Rocket, Brain, Zap, Smartphone, Package, Sparkles, ArrowRight, CheckCircle2, Linkedin } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28, rotateX: 6 },
@@ -176,14 +176,16 @@ export function Services() {
                 </div>
 
                 <a
-                  href="mailto:kilanisainikhil@gmail.com"
+                  href="https://linkedin.com/in/kilanisainikhil"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5"
                   style={{
                     background: 'linear-gradient(135deg, #7c3aed, #6d28d9)',
                     boxShadow: '0 6px 20px rgba(124,58,237,0.3)',
                   }}
                 >
-                  <Mail size={14} />
+                  <Linkedin size={14} />
                   Start a project
                   <ArrowRight size={14} />
                 </a>
@@ -290,10 +292,12 @@ export function Services() {
             <p className="mt-0.5 text-xs text-[#6b6894]">Open to internships, freelance collaborations, and high-impact AI product work.</p>
           </div>
           <a
-            href="mailto:kilanisainikhil@gmail.com"
+            href="https://linkedin.com/in/kilanisainikhil"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-primary inline-flex shrink-0 items-center gap-2 px-5 py-2.5 text-sm"
           >
-            <Mail size={14} />
+            <Linkedin size={14} />
             Let&apos;s talk
           </a>
         </motion.div>
