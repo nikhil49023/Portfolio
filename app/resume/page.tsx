@@ -65,7 +65,7 @@ export default function ResumePage() {
             B.Tech student specializing in production-grade application development, scalable backend architectures, and high-performance mobile systems.
             National finalist (Top 90 of 70,000+) at the OpenAI × NxtWave Buildathon 2026.
             I build end-to-end software products — from asynchronous FastAPI backends to polished Flutter mobile apps —
-            and contribute open-source tooling published on PyPI.
+            and published an open-source Python library (saara-ai) on PyPI.
           </p>
         </Section>
 
@@ -134,8 +134,8 @@ export default function ResumePage() {
               link="https://openai-buildathon.nxtwave.tech/"
             />
             <AwardItem
-              title="Open Source Contributor — saara-ai on PyPI"
-              sub="Published open-source Python package with 1,000+ potential developer reach"
+              title="PyPI Publisher — saara-ai"
+              sub="Authored and published an open-source Python package for automated PDF-to-dataset pipelines"
               link="https://pypi.org/project/saara-ai/"
             />
           </div>
