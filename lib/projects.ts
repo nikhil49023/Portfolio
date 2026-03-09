@@ -62,7 +62,7 @@ export const PROJECTS: Project[] = [
     ],
     tags: ['Flutter', 'Dart', 'FastAPI', 'Python', 'Groq', 'GPT-4o', 'RAG', 'Sarvam AI', 'LangChain', 'Celery', 'Redis', 'PostgreSQL'],
     media: 'images',
-    images: Array.from({ length: 16 }, (_, i) => `/wealthin/wealthin-${i + 1}.jpeg`),
+    images: Array.from({ length: 16 }, (_, i) => `https://raw.githubusercontent.com/nikhil49023/Portfolio/main/public/wealthin/wealthin-${i + 1}.jpeg`),
     accent: '#4f46e5',
     accentDark: '#3730a3',
     icon: Smartphone,
