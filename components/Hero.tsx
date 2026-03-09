@@ -27,6 +27,18 @@ export function Hero() {
     <section id="hero" className="section pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pt-36 lg:pb-24">
       <div className="grid items-start gap-8 lg:gap-12 lg:grid-cols-[1fr_360px]">
         <div>
+          {/* Profile avatar (mobile only) */}
+          <motion.div variants={fadeUp(0)} initial="hidden" animate="show" className="mb-5 lg:hidden">
+            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-violet-100 shadow-sm">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://raw.githubusercontent.com/nikhil49023/Portfolio/main/public/profile.jpeg"
+                alt="Kilani Sai Nikhil"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </motion.div>
+
           {/* Status badge */}
           <motion.div variants={fadeUp(0)} initial="hidden" animate="show" className="mb-8 flex flex-wrap items-center gap-3">
             <span
@@ -140,6 +152,19 @@ export function Hero() {
           className="hidden lg:block"
         >
           <div className="card rounded-3xl p-6">
+            {/* Profile picture */}
+            <div className="mb-5 flex flex-col items-center">
+              <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-violet-100 shadow-md shadow-violet-100/50">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://raw.githubusercontent.com/nikhil49023/Portfolio/main/public/profile.jpeg"
+                  alt="Kilani Sai Nikhil"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="mt-2 text-sm font-extrabold text-[#1e1b4b]">Kilani Sai Nikhil</p>
+              <p className="text-[11px] text-[#9896ac]">AI Developer · Hyderabad</p>
+            </div>
             <div className="mb-4 flex items-center justify-between border-b border-violet-50 pb-3">
               <p className="text-xs font-bold tracking-[0.14em] text-[#9896ac]">AT A GLANCE</p>
               <span className="h-2 w-2 rounded-full bg-violet-500" />
