@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --font-sans: "Trebuchet MS", "Avenir Next", "Segoe UI", sans-serif;
+  --font-display: "Gill Sans", "Trebuchet MS", "Avenir Next", sans-serif;
   --bg-main: #f7f3ef;
   --bg-soft: #ffffff;
   --ink: #14141f;
