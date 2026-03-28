@@ -40,13 +40,13 @@ export function About() {
       <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
         <motion.div variants={fadeUp} className="mb-10">
           <p className="eyebrow mb-2">About</p>
-          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-[#0f172a] sm:text-4xl">Who I am</h2>
+          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-[#111827] sm:text-4xl">Who I am</h2>
         </motion.div>
 
         <div className="grid items-start gap-6 md:grid-cols-[1fr_1fr]">
           {/* Profile card */}
           <motion.div variants={fadeUp}>
-          <Tilt3D className="card rounded-3xl p-7">
+          <Tilt3D className="card rounded-3xl p-7 liquid-glass">
             <div className="mb-5 flex items-start gap-4">
               <div className="relative shrink-0">
                 <motion.div
@@ -65,29 +65,29 @@ export function About() {
                 </div>
               </div>
               <div>
-                <h3 className="display-heading text-xl font-extrabold text-[#0f172a]">Kilani Sai Nikhil</h3>
-                <p className="mt-0.5 text-sm font-semibold text-sky-600">Full-Stack Developer and Open-Source Builder</p>
+                <h3 className="display-heading text-xl font-extrabold text-[#111827]">Kilani Sai Nikhil</h3>
+                <p className="mt-0.5 text-sm font-semibold text-emerald-700">Machine Learning Engineer · LLM &amp; CV Systems</p>
               </div>
             </div>
 
-            <p className="mb-6 text-sm leading-relaxed text-[#64748b]">
-              I am a B.Tech student focused on building robust and scalable software systems. I care about
-              shipping useful products — from asynchronous backend orchestration to polished mobile experiences.
+            <p className="mb-6 text-sm leading-relaxed text-[#5b6673]">
+              I am a B.Tech student focused on building reliable ML systems. I care about data quality,
+              model evaluation, and the architecture that powers LLM apps, RAG pipelines, and vision workflows.
             </p>
 
             <div className="space-y-2.5 text-sm">
-              <p className="flex items-center gap-2.5 text-[#64748b]">
-                <MapPin size={14} className="text-sky-500" /> Hyderabad, India
+              <p className="flex items-center gap-2.5 text-[#5b6673]">
+                <MapPin size={14} className="text-emerald-500" /> Hyderabad, India
               </p>
-              <p className="flex items-center gap-2.5 text-[#64748b]">
-                <Linkedin size={14} className="text-sky-500" />
-                <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-600 hover:underline">
+              <p className="flex items-center gap-2.5 text-[#5b6673]">
+                <Linkedin size={14} className="text-emerald-500" />
+                <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="font-semibold text-emerald-700 hover:underline">
                   linkedin.com/in/kilanisainikhil
                 </a>
               </p>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-2 border-t border-sky-50 pt-5">
+            <div className="mt-6 flex flex-wrap gap-2 border-t border-emerald-50 pt-5">
               {[
                 { icon: Github, href: 'https://github.com/nikhil49023', label: 'GitHub' },
                 { icon: Linkedin, href: 'https://linkedin.com/in/kilanisainikhil', label: 'LinkedIn' },
@@ -98,7 +98,7 @@ export function About() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-sky-100 bg-sky-50/60 px-3 py-1.5 text-xs font-semibold text-[#64748b] transition-all hover:border-sky-300 hover:bg-sky-50 hover:text-sky-700"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-100 bg-emerald-50/60 px-3 py-1.5 text-xs font-semibold text-[#5b6673] transition-all hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700"
                 >
                   <Icon size={12} />
                   {label}
@@ -111,15 +111,15 @@ export function About() {
           <div className="space-y-4">
             {/* Education */}
             <motion.div variants={fadeUp}>
-              <Tilt3D className="card rounded-3xl p-6">
+              <Tilt3D className="card rounded-3xl p-6 liquid-glass">
                 <div className="flex items-start gap-3.5">
-                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-sky-50 text-sky-600">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-emerald-700">
                     <GraduationCap size={18} />
                   </div>
                   <div>
                     <p className="eyebrow mb-1">Education</p>
-                    <p className="text-sm font-bold text-[#0f172a]">Nxt Wave Institute of Advanced Technologies</p>
-                    <p className="mt-0.5 text-xs text-[#64748b]">B.Tech, 2025-2029, Hyderabad</p>
+                    <p className="text-sm font-bold text-[#111827]">Nxt Wave Institute of Advanced Technologies</p>
+                    <p className="mt-0.5 text-xs text-[#5b6673]">B.Tech, 2025-2029, Hyderabad</p>
                   </div>
                 </div>
               </Tilt3D>
@@ -127,19 +127,19 @@ export function About() {
 
             {/* What I build */}
             <motion.div variants={fadeUp}>
-            <Tilt3D className="card rounded-3xl p-6">
+            <Tilt3D className="card rounded-3xl p-6 liquid-glass">
               <p className="eyebrow mb-3.5">What I build</p>
               <div className="grid grid-cols-2 gap-2">
                 {[
-                  { icon: 'APP', text: 'Flutter mobile apps', color: '#0284c7' },
-                  { icon: 'API', text: 'FastAPI services', color: '#0d9488' },
-                  { icon: 'OSS', text: 'Open source tools', color: '#f59e0b' },
-                  { icon: 'SYS', text: 'Scalable Systems', color: '#075985' },
+                  { icon: 'RAG', text: 'RAG + LLM apps', color: '#2f9e93' },
+                  { icon: 'AGT', text: 'Agentic workflows', color: '#3a86ff' },
+                  { icon: 'CV', text: 'Computer vision pipelines', color: '#f07f5a' },
+                  { icon: 'SYS', text: 'AI system architecture', color: '#f2b84b' },
                 ].map((item) => (
                   <div
                     key={item.text}
-                    className="rounded-xl border px-3 py-2 text-xs font-semibold text-[#64748b] transition-all hover:border-sky-200"
-                    style={{ background: 'rgba(2, 132, 199, 0.03)', borderColor: 'rgba(2, 132, 199, 0.08)' }}
+                    className="rounded-xl border px-3 py-2 text-xs font-semibold text-[#5b6673] transition-all hover:border-emerald-200"
+                    style={{ background: 'rgba(47, 158, 147, 0.08)', borderColor: 'rgba(47, 158, 147, 0.18)' }}
                   >
                     <p className="text-[10px] font-extrabold tracking-wide" style={{ color: item.color }}>{item.icon}</p>
                     <p className="mt-0.5 leading-snug">{item.text}</p>
@@ -154,20 +154,20 @@ export function About() {
               <Tilt3D
                 className="rounded-3xl border p-5"
                 style={{
-                  background: 'linear-gradient(145deg, rgba(2, 132, 199, 0.07), rgba(13, 148, 136, 0.06))',
+                  background: 'linear-gradient(145deg, rgba(47, 158, 147, 0.12), rgba(58, 134, 255, 0.1))',
                   backdropFilter: 'blur(16px) saturate(160%)',
                   WebkitBackdropFilter: 'blur(16px) saturate(160%)',
-                  borderColor: 'rgba(2, 132, 199, 0.18)',
-                  boxShadow: '0 2px 12px rgba(2, 132, 199, 0.08)',
+                  borderColor: 'rgba(47, 158, 147, 0.22)',
+                  boxShadow: '0 2px 12px rgba(20, 20, 31, 0.08)',
                 } as React.CSSProperties}
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-sky-100 text-sky-600">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-100 text-emerald-700">
                     <Sparkles size={18} />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-[#0f172a]">National Finalist</p>
-                    <p className="text-xs text-[#64748b]">Top 90 of 70,000+ at OpenAI x NxtWave Buildathon 2026</p>
+                    <p className="text-sm font-bold text-[#111827]">National Finalist</p>
+                    <p className="text-xs text-[#5b6673]">Top 90 of 70,000+ at OpenAI x NxtWave Buildathon 2026</p>
                   </div>
                 </div>
               </Tilt3D>

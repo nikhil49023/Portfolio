@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { Rocket, Smartphone, Zap, Layout, ArrowRight, CheckCircle2, Linkedin, Code2 } from 'lucide-react';
+import { Brain, Bot, Eye, Network, ArrowRight, CheckCircle2, Linkedin } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28, rotateX: 6 },
@@ -35,44 +35,44 @@ function Tilt3D({ children, className, style }: { children: React.ReactNode; cla
 
 const SERVICES = [
   {
-    icon: Rocket,
-    title: 'Full-Stack App Development',
-    tagline: 'From concept to production',
+    icon: Brain,
+    title: 'LLM & RAG Systems',
+    tagline: 'Retrieval, reasoning, and generation',
     description:
-      'End-to-end application development. I build high-performance mobile frontends with Flutter and robust backends with FastAPI, ensuring a seamless user experience and scalable architecture.',
-    tags: ['Flutter', 'FastAPI', 'Full-Stack', 'PostgreSQL', 'Deployment'],
-    deliverables: ['Production-ready mobile app', 'Scalable backend API', 'Cloud deployment', 'Full source handoff'],
-    accent: '#0284c7',
+      'Design and build production-ready LLM applications with reliable retrieval, evaluation, and system design. Focused on RAG pipelines, model routing, and measurable quality.',
+    tags: ['LLMs', 'RAG', 'System Architecture', 'Hugging Face', 'Docker'],
+    deliverables: ['RAG pipeline', 'Inference API', 'Evaluation harness', 'Deployable artifacts'],
+    accent: '#2f9e93',
     featured: true,
   },
   {
-    icon: Smartphone,
-    title: 'Flutter Mobile Specialist',
-    tagline: 'Cross-platform and pixel-perfect',
+    icon: Eye,
+    title: 'Computer Vision Pipelines',
+    tagline: 'From data to deployment',
     description:
-      'High-performance iOS and Android apps using Flutter. I focus on smooth animations, offline-first architecture with SQLite, and clean UI/UX implementation.',
-    tags: ['Flutter', 'Dart', 'iOS', 'Android', 'State Mgmt'],
-    accent: '#0d9488',
+      'Vision systems built with PyTorch and OpenCV, including data pipelines, model training, and inference services designed for reliability.',
+    tags: ['PyTorch', 'OpenCV', 'Computer Vision', 'Data Pipelines'],
+    accent: '#3a86ff',
     featured: false,
   },
   {
-    icon: Zap,
-    title: 'Backend Architecture',
-    tagline: 'Fast, reliable, and scalable',
+    icon: Bot,
+    title: 'Agentic Workflows',
+    tagline: 'Tool-using LLM automation',
     description:
-      'I design and build high-performance APIs using FastAPI and Python. My focus is on asynchronous processing, robust security, and clear documentation.',
-    tags: ['FastAPI', 'Python', 'Redis', 'PostgreSQL', 'Docker'],
-    accent: '#0284c7',
+      'Structured agent workflows that chain tools, memory, and policies to automate complex tasks while keeping guardrails in place.',
+    tags: ['Agentic Workflows', 'LLMs', 'RAG', 'System Design'],
+    accent: '#f07f5a',
     featured: false,
   },
   {
-    icon: Layout,
-    title: 'UI/UX to Code',
-    tagline: 'Design-driven engineering',
+    icon: Network,
+    title: 'AI System Architecture',
+    tagline: 'Scalable and production-ready',
     description:
-      'I bridge the gap between design and development by converting complex UI mockups into high-fidelity, interactive, and responsive applications.',
-    tags: ['Figma to Code', 'Animations', 'Interactive UI', 'Responsive'],
-    accent: '#f59e0b',
+      'System architecture design for AI products, with emphasis on observability, iteration speed, and reproducible environments.',
+    tags: ['System Architecture Design', 'Docker', 'Git & GitHub', 'Open Env'],
+    accent: '#f2b84b',
     featured: false,
   },
 ] as const;
@@ -85,10 +85,10 @@ export function Services() {
         <motion.div variants={fadeUp} className="mb-10">
           <p className="eyebrow mb-2">Services</p>
           <h2 className="display-heading text-3xl font-extrabold tracking-tight text-[#0f172a] sm:text-4xl">
-            Practical Engineering Solutions
+            AI Engineering Services
           </h2>
-          <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#64748b]">
-            I build high-quality, scalable, and maintainable applications. My focus is on creating functional software that solves real-world business problems.
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#5b6673]">
+            I build production ML systems with reliable data pipelines, evaluation-first development, and scalable architecture.
           </p>
         </motion.div>
 
@@ -97,57 +97,57 @@ export function Services() {
           {/* Featured card */}
           <motion.div variants={fadeUp}>
             <Tilt3D
-              className="relative h-full overflow-hidden rounded-3xl border p-7"
+              className="relative h-full overflow-hidden rounded-3xl border p-7 liquid-glass"
               style={{
-                background: 'linear-gradient(145deg, rgba(2, 132, 199, 0.07), rgba(2, 132, 199, 0.02))',
-                borderColor: 'rgba(2, 132, 199, 0.2)',
+                background: 'linear-gradient(145deg, rgba(47, 158, 147, 0.12), rgba(47, 158, 147, 0.04))',
+                borderColor: 'rgba(47, 158, 147, 0.22)',
                 backdropFilter: 'blur(20px) saturate(160%)',
                 WebkitBackdropFilter: 'blur(20px) saturate(160%)',
-                boxShadow: '0 0 0 1px rgba(2, 132, 199, 0.06), 0 8px 32px rgba(2, 132, 199, 0.1)',
+                boxShadow: '0 0 0 1px rgba(47, 158, 147, 0.08), 0 10px 34px rgba(20, 20, 31, 0.12)',
               }}
             >
               <div
                 className="absolute -top-20 -left-20 h-64 w-64 rounded-full opacity-25 blur-3xl pointer-events-none"
-                style={{ background: 'radial-gradient(circle, #7dd3fc, transparent)' }}
+                style={{ background: 'radial-gradient(circle, rgba(47, 158, 147, 0.6), transparent)' }}
               />
 
               <div className="relative">
                 <div className="mb-5 flex items-center justify-between">
                   <div
                     className="grid h-12 w-12 place-items-center rounded-2xl"
-                    style={{ background: 'rgba(2, 132, 199, 0.1)', color: '#0284c7' }}
+                    style={{ background: 'rgba(47, 158, 147, 0.16)', color: '#1f6f69' }}
                   >
-                    <Rocket size={22} />
+                    <Brain size={22} />
                   </div>
                   <span
                     className="rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider"
-                    style={{ borderColor: 'rgba(2, 132, 199, 0.25)', color: '#0284c7', background: 'rgba(2, 132, 199, 0.07)' }}
+                    style={{ borderColor: 'rgba(47, 158, 147, 0.3)', color: '#1f6f69', background: 'rgba(47, 158, 147, 0.1)' }}
                   >
                     Top Tier Service
                   </span>
                 </div>
 
-                <h3 className="display-heading mb-1 text-2xl font-extrabold text-[#0f172a]">Full-Stack App Development</h3>
-                <p className="mb-4 text-sm font-semibold text-sky-600">From concept to production</p>
-                <p className="mb-6 text-sm leading-relaxed text-[#64748b]">
-                  Complete development lifecycle for modern products. I engineer polished mobile frontends with Flutter and high-performance, asynchronous backends with FastAPI.
+                <h3 className="display-heading mb-1 text-2xl font-extrabold text-[#0f172a]">LLM &amp; RAG Systems</h3>
+                <p className="mb-4 text-sm font-semibold text-emerald-700">Retrieval, reasoning, and generation</p>
+                <p className="mb-6 text-sm leading-relaxed text-[#5b6673]">
+                  Build trustworthy AI systems with evaluation-first development, robust retrieval, and production-grade architecture.
                 </p>
 
                 <div className="mb-6 grid grid-cols-2 gap-2">
-                  {['Production-ready mobile app', 'Scalable backend API', 'Cloud deployment', 'Full source handoff'].map((d) => (
+                  {['RAG pipeline', 'Inference API', 'Evaluation harness', 'Deployable artifacts'].map((d) => (
                     <div key={d} className="flex items-center gap-2 text-xs text-[#0f172a]">
-                      <CheckCircle2 size={13} className="shrink-0 text-sky-500" />
+                      <CheckCircle2 size={13} className="shrink-0 text-emerald-500" />
                       {d}
                     </div>
                   ))}
                 </div>
 
                 <div className="mb-6 flex flex-wrap gap-1.5">
-                  {['Flutter', 'FastAPI', 'PostgreSQL', 'Redis', 'Docker'].map((t) => (
+                  {['LLMs', 'RAG', 'Hugging Face', 'PyTorch', 'Docker'].map((t) => (
                     <span
                       key={t}
                       className="rounded-md border px-2.5 py-1 text-[11px] font-semibold"
-                      style={{ color: '#0284c7', background: 'rgba(2, 132, 199, 0.08)', borderColor: 'rgba(2, 132, 199, 0.2)' }}
+                      style={{ color: '#1f6f69', background: 'rgba(47, 158, 147, 0.12)', borderColor: 'rgba(47, 158, 147, 0.24)' }}
                     >
                       {t}
                     </span>
@@ -160,8 +160,8 @@ export function Services() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5"
                   style={{
-                    background: 'linear-gradient(135deg, #0284c7, #075985)',
-                    boxShadow: '0 6px 20px rgba(2, 132, 199, 0.3)',
+                    background: 'linear-gradient(135deg, #2f9e93, #3a86ff)',
+                    boxShadow: '0 6px 20px rgba(58, 134, 255, 0.3)',
                   }}
                 >
                   <Linkedin size={14} />
@@ -175,37 +175,37 @@ export function Services() {
           {/* Secondary card */}
           <motion.div variants={fadeUp}>
             <Tilt3D
-              className="relative h-full overflow-hidden rounded-3xl border p-6"
+              className="relative h-full overflow-hidden rounded-3xl border p-6 liquid-glass"
               style={{
-                background: 'linear-gradient(145deg, rgba(13, 148, 136, 0.07), rgba(13, 148, 136, 0.02))',
-                borderColor: 'rgba(13, 148, 136, 0.18)',
+                background: 'linear-gradient(145deg, rgba(58, 134, 255, 0.12), rgba(58, 134, 255, 0.03))',
+                borderColor: 'rgba(58, 134, 255, 0.2)',
                 backdropFilter: 'blur(20px) saturate(160%)',
                 WebkitBackdropFilter: 'blur(20px) saturate(160%)',
-                boxShadow: '0 0 0 1px rgba(13, 148, 136, 0.06), 0 8px 32px rgba(13, 148, 136, 0.08)',
+                boxShadow: '0 0 0 1px rgba(58, 134, 255, 0.08), 0 8px 32px rgba(20, 20, 31, 0.1)',
               }}
             >
               <div
                 className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full opacity-20 blur-3xl pointer-events-none"
-                style={{ background: 'radial-gradient(circle, #5eead4, transparent)' }}
+                style={{ background: 'radial-gradient(circle, rgba(58, 134, 255, 0.6), transparent)' }}
               />
               <div className="relative">
                 <div
                   className="mb-4 grid h-11 w-11 place-items-center rounded-2xl"
-                  style={{ background: 'rgba(13, 148, 136, 0.1)', color: '#0d9488' }}
+                  style={{ background: 'rgba(58, 134, 255, 0.16)', color: '#2d63c8' }}
                 >
-                  <Smartphone size={20} />
+                  <Eye size={20} />
                 </div>
-                <h3 className="display-heading mb-1 text-xl font-extrabold text-[#134e4a]">Flutter Specialist</h3>
-                <p className="mb-3 text-sm font-semibold text-teal-600">Cross-platform and pixel-perfect</p>
-                <p className="mb-5 text-sm leading-relaxed text-[#115e59]">
-                  High-performance iOS and Android apps using Flutter. I focus on smooth animations, offline-first architecture, and clean UI/UX implementation.
+                <h3 className="display-heading mb-1 text-xl font-extrabold text-[#1f2a44]">Computer Vision Pipelines</h3>
+                <p className="mb-3 text-sm font-semibold text-blue-600">From data to deployment</p>
+                <p className="mb-5 text-sm leading-relaxed text-[#415a77]">
+                  Vision systems built with PyTorch and OpenCV, including data pipelines, model training, and inference services.
                 </p>
                 <div className="flex flex-wrap gap-1.5">
-                  {['Flutter', 'Dart', 'iOS', 'Android', 'SQLite'].map((t) => (
+                  {['PyTorch', 'OpenCV', 'Computer Vision', 'Data Pipelines'].map((t) => (
                     <span
                       key={t}
                       className="rounded-md border px-2.5 py-1 text-[11px] font-semibold"
-                      style={{ color: '#0d9488', background: 'rgba(13, 148, 136, 0.08)', borderColor: 'rgba(13, 148, 136, 0.18)' }}
+                      style={{ color: '#2d63c8', background: 'rgba(58, 134, 255, 0.12)', borderColor: 'rgba(58, 134, 255, 0.2)' }}
                     >
                       {t}
                     </span>
@@ -221,7 +221,7 @@ export function Services() {
           {SERVICES.slice(2).map((svc) => (
             <motion.div key={svc.title} variants={fadeUp}>
               <Tilt3D
-                className="relative h-full overflow-hidden rounded-3xl border p-6"
+                className="relative h-full overflow-hidden rounded-3xl border p-6 liquid-glass"
                 style={{
                   background: `linear-gradient(145deg, ${svc.accent}08, ${svc.accent}02)`,
                   borderColor: `${svc.accent}20`,
@@ -238,7 +238,7 @@ export function Services() {
                 </div>
                 <h3 className="display-heading mb-0.5 text-base font-extrabold text-[#0f172a]">{svc.title}</h3>
                 <p className="mb-3 text-xs font-semibold" style={{ color: svc.accent }}>{svc.tagline}</p>
-                <p className="mb-4 text-xs leading-relaxed text-[#64748b]">{svc.description}</p>
+                <p className="mb-4 text-xs leading-relaxed text-[#5b6673]">{svc.description}</p>
                 <div className="flex flex-wrap gap-1">
                   {svc.tags.map((t) => (
                     <span
@@ -260,15 +260,15 @@ export function Services() {
           variants={fadeUp}
           className="mt-8 flex flex-col items-center justify-between gap-4 rounded-2xl border px-6 py-5 sm:flex-row"
           style={{
-            background: 'rgba(2, 132, 199, 0.03)',
-            borderColor: 'rgba(2, 132, 199, 0.12)',
+            background: 'rgba(47, 158, 147, 0.08)',
+            borderColor: 'rgba(47, 158, 147, 0.2)',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
           }}
         >
           <div>
             <p className="text-sm font-bold text-[#0f172a]">Have a project in mind?</p>
-            <p className="mt-0.5 text-xs text-[#64748b]">Open to internships, freelance collaborations, and high-impact product work.</p>
+            <p className="mt-0.5 text-xs text-[#5b6673]">Open to internships, research collaborations, and high-impact ML product work.</p>
           </div>
           <a
             href="https://linkedin.com/in/kilanisainikhil"

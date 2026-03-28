@@ -17,30 +17,28 @@ const tagAnim = {
 
 const CATEGORIES = [
   {
-    title: 'Mobile & Frontend',
-    icon: 'APP',
-    color: { text: '#0284c7', bg: 'rgba(2, 132, 199, 0.08)', border: 'rgba(2, 132, 199, 0.18)' },
+    title: 'ML & LLMs',
+    icon: 'ML',
+    color: { text: '#1f6f69', bg: 'rgba(47, 158, 147, 0.12)', border: 'rgba(47, 158, 147, 0.24)' },
     skills: [
-      'Flutter', 'Dart', 'State Management', 'Mobile UI/UX', 'Figma to Code',
-      'SQLite', 'Animations', 'Interactive UI', 'React Basics',
+      'PyTorch', 'Hugging Face', 'LLMs', 'RAG', 'Agentic Workflows',
+      'Computer Vision', 'OpenCV',
     ],
   },
   {
-    title: 'Backend & Systems',
-    icon: 'SYS',
-    color: { text: '#0d9488', bg: 'rgba(13, 148, 136, 0.08)', border: 'rgba(13, 148, 136, 0.18)' },
+    title: 'Data & Visualization',
+    icon: 'DATA',
+    color: { text: '#3a86ff', bg: 'rgba(58, 134, 255, 0.12)', border: 'rgba(58, 134, 255, 0.24)' },
     skills: [
-      'FastAPI', 'Python', 'Asynchronous Programming', 'REST APIs', 'PostgreSQL',
-      'Redis', 'Celery', 'Docker', 'System Architecture',
+      'NumPy', 'Pandas', 'Matplotlib', 'Dataset Curation', 'Data Pipelines',
     ],
   },
   {
-    title: 'Dev Tools',
+    title: 'Systems & Tools',
     icon: 'OPS',
-    color: { text: '#d97706', bg: 'rgba(217, 119, 6, 0.08)', border: 'rgba(217, 119, 6, 0.18)' },
+    color: { text: '#f07f5a', bg: 'rgba(240, 127, 90, 0.12)', border: 'rgba(240, 127, 90, 0.24)' },
     skills: [
-        'Git & GitHub', 'Ubuntu / Linux', 'PyPI Publishing', 
-        'CI/CD Basics', 'Unit Testing', 'Product Engineering'
+        'System Architecture Design', 'Docker', 'Git & GitHub', 'Open Env'
     ],
   },
 ];
@@ -74,13 +72,13 @@ export function Skills() {
       <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
         <motion.div variants={fadeUp} className="mb-10">
           <p className="eyebrow mb-2">Skills</p>
-          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-[#0f172a] sm:text-4xl">Technical Proficiency</h2>
+          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-[#111827] sm:text-4xl">Technical Proficiency</h2>
         </motion.div>
 
         <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
           {CATEGORIES.map((cat) => (
             <motion.div key={cat.title} variants={fadeUp}>
-              <Tilt3DCard className="card rounded-3xl p-6 h-full">
+              <Tilt3DCard className="card rounded-3xl p-6 h-full liquid-glass">
                 <div className="mb-5 flex items-center gap-3" style={{ transform: 'translateZ(10px)' }}>
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: -5 }}
@@ -90,8 +88,8 @@ export function Skills() {
                     {cat.icon}
                   </motion.div>
                   <div>
-                    <h3 className="text-sm font-bold text-[#0f172a]">{cat.title}</h3>
-                    <p className="text-xs text-[#64748b]">{cat.skills.length} skills</p>
+                    <h3 className="text-sm font-bold text-[#111827]">{cat.title}</h3>
+                    <p className="text-xs text-[#5b6673]">{cat.skills.length} skills</p>
                   </div>
                 </div>
 
@@ -120,8 +118,8 @@ export function Skills() {
           ))}
         </div>
 
-        <motion.p variants={fadeUp} className="mt-8 text-center text-sm text-[#64748b]">
-          I build high-performance products with a focus on clean architecture and scalable systems across the full stack.
+        <motion.p variants={fadeUp} className="mt-8 text-center text-sm text-[#5b6673]">
+          I build ML systems with a focus on data quality, evaluation, and scalable AI architecture.
         </motion.p>
       </motion.div>
     </section>

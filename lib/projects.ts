@@ -123,9 +123,9 @@ export const PROJECTS: Project[] = [
     slug: 'saara',
     name: 'SAARA',
     date: 'Dec 2025',
-    tagline: 'Automated Data Engine',
+    tagline: 'Automated ML Dataset Engine',
     shortDesc:
-      'End-to-end pipeline converting raw PDFs into structured, high-quality datasets — published as a production-ready Python library.',
+      'End-to-end pipeline converting raw PDFs into structured, ML-ready datasets — published as a production-ready Python library.',
     details: [
       'SAARA (Self-Annotating Automated Reporting Architecture) is a PyPI-published Python library that solves one of the most expensive bottlenecks in data engineering: structured dataset generation. It converts any collection of raw PDFs into structured datasets with zero manual intervention.',
       'The pipeline begins with a layout-aware parsing engine that treats each PDF page as an image to perform structural extraction — headings, tables, figures, captions. This produces semantically rich text blocks that are far superior to naive text extraction.',
@@ -140,12 +140,12 @@ export const PROJECTS: Project[] = [
       'Multiple export formats: JSON, CSV, and HuggingFace Hub integration',
       'Published on PyPI — pip install saara-ai',
     ],
-    tags: ['Python', 'PyPI', 'CLI', 'Automation', 'File Processing', 'Data Engineering', 'Package Maintenance'],
+    tags: ['Python', 'PyPI', 'CLI', 'Automation', 'Data Engineering', 'Hugging Face', 'Dataset Curation'],
     media: 'terminal',
     accent: '#0d9488',
     accentDark: '#115e59',
     icon: Code2,
-    category: 'Software · Python · Open Source',
+    category: 'AI Data · Python · Open Source',
     links: [
       { label: 'Live Site', href: 'https://saara.onslate.in/', icon: Globe, primary: true },
       { label: 'PyPI', href: 'https://pypi.org/project/saara-ai/', icon: Database },

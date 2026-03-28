@@ -13,7 +13,7 @@ export default function ResumePage() {
       <div className="no-print fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex gap-2 sm:gap-3">
         <button
           onClick={() => window.print()}
-          className="flex items-center gap-2 rounded-xl bg-sky-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:bg-sky-700 transition-colors"
+          className="flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:bg-emerald-700 transition-colors"
         >
           ↓ Save as PDF
         </button>
@@ -26,25 +26,25 @@ export default function ResumePage() {
       </div>
 
       {/* Resume document */}
-      <main className="resume-page mx-auto max-w-[800px] bg-white px-4 py-6 sm:px-8 sm:py-8 md:px-12 md:py-10 text-[#0f172a] font-sans">
+      <main className="resume-page mx-auto max-w-[800px] bg-white px-4 py-6 sm:px-8 sm:py-8 md:px-12 md:py-10 text-[#111827] font-sans">
 
         {/* ── Header ── */}
-        <header className="mb-6 border-b-2 border-sky-600 pb-5">
+        <header className="mb-6 border-b-2 border-emerald-500 pb-5">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <h1 className="text-3xl font-black tracking-tight text-[#0f172a]">Kilani Sai Nikhil</h1>
-              <p className="mt-1 text-base font-semibold text-sky-600">Full-Stack Developer · Flutter Specialist · Backend Architect</p>
+              <p className="mt-1 text-base font-semibold text-emerald-700">Machine Learning Engineer · LLM &amp; CV Systems</p>
             </div>
             <div className="text-right text-xs text-slate-500 space-y-1 shrink-0">
               <p>Hyderabad, India</p>
-              <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="block text-sky-600 hover:underline">
+              <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="block text-emerald-700 hover:underline">
                 linkedin.com/in/kilanisainikhil
               </a>
             </div>
           </div>
 
           <div className="mt-3 flex flex-wrap gap-3 text-xs font-semibold">
-            <a href="https://kilanisainikhil.onslate.in" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:underline">
+            <a href="https://kilanisainikhil.onslate.in" target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:underline">
               🌐 kilanisainikhil.onslate.in
             </a>
             <a href="https://github.com/nikhil49023" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:underline">
@@ -62,9 +62,9 @@ export default function ResumePage() {
         {/* ── Summary ── */}
         <Section title="Summary">
           <p className="text-sm leading-relaxed text-slate-700">
-            B.Tech student specializing in production-grade application development, scalable backend architectures, and high-performance mobile systems.
+            Machine Learning Engineer focused on LLM systems, RAG pipelines, and computer vision workflows.
             National finalist (Top 90 of 70,000+) at the OpenAI × NxtWave Buildathon 2026.
-            I build end-to-end software products — from asynchronous FastAPI backends to polished Flutter mobile apps —
+            I build reliable ML systems with strong data pipelines, evaluation practices, and scalable architecture,
             and published an open-source Python library (saara-ai) on PyPI.
           </p>
         </Section>
@@ -85,30 +85,29 @@ export default function ResumePage() {
 
           <ProjectItem
             name="WealthIn"
-            role="Full-Stack Developer"
+            role="Software Engineer"
             date="Feb 2026"
             link="https://github.com/nikhil49023"
-            tags={['Flutter', 'FastAPI', 'Python', 'SQLite', 'PostgreSQL', 'Redis', 'Celery', 'Docker']}
+            tags={['Python', 'Docker', 'System Architecture', 'PostgreSQL', 'Redis']}
             bullets={[
               'Built a comprehensive Financial OS for Indian MSMEs, automating institutional-grade Detailed Project Reports (DPR) in under 30 minutes.',
-              'Developed a high-performance Flutter mobile app featuring real-time document preview, collaborative editing, and professional PDF export.',
-              'Architected an asynchronous backend using FastAPI and Celery to handle complex financial modeling and multi-user report generation.',
+              'Architected an asynchronous backend to handle complex financial modeling and multi-user report generation.',
               'Implemented a robust data layer with PostgreSQL for persistence and Redis for task queuing and caching.',
-              'Designed a modular system architecture supporting regional language localization and complex regulatory compliance checks.',
+              'Designed a modular system architecture supporting regional language localization and regulatory compliance checks.',
             ]}
           />
 
           <ProjectItem
             name="SAARA — Automated Dataset Engine"
-            role="Software Engineer · Open Source"
+            role="ML/Data Engineer · Open Source"
             date="2025"
             link="https://pypi.org/project/saara-ai/"
-            tags={['Python', 'PyPI', 'CLI', 'Automation', 'File Processing', 'Software Architecture']}
+            tags={['Python', 'PyPI', 'Dataset Curation', 'Hugging Face', 'Automation']}
             bullets={[
               'Published saara-ai to PyPI — an open-source Python library for automated processing of unstructured PDF documents into structured datasets.',
               'Engineered a layout-aware document parsing engine that preserves semantic structure including tables, headings, and figures.',
               'Implemented a multi-stage pipeline for data extraction, quality filtering, and structured output generation.',
-              'Automated complex developer workflows, reducing manual data preparation time by over 90%.',
+              'Automated complex data preparation workflows, reducing manual effort by over 90%.',
               'Managed the full software lifecycle from initial architecture to public package distribution and community maintenance.',
             ]}
           />
@@ -118,9 +117,9 @@ export default function ResumePage() {
         {/* ── Skills ── */}
         <Section title="Skills">
           <div className="space-y-2">
-            <SkillRow label="Backend & Systems" skills="FastAPI · Python · REST APIs · Asynchronous Programming · PostgreSQL · Redis · Celery · Docker · System Design" />
-            <SkillRow label="Mobile & Frontend" skills="Flutter · Dart · Mobile UI/UX · State Management · SQLite · Responsive Design · Figma to Code" />
-            <SkillRow label="Development Tools" skills="Git · GitHub · Linux / Ubuntu · PyPI Publishing · CI/CD Basics · Unit Testing" />
+            <SkillRow label="ML & LLMs" skills="PyTorch · Hugging Face · LLMs · RAG · Agentic Workflows · Computer Vision · OpenCV" />
+            <SkillRow label="Data & Viz" skills="NumPy · Pandas · Matplotlib · Dataset Curation · Data Pipelines" />
+            <SkillRow label="Systems & Tools" skills="System Architecture Design · Docker · Git & GitHub · Open Env" />
           </div>
         </Section>
 
@@ -153,7 +152,7 @@ export default function ResumePage() {
           size: A4;
           margin: 18mm 16mm;
         }
-        .resume-page { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; }
+        .resume-page { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; }
       `}</style>
     </>
   );
@@ -164,7 +163,7 @@ export default function ResumePage() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-6">
-      <h2 className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-sky-600 border-b border-sky-100 pb-1">
+      <h2 className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-emerald-700 border-b border-emerald-100 pb-1">
         {title}
       </h2>
       {children}
@@ -183,19 +182,19 @@ function ProjectItem({
       <div className="flex items-start justify-between gap-2 mb-1">
         <div>
           {link ? (
-            <a href={link} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-[#0f172a] hover:text-sky-600 hover:underline">
+            <a href={link} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-[#0f172a] hover:text-emerald-700 hover:underline">
               {name}
             </a>
           ) : (
             <p className="text-sm font-bold text-[#0f172a]">{name}</p>
           )}
-          <p className="text-xs text-sky-600 font-semibold">{role}</p>
+          <p className="text-xs text-emerald-700 font-semibold">{role}</p>
         </div>
         <span className="text-xs text-slate-400 shrink-0">{date}</span>
       </div>
       <div className="mb-1.5 flex flex-wrap gap-1">
         {tags.map((t) => (
-          <span key={t} className="rounded px-1.5 py-0.5 text-[10px] font-semibold bg-sky-50 text-sky-700 border border-sky-100">
+          <span key={t} className="rounded px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
             {t}
           </span>
         ))}
@@ -223,7 +222,7 @@ function AwardItem({ title, sub, date, link }: { title: string; sub: string; dat
     <div className="flex items-start justify-between gap-2">
       <div>
         {link ? (
-          <a href={link} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-[#0f172a] hover:text-sky-600 hover:underline">
+          <a href={link} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-[#0f172a] hover:text-emerald-700 hover:underline">
             {title}
           </a>
         ) : (

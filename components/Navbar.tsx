@@ -36,29 +36,29 @@ export function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div
-        className="mx-auto flex w-full max-w-5xl items-center justify-between rounded-2xl px-4 py-3 transition-all duration-300"
-        style={{
-          background: scrolled ? 'rgba(224, 242, 254, 0.96)' : 'rgba(224, 242, 254, 0.72)',
+        <div
+          className="mx-auto flex w-full max-w-5xl items-center justify-between rounded-2xl px-4 py-3 transition-all duration-300"
+          style={{
+          background: scrolled ? 'rgba(255, 255, 255, 0.92)' : 'rgba(255, 255, 255, 0.7)',
           backdropFilter: 'blur(24px) saturate(200%)',
           WebkitBackdropFilter: 'blur(24px) saturate(200%)',
-          border: scrolled ? '1px solid rgba(3, 105, 161, 0.14)' : '1px solid rgba(3, 105, 161, 0.08)',
+          border: scrolled ? '1px solid rgba(20, 20, 31, 0.16)' : '1px solid rgba(20, 20, 31, 0.1)',
           boxShadow: scrolled
-            ? '0 4px 20px rgba(3, 105, 161, 0.1), inset 0 1px 0 rgba(255,255,255,0.9)'
-            : '0 2px 12px rgba(3, 105, 161, 0.05), inset 0 1px 0 rgba(255,255,255,0.7)',
+            ? '0 4px 24px rgba(20, 20, 31, 0.12), inset 0 1px 0 rgba(255,255,255,0.9)'
+            : '0 2px 14px rgba(20, 20, 31, 0.08), inset 0 1px 0 rgba(255,255,255,0.75)',
         }}
       >
         {/* Logo */}
         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="group flex items-center gap-3">
           <div
             className="grid h-9 w-9 place-items-center rounded-xl text-sm font-black text-white"
-            style={{ background: 'linear-gradient(145deg, #0369a1, #0c4a6e)' }}
+            style={{ background: 'linear-gradient(145deg, #2f9e93, #3a86ff)' }}
           >
             N
           </div>
           <div className="leading-none">
-            <p className="display-heading text-sm font-extrabold text-[#0c4a6e]">Kilani Sai Nikhil</p>
-            <p className="hidden sm:block text-[11px] font-semibold tracking-wide text-[#075985]">App Development · Product Engineering</p>
+            <p className="display-heading text-sm font-extrabold text-[#1f2937]">Kilani Sai Nikhil</p>
+            <p className="hidden sm:block text-[11px] font-semibold tracking-wide text-[#2f9e93]">Machine Learning Engineer · LLM Systems</p>
           </div>
         </button>
 
@@ -68,7 +68,7 @@ export function Navbar() {
             <button
               key={item.href}
               onClick={() => go(item.href)}
-              className="rounded-lg px-3 py-1.5 text-sm font-semibold text-[#075985] transition-all hover:text-[#0c4a6e] hover:bg-cyan-100"
+              className="rounded-lg px-3 py-1.5 text-sm font-semibold text-[#1f6f69] transition-all hover:text-[#111827] hover:bg-emerald-50"
             >
               {item.label}
             </button>
@@ -78,7 +78,7 @@ export function Navbar() {
         <div className="hidden items-center gap-2 md:flex">
           <Link
             href="/resume"
-            className="inline-flex items-center gap-1.5 rounded-xl border border-cyan-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-cyan-600 hover:bg-cyan-50 transition-all"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-emerald-600 hover:bg-emerald-50 transition-all"
           >
             <FileText size={13} />
             Resume
@@ -97,12 +97,12 @@ export function Navbar() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-lg border border-cyan-100 bg-cyan-50 md:hidden"
+          className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-lg border border-emerald-100 bg-emerald-50 md:hidden"
           aria-label="Toggle navigation menu"
         >
-          <motion.span animate={open ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }} className="h-[2px] w-5 rounded bg-cyan-600" />
-          <motion.span animate={{ opacity: open ? 0 : 1 }} className="h-[2px] w-5 rounded bg-cyan-600" />
-          <motion.span animate={open ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }} className="h-[2px] w-5 rounded bg-cyan-600" />
+          <motion.span animate={open ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }} className="h-[2px] w-5 rounded bg-emerald-600" />
+          <motion.span animate={{ opacity: open ? 0 : 1 }} className="h-[2px] w-5 rounded bg-emerald-600" />
+          <motion.span animate={open ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }} className="h-[2px] w-5 rounded bg-emerald-600" />
         </button>
       </div>
 
@@ -114,21 +114,21 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="mx-auto mt-2 w-full max-w-5xl rounded-2xl border border-cyan-100 p-2.5 shadow-xl md:hidden"
-            style={{ background: 'rgba(224, 242, 254, 0.98)', backdropFilter: 'blur(24px)' }}
+            className="mx-auto mt-2 w-full max-w-5xl rounded-2xl border border-emerald-100 p-2.5 shadow-xl md:hidden"
+            style={{ background: 'rgba(255, 255, 255, 0.96)', backdropFilter: 'blur(24px)' }}
           >
             {LINKS.map((item) => (
               <button
                 key={item.href}
                 onClick={() => go(item.href)}
-                className="block w-full rounded-xl px-3.5 py-2.5 text-left text-sm font-semibold text-[#075985] transition-colors hover:bg-cyan-100 hover:text-[#0c4a6e]"
+                className="block w-full rounded-xl px-3.5 py-2.5 text-left text-sm font-semibold text-[#1f6f69] transition-colors hover:bg-emerald-50 hover:text-[#111827]"
               >
                 {item.label}
               </button>
             ))}
             <Link
               href="/resume"
-              className="mt-1 block rounded-xl border border-cyan-200 bg-white px-3.5 py-2.5 text-center text-sm font-semibold text-cyan-600"
+              className="mt-1 block rounded-xl border border-emerald-200 bg-white px-3.5 py-2.5 text-center text-sm font-semibold text-emerald-600"
             >
               📄 Resume
             </Link>

@@ -109,7 +109,7 @@ export function Projects() {
             <h2 className="display-heading text-3xl sm:text-4xl font-extrabold text-[#0f172a] tracking-tight">
               What I&apos;ve built
             </h2>
-            <p className="mt-2 text-[#64748b] text-sm">
+            <p className="mt-2 text-[#5b6673] text-sm">
               {PROJECTS.length} projects &middot; click any card for the full breakdown
             </p>
           </div>
@@ -122,7 +122,7 @@ export function Projects() {
               placeholder="Search by name, stack, type…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2.5 rounded-xl border border-sky-100 bg-white/80 backdrop-blur-xl text-sm text-[#0f172a] placeholder:text-[#64748b] focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-300 transition-all"
+              className="w-full pl-9 pr-8 py-2.5 rounded-xl border border-emerald-100 bg-white/80 backdrop-blur-xl text-sm text-[#0f172a] placeholder:text-[#5b6673] focus:outline-none focus:ring-2 focus:ring-emerald-400/20 focus:border-emerald-300 transition-all"
               style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.8), 0 1px 3px rgba(0,0,0,0.04)' }}
             />
             {query && (
@@ -146,8 +146,8 @@ export function Projects() {
                 className="rounded-full border px-3 py-1.5 text-xs font-semibold transition-all"
                 style={
                   active
-                    ? { background: 'linear-gradient(135deg, #0284c7, #075985)', color: '#fff', borderColor: 'transparent' }
-                    : { background: 'rgba(2, 132, 199, 0.04)', color: '#64748b', borderColor: 'rgba(2, 132, 199, 0.12)' }
+                    ? { background: 'linear-gradient(135deg, #2f9e93, #3a86ff)', color: '#fff', borderColor: 'transparent' }
+                    : { background: 'rgba(47, 158, 147, 0.08)', color: '#5b6673', borderColor: 'rgba(47, 158, 147, 0.2)' }
                 }
               >
                 {category}

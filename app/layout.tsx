@@ -1,33 +1,33 @@
 import type { Metadata } from 'next';
-import { Sora, Plus_Jakarta_Sans } from 'next/font/google';
+import { Space_Grotesk, Bricolage_Grotesque } from 'next/font/google';
 import './globals.css';
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-sans',
-  weight: ['400', '500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700'],
 });
 
-const sora = Sora({
+const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
   variable: '--font-display',
   weight: ['400', '600', '700', '800'],
 });
 
 export const metadata: Metadata = {
-  title: 'Kilani Sai Nikhil — Full-Stack Developer',
+  title: 'Kilani Sai Nikhil — Machine Learning Engineer',
   description:
-    'B.Tech student & Full-Stack Developer specializing in high-performance Flutter apps, scalable FastAPI backends, and production-grade software engineering.',
-  keywords: ['Full-Stack Developer', 'Flutter', 'FastAPI', 'Python', 'Backend Architect', 'Portfolio', 'Kilani Sai Nikhil'],
+    'Machine Learning Engineer specializing in LLM systems, RAG pipelines, computer vision, and scalable AI architecture.',
+  keywords: ['Machine Learning Engineer', 'LLMs', 'RAG', 'Computer Vision', 'PyTorch', 'Hugging Face', 'Portfolio', 'Kilani Sai Nikhil'],
   authors: [{ name: 'Kilani Sai Nikhil' }],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${plusJakartaSans.variable} ${sora.variable}`}>
+      <body className={`${spaceGrotesk.variable} ${bricolage.variable}`}>
         <div className="fixed inset-0 -z-10 pointer-events-none">
-          <div className="absolute inset-0 bg-[#f0f9ff]" />
+          <div className="absolute inset-0 bg-[#f7f3ef]" />
         </div>
         {children}
       </body>
