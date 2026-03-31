@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { PROJECTS } from '@/lib/projects';
 import { ImageCarousel } from '@/components/projects/ImageCarousel';
+import { AerialEyeVisualization } from '@/components/projects/AerialEyeVisualization';
 
 /* ── Terminal mockup (SAARA) ── */
 function TerminalMockup() {
@@ -215,12 +216,18 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               <Layers size={16} style={{ color: project.accent }} />
             </div>
             <h2 className="display-heading text-2xl font-extrabold text-[#0d1d2c]">
-              {project.media === 'images' ? 'App Screenshots' : 'Live Demo'}
+              {project.slug === 'aerial-eye'
+                ? 'Object Detection Visualization'
+                : project.media === 'images'
+                  ? 'App Screenshots'
+                  : 'Live Demo'}
             </h2>
           </motion.div>
 
           <motion.div variants={fadeUp} className="rounded-2xl overflow-hidden shadow-2xl shadow-slate-900/10 border border-white">
-            {project.media === 'images' && project.images ? (
+            {project.slug === 'aerial-eye' ? (
+              <AerialEyeVisualization detailed />
+            ) : project.media === 'images' && project.images ? (
               <ImageCarousel images={project.images} accent={project.accent} mockup interval={2600} />
             ) : (
               <div className="h-[420px]">

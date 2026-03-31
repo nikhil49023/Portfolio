@@ -67,7 +67,7 @@ export const PROJECTS: Project[] = [
     tags: ['YOLOv8', 'Ultralytics', 'PyTorch', 'ONNX', 'Object Detection', 'Computer Vision', 'VisDrone', 'Edge AI'],
     media: 'images',
     images: [
-      'https://huggingface.co/kilanisainikhil/AerialEye/resolve/main/sample_train_1.jpg',
+      '/projects/aerial-eye-thumb.svg',
     ],
     accent: '#d66a1f',
     accentDark: '#1f2d62',

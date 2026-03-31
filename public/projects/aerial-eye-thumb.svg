@@ -1,0 +1,57 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="118" y1="38" x2="1086" y2="682" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1220"/>
+      <stop offset="0.48" stop-color="#18263D"/>
+      <stop offset="1" stop-color="#1F2D62"/>
+    </linearGradient>
+    <linearGradient id="scan" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00D4FF" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#7DD3FC"/>
+      <stop offset="1" stop-color="#00D4FF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="700" rx="28" fill="url(#bg)"/>
+  <rect x="40" y="42" width="1120" height="616" rx="24" fill="#0A1120" fill-opacity="0.42" stroke="#9DD8FF" stroke-opacity="0.24"/>
+
+  <g opacity="0.28">
+    <path d="M100 190H1100" stroke="#7DD3FC"/>
+    <path d="M100 260H1100" stroke="#7DD3FC"/>
+    <path d="M100 330H1100" stroke="#7DD3FC"/>
+    <path d="M100 400H1100" stroke="#7DD3FC"/>
+    <path d="M100 470H1100" stroke="#7DD3FC"/>
+    <path d="M100 540H1100" stroke="#7DD3FC"/>
+    <path d="M180 120V580" stroke="#7DD3FC"/>
+    <path d="M300 120V580" stroke="#7DD3FC"/>
+    <path d="M420 120V580" stroke="#7DD3FC"/>
+    <path d="M540 120V580" stroke="#7DD3FC"/>
+    <path d="M660 120V580" stroke="#7DD3FC"/>
+    <path d="M780 120V580" stroke="#7DD3FC"/>
+    <path d="M900 120V580" stroke="#7DD3FC"/>
+    <path d="M1020 120V580" stroke="#7DD3FC"/>
+  </g>
+
+  <rect x="130" y="230" width="150" height="250" rx="12" fill="#FDE68A" fill-opacity="0.05" stroke="#FCD34D" stroke-width="4"/>
+  <rect x="430" y="292" width="240" height="138" rx="12" fill="#FDE68A" fill-opacity="0.05" stroke="#FCD34D" stroke-width="4"/>
+  <rect x="770" y="258" width="260" height="190" rx="12" fill="#FDE68A" fill-opacity="0.05" stroke="#FCD34D" stroke-width="4"/>
+  <rect x="340" y="465" width="180" height="120" rx="12" fill="#FDE68A" fill-opacity="0.05" stroke="#FCD34D" stroke-width="4"/>
+
+  <rect x="130" y="196" width="168" height="28" rx="6" fill="#FDE68A"/>
+  <rect x="430" y="258" width="164" height="28" rx="6" fill="#FDE68A"/>
+  <rect x="770" y="224" width="160" height="28" rx="6" fill="#FDE68A"/>
+  <rect x="340" y="431" width="172" height="28" rx="6" fill="#FDE68A"/>
+
+  <text x="142" y="215" fill="#0F172A" font-size="13" font-weight="700" font-family="Segoe UI, Arial, sans-serif">person 0.93</text>
+  <text x="442" y="277" fill="#0F172A" font-size="13" font-weight="700" font-family="Segoe UI, Arial, sans-serif">car 0.96</text>
+  <text x="782" y="243" fill="#0F172A" font-size="13" font-weight="700" font-family="Segoe UI, Arial, sans-serif">truck 0.88</text>
+  <text x="352" y="450" fill="#0F172A" font-size="13" font-weight="700" font-family="Segoe UI, Arial, sans-serif">bicycle 0.84</text>
+
+  <rect x="70" y="84" width="1060" height="46" rx="10" fill="#020617" fill-opacity="0.6" stroke="#9DD8FF" stroke-opacity="0.25"/>
+  <text x="100" y="113" fill="#CFFAFE" font-size="16" font-weight="700" font-family="Segoe UI, Arial, sans-serif" letter-spacing="1">AERIALEYE OBJECT DETECTION VISUALIZATION</text>
+
+  <rect x="70" y="584" width="1060" height="46" rx="10" fill="#020617" fill-opacity="0.6" stroke="#9DD8FF" stroke-opacity="0.25"/>
+  <text x="100" y="613" fill="#FDBA74" font-size="14" font-weight="700" font-family="Segoe UI, Arial, sans-serif">YOLOv8 • ULTRALYTICS • HUGGING FACE • 5 CLASSES</text>
+
+  <rect x="80" y="353" width="1040" height="2.5" fill="url(#scan)"/>
+</svg>

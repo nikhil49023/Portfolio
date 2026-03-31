@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { PROJECTS } from '@/lib/projects';
 import { ImageCarousel } from '@/components/projects/ImageCarousel';
+import { AerialEyeVisualization } from '@/components/projects/AerialEyeVisualization';
 
 /* ── Animations ── */
 const fadeUp = {
@@ -191,9 +192,13 @@ export function Projects() {
                             style={{ background: `radial-gradient(ellipse at 50% 100%, ${p.accent}25 0%, transparent 65%)` }}
                           />
 
-                          {p.media === 'images' && p.images
-                            ? <ImageCarousel images={p.images} accent={p.accent} heightClass="h-56" interval={2400} />
-                            : <MiniTerminal />}
+                          {p.slug === 'aerial-eye' ? (
+                            <AerialEyeVisualization />
+                          ) : (
+                            p.media === 'images' && p.images
+                              ? <ImageCarousel images={p.images} accent={p.accent} heightClass="h-56" interval={2400} />
+                              : <MiniTerminal />
+                          )}
 
                           {/* Category badge */}
                           <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-black/55 backdrop-blur-sm text-white pointer-events-none">
