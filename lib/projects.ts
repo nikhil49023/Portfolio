@@ -1,4 +1,6 @@
-import { Smartphone, Code2, Github, Globe, Database, type LucideIcon } from 'lucide-react';
+import {
+  Smartphone, Code2, Github, Globe, Database, Radar, type LucideIcon,
+} from 'lucide-react';
 
 export type ArchNode = {
   label: string;
@@ -39,6 +41,95 @@ export type Project = {
 };
 
 export const PROJECTS: Project[] = [
+  {
+    slug: 'aerial-eye',
+    name: 'AerialEye',
+    date: 'Mar 2026',
+    tagline: 'YOLOv8 aerial patrol model for drone-based object detection',
+    shortDesc:
+      'Custom Ultralytics YOLOv8 model on Hugging Face for real-time aerial surveillance with PyTorch + ONNX export and edge-ready inference.',
+    details: [
+      'AerialEye is a custom-trained YOLOv8 model built for aerial patrol use cases where camera perspectives are drone-mounted rather than ground-level. The model card positions it as lightweight and suitable for real-time deployment in UAS/drone workflows.',
+      'The project is published on Hugging Face as kilanisainikhil/AerialEye with an MIT license, tagged for ultralytics, PyTorch, ONNX, and vision pipelines. The repository includes direct usage instructions for local testing and Python-based inference.',
+      'Validation examples in the model card use representative VisDrone-domain samples and provide a reproducible command: yolo predict model=aerialEye.pt source=\'sample_train_1.jpg\'.',
+      'Supported classes are intentionally scoped to five high-priority patrol categories: person, car, truck, motorcycle, and bicycle. This narrower class space improves practical relevance for traffic/security monitoring but also defines clear operational boundaries.',
+      'The model card also documents practical production limits: reduced reliability for strict top-down or ground-camera angles, degraded RGB performance in low light/fog, and weaker confidence for tiny objects at very high altitudes without optical zoom.',
+    ],
+    highlights: [
+      'Model Type: YOLOv8 object detector (Ultralytics architecture)',
+      'Task-ready for aerial surveillance, traffic monitoring, and patrol analytics',
+      'Deployment-friendly artifacts with both PyTorch (.pt) and ONNX formats',
+      'Tested on representative VisDrone-style aerial scenes',
+      'Hugging Face activity: 60 downloads in the last month (snapshot from Mar 2026)',
+      'Supports exactly 5 patrol classes: person, car, truck, motorcycle, bicycle',
+      'MIT licensed for commercial and research adoption',
+    ],
+    tags: ['YOLOv8', 'Ultralytics', 'PyTorch', 'ONNX', 'Object Detection', 'Computer Vision', 'VisDrone', 'Edge AI'],
+    media: 'images',
+    images: [
+      'https://huggingface.co/kilanisainikhil/AerialEye/resolve/main/sample_train_1.jpg',
+    ],
+    accent: '#d66a1f',
+    accentDark: '#1f2d62',
+    icon: Radar,
+    category: 'Computer Vision · Edge AI · Hugging Face',
+    links: [
+      {
+        label: 'Model Card',
+        href: 'https://huggingface.co/kilanisainikhil/AerialEye',
+        icon: Globe,
+        primary: true,
+      },
+      {
+        label: 'Files',
+        href: 'https://huggingface.co/kilanisainikhil/AerialEye/tree/main',
+        icon: Database,
+      },
+    ],
+    architecture: [
+      {
+        title: 'Input Domain',
+        nodes: [
+          { label: 'Drone RGB Feed', sublabel: 'Aerial perspective', color: '#f59e0b' },
+          { label: 'VisDrone Prior', sublabel: 'Urban scenes', color: '#d97706' },
+          { label: 'Edge Camera', sublabel: 'UAS onboard', color: '#b45309' },
+        ],
+      },
+      {
+        title: 'Detection Core',
+        nodes: [
+          { label: 'YOLOv8', sublabel: 'Ultralytics', color: '#2563eb' },
+          { label: 'Class Head', sublabel: '5-class scope', color: '#1d4ed8' },
+          { label: 'Confidence Gate', sublabel: 'Real-time threshold', color: '#1e40af' },
+        ],
+      },
+      {
+        title: 'Deployment',
+        nodes: [
+          { label: 'PyTorch .pt', sublabel: 'Native runtime', color: '#0f766e' },
+          { label: 'ONNX Export', sublabel: 'Portable inference', color: '#0d9488' },
+          { label: 'HF Hub', sublabel: 'Versioned hosting', color: '#14b8a6' },
+        ],
+      },
+      {
+        title: 'Outputs',
+        nodes: [
+          { label: 'Detections', sublabel: 'BBox + confidence', color: '#7c3aed' },
+          { label: 'Patrol Alerts', sublabel: 'Operational layer', color: '#6d28d9' },
+          { label: 'Edge/Cloud', sublabel: 'Flexible serving', color: '#5b21b6' },
+        ],
+      },
+    ],
+    techDetails: [
+      { name: 'Ultralytics YOLOv8', desc: 'One-stage detector tuned for real-time aerial object detection performance', icon: '🛰️' },
+      { name: 'PyTorch', desc: 'Primary training and inference backend for rapid experimentation and deployment', icon: '🔥' },
+      { name: 'ONNX', desc: 'Export path for optimized and portable runtime across edge and cloud stacks', icon: '🔁' },
+      { name: 'Hugging Face Hub', desc: 'Model hosting, discoverability, and reproducible file/version management', icon: '🤗' },
+      { name: 'VisDrone Domain', desc: 'Aerial-scene prior that improves patrol-relevant detection behavior', icon: '🚁' },
+      { name: 'Edge Deployment', desc: 'Designed for low-latency operation on drone/UAS-connected pipelines', icon: '⚙️' },
+      { name: 'MIT License', desc: 'Permissive licensing for commercial, academic, and product integration', icon: '📜' },
+    ],
+  },
   {
     slug: 'wealthin',
     name: 'WealthIn',

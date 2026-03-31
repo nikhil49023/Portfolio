@@ -6,42 +6,43 @@ export function Background() {
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
       {/* Base layer already handled in layout or here as fallback */}
-      <div className="absolute inset-0 bg-[#f9f2e7]" />
+      <div className="absolute inset-0 bg-[var(--bg-main)]" />
 
       <motion.div
-        className="absolute left-1/2 top-[-160px] h-[420px] w-[420px] rangoli-bloom opacity-65"
+        className="absolute left-1/2 top-[-110px] h-[340px] w-[460px] rangoli-knot opacity-70"
+        style={{ marginLeft: '-230px' }}
         animate={{ opacity: [0.45, 0.68, 0.45], scale: [0.96, 1, 0.96] }}
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* Saffron orb — top left */}
+      {/* Saffron silk ribbon */}
       <motion.div
-        className="absolute -top-40 -left-32 h-[660px] w-[660px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(223, 108, 43, 0.22) 0%, rgba(223, 108, 43, 0) 70%)' }}
+        className="absolute -top-24 -left-52 h-[320px] w-[880px] rounded-[88px]"
+        style={{ background: 'linear-gradient(110deg, rgba(223, 108, 43, 0.24), rgba(223, 108, 43, 0.02))' }}
         animate={{ x: [0, 28, 0], y: [0, 14, 0], scale: [1, 1.06, 1] }}
         transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* Indigo orb — top right */}
+      {/* Indigo jali panel */}
       <motion.div
-        className="absolute top-[10%] -right-36 h-[560px] w-[560px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(47, 42, 114, 0.18) 0%, rgba(47, 42, 114, 0) 70%)' }}
+        className="absolute top-[9%] -right-44 h-[300px] w-[760px] rounded-[76px] rotate-[-16deg]"
+        style={{ background: 'linear-gradient(100deg, rgba(47, 42, 114, 0.2), rgba(47, 42, 114, 0.02))' }}
         animate={{ x: [0, -24, 0], y: [0, 20, 0], scale: [1, 1.07, 1] }}
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
       />
 
-      {/* Vermilion orb — bottom center/left */}
+      {/* Vermilion cloth fold */}
       <motion.div
-        className="absolute -bottom-48 left-[10%] h-[600px] w-[600px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(182, 58, 58, 0.14) 0%, rgba(182, 58, 58, 0) 70%)' }}
+        className="absolute -bottom-28 left-[6%] h-[280px] w-[720px] rounded-[72px] rotate-[12deg]"
+        style={{ background: 'linear-gradient(120deg, rgba(182, 58, 58, 0.18), rgba(182, 58, 58, 0.02))' }}
         animate={{ x: [0, 30, 0], y: [0, -20, 0], scale: [1, 1.05, 1] }}
         transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
       />
 
-      {/* Peacock orb — center right */}
+      {/* Peacock beveled strip */}
       <motion.div
-        className="absolute top-1/2 -right-20 h-[480px] w-[480px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(15, 118, 110, 0.14) 0%, rgba(15, 118, 110, 0) 70%)' }}
+        className="absolute top-[54%] -right-36 h-[260px] w-[760px] rounded-[64px] rotate-[-9deg]"
+        style={{ background: 'linear-gradient(104deg, rgba(15, 118, 110, 0.17), rgba(15, 118, 110, 0.02))' }}
         animate={{ x: [0, -16, 0], y: [0, -12, 0], scale: [1, 1.05, 1] }}
         transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
       />

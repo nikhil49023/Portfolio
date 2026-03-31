@@ -156,21 +156,22 @@ export function Hero() {
       <FloatingBadge label="Hugging Face" x="calc(100% - 120px)" y="58%" delay={1.0} color="#2f2a72" />
       <FloatingBadge label="Computer Vision" x="calc(100% - 140px)" y="78%" delay={1.15} color="#c2871f" />
 
-      {/* ── Clay 3D ornaments ── */}
+      {/* ── Heritage geometric ornaments ── */}
       <motion.div
         animate={{ x: [0, 30, 0], y: [0, -20, 0], scale: [1, 1.1, 1] }}
         transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-        className="pointer-events-none absolute -top-16 -left-16 w-64 h-64 clay-orb opacity-90"
+        className="pointer-events-none absolute -top-10 -left-10 w-72 h-52 heritage-kite opacity-90"
       />
       <motion.div
         animate={{ x: [0, -25, 0], y: [0, 25, 0], scale: [1, 1.08, 1] }}
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-        className="pointer-events-none absolute top-1/3 -right-10 w-56 h-56 clay-orb warm opacity-90"
+        className="pointer-events-none absolute top-1/3 -right-10 w-64 h-44 heritage-kite cool opacity-90"
       />
       <motion.div
         animate={{ y: [0, -10, 0], rotate: [0, 3, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-        className="pointer-events-none absolute left-1/2 top-6 w-40 h-16 clay-pill liquid-glass opacity-80"
+        className="pointer-events-none absolute top-7 w-44 h-16 heritage-band opacity-80"
+        style={{ left: 'calc(50% - 88px)' }}
       />
 
       <div className="grid items-start gap-8 lg:gap-12 lg:grid-cols-[1fr_360px]">

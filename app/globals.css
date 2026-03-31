@@ -3,22 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --font-sans: "Trebuchet MS", "Avenir Next", "Segoe UI", sans-serif;
-  --font-display: "Gill Sans", "Trebuchet MS", "Avenir Next", sans-serif;
-  --bg-main: #f9f2e7;
-  --bg-soft: #ffffff;
-  --ink: #1e1b2c;
-  --muted: #615b6f;
-  --accent: #df6c2b; /* Saffron */
-  --accent-strong: #2f2a72; /* Indigo */
-  --accent-cool: #0f766e; /* Peacock Green */
-  --accent-warm: #b63a3a; /* Vermilion */
-  --accent-bright: #f4b53f; /* Marigold */
+  --font-sans: "Sora", "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+  --font-display: "Sora", "Manrope", "Avenir Next", sans-serif;
+  --bg-main: #f8f1e6;
+  --bg-soft: #fffdf9;
+  --ink: #1c1b2b;
+  --muted: #5f5a68;
+  --accent: #d96d24; /* Saffron Clay */
+  --accent-strong: #2a2c6e; /* Indigo */
+  --accent-cool: #0b7a70; /* Peacock */
+  --accent-warm: #b5473f; /* Vermilion */
+  --accent-bright: #d9a43a; /* Brass */
   --surface: rgba(255, 255, 255, 0.8);
   --surface-strong: rgba(255, 255, 255, 0.94);
   --glass-edge: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(47, 42, 114, 0.14);
-  --glass-shadow: 0 12px 34px rgba(30, 27, 44, 0.14);
+  --glass-shadow: 0 12px 34px rgba(28, 27, 43, 0.14);
 }
 
 html {
@@ -27,10 +27,10 @@ html {
 
 body {
   background:
-    radial-gradient(960px 620px at -8% -12%, rgba(223, 108, 43, 0.18), transparent 60%),
-    radial-gradient(760px 560px at 108% 18%, rgba(47, 42, 114, 0.16), transparent 58%),
-    radial-gradient(660px 420px at 50% 100%, rgba(15, 118, 110, 0.11), transparent 60%),
-    linear-gradient(160deg, #f9f2e7 0%, #f7efe5 56%, #f8f4ef 100%);
+    radial-gradient(980px 620px at -8% -12%, rgba(217, 109, 36, 0.2), transparent 60%),
+    radial-gradient(760px 560px at 108% 18%, rgba(42, 44, 110, 0.17), transparent 58%),
+    radial-gradient(660px 420px at 50% 100%, rgba(11, 122, 112, 0.12), transparent 62%),
+    linear-gradient(158deg, #f8f1e6 0%, #f6ede0 56%, #fbf7f1 100%);
   color: var(--ink);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
@@ -43,27 +43,33 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.16;
+  opacity: 0.18;
   background-image:
-    repeating-linear-gradient(45deg, rgba(47, 42, 114, 0.06) 0 1px, transparent 1px 24px),
-    repeating-linear-gradient(-45deg, rgba(223, 108, 43, 0.05) 0 1px, transparent 1px 24px);
-  mask-image: radial-gradient(circle at 50% 40%, black 22%, transparent 78%);
-  -webkit-mask-image: radial-gradient(circle at 50% 40%, black 22%, transparent 78%);
+    repeating-linear-gradient(45deg, rgba(42, 44, 110, 0.055) 0 1px, transparent 1px 26px),
+    repeating-linear-gradient(-45deg, rgba(217, 109, 36, 0.05) 0 1px, transparent 1px 26px);
+  mask-image: radial-gradient(ellipse 80% 58% at 50% 42%, black 26%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 58% at 50% 42%, black 26%, transparent 80%);
 }
 
 body::after {
   content: "";
   position: fixed;
   left: 50%;
-  top: -120px;
-  width: 540px;
-  height: 540px;
+  top: -96px;
+  width: 620px;
+  height: 360px;
   transform: translateX(-50%);
-  border-radius: 999px;
   pointer-events: none;
-  opacity: 0.3;
-  background: conic-gradient(from 40deg, rgba(223, 108, 43, 0.36), rgba(47, 42, 114, 0.34), rgba(15, 118, 110, 0.3), rgba(244, 181, 63, 0.34), rgba(223, 108, 43, 0.36));
-  filter: blur(56px);
+  opacity: 0.27;
+  background: linear-gradient(
+    110deg,
+    rgba(217, 109, 36, 0.34),
+    rgba(42, 44, 110, 0.33),
+    rgba(11, 122, 112, 0.31),
+    rgba(217, 164, 58, 0.33)
+  );
+  clip-path: polygon(8% 22%, 23% 8%, 76% 8%, 92% 22%, 92% 78%, 76% 92%, 23% 92%, 8% 78%);
+  filter: blur(54px);
   animation: mandalaSpin 24s linear infinite;
 }
 
@@ -232,38 +238,31 @@ body::after {
   letter-spacing: -0.025em;
 }
 
-/* ── Clay 3D ornaments ── */
-.clay-orb {
-  border-radius: 999px;
-  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.85), rgba(223, 108, 43, 0.7) 45%, rgba(30, 27, 44, 0.24) 100%);
-  box-shadow:
-    inset -18px -24px 40px rgba(0, 0, 0, 0.18),
-    inset 16px 18px 30px rgba(255, 255, 255, 0.35),
-    0 24px 60px rgba(223, 108, 43, 0.35);
-  animation: float 8s ease-in-out infinite;
+/* ── Heritage ornaments ── */
+.heritage-kite {
+  border-radius: 30px;
+  clip-path: polygon(8% 0, 100% 18%, 92% 100%, 0 82%);
+  background:
+    linear-gradient(138deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.12)),
+    linear-gradient(128deg, rgba(217, 109, 36, 0.5), rgba(42, 44, 110, 0.28));
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  box-shadow: 0 24px 56px rgba(28, 27, 43, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.54);
 }
 
-.clay-orb.warm {
-  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.85), rgba(182, 58, 58, 0.72) 46%, rgba(30, 27, 44, 0.22) 100%);
-  box-shadow:
-    inset -18px -24px 40px rgba(0, 0, 0, 0.18),
-    inset 16px 18px 30px rgba(255, 255, 255, 0.35),
-    0 24px 60px rgba(182, 58, 58, 0.35);
+.heritage-kite.cool {
+  background:
+    linear-gradient(138deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.1)),
+    linear-gradient(130deg, rgba(11, 122, 112, 0.42), rgba(42, 44, 110, 0.38));
 }
 
-.clay-orb.cool {
-  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.85), rgba(47, 42, 114, 0.78) 46%, rgba(30, 27, 44, 0.25) 100%);
-  box-shadow:
-    inset -18px -24px 40px rgba(0, 0, 0, 0.2),
-    inset 16px 18px 30px rgba(255, 255, 255, 0.32),
-    0 24px 60px rgba(47, 42, 114, 0.36);
-}
-
-.clay-pill {
-  border-radius: 999px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.6));
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 12px 30px rgba(20, 20, 31, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+.heritage-band {
+  border-radius: 16px;
+  clip-path: polygon(4% 0, 96% 0, 100% 50%, 96% 100%, 4% 100%, 0 50%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.56));
+  border: 1px solid rgba(255, 255, 255, 0.64);
+  box-shadow: 0 12px 30px rgba(20, 20, 31, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px) saturate(165%);
+  -webkit-backdrop-filter: blur(16px) saturate(165%);
   animation: drift 10s ease-in-out infinite;
 }
 
@@ -289,18 +288,13 @@ body::after {
   pointer-events: none;
 }
 
-.rangoli-bloom {
-  border-radius: 999px;
+.rangoli-knot {
+  border-radius: 34px;
+  clip-path: polygon(12% 0, 88% 0, 100% 18%, 100% 82%, 88% 100%, 12% 100%, 0 82%, 0 18%);
   background:
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0.2) 35%, transparent 60%),
-    conic-gradient(from 0deg, rgba(223, 108, 43, 0.6), rgba(47, 42, 114, 0.58), rgba(15, 118, 110, 0.55), rgba(244, 181, 63, 0.6), rgba(223, 108, 43, 0.6));
-  box-shadow: 0 22px 70px rgba(30, 27, 44, 0.24);
-  animation: mandalaSpin 18s linear infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -16px, 0); }
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.2) 38%, transparent 62%),
+    conic-gradient(from 0deg, rgba(217, 109, 36, 0.56), rgba(42, 44, 110, 0.54), rgba(11, 122, 112, 0.52), rgba(217, 164, 58, 0.56), rgba(217, 109, 36, 0.56));
+  box-shadow: 0 18px 60px rgba(28, 27, 43, 0.22);
 }
 
 @keyframes drift {

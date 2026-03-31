@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <div className="fixed inset-0 -z-10 pointer-events-none">
-          <div className="absolute inset-0 bg-[#f9f2e7]" />
+          <div className="absolute inset-0 bg-[var(--bg-main)]" />
         </div>
         {children}
       </body>
