@@ -5,68 +5,65 @@ import { motion } from 'framer-motion';
 export function Background() {
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
-      {/* Base layer already handled in layout or here as fallback */}
-      <div className="absolute inset-0 bg-[var(--bg-main)]" />
+      <div className="absolute inset-0 bg-[#0a0a0f]" />
 
+      {/* Animated gradient orbs */}
       <motion.div
-        className="absolute left-1/2 top-[-110px] h-[340px] w-[460px] rangoli-knot opacity-70"
-        style={{ marginLeft: '-230px' }}
-        animate={{ opacity: [0.45, 0.68, 0.45], scale: [0.96, 1, 0.96] }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        className="floating-orb w-[600px] h-[400px] left-[-10%] top-[5%]"
+        style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent 70%)' }}
+        animate={{ x: [0, 40, 0], y: [0, -30, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="floating-orb w-[500px] h-[350px] right-[-5%] top-[15%]"
+        style={{ background: 'radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent 70%)' }}
+        animate={{ x: [0, -35, 0], y: [0, 25, 0], scale: [1, 1.08, 1] }}
+        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+      />
+      <motion.div
+        className="floating-orb w-[450px] h-[320px] left-[60%] bottom-[10%]"
+        style={{ background: 'radial-gradient(circle, rgba(244, 114, 182, 0.18), transparent 70%)' }}
+        animate={{ x: [0, 25, 0], y: [0, -20, 0], scale: [1, 1.06, 1] }}
+        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
+      />
+      <motion.div
+        className="floating-orb w-[380px] h-[280px] left-[5%] bottom-[20%]"
+        style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.15), transparent 70%)' }}
+        animate={{ x: [0, -20, 0], y: [0, 30, 0], scale: [1, 1.12, 1] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
       />
 
-      {/* Saffron silk ribbon */}
-      <motion.div
-        className="absolute -top-24 -left-52 h-[320px] w-[880px] rounded-[88px]"
-        style={{ background: 'linear-gradient(110deg, rgba(223, 108, 43, 0.24), rgba(223, 108, 43, 0.02))' }}
-        animate={{ x: [0, 28, 0], y: [0, 14, 0], scale: [1, 1.06, 1] }}
-        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
-      />
-
-      {/* Indigo jali panel */}
-      <motion.div
-        className="absolute top-[9%] -right-44 h-[300px] w-[760px] rounded-[76px] rotate-[-16deg]"
-        style={{ background: 'linear-gradient(100deg, rgba(47, 42, 114, 0.2), rgba(47, 42, 114, 0.02))' }}
-        animate={{ x: [0, -24, 0], y: [0, 20, 0], scale: [1, 1.07, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-      />
-
-      {/* Vermilion cloth fold */}
-      <motion.div
-        className="absolute -bottom-28 left-[6%] h-[280px] w-[720px] rounded-[72px] rotate-[12deg]"
-        style={{ background: 'linear-gradient(120deg, rgba(182, 58, 58, 0.18), rgba(182, 58, 58, 0.02))' }}
-        animate={{ x: [0, 30, 0], y: [0, -20, 0], scale: [1, 1.05, 1] }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-      />
-
-      {/* Peacock beveled strip */}
-      <motion.div
-        className="absolute top-[54%] -right-36 h-[260px] w-[760px] rounded-[64px] rotate-[-9deg]"
-        style={{ background: 'linear-gradient(104deg, rgba(15, 118, 110, 0.17), rgba(15, 118, 110, 0.02))' }}
-        animate={{ x: [0, -16, 0], y: [0, -12, 0], scale: [1, 1.05, 1] }}
-        transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-      />
-
-      {/* Modern jali mesh */}
+      {/* Geometric mesh pattern */}
       <div
-        className="absolute inset-0 opacity-[0.07]"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
-          backgroundImage:
-            'repeating-linear-gradient(60deg, rgba(47, 42, 114, 0.22) 0 1px, transparent 1px 22px), repeating-linear-gradient(-60deg, rgba(223, 108, 43, 0.18) 0 1px, transparent 1px 22px)',
-          backgroundSize: '120px 120px',
-          maskImage: 'radial-gradient(ellipse 70% 55% at 50% 38%, black 0%, transparent 100%)',
-          WebkitMaskImage: 'radial-gradient(ellipse 70% 55% at 50% 38%, black 0%, transparent 100%)',
+          backgroundImage: `
+            repeating-linear-gradient(60deg, rgba(139, 92, 246, 0.4) 0 1px, transparent 1px 20px),
+            repeating-linear-gradient(-60deg, rgba(6, 182, 212, 0.35) 0 1px, transparent 1px 20px)
+          `,
+          backgroundSize: '100px 100px',
         }}
       />
 
-      {/* Subtle dot grain */}
+      {/* Subtle dot grid */}
       <div
-        className="absolute inset-0 opacity-[0.14]"
+        className="absolute inset-0 opacity-[0.06]"
         style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(47, 42, 114, 0.14) 1px, transparent 0)',
-          backgroundSize: '28px 28px',
-          maskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%)',
-          WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%)',
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.3) 1px, transparent 0)',
+          backgroundSize: '24px 24px',
+          maskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 10%, transparent 90%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, black 10%, transparent 90%)',
+        }}
+      />
+
+      {/* Gradient overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to bottom, rgba(139, 92, 246, 0.05), transparent 30%, rgba(6, 182, 212, 0.03)),
+            linear-gradient(to top, rgba(244, 114, 182, 0.04), transparent 40%)
+          `,
         }}
       />
     </div>

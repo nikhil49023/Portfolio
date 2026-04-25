@@ -17,10 +17,10 @@ const SOCIALS = [
 ];
 
 const STATS = [
+  { value: 'ADK', sub: 'Google Agent Dev Kit', icon: 'ADK', accent: '#8b5cf6' },
+  { value: 'LLMs', sub: 'Reasoning & evals', icon: 'LLM', accent: '#7c3aed' },
   { value: 'RAG', sub: 'Retrieval pipelines', icon: 'RAG', accent: '#0f766e' },
-  { value: 'LLMs', sub: 'Reasoning & evals', icon: 'LLM', accent: '#2f2a72' },
-  { value: 'CV', sub: 'Vision systems', icon: 'CV', accent: '#df6c2b' },
-  { value: 'Systems', sub: 'Architecture design', icon: 'SYS', accent: '#c2871f' },
+  { value: 'CV', sub: 'Vision systems', icon: 'CV', accent: '#06b6d4' },
 ];
 
 /* ── Floating tech badge ── */
@@ -79,7 +79,7 @@ function TiltStatsCard() {
       <motion.div
         className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 hover:opacity-100 transition-opacity duration-300"
         style={{
-          background: `radial-gradient(circle at ${glareX} ${glareY}, rgba(255,255,255,0.18) 0%, transparent 60%)`,
+          background: `radial-gradient(circle at ${glareX} ${glareY}, rgba(255,255,255,0.12) 0%, transparent 60%)`,
         }}
       />
 
@@ -96,12 +96,12 @@ function TiltStatsCard() {
             transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
             className="absolute -inset-1 rounded-full"
             style={{
-              background: 'conic-gradient(from 0deg, #df6c2b, #2f2a72, #0f766e, #df6c2b)',
+              background: 'conic-gradient(from 0deg, #8b5cf6, #06b6d4, #f472b6, #8b5cf6)',
               padding: '2px',
               zIndex: 0,
             }}
           />
-          <div className="relative z-10 w-24 h-24 rounded-full overflow-hidden border-2 border-white shadow-xl">
+          <div className="relative z-10 w-24 h-24 rounded-full overflow-hidden border-2 border-white/10 shadow-2xl">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://raw.githubusercontent.com/nikhil49023/Portfolio/main/public/profile.jpeg"
@@ -110,13 +110,13 @@ function TiltStatsCard() {
             />
           </div>
         </motion.div>
-        <p className="mt-2.5 text-sm font-extrabold text-[#111827]">Kilani Sai Nikhil</p>
-        <p className="text-[11px] text-[#5b6673]">Machine Learning Engineer · Hyderabad</p>
+        <p className="mt-2.5 text-sm font-extrabold text-white">Kilani Sai Nikhil</p>
+        <p className="text-[11px] text-zinc-400">Agentic App Builder · Hyderabad</p>
       </div>
 
-      <div className="mb-4 flex items-center justify-between border-b border-orange-50 pb-3" style={{ transform: 'translateZ(12px)' }}>
-        <p className="text-xs font-bold tracking-[0.14em] text-[#5b6673]">AT A GLANCE</p>
-        <span className="h-2 w-2 rounded-full bg-orange-500" />
+      <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-3" style={{ transform: 'translateZ(12px)' }}>
+        <p className="text-xs font-bold tracking-[0.14em] text-zinc-400">AT A GLANCE</p>
+        <span className="h-2 w-2 rounded-full bg-violet-500" />
       </div>
 
       <div className="space-y-2.5" style={{ transform: 'translateZ(8px)' }}>
@@ -124,19 +124,19 @@ function TiltStatsCard() {
           <div
             key={item.value}
             className="rounded-2xl border px-4 py-3 transition-all hover:scale-[1.02]"
-            style={{ background: 'rgba(223, 108, 43, 0.08)', borderColor: 'rgba(47, 42, 114, 0.16)' }}
+            style={{ background: 'rgba(139, 92, 246, 0.08)', borderColor: 'rgba(139, 92, 246, 0.2)' }}
           >
             <p className="text-[11px] font-bold uppercase tracking-[0.15em]" style={{ color: item.accent }}>{item.icon}</p>
-            <p className="mt-1 text-base font-extrabold text-[#111827]">{item.value}</p>
-            <p className="text-xs text-[#5b6673]">{item.sub}</p>
+            <p className="mt-1 text-base font-extrabold text-white">{item.value}</p>
+            <p className="text-xs text-zinc-400">{item.sub}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-4 border-t border-orange-50 pt-4" style={{ transform: 'translateZ(8px)' }}>
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-[#5b6673]">Core Stack</p>
+      <div className="mt-4 border-t border-white/10 pt-4" style={{ transform: 'translateZ(8px)' }}>
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-zinc-400">Core Stack</p>
         <div className="flex flex-wrap gap-1.5">
-          {['PyTorch', 'Hugging Face', 'NumPy', 'Pandas', 'Docker', 'GitHub'].map((tech) => (
+          {['Google ADK', 'AutoGen', 'PyTorch', 'Hugging Face', 'Docker', 'RAG'].map((tech) => (
             <span key={tech} className="tag">{tech}</span>
           ))}
         </div>
@@ -150,11 +150,11 @@ export function Hero() {
     <section id="hero" className="section pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pt-36 lg:pb-24 relative overflow-hidden">
 
       {/* ── 3D floating tech badges ── */}
-      <FloatingBadge label="LLM Systems" x="-2%" y="18%" delay={0.6} color="#2f2a72" />
-      <FloatingBadge label="Agentic Workflows" x="-3%" y="55%" delay={0.9} color="#0f766e" />
-      <FloatingBadge label="PyTorch" x="calc(100% - 110px)" y="22%" delay={0.75} color="#df6c2b" />
-      <FloatingBadge label="Hugging Face" x="calc(100% - 120px)" y="58%" delay={1.0} color="#2f2a72" />
-      <FloatingBadge label="Computer Vision" x="calc(100% - 140px)" y="78%" delay={1.15} color="#c2871f" />
+      <FloatingBadge label="Google ADK" x="-2%" y="18%" delay={0.6} color="#8b5cf6" />
+      <FloatingBadge label="Agentic Apps" x="-3%" y="55%" delay={0.9} color="#06b6d4" />
+      <FloatingBadge label="AutoGen" x="calc(100% - 110px)" y="22%" delay={0.75} color="#7c3aed" />
+      <FloatingBadge label="Multi-Agent" x="calc(100% - 120px)" y="58%" delay={1.0} color="#0f766e" />
+      <FloatingBadge label="Tool-using AI" x="calc(100% - 140px)" y="78%" delay={1.15} color="#3b82f6" />
 
       {/* ── Heritage geometric ornaments ── */}
       <motion.div
@@ -201,12 +201,12 @@ export function Hero() {
           <motion.div variants={fadeUp(0)} initial="hidden" animate="show" className="mb-8 flex flex-wrap items-center gap-3">
             <span
               className="inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold"
-              style={{ borderColor: 'rgba(223, 108, 43, 0.35)', background: 'rgba(223, 108, 43, 0.12)', color: '#9a4a1d' }}
+              style={{ borderColor: 'rgba(139, 92, 246, 0.35)', background: 'rgba(139, 92, 246, 0.12)', color: '#a78bfa' }}
             >
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-orange-500" />
-              Available for ML roles
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-violet-500" />
+              Available for AI Projects
             </span>
-            <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#5b6673]">
+            <span className="inline-flex items-center gap-1 text-xs font-semibold text-zinc-500">
               <MapPin size={12} /> Hyderabad
             </span>
           </motion.div>
@@ -214,18 +214,18 @@ export function Hero() {
           {/* Heading */}
           <motion.div variants={fadeUp(0.05)} initial="hidden" animate="show">
             <h1 className="display-heading mb-5 leading-[0.95] text-[2.1rem] font-black tracking-tight text-[#111827] sm:text-[3.2rem] lg:text-[4.6rem]">
-              <span className="block">Building Intelligent Systems</span>
-              <span className="block gradient-text">That See, Retrieve, and Reason</span>
+              <span className="block">Building Agentic Apps</span>
+              <span className="block gradient-text">That Think, Act & Deliver</span>
             </h1>
           </motion.div>
 
           {/* Role pills */}
           <motion.div variants={fadeUp(0.1)} initial="hidden" animate="show" className="mb-5 flex flex-wrap items-center gap-2">
             {[
-              { label: 'Machine Learning Engineer', bg: 'rgba(223, 108, 43, 0.12)', color: '#9a4a1d', border: 'rgba(223, 108, 43, 0.28)' },
+              { label: 'Agentic App Builder', bg: 'rgba(139, 92, 246, 0.12)', color: '#7c3aed', border: 'rgba(139, 92, 246, 0.28)' },
+              { label: 'Google ADK Expert', bg: 'rgba(6, 182, 212, 0.12)', color: '#0891b2', border: 'rgba(6, 182, 212, 0.28)' },
               { label: 'LLM & RAG Systems', bg: 'rgba(47, 42, 114, 0.12)', color: '#2f2a72', border: 'rgba(47, 42, 114, 0.28)' },
               { label: 'Computer Vision', bg: 'rgba(15, 118, 110, 0.12)', color: '#0f766e', border: 'rgba(15, 118, 110, 0.25)' },
-              { label: 'Agentic Workflows', bg: 'rgba(244, 181, 63, 0.14)', color: '#a6721a', border: 'rgba(244, 181, 63, 0.28)' },
             ].map(({ label, bg, color, border }) => (
               <motion.span
                 key={label}
@@ -245,8 +245,8 @@ export function Hero() {
             animate="show"
             className="mb-9 max-w-xl text-sm sm:text-base leading-relaxed text-[#5b6673]"
           >
-            I build ML systems across the stack — LLM apps, RAG pipelines, and computer vision workflows — with a strong focus on
-            data quality, evaluation, and system architecture. National finalist at the OpenAI x NxtWave Buildathon 2026.
+            I build production-ready agentic applications using Google ADK, AutoGen, and LLM frameworks — with a focus on tool-using AI, 
+            multi-agent orchestration, and reliable RAG-powered systems. National finalist at the OpenAI x NxtWave Buildathon 2026.
           </motion.p>
 
           {/* CTA buttons */}
@@ -273,7 +273,7 @@ export function Hero() {
             <motion.div whileHover={{ scale: 1.04, y: -1 }} whileTap={{ scale: 0.97 }}>
               <Link
                 href="/resume"
-                className="inline-flex items-center gap-2 rounded-xl border border-orange-200 bg-white px-5 py-2.5 text-sm font-semibold text-orange-700 shadow-sm hover:bg-orange-50 hover:border-orange-300 transition-all"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-white/10 hover:border-white/20 transition-all"
               >
                 <Download size={14} />
                 Download Resume
@@ -292,7 +292,7 @@ export function Hero() {
                 title={label}
                 whileHover={{ scale: 1.12, y: -2, rotateZ: -4 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-indigo-100 bg-white text-[#5b6673] transition-colors duration-200 hover:border-orange-300 hover:text-[#2f2a72] hover:shadow-sm hover:shadow-orange-100"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-zinc-400 transition-colors duration-200 hover:border-violet-500/50 hover:text-violet-400 hover:bg-white/10 hover:shadow-lg hover:shadow-violet-500/20"
               >
                 <Icon size={16} />
               </motion.a>

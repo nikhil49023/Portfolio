@@ -107,29 +107,29 @@ export function Projects() {
         <motion.div variants={fadeUp} className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
           <div>
             <p className="eyebrow mb-2">Projects</p>
-            <h2 className="display-heading text-3xl sm:text-4xl font-extrabold text-[#0f172a] tracking-tight">
+            <h2 className="display-heading text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
               What I&apos;ve built
             </h2>
-            <p className="mt-2 text-[#5b6673] text-sm">
+            <p className="mt-2 text-zinc-500 text-sm">
               {PROJECTS.length} projects &middot; click any card for the full breakdown
             </p>
           </div>
 
           {/* Search */}
           <div className="relative w-full sm:w-72 shrink-0">
-            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 pointer-events-none" />
             <input
               type="text"
               placeholder="Search by name, stack, type…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2.5 rounded-xl border border-emerald-100 bg-white/80 backdrop-blur-xl text-sm text-[#0f172a] placeholder:text-[#5b6673] focus:outline-none focus:ring-2 focus:ring-emerald-400/20 focus:border-emerald-300 transition-all"
-              style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.8), 0 1px 3px rgba(0,0,0,0.04)' }}
+              className="w-full pl-9 pr-8 py-2.5 rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500/50 transition-all"
+              style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04), 0 1px 3px rgba(0,0,0,0.2)' }}
             />
             {query && (
               <button
                 onClick={() => setQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white transition-colors"
               >
                 <X size={13} />
               </button>
@@ -147,8 +147,8 @@ export function Projects() {
                 className="rounded-full border px-3 py-1.5 text-xs font-semibold transition-all"
                 style={
                   active
-                    ? { background: 'linear-gradient(135deg, #2f9e93, #3a86ff)', color: '#fff', borderColor: 'transparent' }
-                    : { background: 'rgba(47, 158, 147, 0.08)', color: '#5b6673', borderColor: 'rgba(47, 158, 147, 0.2)' }
+                    ? { background: 'linear-gradient(135deg, #8b5cf6, #06b6d4)', color: '#fff', borderColor: 'transparent' }
+                    : { background: 'rgba(139, 92, 246, 0.08)', color: '#a1a1aa', borderColor: 'rgba(139, 92, 246, 0.2)' }
                 }
               >
                 {category}

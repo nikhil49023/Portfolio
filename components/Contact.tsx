@@ -11,10 +11,10 @@ const fadeUp = {
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 
 const LINKS = [
-  { icon: Github, label: 'GitHub', sub: 'nikhil49023', href: 'https://github.com/nikhil49023', accent: '#2f9e93' },
-  { icon: Linkedin, label: 'LinkedIn', sub: 'kilanisainikhil', href: 'https://linkedin.com/in/kilanisainikhil', accent: '#3a86ff' },
-  { icon: Package, label: 'PyPI', sub: 'SaiNikhil', href: 'https://pypi.org/user/SaiNikhil/', accent: '#f07f5a' },
-  { icon: Mail, label: 'Email', sub: 'kilanisainikhil@gmail.com', href: 'mailto:kilanisainikhil@gmail.com', accent: '#1f6f69' },
+  { icon: Github, label: 'GitHub', sub: 'nikhil49023', href: 'https://github.com/nikhil49023', accent: '#8b5cf6' },
+  { icon: Linkedin, label: 'LinkedIn', sub: 'kilanisainikhil', href: 'https://linkedin.com/in/kilanisainikhil', accent: '#06b6d4' },
+  { icon: Package, label: 'PyPI', sub: 'SaiNikhil', href: 'https://pypi.org/user/SaiNikhil/', accent: '#f472b6' },
+  { icon: Mail, label: 'Email', sub: 'kilanisainikhil@gmail.com', href: 'mailto:kilanisainikhil@gmail.com', accent: '#a78bfa' },
 ];
 
 export function Contact() {
@@ -23,7 +23,7 @@ export function Contact() {
       <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
         <motion.div variants={fadeUp} className="mb-10">
           <p className="eyebrow mb-2">Contact</p>
-          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-[#0f172a] sm:text-4xl">
+          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
             Let&apos;s build something intelligent
           </h2>
         </motion.div>
@@ -31,13 +31,13 @@ export function Contact() {
         <div className="grid items-start gap-6 md:grid-cols-[1fr_1.2fr]">
           {/* LinkedIn card */}
           <motion.div variants={fadeUp} className="card rounded-3xl p-7 liquid-glass">
-            <div className="mb-5 grid h-11 w-11 place-items-center rounded-xl bg-emerald-50 text-emerald-700">
+            <div className="mb-5 grid h-11 w-11 place-items-center rounded-xl bg-violet-500/10 text-violet-400">
               <Linkedin size={18} />
             </div>
 
-            <h3 className="display-heading mb-2 text-2xl font-extrabold text-[#0f172a]">Connect with me</h3>
-            <p className="mb-6 text-sm leading-relaxed text-[#5b6673]">
-              Open to ML internships, research collaborations, and high-impact AI product work.
+            <h3 className="display-heading mb-2 text-2xl font-extrabold text-white">Connect with me</h3>
+            <p className="mb-6 text-sm leading-relaxed text-zinc-400">
+              Open to AI internships, research collaborations, and agentic app projects.
               LinkedIn is the best way to reach me for professional inquiries.
             </p>
 
@@ -62,22 +62,21 @@ export function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 variants={fadeUp}
-                className="rounded-2xl border p-4 transition-all duration-200 hover:-translate-y-1 bg-white/80 liquid-glass"
+                className="rounded-2xl border p-4 transition-all duration-200 hover:-translate-y-1 liquid-glass"
                 style={{
-                  borderColor: `${accent}18`,
-                  backdropFilter: 'blur(16px) saturate(160%)',
-                  WebkitBackdropFilter: 'blur(16px) saturate(160%)',
-                  boxShadow: `0 2px 12px rgba(0,0,0,0.06)`,
+                  borderColor: `${accent}20`,
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  boxShadow: '0 2px 12px rgba(0,0,0,0.2)',
                 }}
               >
                 <div
                   className="mb-3 grid h-9 w-9 place-items-center rounded-lg"
-                  style={{ background: `${accent}10`, color: accent }}
+                  style={{ background: `${accent}12`, color: accent }}
                 >
                   <Icon size={16} />
                 </div>
-                <p className="text-sm font-bold text-[#0f172a]">{label}</p>
-                <p className="text-xs text-[#5b6673] whitespace-nowrap overflow-hidden text-ellipsis">{sub}</p>
+                <p className="text-sm font-bold text-white">{label}</p>
+                <p className="text-xs text-zinc-500 whitespace-nowrap overflow-hidden text-ellipsis">{sub}</p>
               </motion.a>
             ))}
           </motion.div>
@@ -86,10 +85,10 @@ export function Contact() {
         {/* Footer */}
         <motion.div
           variants={fadeUp}
-          className="mt-16 flex flex-col items-center justify-between gap-2 border-t pt-6 text-xs text-[#5b6673] sm:flex-row"
-          style={{ borderColor: 'rgba(47, 158, 147, 0.2)' }}
+          className="mt-16 flex flex-col items-center justify-between gap-2 border-t pt-6 text-xs text-zinc-500 sm:flex-row"
+          style={{ borderColor: 'rgba(255, 255, 255, 0.08)' }}
         >
-          <span>© 2026 Kilani Sai Nikhil</span>
+          <span>&copy; 2026 Kilani Sai Nikhil</span>
           <span>Built with Next.js, Framer Motion, and Tailwind CSS</span>
         </motion.div>
       </motion.div>
