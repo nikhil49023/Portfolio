@@ -40,7 +40,7 @@ export function About() {
       <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
         <motion.div variants={fadeUp} className="mb-10">
           <p className="eyebrow mb-2">About</p>
-          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Who I am</h2>
+          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Who I am</h2>
         </motion.div>
 
         <div className="grid items-start gap-6 md:grid-cols-[1fr_1fr]">
@@ -53,9 +53,9 @@ export function About() {
                   animate={{ rotate: 360 }}
                   transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
                   className="absolute -inset-0.5 rounded-full"
-                  style={{ background: 'conic-gradient(from 0deg, #8b5cf6, #06b6d4, #f472b6, #8b5cf6)' }}
+                  style={{ background: 'conic-gradient(from 0deg, #7c3aed, #0891b2, #ec4899, #7c3aed)' }}
                 />
-                <div className="relative z-10 w-14 h-14 rounded-full overflow-hidden border-2 border-white/10 shadow-lg">
+                <div className="relative z-10 w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-md">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="https://raw.githubusercontent.com/nikhil49023/Portfolio/main/public/profile.jpeg"
@@ -65,29 +65,29 @@ export function About() {
                 </div>
               </div>
               <div>
-                <h3 className="display-heading text-xl font-extrabold text-white">Kilani Sai Nikhil</h3>
-                <p className="mt-0.5 text-sm font-semibold text-violet-400">Agentic App Builder · LLM & CV Systems</p>
+                <h3 className="display-heading text-xl font-extrabold text-gray-900">Kilani Sai Nikhil</h3>
+                <p className="mt-0.5 text-sm font-semibold text-violet-600">Agentic App Builder · LLM & CV Systems</p>
               </div>
             </div>
 
-            <p className="mb-6 text-sm leading-relaxed text-zinc-400">
+            <p className="mb-6 text-sm leading-relaxed text-gray-600">
               I build production-ready agentic applications using Google ADK, AutoGen, and LLM frameworks. 
               I focus on tool-using AI, multi-agent orchestration, and reliable RAG-powered systems.
             </p>
 
             <div className="space-y-2.5 text-sm">
-              <p className="flex items-center gap-2.5 text-zinc-500">
-                <MapPin size={14} className="text-violet-400" /> Hyderabad, India
+              <p className="flex items-center gap-2.5 text-gray-600">
+                <MapPin size={14} className="text-violet-600" /> Hyderabad, India
               </p>
-              <p className="flex items-center gap-2.5 text-zinc-500">
-                <Linkedin size={14} className="text-violet-400" />
-                <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="font-semibold text-violet-400 hover:underline">
+              <p className="flex items-center gap-2.5 text-gray-600">
+                <Linkedin size={14} className="text-violet-600" />
+                <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="font-semibold text-violet-700 hover:underline">
                   linkedin.com/in/kilanisainikhil
                 </a>
               </p>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-2 border-t border-white/10 pt-5">
+            <div className="mt-6 flex flex-wrap gap-2 border-t border-gray-100 pt-5">
               {[
                 { icon: Github, href: 'https://github.com/nikhil49023', label: 'GitHub' },
                 { icon: Linkedin, href: 'https://linkedin.com/in/kilanisainikhil', label: 'LinkedIn' },
@@ -98,7 +98,7 @@ export function About() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-zinc-400 transition-all hover:border-violet-500/50 hover:bg-white/10 hover:text-violet-400"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-semibold text-gray-600 transition-all hover:border-violet-300 hover:bg-violet-50 hover:text-violet-700"
                 >
                   <Icon size={12} />
                   {label}
@@ -113,13 +113,13 @@ export function About() {
             <motion.div variants={fadeUp}>
               <Tilt3D className="card rounded-3xl p-6 liquid-glass">
                 <div className="flex items-start gap-3.5">
-                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-violet-500/10 text-violet-400">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-violet-50 text-violet-600">
                     <GraduationCap size={18} />
                   </div>
                   <div>
                     <p className="eyebrow mb-1">Education</p>
-                    <p className="text-sm font-bold text-white">Nxt Wave Institute of Advanced Technologies</p>
-                    <p className="mt-0.5 text-xs text-zinc-500">B.Tech, 2025-2029, Hyderabad</p>
+                    <p className="text-sm font-bold text-gray-900">Nxt Wave Institute of Advanced Technologies</p>
+                    <p className="mt-0.5 text-xs text-gray-500">B.Tech, 2025-2029, Hyderabad</p>
                   </div>
                 </div>
               </Tilt3D>
@@ -131,15 +131,15 @@ export function About() {
               <p className="eyebrow mb-3.5">What I build</p>
               <div className="grid grid-cols-2 gap-2">
                 {[
-                  { icon: 'AGT', text: 'Agentic Apps', color: '#8b5cf6' },
-                  { icon: 'ADK', text: 'Google ADK', color: '#06b6d4' },
-                  { icon: 'RAG', text: 'RAG + LLM apps', color: '#2f9e93' },
-                  { icon: 'CV', text: 'Computer vision', color: '#f472b6' },
+                  { icon: 'AGT', text: 'Agentic Apps', color: '#7c3aed' },
+                  { icon: 'ADK', text: 'Google ADK', color: '#0891b2' },
+                  { icon: 'RAG', text: 'RAG + LLM apps', color: '#06b6d4' },
+                  { icon: 'CV', text: 'Computer vision', color: '#ec4899' },
                 ].map((item) => (
                   <div
                     key={item.text}
-                    className="rounded-xl border px-3 py-2 text-xs font-semibold text-zinc-400 transition-all hover:border-white/20"
-                    style={{ background: 'rgba(139, 92, 246, 0.08)', borderColor: 'rgba(139, 92, 246, 0.18)' }}
+                    className="rounded-xl border px-3 py-2 text-xs font-semibold text-gray-600 transition-all hover:border-gray-200"
+                    style={{ background: 'rgba(124, 58, 237, 0.06)', borderColor: 'rgba(124, 58, 237, 0.15)' }}
                   >
                     <p className="text-[10px] font-extrabold tracking-wide" style={{ color: item.color }}>{item.icon}</p>
                     <p className="mt-0.5 leading-snug">{item.text}</p>
@@ -154,20 +154,20 @@ export function About() {
               <Tilt3D
                 className="rounded-3xl border p-5"
                 style={{
-                  background: 'linear-gradient(145deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.08))',
+                  background: 'linear-gradient(145deg, rgba(124, 58, 237, 0.08), rgba(6, 182, 212, 0.06))',
                   backdropFilter: 'blur(16px) saturate(160%)',
                   WebkitBackdropFilter: 'blur(16px) saturate(160%)',
-                  borderColor: 'rgba(139, 92, 246, 0.2)',
-                  boxShadow: '0 2px 12px rgba(0, 0, 0, 0.2)',
+                  borderColor: 'rgba(124, 58, 237, 0.15)',
+                  boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)',
                 } as React.CSSProperties}
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-violet-500/20 text-violet-400">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-violet-100 text-violet-600">
                     <Sparkles size={18} />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-white">National Finalist</p>
-                    <p className="text-xs text-zinc-500">Top 90 of 70,000+ at OpenAI x NxtWave Buildathon 2026</p>
+                    <p className="text-sm font-bold text-gray-900">National Finalist</p>
+                    <p className="text-xs text-gray-500">Top 90 of 70,000+ at OpenAI x NxtWave Buildathon 2026</p>
                   </div>
                 </div>
               </Tilt3D>

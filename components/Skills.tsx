@@ -80,7 +80,7 @@ export function Skills() {
       <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
         <motion.div variants={fadeUp} className="mb-10">
           <p className="eyebrow mb-2">Skills</p>
-          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Technical Proficiency</h2>
+          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Technical Proficiency</h2>
         </motion.div>
 
         <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-4">
@@ -96,8 +96,8 @@ export function Skills() {
                     {cat.icon}
                   </motion.div>
                   <div>
-                    <h3 className="text-sm font-bold text-white">{cat.title}</h3>
-                    <p className="text-xs text-zinc-500">{cat.skills.length} skills</p>
+                    <h3 className="text-sm font-bold text-gray-900">{cat.title}</h3>
+                    <p className="text-xs text-gray-500">{cat.skills.length} skills</p>
                   </div>
                 </div>
 
@@ -126,7 +126,7 @@ export function Skills() {
           ))}
         </div>
 
-        <motion.p variants={fadeUp} className="mt-8 text-center text-sm text-zinc-400">
+        <motion.p variants={fadeUp} className="mt-8 text-center text-sm text-gray-600">
           I build production-ready agentic applications with Google ADK, AutoGen, and LLM frameworks.
         </motion.p>
       </motion.div>

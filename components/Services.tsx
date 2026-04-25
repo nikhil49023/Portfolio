@@ -39,41 +39,36 @@ const SERVICES = [
     title: 'LLM & RAG Systems',
     tagline: 'Retrieval, reasoning, and generation',
     description:
-      'Design and build production-ready LLM applications with reliable retrieval, evaluation, and system design. Focused on RAG pipelines, model routing, and measurable quality.',
+      'Design and build production-ready LLM applications with reliable retrieval, evaluation, and system design.',
     tags: ['LLMs', 'RAG', 'System Architecture', 'Hugging Face', 'Docker'],
-    deliverables: ['RAG pipeline', 'Inference API', 'Evaluation harness', 'Deployable artifacts'],
-    accent: '#2f9e93',
-    featured: true,
+    accent: '#7c3aed',
+  },
+  {
+    icon: Bot,
+    title: 'Agentic Workflows',
+    tagline: 'Tool-using AI automation',
+    description:
+      'Structured agent workflows that chain tools, memory, and policies to automate complex tasks.',
+    tags: ['Agentic Workflows', 'Google ADK', 'AutoGen', 'Multi-Agent'],
+    accent: '#0891b2',
   },
   {
     icon: Eye,
     title: 'Computer Vision Pipelines',
     tagline: 'From data to deployment',
     description:
-      'Vision systems built with PyTorch and OpenCV, including data pipelines, model training, and inference services designed for reliability.',
+      'Vision systems built with PyTorch and OpenCV, including data pipelines and inference services.',
     tags: ['PyTorch', 'OpenCV', 'Computer Vision', 'Data Pipelines'],
-    accent: '#3a86ff',
-    featured: false,
-  },
-  {
-    icon: Bot,
-    title: 'Agentic Workflows',
-    tagline: 'Tool-using LLM automation',
-    description:
-      'Structured agent workflows that chain tools, memory, and policies to automate complex tasks while keeping guardrails in place.',
-    tags: ['Agentic Workflows', 'LLMs', 'RAG', 'System Design'],
-    accent: '#f07f5a',
-    featured: false,
+    accent: '#06b6d4',
   },
   {
     icon: Network,
     title: 'AI System Architecture',
     tagline: 'Scalable and production-ready',
     description:
-      'System architecture design for AI products, with emphasis on observability, iteration speed, and reproducible environments.',
-    tags: ['System Architecture Design', 'Docker', 'Git & GitHub', 'Open Env'],
-    accent: '#f2b84b',
-    featured: false,
+      'System architecture design for AI products with emphasis on observability and iteration speed.',
+    tags: ['System Architecture', 'Docker', 'Git', 'Open Env'],
+    accent: '#ec4899',
   },
 ] as const;
 
@@ -81,92 +76,60 @@ export function Services() {
   return (
     <section id="services" className="section">
       <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
-        {/* Header */}
         <motion.div variants={fadeUp} className="mb-10">
           <p className="eyebrow mb-2">Services</p>
-          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
             AI Engineering Services
           </h2>
-          <p className="mt-3 max-w-xl text-sm leading-relaxed text-zinc-400">
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-gray-600">
             I build production-ready agentic applications with Google ADK, AutoGen, and LLM frameworks.
           </p>
         </motion.div>
 
-        {/* Featured Card + Secondary Card */}
         <div className="grid gap-5 lg:grid-cols-[1.55fr_1fr] mb-5">
           {/* Featured card */}
           <motion.div variants={fadeUp}>
             <Tilt3D
               className="relative h-full overflow-hidden rounded-3xl border p-7 liquid-glass"
               style={{
-                background: 'linear-gradient(145deg, rgba(139, 92, 246, 0.12), rgba(139, 92, 246, 0.04))',
-                borderColor: 'rgba(139, 92, 246, 0.2)',
+                background: 'linear-gradient(145deg, rgba(124, 58, 237, 0.1), rgba(124, 58, 237, 0.03))',
+                borderColor: 'rgba(124, 58, 237, 0.15)',
                 backdropFilter: 'blur(20px) saturate(160%)',
                 WebkitBackdropFilter: 'blur(20px) saturate(160%)',
-                boxShadow: '0 0 0 1px rgba(139, 92, 246, 0.08), 0 10px 34px rgba(0, 0, 0, 0.2)',
+                boxShadow: '0 0 0 1px rgba(124, 58, 237, 0.06), 0 10px 34px rgba(0, 0, 0, 0.08)',
               }}
             >
-              <div
-                className="absolute -top-20 -left-20 h-64 w-64 rounded-full opacity-25 blur-3xl pointer-events-none"
-                style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.6), transparent)' }}
-              />
-
+              <div className="absolute -top-20 -left-20 h-64 w-64 rounded-full opacity-20 blur-3xl pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(124, 58, 237, 0.5), transparent)' }} />
               <div className="relative">
                 <div className="mb-5 flex items-center justify-between">
-                  <div
-                    className="grid h-12 w-12 place-items-center rounded-2xl"
-                    style={{ background: 'rgba(139, 92, 246, 0.16)', color: '#a78bfa' }}
-                  >
+                  <div className="grid h-12 w-12 place-items-center rounded-2xl" style={{ background: 'rgba(124, 58, 237, 0.12)', color: '#7c3aed' }}>
                     <Brain size={22} />
                   </div>
-                  <span
-                    className="rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider"
-                    style={{ borderColor: 'rgba(139, 92, 246, 0.3)', color: '#a78bfa', background: 'rgba(139, 92, 246, 0.1)' }}
-                  >
+                  <span className="rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider" style={{ borderColor: 'rgba(124, 58, 237, 0.25)', color: '#7c3aed', background: 'rgba(124, 58, 237, 0.08)' }}>
                     Top Tier Service
                   </span>
                 </div>
-
-                <h3 className="display-heading mb-1 text-2xl font-extrabold text-white">Agentic App Development</h3>
-                <p className="mb-4 text-sm font-semibold text-violet-400">Building AI that thinks, acts & delivers</p>
-                <p className="mb-6 text-sm leading-relaxed text-zinc-400">
+                <h3 className="display-heading mb-1 text-2xl font-extrabold text-gray-900">Agentic App Development</h3>
+                <p className="mb-4 text-sm font-semibold text-violet-600">Building AI that thinks, acts & delivers</p>
+                <p className="mb-6 text-sm leading-relaxed text-gray-600">
                   Build production-ready agentic applications with Google ADK, AutoGen, and multi-agent orchestration.
                 </p>
-
                 <div className="mb-6 grid grid-cols-2 gap-2">
                   {['ADK agents', 'Multi-agent systems', 'Tool integration', 'RAG pipeline'].map((d) => (
-                    <div key={d} className="flex items-center gap-2 text-xs text-white">
-                      <CheckCircle2 size={13} className="shrink-0 text-violet-400" />
-                      {d}
+                    <div key={d} className="flex items-center gap-2 text-xs text-gray-800">
+                      <CheckCircle2 size={13} className="shrink-0 text-violet-600" /> {d}
                     </div>
                   ))}
                 </div>
-
                 <div className="mb-6 flex flex-wrap gap-1.5">
                   {['Google ADK', 'AutoGen', 'LangChain', 'RAG', 'Docker'].map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-md border px-2.5 py-1 text-[11px] font-semibold"
-                      style={{ color: '#a78bfa', background: 'rgba(139, 92, 246, 0.12)', borderColor: 'rgba(139, 92, 246, 0.24)' }}
-                    >
+                    <span key={t} className="rounded-md border px-2.5 py-1 text-[11px] font-semibold" style={{ color: '#7c3aed', background: 'rgba(124, 58, 237, 0.1)', borderColor: 'rgba(124, 58, 237, 0.2)' }}>
                       {t}
                     </span>
                   ))}
                 </div>
-
-                <a
-                  href="https://linkedin.com/in/kilanisainikhil"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5"
-                  style={{
-                    background: 'linear-gradient(135deg, #8b5cf6, #06b6d4)',
-                    boxShadow: '0 6px 20px rgba(139, 92, 246, 0.35)',
-                  }}
-                >
-                  <Linkedin size={14} />
-                  Start a project
-                  <ArrowRight size={14} />
+                <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5" style={{ background: 'linear-gradient(135deg, #7c3aed, #0891b2)', boxShadow: '0 6px 20px rgba(124, 58, 237, 0.3)' }}>
+                  <Linkedin size={14} /> Start a project <ArrowRight size={14} />
                 </a>
               </div>
             </Tilt3D>
@@ -177,36 +140,25 @@ export function Services() {
             <Tilt3D
               className="relative h-full overflow-hidden rounded-3xl border p-6 liquid-glass"
               style={{
-                background: 'linear-gradient(145deg, rgba(6, 182, 212, 0.12), rgba(6, 182, 212, 0.03))',
-                borderColor: 'rgba(6, 182, 212, 0.2)',
+                background: 'linear-gradient(145deg, rgba(6, 182, 212, 0.1), rgba(6, 182, 212, 0.025))',
+                borderColor: 'rgba(6, 182, 212, 0.15)',
                 backdropFilter: 'blur(20px) saturate(160%)',
-                WebkitBackdropFilter: 'blur(20px) saturate(160%)',
-                boxShadow: '0 0 0 1px rgba(6, 182, 212, 0.08), 0 8px 32px rgba(0, 0, 0, 0.15)',
+                boxShadow: '0 0 0 1px rgba(6, 182, 212, 0.06), 0 8px 32px rgba(0, 0, 0, 0.06)',
               }}
             >
-              <div
-                className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full opacity-20 blur-3xl pointer-events-none"
-                style={{ background: 'radial-gradient(circle, rgba(6, 182, 212, 0.6), transparent)' }}
-              />
+              <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full opacity-15 blur-3xl pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(6, 182, 212, 0.5), transparent)' }} />
               <div className="relative">
-                <div
-                  className="mb-4 grid h-11 w-11 place-items-center rounded-2xl"
-                  style={{ background: 'rgba(6, 182, 212, 0.16)', color: '#22d3ee' }}
-                >
+                <div className="mb-4 grid h-11 w-11 place-items-center rounded-2xl" style={{ background: 'rgba(6, 182, 212, 0.12)', color: '#0891b2' }}>
                   <Eye size={20} />
                 </div>
-                <h3 className="display-heading mb-1 text-xl font-extrabold text-white">Computer Vision Pipelines</h3>
-                <p className="mb-3 text-sm font-semibold text-cyan-400">From data to deployment</p>
-                <p className="mb-5 text-sm leading-relaxed text-zinc-400">
+                <h3 className="display-heading mb-1 text-xl font-extrabold text-gray-900">Computer Vision Pipelines</h3>
+                <p className="mb-3 text-sm font-semibold text-cyan-600">From data to deployment</p>
+                <p className="mb-5 text-sm leading-relaxed text-gray-600">
                   Vision systems built with PyTorch and OpenCV, including data pipelines and inference services.
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {['PyTorch', 'OpenCV', 'Computer Vision', 'Data Pipelines'].map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-md border px-2.5 py-1 text-[11px] font-semibold"
-                      style={{ color: '#22d3ee', background: 'rgba(6, 182, 212, 0.12)', borderColor: 'rgba(6, 182, 212, 0.2)' }}
-                    >
+                    <span key={t} className="rounded-md border px-2.5 py-1 text-[11px] font-semibold" style={{ color: '#0891b2', background: 'rgba(6, 182, 212, 0.1)', borderColor: 'rgba(6, 182, 212, 0.15)' }}>
                       {t}
                     </span>
                   ))}
@@ -220,64 +172,33 @@ export function Services() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-2">
           {SERVICES.slice(2).map((svc) => (
             <motion.div key={svc.title} variants={fadeUp}>
-              <Tilt3D
-                className="relative h-full overflow-hidden rounded-3xl border p-6 liquid-glass"
-                style={{
-                  background: `linear-gradient(145deg, ${svc.accent}08, ${svc.accent}02)`,
-                  borderColor: `${svc.accent}20`,
-                  backdropFilter: 'blur(20px) saturate(160%)',
-                  WebkitBackdropFilter: 'blur(20px) saturate(160%)',
-                  boxShadow: `0 0 0 1px ${svc.accent}06, 0 6px 24px rgba(0,0,0,0.05)`,
-                }}
-              >
-                <div
-                  className="mb-4 grid h-10 w-10 place-items-center rounded-xl"
-                  style={{ background: `${svc.accent}12`, color: svc.accent }}
-                >
+              <Tilt3D className="relative h-full overflow-hidden rounded-3xl border p-6 liquid-glass" style={{ background: `linear-gradient(145deg, ${svc.accent}08, ${svc.accent}02)`, borderColor: `${svc.accent}20`, boxShadow: `0 0 0 1px ${svc.accent}06, 0 6px 24px rgba(0,0,0,0.05)` }}>
+                <div className="mb-4 grid h-10 w-10 place-items-center rounded-xl" style={{ background: `${svc.accent}12`, color: svc.accent }}>
                   <svc.icon size={18} />
                 </div>
-                <h3 className="display-heading mb-0.5 text-base font-extrabold text-white">{svc.title}</h3>
+                <h3 className="display-heading mb-0.5 text-base font-extrabold text-gray-900">{svc.title}</h3>
                 <p className="mb-3 text-xs font-semibold" style={{ color: svc.accent }}>{svc.tagline}</p>
-                <p className="mb-4 text-xs leading-relaxed text-zinc-400">{svc.description}</p>
+                <p className="mb-4 text-xs leading-relaxed text-gray-600">{svc.description}</p>
                 <div className="flex flex-wrap gap-1">
                   {svc.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-md border px-2 py-0.5 text-[10px] font-semibold"
-                      style={{ color: svc.accent, background: `${svc.accent}08`, borderColor: `${svc.accent}18` }}
-                    >
+                    <span key={t} className="rounded-md border px-2 py-0.5 text-[10px] font-semibold" style={{ color: svc.accent, background: `${svc.accent}08`, borderColor: `${svc.accent}18` }}>
                       {t}
                     </span>
                   ))}
                 </div>
-            </Tilt3D>
+              </Tilt3D>
             </motion.div>
           ))}
         </div>
 
         {/* CTA strip */}
-        <motion.div
-          variants={fadeUp}
-          className="mt-8 flex flex-col items-center justify-between gap-4 rounded-2xl border px-6 py-5 sm:flex-row"
-          style={{
-            background: 'rgba(139, 92, 246, 0.08)',
-            borderColor: 'rgba(139, 92, 246, 0.2)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
-          }}
-        >
+        <motion.div variants={fadeUp} className="mt-8 flex flex-col items-center justify-between gap-4 rounded-2xl border px-6 py-5 sm:flex-row" style={{ background: 'rgba(124, 58, 237, 0.06)', borderColor: 'rgba(124, 58, 237, 0.15)' }}>
           <div>
-            <p className="text-sm font-bold text-white">Have a project in mind?</p>
-            <p className="mt-0.5 text-xs text-zinc-400">Open to internships, research collaborations, and AI product work.</p>
+            <p className="text-sm font-bold text-gray-900">Have a project in mind?</p>
+            <p className="mt-0.5 text-xs text-gray-600">Open to internships, research collaborations, and AI product work.</p>
           </div>
-          <a
-            href="https://linkedin.com/in/kilanisainikhil"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary inline-flex shrink-0 items-center gap-2 px-5 py-2.5 text-sm"
-          >
-            <Linkedin size={14} />
-            Let&apos;s talk
+          <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex shrink-0 items-center gap-2 px-5 py-2.5 text-sm">
+            <Linkedin size={14} /> Let&apos;s talk
           </a>
         </motion.div>
       </motion.div>
