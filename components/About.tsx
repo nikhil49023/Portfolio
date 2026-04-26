@@ -5,28 +5,28 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { MapPin, GraduationCap, Github, Linkedin, Package, Sparkles } from 'lucide-react';
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24, rotateX: 6 },
-  show: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
 
-const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
+const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 
-function Tilt3D({ children, className, style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {
+function Tilt3D({ children, className }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const rx = useMotionValue(0);
   const ry = useMotionValue(0);
-  const rotX = useSpring(rx, { damping: 35, stiffness: 220 });
-  const rotY = useSpring(ry, { damping: 35, stiffness: 220 });
+  const rotX = useSpring(rx, { damping: 30, stiffness: 200 });
+  const rotY = useSpring(ry, { damping: 30, stiffness: 200 });
   return (
     <motion.div
       ref={ref}
       onMouseMove={(e) => {
         const r = ref.current!.getBoundingClientRect();
-        rx.set(-((e.clientY - r.top - r.height / 2) / r.height) * 10);
-        ry.set(((e.clientX - r.left - r.width / 2) / r.width) * 10);
+        rx.set(-((e.clientY - r.top - r.height / 2) / r.height) * 8);
+        ry.set(((e.clientX - r.left - r.width / 2) / r.width) * 8);
       }}
       onMouseLeave={() => { rx.set(0); ry.set(0); }}
-      style={{ rotateX: rotX, rotateY: rotY, transformPerspective: 900, transformStyle: 'preserve-3d', ...style }}
+      style={{ rotateX: rotX, rotateY: rotY, transformPerspective: 800 }}
       className={className}
     >
       {children}
@@ -38,88 +38,59 @@ export function About() {
   return (
     <section id="about" className="section">
       <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
-        <motion.div variants={fadeUp} className="mb-10">
+        <motion.div variants={fadeUp} className="mb-12">
           <p className="eyebrow mb-2">About</p>
-          <h2 className="display-heading text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Who I am</h2>
+          <h2 className="display-heading text-3xl sm:text-4xl font-bold text-white">Who I Am</h2>
         </motion.div>
 
-        <div className="grid items-start gap-6 md:grid-cols-[1fr_1fr]">
+        <div className="grid gap-6 md:grid-cols-2">
           {/* Profile card */}
           <motion.div variants={fadeUp}>
-          <Tilt3D className="card rounded-3xl p-7 liquid-glass">
-            <div className="mb-5 flex items-start gap-4">
-              <div className="relative shrink-0">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-                  className="absolute -inset-0.5 rounded-full"
-                  style={{ background: 'conic-gradient(from 0deg, #7c3aed, #0891b2, #ec4899, #7c3aed)' }}
-                />
-                <div className="relative z-10 w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-md">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="https://raw.githubusercontent.com/nikhil49023/Portfolio/main/public/profile.jpeg"
-                    alt="Kilani Sai Nikhil"
-                    className="w-full h-full object-cover"
-                  />
+            <Tilt3D className="card rounded-2xl p-6">
+              <div className="flex items-start gap-4 mb-5">
+                <div className="relative shrink-0">
+                  <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-rose-500/30">
+                    <img src="https://raw.githubusercontent.com/nikhil49023/Portfolio/main/public/profile.jpeg" alt="Kilani Sai Nikhil" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">Kilani Sai Nikhil</h3>
+                  <p className="text-sm text-rose-400 font-medium">Agentic App Builder</p>
                 </div>
               </div>
-              <div>
-                <h3 className="display-heading text-xl font-extrabold text-gray-900">Kilani Sai Nikhil</h3>
-                <p className="mt-0.5 text-sm font-semibold text-violet-600">Agentic App Builder · LLM & CV Systems</p>
+              <p className="text-sm text-zinc-400 leading-relaxed mb-5">
+                I engineer production-ready agentic applications using Google ADK, AutoGen, and LLM frameworks.
+                Specializing in tool-using AI, multi-agent orchestration, and reliable RAG-powered systems.
+              </p>
+              <div className="flex items-center gap-2 text-xs text-zinc-500 mb-4">
+                <MapPin size={12} className="text-rose-500" /> Hyderabad, India
               </div>
-            </div>
-
-            <p className="mb-6 text-sm leading-relaxed text-gray-600">
-              I build production-ready agentic applications using Google ADK, AutoGen, and LLM frameworks. 
-              I focus on tool-using AI, multi-agent orchestration, and reliable RAG-powered systems.
-            </p>
-
-            <div className="space-y-2.5 text-sm">
-              <p className="flex items-center gap-2.5 text-gray-600">
-                <MapPin size={14} className="text-violet-600" /> Hyderabad, India
-              </p>
-              <p className="flex items-center gap-2.5 text-gray-600">
-                <Linkedin size={14} className="text-violet-600" />
-                <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="font-semibold text-violet-700 hover:underline">
-                  linkedin.com/in/kilanisainikhil
-                </a>
-              </p>
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-2 border-t border-gray-100 pt-5">
-              {[
-                { icon: Github, href: 'https://github.com/nikhil49023', label: 'GitHub' },
-                { icon: Linkedin, href: 'https://linkedin.com/in/kilanisainikhil', label: 'LinkedIn' },
-                { icon: Package, href: 'https://pypi.org/user/SaiNikhil/', label: 'PyPI' },
-              ].map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-semibold text-gray-600 transition-all hover:border-violet-300 hover:bg-violet-50 hover:text-violet-700"
-                >
-                  <Icon size={12} />
-                  {label}
-                </a>
-              ))}
-            </div>
-          </Tilt3D>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { icon: Github, href: 'https://github.com/nikhil49023', label: 'GitHub' },
+                  { icon: Linkedin, href: 'https://linkedin.com/in/kilanisainikhil', label: 'LinkedIn' },
+                  { icon: Package, href: 'https://pypi.org/user/SaiNikhil/', label: 'PyPI' },
+                ].map(({ icon: Icon, href, label }) => (
+                  <a key={label} href={href} target="_blank" className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-zinc-400 hover:border-rose-500/50 hover:text-rose-400">
+                    <Icon size={12} /> {label}
+                  </a>
+                ))}
+              </div>
+            </Tilt3D>
           </motion.div>
 
           <div className="space-y-4">
             {/* Education */}
             <motion.div variants={fadeUp}>
-              <Tilt3D className="card rounded-3xl p-6 liquid-glass">
-                <div className="flex items-start gap-3.5">
-                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-violet-50 text-violet-600">
-                    <GraduationCap size={18} />
+              <Tilt3D className="card rounded-2xl p-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-rose-500/20 flex items-center justify-center">
+                    <GraduationCap size={16} className="text-rose-400" />
                   </div>
                   <div>
-                    <p className="eyebrow mb-1">Education</p>
-                    <p className="text-sm font-bold text-gray-900">Nxt Wave Institute of Advanced Technologies</p>
-                    <p className="mt-0.5 text-xs text-gray-500">B.Tech, 2025-2029, Hyderabad</p>
+                    <p className="eyebrow mb-0.5">Education</p>
+                    <p className="font-medium text-white">Nxt Wave Institute (NIAT)</p>
+                    <p className="text-xs text-zinc-500">B.Tech CS · 2025-2029</p>
                   </div>
                 </div>
               </Tilt3D>
@@ -127,47 +98,33 @@ export function About() {
 
             {/* What I build */}
             <motion.div variants={fadeUp}>
-            <Tilt3D className="card rounded-3xl p-6 liquid-glass">
-              <p className="eyebrow mb-3.5">What I build</p>
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  { icon: 'AGT', text: 'Agentic Apps', color: '#7c3aed' },
-                  { icon: 'ADK', text: 'Google ADK', color: '#0891b2' },
-                  { icon: 'RAG', text: 'RAG + LLM apps', color: '#06b6d4' },
-                  { icon: 'CV', text: 'Computer vision', color: '#ec4899' },
-                ].map((item) => (
-                  <div
-                    key={item.text}
-                    className="rounded-xl border px-3 py-2 text-xs font-semibold text-gray-600 transition-all hover:border-gray-200"
-                    style={{ background: 'rgba(124, 58, 237, 0.06)', borderColor: 'rgba(124, 58, 237, 0.15)' }}
-                  >
-                    <p className="text-[10px] font-extrabold tracking-wide" style={{ color: item.color }}>{item.icon}</p>
-                    <p className="mt-0.5 leading-snug">{item.text}</p>
-                  </div>
-                ))}
-              </div>
-            </Tilt3D>
+              <Tilt3D className="card rounded-2xl p-5">
+                <p className="eyebrow mb-4">What I Build</p>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { label: 'Agentic Apps', color: '#e11d48' },
+                    { label: 'ADK Systems', color: '#f43f5e' },
+                    { label: 'RAG Pipelines', color: '#be123c' },
+                    { label: 'CV Pipelines', color: '#9f1239' },
+                  ].map(({ label, color }) => (
+                    <div key={label} className="rounded-lg px-3 py-2 text-xs font-medium" style={{ background: `${color}15`, color }}>
+                      {label}
+                    </div>
+                  ))}
+                </div>
+              </Tilt3D>
             </motion.div>
 
-            {/* National Finalist */}
+            {/* Award */}
             <motion.div variants={fadeUp}>
-              <Tilt3D
-                className="rounded-3xl border p-5"
-                style={{
-                  background: 'linear-gradient(145deg, rgba(124, 58, 237, 0.08), rgba(6, 182, 212, 0.06))',
-                  backdropFilter: 'blur(16px) saturate(160%)',
-                  WebkitBackdropFilter: 'blur(16px) saturate(160%)',
-                  borderColor: 'rgba(124, 58, 237, 0.15)',
-                  boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)',
-                } as React.CSSProperties}
-              >
-                <div className="flex items-center gap-3.5">
-                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-violet-100 text-violet-600">
-                    <Sparkles size={18} />
+              <Tilt3D className="card rounded-2xl p-5 border-rose-500/30">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-rose-500/30 flex items-center justify-center">
+                    <Sparkles size={16} className="text-rose-400" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-gray-900">National Finalist</p>
-                    <p className="text-xs text-gray-500">Top 90 of 70,000+ at OpenAI x NxtWave Buildathon 2026</p>
+                    <p className="text-sm font-bold text-white">National Finalist</p>
+                    <p className="text-xs text-zinc-500">OpenAI × NxtWave 2026</p>
                   </div>
                 </div>
               </Tilt3D>

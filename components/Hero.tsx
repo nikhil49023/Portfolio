@@ -1,13 +1,12 @@
 'use client';
 
-import { useRef } from 'react';
 import Link from 'next/link';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Github, Linkedin, Package, ArrowRight, MapPin, Download } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Github, Linkedin, Package, ArrowRight, MapPin, Download, Sparkles, Code2, Brain, Zap } from 'lucide-react';
 
 const fadeUp = (delay = 0) => ({
-  hidden: { opacity: 0, y: 24, rotateX: 8 },
-  show: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay } },
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] } },
 });
 
 const SOCIALS = [
@@ -16,319 +15,108 @@ const SOCIALS = [
   { icon: Package, href: 'https://pypi.org/user/SaiNikhil/', label: 'PyPI' },
 ];
 
-const STATS = [
-  { value: 'ADK', sub: 'Google Agent Dev Kit', icon: 'ADK', accent: '#7c3aed' },
-  { value: 'AutoGen', sub: 'Multi-agent AI', icon: 'AGT', accent: '#0891b2' },
-  { value: 'RAG', sub: 'Retrieval pipelines', icon: 'RAG', accent: '#06b6d4' },
-  { value: 'CV', sub: 'Vision systems', icon: 'CV', accent: '#ec4899' },
+const ROLES = [
+  { icon: Brain, label: 'Agentic App Builder' },
+  { icon: Zap, label: 'Google ADK Expert' },
+  { icon: Code2, label: 'LLM & RAG Systems' },
 ];
-
-/* ── Floating tech badge ── */
-function FloatingBadge({
-  label, x, y, delay, color,
-}: { label: string; x: string; y: string; delay: number; color: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.7, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
-      className="absolute hidden xl:block pointer-events-none select-none"
-      style={{ left: x, top: y }}
-    >
-      <motion.div
-        animate={{ y: [0, -10, 0], rotate: [0, 2, 0] }}
-        transition={{ duration: 5 + delay, repeat: Infinity, ease: 'easeInOut', delay: delay * 0.5 }}
-        className="px-3 py-1.5 rounded-xl text-xs font-bold border shadow-lg backdrop-blur-sm"
-        style={{
-          background: `${color}14`,
-          borderColor: `${color}35`,
-          color,
-          boxShadow: `0 4px 20px ${color}20`,
-          transformStyle: 'preserve-3d',
-        }}
-      >
-        {label}
-      </motion.div>
-    </motion.div>
-  );
-}
-
-/* ── Stats card with 3D tilt ── */
-function TiltStatsCard() {
-  const ref = useRef<HTMLDivElement>(null);
-  const rx = useMotionValue(0);
-  const ry = useMotionValue(0);
-  const rotX = useSpring(rx, { damping: 30, stiffness: 200 });
-  const rotY = useSpring(ry, { damping: 30, stiffness: 200 });
-  const glareX = useTransform(ry, [-12, 12], ['0%', '100%']);
-  const glareY = useTransform(rotX, [-12, 12], ['0%', '100%']);
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={(e) => {
-        const r = ref.current!.getBoundingClientRect();
-        rx.set(-((e.clientY - r.top - r.height / 2) / r.height) * 14);
-        ry.set(((e.clientX - r.left - r.width / 2) / r.width) * 14);
-      }}
-      onMouseLeave={() => { rx.set(0); ry.set(0); }}
-      style={{ rotateX: rotX, rotateY: rotY, transformPerspective: 1000, transformStyle: 'preserve-3d' }}
-      className="card rounded-3xl p-6 relative overflow-hidden liquid-glass"
-    >
-      {/* Glare overlay */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 hover:opacity-100 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(circle at ${glareX} ${glareY}, rgba(124, 58, 237, 0.1) 0%, transparent 60%)`,
-        }}
-      />
-
-      {/* Profile picture */}
-      <div className="mb-5 flex flex-col items-center" style={{ transform: 'translateZ(20px)' }}>
-        <motion.div
-          className="relative"
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.3 }}
-        >
-          {/* Animated ring */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-            className="absolute -inset-1 rounded-full"
-            style={{
-              background: 'conic-gradient(from 0deg, #7c3aed, #0891b2, #ec4899, #7c3aed)',
-              padding: '2px',
-              zIndex: 0,
-            }}
-          />
-          <div className="relative z-10 w-24 h-24 rounded-full overflow-hidden border-2 border-white shadow-xl">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://raw.githubusercontent.com/nikhil49023/Portfolio/main/public/profile.jpeg"
-              alt="Kilani Sai Nikhil"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </motion.div>
-        <p className="mt-2.5 text-sm font-extrabold text-gray-900">Kilani Sai Nikhil</p>
-        <p className="text-[11px] text-gray-500">Agentic App Builder · Hyderabad</p>
-      </div>
-
-      <div className="mb-4 flex items-center justify-between border-b border-gray-100 pb-3" style={{ transform: 'translateZ(12px)' }}>
-        <p className="text-xs font-bold tracking-[0.14em] text-gray-500">AT A GLANCE</p>
-        <span className="h-2 w-2 rounded-full bg-violet-600" />
-      </div>
-
-      <div className="space-y-2.5" style={{ transform: 'translateZ(8px)' }}>
-        {STATS.map((item) => (
-          <div
-            key={item.value}
-            className="rounded-2xl border px-4 py-3 transition-all hover:scale-[1.02]"
-            style={{ background: 'rgba(124, 58, 237, 0.06)', borderColor: 'rgba(124, 58, 237, 0.15)' }}
-          >
-            <p className="text-[11px] font-bold uppercase tracking-[0.15em]" style={{ color: item.accent }}>{item.icon}</p>
-            <p className="mt-1 text-base font-extrabold text-gray-900">{item.value}</p>
-            <p className="text-xs text-gray-500">{item.sub}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-4 border-t border-gray-100 pt-4" style={{ transform: 'translateZ(8px)' }}>
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-gray-500">Core Stack</p>
-        <div className="flex flex-wrap gap-1.5">
-          {['Google ADK', 'AutoGen', 'PyTorch', 'Hugging Face', 'Docker', 'RAG'].map((tech) => (
-            <span key={tech} className="tag">{tech}</span>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-  );
-}
 
 export function Hero() {
   return (
-    <section id="hero" className="section pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pt-36 lg:pb-24 relative overflow-hidden">
+    <section id="hero" className="section pt-20 pb-12 lg:pt-28 lg:pb-16">
+      
+      {/* Floating badge */}
+      <motion.div variants={fadeUp(0)} initial="hidden" animate="show" className="mb-8 flex items-center gap-2">
+        <span className="inline-flex items-center gap-2 rounded-full border border-rose-500/30 bg-rose-500/10 px-3 py-1 text-xs font-semibold text-rose-400">
+          <span className="h-1.5 w-1.5 rounded-full bg-rose-500 animate-pulse" />
+          Available for AI Projects
+        </span>
+        <span className="inline-flex items-center gap-1 text-xs text-zinc-500">
+          <MapPin size={12} /> Hyderabad, India
+        </span>
+      </motion.div>
 
-      {/* ── 3D floating tech badges ── */}
-      <FloatingBadge label="Google ADK" x="-2%" y="18%" delay={0.6} color="#8b5cf6" />
-      <FloatingBadge label="Agentic Apps" x="-3%" y="55%" delay={0.9} color="#06b6d4" />
-      <FloatingBadge label="AutoGen" x="calc(100% - 110px)" y="22%" delay={0.75} color="#7c3aed" />
-      <FloatingBadge label="Multi-Agent" x="calc(100% - 120px)" y="58%" delay={1.0} color="#0f766e" />
-      <FloatingBadge label="Tool-using AI" x="calc(100% - 140px)" y="78%" delay={1.15} color="#3b82f6" />
+      {/* Main heading */}
+      <motion.div variants={fadeUp(0.1)} initial="hidden" animate="show" className="mb-6">
+        <h1 className="display-heading text-[2.5rem] sm:text-[4rem] lg:text-[5.5rem] font-bold tracking-tight text-white">
+          <span className="block">Building AI</span>
+          <span className="block gradient-text">That Architects</span>
+          <span className="block">The Future</span>
+        </h1>
+      </motion.div>
 
-      {/* ── Heritage geometric ornaments ── */}
-      <motion.div
-        animate={{ x: [0, 30, 0], y: [0, -20, 0], scale: [1, 1.1, 1] }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-        className="pointer-events-none absolute -top-10 -left-10 w-72 h-52 heritage-kite opacity-90"
-      />
-      <motion.div
-        animate={{ x: [0, -25, 0], y: [0, 25, 0], scale: [1, 1.08, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-        className="pointer-events-none absolute top-1/3 -right-10 w-64 h-44 heritage-kite cool opacity-90"
-      />
-      <motion.div
-        animate={{ y: [0, -10, 0], rotate: [0, 3, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-        className="pointer-events-none absolute top-7 w-44 h-16 heritage-band opacity-80"
-        style={{ left: 'calc(50% - 88px)' }}
-      />
+      {/* Role pills */}
+      <motion.div variants={fadeUp(0.15)} initial="hidden" animate="show" className="mb-6 flex flex-wrap gap-2">
+        {ROLES.map(({ icon: Icon, label }) => (
+          <span key={label} className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-zinc-400">
+            <Icon size={12} className="text-rose-500" />
+            {label}
+          </span>
+        ))}
+      </motion.div>
 
-      <div className="grid items-start gap-8 lg:gap-12 lg:grid-cols-[1fr_360px]">
-        <div style={{ perspective: '1200px' }}>
+      {/* Bio */}
+      <motion.p variants={fadeUp(0.2)} initial="hidden" animate="show" className="mb-8 max-w-xl text-base text-zinc-400 leading-relaxed">
+        I engineer production-ready <span className="text-rose-400">agentic applications</span> using Google ADK, AutoGen, and LLM frameworks.
+        Specializing in tool-using AI, multi-agent orchestration, and RAG pipelines.
+        National finalist at the <span className="text-white">OpenAI × NxtWave Buildathon 2026</span>.
+      </motion.p>
 
-          {/* Profile avatar (mobile only) */}
-          <motion.div variants={fadeUp(0)} initial="hidden" animate="show" className="mb-5 lg:hidden">
-            <div className="relative w-16 h-16">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-                className="absolute -inset-0.5 rounded-full"
-                style={{ background: 'conic-gradient(from 0deg, #df6c2b, #2f2a72, #0f766e, #df6c2b)' }}
-              />
-              <div className="relative z-10 w-16 h-16 rounded-full overflow-hidden border-2 border-white">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://raw.githubusercontent.com/nikhil49023/Portfolio/main/public/profile.jpeg"
-                  alt="Kilani Sai Nikhil"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+      {/* CTA buttons */}
+      <motion.div variants={fadeUp(0.25)} initial="hidden" animate="show" className="mb-10 flex flex-wrap gap-3">
+        <Link href="#projects" className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">
+          View Projects <ArrowRight size={15} />
+        </Link>
+        <Link href="https://linkedin.com/in/kilanisainikhil" target="_blank" className="btn-secondary inline-flex items-center gap-2 px-5 py-2.5 text-sm">
+          <Linkedin size={14} /> Connect
+        </Link>
+        <Link href="/resume" className="btn-secondary inline-flex items-center gap-2 px-5 py-2.5 text-sm">
+          <Download size={14} /> Resume
+        </Link>
+      </motion.div>
+
+      {/* Social icons */}
+      <motion.div variants={fadeUp(0.3)} initial="hidden" animate="show" className="flex flex-wrap gap-2">
+        {SOCIALS.map(({ icon: Icon, href, label }) => (
+          <a key={label} href={href} target="_blank" rel="noopener noreferrer" title={label} className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-zinc-500 transition-all hover:border-rose-500/50 hover:text-rose-400 hover:bg-white/10">
+            <Icon size={16} />
+          </a>
+        ))}
+      </motion.div>
+
+      {/* Stats bar - mobile */}
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="lg:hidden mt-10">
+        <div className="flex gap-4 overflow-x-auto pb-2">
+          {['ADK', 'AutoGen', 'RAG', 'Multi-Agent'].map((stat) => (
+            <div key={stat} className="card rounded-xl px-4 py-3 shrink-0 min-w-[100px]">
+              <p className="text-xs text-zinc-500">{stat}</p>
+              <p className="text-lg font-bold text-white">{stat}</p>
             </div>
-          </motion.div>
-
-          {/* Status badge */}
-          <motion.div variants={fadeUp(0)} initial="hidden" animate="show" className="mb-8 flex flex-wrap items-center gap-3">
-            <span
-              className="inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold"
-              style={{ borderColor: 'rgba(124, 58, 237, 0.3)', background: 'rgba(124, 58, 237, 0.1)', color: '#7c3aed' }}
-            >
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-violet-600" />
-              Available for AI Projects
-            </span>
-            <span className="inline-flex items-center gap-1 text-xs font-semibold text-gray-500">
-              <MapPin size={12} /> Hyderabad
-            </span>
-          </motion.div>
-
-          {/* Heading */}
-          <motion.div variants={fadeUp(0.05)} initial="hidden" animate="show">
-            <h1 className="display-heading mb-5 leading-[0.95] text-[2.1rem] font-black tracking-tight text-[#111827] sm:text-[3.2rem] lg:text-[4.6rem]">
-              <span className="block">Building Agentic Apps</span>
-              <span className="block gradient-text">That Think, Act & Deliver</span>
-            </h1>
-          </motion.div>
-
-          {/* Role pills */}
-          <motion.div variants={fadeUp(0.1)} initial="hidden" animate="show" className="mb-5 flex flex-wrap items-center gap-2">
-            {[
-              { label: 'Agentic App Builder', bg: 'rgba(139, 92, 246, 0.12)', color: '#7c3aed', border: 'rgba(139, 92, 246, 0.28)' },
-              { label: 'Google ADK Expert', bg: 'rgba(6, 182, 212, 0.12)', color: '#0891b2', border: 'rgba(6, 182, 212, 0.28)' },
-              { label: 'LLM & RAG Systems', bg: 'rgba(47, 42, 114, 0.12)', color: '#2f2a72', border: 'rgba(47, 42, 114, 0.28)' },
-              { label: 'Computer Vision', bg: 'rgba(15, 118, 110, 0.12)', color: '#0f766e', border: 'rgba(15, 118, 110, 0.25)' },
-            ].map(({ label, bg, color, border }) => (
-              <motion.span
-                key={label}
-                whileHover={{ scale: 1.05, y: -1 }}
-                className="rounded-full border px-3 py-1 text-xs font-semibold cursor-default"
-                style={{ background: bg, color, borderColor: border }}
-              >
-                {label}
-              </motion.span>
-            ))}
-          </motion.div>
-
-{/* Bio */}
-          <motion.p
-            variants={fadeUp(0.14)}
-            initial="hidden"
-            animate="show"
-            className="mb-9 max-w-xl text-sm sm:text-base leading-relaxed text-gray-600"
-          >
-            I build production-ready agentic applications using Google ADK, AutoGen, and LLM frameworks — with a focus on tool-using AI, 
-            multi-agent orchestration, and reliable RAG-powered systems. National finalist at the OpenAI x NxtWave Buildathon 2026.
-          </motion.p>
-
-          {/* CTA buttons */}
-          <motion.div variants={fadeUp(0.18)} initial="hidden" animate="show" className="mb-8 flex flex-wrap gap-3">
-            <motion.button
-              whileHover={{ scale: 1.04, y: -1 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
-              className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm"
-            >
-              View Projects
-              <ArrowRight size={15} />
-            </motion.button>
-            <motion.a
-              whileHover={{ scale: 1.04, y: -1 }}
-              whileTap={{ scale: 0.97 }}
-              href="https://linkedin.com/in/kilanisainikhil"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary inline-flex items-center gap-2 px-5 py-2.5 text-sm"
-            >
-              <Linkedin size={14} /> Connect
-            </motion.a>
-            <motion.div whileHover={{ scale: 1.04, y: -1 }} whileTap={{ scale: 0.97 }}>
-              <Link
-                href="/resume"
-                className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50 hover:border-gray-300 transition-all"
-              >
-                <Download size={14} />
-                Download Resume
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          {/* Social icons */}
-          <motion.div variants={fadeUp(0.22)} initial="hidden" animate="show" className="flex flex-wrap items-center gap-2">
-            {SOCIALS.map(({ icon: Icon, href, label }) => (
-              <motion.a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={label}
-                whileHover={{ scale: 1.12, y: -2, rotateZ: -4 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-600 transition-colors duration-200 hover:border-violet-300 hover:text-violet-700 hover:shadow-md hover:shadow-violet-200"
-              >
-                <Icon size={16} />
-              </motion.a>
-            ))}
-          </motion.div>
+          ))}
         </div>
+      </motion.div>
 
-        {/* Mobile stats strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
-          className="lg:hidden"
-        >
-          <div className="flex gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {STATS.map((item) => (
-              <div key={item.value} className="card shrink-0 rounded-2xl px-4 py-3 min-w-[130px]">
-                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#5b6673]">{item.icon}</p>
-                <p className="mt-1 text-sm font-extrabold text-[#0f172a]">{item.value}</p>
-                <p className="text-[11px] text-[#5b6673] leading-snug">{item.sub}</p>
+      {/* Stats card - desktop */}
+      <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5, duration: 0.6 }} className="hidden lg:block absolute right-8 top-32 w-72">
+        <div className="card rounded-2xl p-6">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center">
+              <Sparkles size={18} className="text-white" />
+            </div>
+            <div>
+              <p className="text-xs text-zinc-500 uppercase tracking-wider">At a Glance</p>
+              <p className="text-sm font-semibold text-white">Agentic App Builder</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            {['ADK', 'RAG', 'Multi-Agent', 'CV'].map((s) => (
+              <div key={s} className="rounded-lg bg-white/5 px-3 py-2 text-center">
+                <p className="text-xs font-medium text-rose-400">{s}</p>
               </div>
             ))}
           </div>
-        </motion.div>
-
-        {/* Desktop stats card — 3D tilt */}
-        <motion.div
-          initial={{ opacity: 0, x: 24, rotateY: -8 }}
-          animate={{ opacity: 1, x: 0, rotateY: 0 }}
-          transition={{ duration: 0.7, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
-          className="hidden lg:block"
-          style={{ perspective: '1200px' }}
-        >
-          <TiltStatsCard />
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
     </section>
   );
 }

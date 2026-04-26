@@ -13,13 +13,13 @@ export default function ResumePage() {
       <div className="no-print fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex gap-2 sm:gap-3">
         <button
           onClick={() => window.print()}
-          className="flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:bg-emerald-700 transition-colors"
+          className="flex items-center gap-2 rounded-xl bg-violet-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:bg-violet-700 transition-colors"
         >
           ↓ Save as PDF
         </button>
         <a
           href="/"
-          className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-600 shadow hover:bg-slate-50 transition-colors"
+          className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-600 shadow hover:bg-gray-50 transition-colors"
         >
           ← Portfolio
         </a>
@@ -29,43 +29,43 @@ export default function ResumePage() {
       <main className="resume-page mx-auto max-w-[800px] bg-white px-4 py-6 sm:px-8 sm:py-8 md:px-12 md:py-10 text-[#111827] font-sans">
 
         {/* ── Header ── */}
-        <header className="mb-6 border-b-2 border-emerald-500 pb-5">
+        <header className="mb-6 border-b-2 border-violet-500 pb-5">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <h1 className="text-3xl font-black tracking-tight text-[#0f172a]">Kilani Sai Nikhil</h1>
-              <p className="mt-1 text-base font-semibold text-emerald-700">Machine Learning Engineer · LLM &amp; CV Systems</p>
+              <p className="mt-1 text-base font-semibold text-violet-600">Agentic App Builder · LLM & AI Systems</p>
             </div>
-            <div className="text-right text-xs text-slate-500 space-y-1 shrink-0">
+            <div className="text-right text-xs text-gray-500 space-y-1 shrink-0">
               <p>Hyderabad, India</p>
-              <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="block text-emerald-700 hover:underline">
+              <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="block text-violet-600 hover:underline">
                 linkedin.com/in/kilanisainikhil
               </a>
             </div>
           </div>
 
           <div className="mt-3 flex flex-wrap gap-3 text-xs font-semibold">
-            <a href="https://kilanisainikhil.onslate.in" target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:underline">
-              🌐 kilanisainikhil.onslate.in
-            </a>
-            <a href="https://github.com/nikhil49023" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:underline">
+            <a href="https://github.com/nikhil49023" target="_blank" rel="noopener noreferrer" className="text-violet-600 hover:underline">
               GitHub: nikhil49023
             </a>
-            <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:underline">
+            <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:underline">
               LinkedIn: kilanisainikhil
             </a>
-            <a href="https://pypi.org/user/SaiNikhil/" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:underline">
+            <a href="https://pypi.org/user/SaiNikhil/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:underline">
               PyPI: SaiNikhil
+            </a>
+            <a href="mailto:kilanisainikhil@gmail.com" className="text-gray-600 hover:underline">
+              Email: kilanisainikhil@gmail.com
             </a>
           </div>
         </header>
 
         {/* ── Summary ── */}
         <Section title="Summary">
-          <p className="text-sm leading-relaxed text-slate-700">
-            Machine Learning Engineer focused on LLM systems, RAG pipelines, and computer vision workflows.
+          <p className="text-sm leading-relaxed text-gray-700">
+            Agentic App Builder specializing in production-ready AI applications using Google ADK, AutoGen, and LLM frameworks.
             National finalist (Top 90 of 70,000+) at the OpenAI × NxtWave Buildathon 2026.
-            I build reliable ML systems with strong data pipelines, evaluation practices, and scalable architecture,
-            and published an open-source Python library (saara-ai) on PyPI.
+            I build reliable agentic systems with tool-using AI, multi-agent orchestration, and RAG pipelines.
+            Published an open-source Python library (saara-ai) on PyPI.
           </p>
         </Section>
 
@@ -74,13 +74,23 @@ export default function ResumePage() {
           <div className="flex items-start justify-between">
             <div>
               <p className="text-sm font-bold text-[#0f172a]">Nxt Wave Institute of Advanced Technologies (NIAT)</p>
-              <p className="text-xs text-slate-600 mt-0.5">Bachelor of Technology (B.Tech) · Computer Science &amp; Engineering</p>
+              <p className="text-xs text-gray-600 mt-0.5">Bachelor of Technology (B.Tech) · Computer Science & Engineering</p>
             </div>
-            <span className="text-xs text-slate-500 shrink-0">2025 – 2029 · Hyderabad</span>
+            <span className="text-xs text-gray-500 shrink-0">2025 – 2029 · Hyderabad</span>
           </div>
         </Section>
 
-        {/* ── Experience / Projects ── */}
+        {/* ── Skills ── */}
+        <Section title="Skills">
+          <div className="space-y-2">
+            <SkillRow label="Agentic AI" skills="Google ADK · AutoGen · Multi-Agent Systems · Tool-using AI · Agentic Workflows" />
+            <SkillRow label="ML & LLMs" skills="PyTorch · Hugging Face · LLMs · RAG · Computer Vision · OpenCV" />
+            <SkillRow label="Data & Viz" skills="NumPy · Pandas · Matplotlib · Dataset Curation · Data Pipelines" />
+            <SkillRow label="Systems & Tools" skills="System Architecture Design · Docker · Git & GitHub · PostgreSQL · Redis" />
+          </div>
+        </Section>
+
+        {/* ── Projects ── */}
         <Section title="Projects">
 
           <ProjectItem
@@ -114,23 +124,19 @@ export default function ResumePage() {
 
         </Section>
 
-        {/* ── Skills ── */}
-        <Section title="Skills">
-          <div className="space-y-2">
-            <SkillRow label="ML & LLMs" skills="PyTorch · Hugging Face · LLMs · RAG · Agentic Workflows · Computer Vision · OpenCV" />
-            <SkillRow label="Data & Viz" skills="NumPy · Pandas · Matplotlib · Dataset Curation · Data Pipelines" />
-            <SkillRow label="Systems & Tools" skills="System Architecture Design · Docker · Git & GitHub · Open Env" />
-          </div>
-        </Section>
-
-        {/* ── Awards ── */}
-        <Section title="Awards &amp; Recognition">
+        {/* ── Awards & Certifications ── */}
+        <Section title="Awards & Certifications">
           <div className="space-y-3">
             <AwardItem
               title="National Finalist — OpenAI × NxtWave Buildathon 2026"
               sub="Top 90 of 70,000+ participants across India · Application Track"
               date="17 Feb 2026"
               link="https://openai-buildathon.nxtwave.tech/"
+            />
+            <AwardItem
+              title="AMD AI Academy — AI Agents 101"
+              sub="Certified in fundamentals of AI agent architectures, tool-use patterns, and multi-agent systems"
+              link="/certificates/amd-ai-agents-101.jpg"
             />
             <AwardItem
               title="PyPI Publisher — saara-ai"
@@ -163,7 +169,7 @@ export default function ResumePage() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-6">
-      <h2 className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-emerald-700 border-b border-emerald-100 pb-1">
+      <h2 className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-violet-600 border-b border-violet-100 pb-1">
         {title}
       </h2>
       {children}
@@ -182,26 +188,26 @@ function ProjectItem({
       <div className="flex items-start justify-between gap-2 mb-1">
         <div>
           {link ? (
-            <a href={link} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-[#0f172a] hover:text-emerald-700 hover:underline">
+            <a href={link} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-[#0f172a] hover:text-violet-600 hover:underline">
               {name}
             </a>
           ) : (
             <p className="text-sm font-bold text-[#0f172a]">{name}</p>
           )}
-          <p className="text-xs text-emerald-700 font-semibold">{role}</p>
+          <p className="text-xs text-violet-600 font-semibold">{role}</p>
         </div>
-        <span className="text-xs text-slate-400 shrink-0">{date}</span>
+        <span className="text-xs text-gray-400 shrink-0">{date}</span>
       </div>
       <div className="mb-1.5 flex flex-wrap gap-1">
         {tags.map((t) => (
-          <span key={t} className="rounded px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
+          <span key={t} className="rounded px-1.5 py-0.5 text-[10px] font-semibold bg-violet-50 text-violet-700 border border-violet-100">
             {t}
           </span>
         ))}
       </div>
       <ul className="space-y-1 pl-3">
         {bullets.map((b, i) => (
-          <li key={i} className="text-xs leading-relaxed text-slate-600 list-disc">{b}</li>
+          <li key={i} className="text-xs leading-relaxed text-gray-600 list-disc">{b}</li>
         ))}
       </ul>
     </div>
@@ -211,8 +217,8 @@ function ProjectItem({
 function SkillRow({ label, skills }: { label: string; skills: string }) {
   return (
     <div className="flex gap-2 text-xs">
-      <span className="w-24 shrink-0 font-bold text-[#0f172a]">{label}</span>
-      <span className="text-slate-600">{skills}</span>
+      <span className="w-28 shrink-0 font-bold text-[#0f172a]">{label}</span>
+      <span className="text-gray-600">{skills}</span>
     </div>
   );
 }
@@ -222,15 +228,15 @@ function AwardItem({ title, sub, date, link }: { title: string; sub: string; dat
     <div className="flex items-start justify-between gap-2">
       <div>
         {link ? (
-          <a href={link} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-[#0f172a] hover:text-emerald-700 hover:underline">
+          <a href={link} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-[#0f172a] hover:text-violet-600 hover:underline">
             {title}
           </a>
         ) : (
           <p className="text-xs font-bold text-[#0f172a]">{title}</p>
         )}
-        <p className="text-xs text-slate-500 mt-0.5">{sub}</p>
+        <p className="text-xs text-gray-500 mt-0.5">{sub}</p>
       </div>
-      {date && <span className="text-xs text-slate-400 shrink-0">{date}</span>}
+      {date && <span className="text-xs text-gray-400 shrink-0">{date}</span>}
     </div>
   );
 }
