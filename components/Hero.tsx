@@ -46,7 +46,7 @@ export function Hero() {
       {/* Hero Content */}
       <div className="max-w-4xl mx-auto lg:mx-0 text-center lg:text-left">
         <motion.div variants={fadeUp(0.1)} initial="hidden" animate="show" className="mb-8">
-          <h1 className="display-heading text-[3.5rem] sm:text-[5rem] lg:text-[7.5rem] leading-[0.85] font-black">
+          <h1 className="display-heading text-[2.8rem] xs:text-[3.5rem] sm:text-[5rem] lg:text-[7.5rem] leading-[0.9] lg:leading-[0.85] font-black">
             <span className="text-white">ENGINEERING</span><br />
             <span className="gradient-text">INTELLIGENT</span><br />
             <span className="text-white/40">EXPERIENCES</span>
