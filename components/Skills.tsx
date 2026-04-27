@@ -1,69 +1,73 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { Code2, Database, Globe, Layers, Cpu, Layout, Boxes, ShieldCheck } from 'lucide-react';
+
+const SKILLS = [
+  {
+    category: "Intelligent Interfaces",
+    icon: Layout,
+    color: "cyan",
+    items: ["Next.js 14", "React 18", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js"]
+  },
+  {
+    category: "Agentic Engineering",
+    icon: Cpu,
+    color: "purple",
+    items: ["Google ADK", "AutoGen", "Multi-Agent Systems", "LangChain", "Prompt Engineering", "Tool Use"]
+  },
+  {
+    category: "Backend & Systems",
+    icon: Database,
+    color: "lime",
+    items: ["Python", "Node.js", "PostgreSQL", "Redis", "Vector DBs", "Docker"]
+  },
+  {
+    category: "Data Architecture",
+    icon: Boxes,
+    color: "pink",
+    items: ["RAG Pipelines", "CV Pipelines", "Dataset Curation", "Hugging Face", "ETL Processes", "Data Viz"]
+  }
+];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
-
-const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.06 } } };
-
-const CATEGORIES = [
-  { title: 'Agentic AI', skills: ['Google ADK', 'AutoGen', 'Multi-Agent', 'Tool-using AI', 'LangChain'] },
-  { title: 'ML & LLMs', skills: ['PyTorch', 'Hugging Face', 'LLMs', 'RAG', 'Computer Vision'] },
-  { title: 'Data & Ops', skills: ['NumPy', 'Pandas', 'Docker', 'Git', 'PostgreSQL'] },
-];
-
-function TiltCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const rx = useMotionValue(0);
-  const ry = useMotionValue(0);
-  const rotX = useSpring(rx, { damping: 30, stiffness: 200 });
-  const rotY = useSpring(ry, { damping: 30, stiffness: 200 });
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={(e) => {
-        const r = ref.current!.getBoundingClientRect();
-        rx.set(-((e.clientY - r.top - r.height / 2) / r.height) * 8);
-        ry.set(((e.clientX - r.left - r.width / 2) / r.width) * 8);
-      }}
-      onMouseLeave={() => { rx.set(0); ry.set(0); }}
-      style={{ rotateX: rotX, rotateY: rotY, transformPerspective: 800 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 export function Skills() {
   return (
-    <section id="skills" className="section">
-      <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
-        <motion.div variants={fadeUp} className="mb-12">
-          <p className="eyebrow mb-2">Skills</p>
-          <h2 className="display-heading text-3xl sm:text-4xl font-bold text-white">Technical Proficiency</h2>
+    <section id="skills" className="section relative">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-accent-cyan/5 blur-[120px] -z-10" />
+      
+      <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} className="space-y-16">
+        <motion.div variants={fadeUp} className="text-center max-w-2xl mx-auto">
+          <p className="eyebrow justify-center">Technical Arsenal</p>
+          <h2 className="display-heading text-4xl sm:text-6xl mb-6">THE <span className="gradient-text">ENGINEERING</span> STACK</h2>
+          <p className="text-zinc-400">
+            A comprehensive suite of technologies curated for building highly intelligent, scalable, and visually superior digital products.
+          </p>
         </motion.div>
 
-        <div className="grid gap-4 md:grid-cols-3">
-          {CATEGORIES.map((cat, i) => (
-            <motion.div key={cat.title} variants={fadeUp}>
-              <TiltCard className="card rounded-2xl p-5 h-full">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-rose-500/20 flex items-center justify-center">
-                    <span className="text-xs font-bold text-rose-400">{cat.title[0]}</span>
-                  </div>
-                  <h3 className="font-semibold text-white">{cat.title}</h3>
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {cat.skills.map((s) => (
-                    <span key={s} className="tag">{s}</span>
-                  ))}
-                </div>
-              </TiltCard>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {SKILLS.map((skill, index) => (
+            <motion.div
+              key={skill.category}
+              variants={fadeUp}
+              transition={{ delay: index * 0.1 }}
+              className="card p-8 group hover:border-accent-cyan/30"
+            >
+              <div className={`w-14 h-14 rounded-2xl bg-accent-${skill.color}/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                <skill.icon size={28} className={`text-accent-${skill.color}`} />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-6 uppercase tracking-wider">{skill.category}</h3>
+              <div className="flex flex-wrap gap-2">
+                {skill.items.map((item) => (
+                  <span key={item} className="text-[10px] font-bold px-3 py-1 rounded-lg glass border-white/5 text-zinc-400 group-hover:text-white transition-colors">
+                    {item}
+                  </span>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>

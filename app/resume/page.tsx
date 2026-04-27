@@ -1,242 +1,330 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { Download, FileText, ChevronRight, Briefcase, GraduationCap, Award, Mail, Linkedin, Github, ExternalLink, Sparkles, Code2, Cpu, Database } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+type ResumeRole = 'AI' | 'FRONTEND' | 'FULLSTACK';
+
+interface ResumeData {
+  title: string;
+  subtitle: string;
+  summary: string;
+  skills: { label: string; items: string }[];
+  projects: {
+    name: string;
+    role: string;
+    date: string;
+    tags: string[];
+    bullets: string[];
+    link?: string;
+  }[];
+}
+
+const RESUMES: Record<ResumeRole, ResumeData> = {
+  AI: {
+    title: "AI Agent Engineer",
+    subtitle: "LLM Orchestration · RAG Pipelines · Agentic Workflows",
+    summary: "Specialized in building production-ready autonomous systems using Google ADK, AutoGen, and advanced RAG architectures. National finalist at OpenAI × NxtWave Buildathon 2026. Published open-source dataset automation engines.",
+    skills: [
+      { label: "Agentic AI", items: "Google ADK · AutoGen · Multi-Agent Orchestration · Tool-use Patterns" },
+      { label: "ML/LLMs", items: "PyTorch · Hugging Face · RAG · Prompt Engineering · Computer Vision" },
+      { label: "Automation", items: "saara-ai (PyPI) · Dataset Curation · Layout-aware Parsing · PDF Processing" },
+      { label: "Core Dev", items: "Python · System Architecture · Docker · Redis · Vector Databases" },
+    ],
+    projects: [
+      {
+        name: "WealthIn — AI Financial OS",
+        role: "Lead AI Engineer",
+        date: "Feb 2026",
+        tags: ["Python", "AutoGen", "RAG", "PostgreSQL"],
+        bullets: [
+          "Built a Financial OS for MSMEs, automating institutional-grade DPR generation in < 30 mins.",
+          "Implemented multi-agent orchestration for complex financial modeling and compliance.",
+          "Optimized RAG pipelines for high-accuracy regulatory data retrieval."
+        ]
+      },
+      {
+        name: "saara-ai",
+        role: "Founding Engineer",
+        date: "2025",
+        tags: ["Python", "PyPI", "Document AI", "Automation"],
+        link: "https://pypi.org/project/saara-ai/",
+        bullets: [
+          "Developed an open-source layout-aware document parser for automated dataset curation.",
+          "Achieved 90% reduction in manual data processing time for unstructured PDF documents.",
+          "Maintained full lifecycle from architecture to public package distribution."
+        ]
+      }
+    ]
+  },
+  FRONTEND: {
+    title: "Frontend Architect",
+    subtitle: "High-Performance UI · Creative Engineering · React/Next.js",
+    summary: "Creative frontend developer dedicated to building visually stunning, pixel-perfect, and highly interactive web experiences. Expert in Next.js, Framer Motion, and modern CSS architectures with a focus on 'AI-ready' interfaces.",
+    skills: [
+      { label: "Core Web", items: "Next.js 14 · React 18 · TypeScript · Responsive Architecture" },
+      { label: "Creative UI", items: "Framer Motion · Tailwind CSS · Three.js · Glassmorphism · Bento Layouts" },
+      { label: "State & Data", items: "Zustand · React Query · SWR · Context API" },
+      { label: "Performance", items: "Core Web Vitals · SEO · Asset Optimization · accessibility (A11Y)" },
+    ],
+    projects: [
+      {
+        name: "Digital Architect Portfolio",
+        role: "UI/UX Engineer",
+        date: "2026",
+        tags: ["Next.js", "Framer Motion", "Tailwind", "Unique UI"],
+        bullets: [
+          "Designed and implemented a high-performance portfolio with custom glassmorphism and bento layouts.",
+          "Engineered complex micro-interactions and smooth page transitions using Framer Motion.",
+          "Achieved 100/100 Lighthouse performance scores through aggressive asset optimization."
+        ]
+      },
+      {
+        name: "WealthIn Interface",
+        role: "Frontend Lead",
+        date: "Feb 2026",
+        tags: ["React", "Tailwind", "Data Visualization", "Chart.js"],
+        bullets: [
+          "Crafted a sophisticated dashboard for financial modeling with real-time data visualization.",
+          "Implemented a modular component library used across the entire WealthIn ecosystem.",
+          "Optimized complex form wizards for high conversion and user clarity."
+        ]
+      }
+    ]
+  },
+  FULLSTACK: {
+    title: "Full Stack Developer",
+    subtitle: "Scalable Backends · Distributed Systems · Modern Web",
+    summary: "Versatile engineer capable of architecting end-to-end applications. Strong focus on backend reliability, database optimization, and seamless frontend integration. Experienced in cloud-native deployment and system design.",
+    skills: [
+      { label: "Backend", items: "Node.js · Python (FastAPI/Express) · PostgreSQL · Redis · GraphQL" },
+      { label: "Frontend", items: "Next.js · TypeScript · Tailwind CSS · State Management" },
+      { label: "DevOps", items: "Docker · Docker Compose · Git Actions · AWS/Vercel · Linux Systems" },
+      { label: "Architecture", items: "REST APIs · System Design · Database Schema Design · Caching Strategies" },
+    ],
+    projects: [
+      {
+        name: "WealthIn — Infrastructure",
+        role: "Software Architect",
+        date: "Feb 2026",
+        tags: ["Docker", "PostgreSQL", "Redis", "FastAPI"],
+        bullets: [
+          "Architected an asynchronous backend processing 100+ complex financial reports simultaneously.",
+          "Implemented a robust caching layer using Redis, reducing API latency by 60%.",
+          "Designed a multi-tenant database schema ensuring 100% data isolation and security."
+        ]
+      },
+      {
+        name: "SAARA Data Engine",
+        role: "Backend Engineer",
+        date: "2025",
+        tags: ["Python", "API Design", "Data Pipelines", "Pytest"],
+        bullets: [
+          "Built the core processing engine for high-volume document parsing and dataset generation.",
+          "Developed comprehensive test suites ensuring 95%+ code coverage for critical data paths.",
+          "Optimized data ingestion pipelines for memory efficiency when handling large PDF files."
+        ]
+      }
+    ]
+  }
+};
 
 export default function ResumePage() {
+  const [activeRole, setActiveRole] = useState<ResumeRole>('AI');
+
   useEffect(() => {
-    document.title = 'Kilani Sai Nikhil — Resume';
-  }, []);
+    document.title = `Kilani Sai Nikhil — ${RESUMES[activeRole].title}`;
+  }, [activeRole]);
 
   return (
-    <>
-      {/* Print / Save-as-PDF button — hidden when printing */}
-      <div className="no-print fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex gap-2 sm:gap-3">
-        <button
-          onClick={() => window.print()}
-          className="flex items-center gap-2 rounded-xl bg-violet-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:bg-violet-700 transition-colors"
+    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-accent-cyan/30">
+      
+      {/* --- Floating Control Panel (No Print) --- */}
+      <nav className="no-print fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-2xl flex items-center gap-6 border-white/5 shadow-2xl shadow-black">
+        <div className="flex items-center gap-1">
+          {(Object.keys(RESUMES) as ResumeRole[]).map((role) => (
+            <button
+              key={role}
+              onClick={() => setActiveRole(role)}
+              className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                activeRole === role ? 'bg-accent-cyan text-black shadow-lg shadow-accent-cyan/20' : 'text-zinc-500 hover:text-white'
+              }`}
+            >
+              {role}
+            </button>
+          ))}
+        </div>
+        <div className="h-4 w-[1px] bg-white/10" />
+        <div className="flex items-center gap-3">
+          <button onClick={() => window.print()} className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-accent-cyan transition-colors">
+            <Download size={18} />
+          </button>
+          <a href="/" className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-400 transition-colors">
+            <ChevronRight size={18} />
+          </a>
+        </div>
+      </nav>
+
+      {/* --- Resume Document --- */}
+      <AnimatePresence mode="wait">
+        <motion.main
+          key={activeRole}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.4 }}
+          className="resume-container mx-auto max-w-[850px] bg-white text-[#111] p-12 shadow-2xl print:shadow-none print:p-0 min-h-[1100px]"
         >
-          ↓ Save as PDF
-        </button>
-        <a
-          href="/"
-          className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-600 shadow hover:bg-gray-50 transition-colors"
-        >
-          ← Portfolio
-        </a>
-      </div>
+          {/* Header */}
+          <header className="flex justify-between items-start border-b-4 border-accent-cyan pb-8 mb-8">
+            <div className="space-y-1">
+              <h1 className="text-4xl font-black tracking-tighter uppercase text-black">Kilani Sai Nikhil</h1>
+              <div className="flex items-center gap-2 text-accent-cyan">
+                <div className="w-8 h-[2px] bg-accent-cyan" />
+                <p className="text-sm font-black uppercase tracking-[0.2em]">{RESUMES[activeRole].title}</p>
+              </div>
+              <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">{RESUMES[activeRole].subtitle}</p>
+            </div>
+            
+            <div className="text-right space-y-2">
+              <ContactInfo icon={Mail} text="kilanisainikhil@gmail.com" />
+              <ContactInfo icon={Linkedin} text="linkedin.com/in/kilanisainikhil" href="https://linkedin.com/in/kilanisainikhil" />
+              <ContactInfo icon={Github} text="github.com/nikhil49023" href="https://github.com/nikhil49023" />
+              <div className="flex items-center justify-end gap-1.5 text-[10px] font-bold text-zinc-400">
+                <MapPin size={10} /> HYDERABAD, INDIA
+              </div>
+            </div>
+          </header>
 
-      {/* Resume document */}
-      <main className="resume-page mx-auto max-w-[800px] bg-white px-4 py-6 sm:px-8 sm:py-8 md:px-12 md:py-10 text-[#111827] font-sans">
+          {/* Summary */}
+          <Section title="Professional Narrative">
+            <p className="text-sm leading-relaxed text-zinc-600 font-medium italic">
+              "{RESUMES[activeRole].summary}"
+            </p>
+          </Section>
 
-        {/* ── Header ── */}
-        <header className="mb-6 border-b-2 border-violet-500 pb-5">
-          <div className="flex flex-wrap items-start justify-between gap-4">
+          {/* Core Competencies */}
+          <Section title="Core Competencies">
+            <div className="grid grid-cols-2 gap-x-12 gap-y-4">
+              {RESUMES[activeRole].skills.map((s) => (
+                <div key={s.label}>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-accent-cyan mb-1">{s.label}</p>
+                  <p className="text-xs text-zinc-600 font-bold leading-relaxed">{s.items}</p>
+                </div>
+              ))}
+            </div>
+          </Section>
+
+          {/* Selected Work */}
+          <Section title="Strategic Implementations">
+            <div className="space-y-8">
+              {RESUMES[activeRole].projects.map((p) => (
+                <div key={p.name} className="relative pl-6 border-l-2 border-zinc-100">
+                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-accent-cyan" />
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <h4 className="text-base font-black text-black uppercase flex items-center gap-2">
+                        {p.name} {p.link && <a href={p.link} target="_blank"><ExternalLink size={12} className="text-accent-cyan" /></a>}
+                      </h4>
+                      <p className="text-xs font-bold text-accent-cyan uppercase">{p.role}</p>
+                    </div>
+                    <span className="text-[10px] font-black text-zinc-400 uppercase">{p.date}</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {p.tags.map(t => (
+                      <span key={t} className="text-[8px] font-black px-2 py-0.5 rounded bg-zinc-50 border border-zinc-100 text-zinc-500 uppercase">{t}</span>
+                    ))}
+                  </div>
+                  <ul className="space-y-1.5">
+                    {p.bullets.map((b, i) => (
+                      <li key={i} className="text-xs text-zinc-600 leading-relaxed list-square ml-4">{b}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </Section>
+
+          {/* Background */}
+          <div className="grid grid-cols-2 gap-12 mt-12 pt-8 border-t-2 border-zinc-100">
             <div>
-              <h1 className="text-3xl font-black tracking-tight text-[#0f172a]">Kilani Sai Nikhil</h1>
-              <p className="mt-1 text-base font-semibold text-violet-600">Agentic App Builder · LLM & AI Systems</p>
+              <h3 className="text-xs font-black uppercase tracking-widest text-black mb-4 flex items-center gap-2">
+                <GraduationCap size={14} className="text-accent-cyan" /> Academic Roots
+              </h3>
+              <p className="text-xs font-black text-black">NxtWave Institute (NIAT)</p>
+              <p className="text-[10px] font-bold text-accent-cyan uppercase">B.Tech · Computer Science</p>
+              <p className="text-[10px] font-medium text-zinc-500 mt-1">2025 – 2029 · HYDERABAD</p>
             </div>
-            <div className="text-right text-xs text-gray-500 space-y-1 shrink-0">
-              <p>Hyderabad, India</p>
-              <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="block text-violet-600 hover:underline">
-                linkedin.com/in/kilanisainikhil
-              </a>
-            </div>
-          </div>
-
-          <div className="mt-3 flex flex-wrap gap-3 text-xs font-semibold">
-            <a href="https://github.com/nikhil49023" target="_blank" rel="noopener noreferrer" className="text-violet-600 hover:underline">
-              GitHub: nikhil49023
-            </a>
-            <a href="https://linkedin.com/in/kilanisainikhil" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:underline">
-              LinkedIn: kilanisainikhil
-            </a>
-            <a href="https://pypi.org/user/SaiNikhil/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:underline">
-              PyPI: SaiNikhil
-            </a>
-            <a href="mailto:kilanisainikhil@gmail.com" className="text-gray-600 hover:underline">
-              Email: kilanisainikhil@gmail.com
-            </a>
-          </div>
-        </header>
-
-        {/* ── Summary ── */}
-        <Section title="Summary">
-          <p className="text-sm leading-relaxed text-gray-700">
-            Agentic App Builder specializing in production-ready AI applications using Google ADK, AutoGen, and LLM frameworks.
-            National finalist (Top 90 of 70,000+) at the OpenAI × NxtWave Buildathon 2026.
-            I build reliable agentic systems with tool-using AI, multi-agent orchestration, and RAG pipelines.
-            Published an open-source Python library (saara-ai) on PyPI.
-          </p>
-        </Section>
-
-        {/* ── Education ── */}
-        <Section title="Education">
-          <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm font-bold text-[#0f172a]">Nxt Wave Institute of Advanced Technologies (NIAT)</p>
-              <p className="text-xs text-gray-600 mt-0.5">Bachelor of Technology (B.Tech) · Computer Science & Engineering</p>
+              <h3 className="text-xs font-black uppercase tracking-widest text-black mb-4 flex items-center gap-2">
+                <Award size={14} className="text-accent-cyan" /> Recognition
+              </h3>
+              <div className="space-y-3">
+                <p className="text-[10px] font-bold text-zinc-600">
+                  <span className="text-black font-black uppercase">National Finalist</span> · OpenAI Buildathon 2026 (Top 0.1%)
+                </p>
+                <p className="text-[10px] font-bold text-zinc-600">
+                  <span className="text-black font-black uppercase">Certified Expert</span> · AMD AI Academy: Agents 101
+                </p>
+              </div>
             </div>
-            <span className="text-xs text-gray-500 shrink-0">2025 – 2029 · Hyderabad</span>
           </div>
-        </Section>
+          
+          <footer className="mt-12 text-center">
+            <p className="text-[8px] font-black text-zinc-300 uppercase tracking-[0.4em]">Verified Engineer Portfolio · Kilani Sai Nikhil · 2026</p>
+          </footer>
+        </motion.main>
+      </AnimatePresence>
 
-        {/* ── Skills ── */}
-        <Section title="Skills">
-          <div className="space-y-2">
-            <SkillRow label="Agentic AI" skills="Google ADK · AutoGen · Multi-Agent Systems · Tool-using AI · Agentic Workflows" />
-            <SkillRow label="ML & LLMs" skills="PyTorch · Hugging Face · LLMs · RAG · Computer Vision · OpenCV" />
-            <SkillRow label="Data & Viz" skills="NumPy · Pandas · Matplotlib · Dataset Curation · Data Pipelines" />
-            <SkillRow label="Systems & Tools" skills="System Architecture Design · Docker · Git & GitHub · PostgreSQL · Redis" />
-          </div>
-        </Section>
-
-        {/* ── Projects ── */}
-        <Section title="Projects">
-
-          <ProjectItem
-            name="WealthIn"
-            role="Software Engineer"
-            date="Feb 2026"
-            link="https://github.com/nikhil49023"
-            tags={['Python', 'Docker', 'System Architecture', 'PostgreSQL', 'Redis']}
-            bullets={[
-              'Built a comprehensive Financial OS for Indian MSMEs, automating institutional-grade Detailed Project Reports (DPR) in under 30 minutes.',
-              'Architected an asynchronous backend to handle complex financial modeling and multi-user report generation.',
-              'Implemented a robust data layer with PostgreSQL for persistence and Redis for task queuing and caching.',
-              'Designed a modular system architecture supporting regional language localization and regulatory compliance checks.',
-            ]}
-          />
-
-          <ProjectItem
-            name="SAARA — Automated Dataset Engine"
-            role="ML/Data Engineer · Open Source"
-            date="2025"
-            link="https://pypi.org/project/saara-ai/"
-            tags={['Python', 'PyPI', 'Dataset Curation', 'Hugging Face', 'Automation']}
-            bullets={[
-              'Published saara-ai to PyPI — an open-source Python library for automated processing of unstructured PDF documents into structured datasets.',
-              'Engineered a layout-aware document parsing engine that preserves semantic structure including tables, headings, and figures.',
-              'Implemented a multi-stage pipeline for data extraction, quality filtering, and structured output generation.',
-              'Automated complex data preparation workflows, reducing manual effort by over 90%.',
-              'Managed the full software lifecycle from initial architecture to public package distribution and community maintenance.',
-            ]}
-          />
-
-        </Section>
-
-        {/* ── Awards & Certifications ── */}
-        <Section title="Awards & Certifications">
-          <div className="space-y-3">
-            <AwardItem
-              title="National Finalist — OpenAI × NxtWave Buildathon 2026"
-              sub="Top 90 of 70,000+ participants across India · Application Track"
-              date="17 Feb 2026"
-              link="https://openai-buildathon.nxtwave.tech/"
-            />
-            <AwardItem
-              title="AMD AI Academy — AI Agents 101"
-              sub="Certified in fundamentals of AI agent architectures, tool-use patterns, and multi-agent systems"
-              link="/certificates/amd-ai-agents-101.jpg"
-            />
-            <AwardItem
-              title="PyPI Publisher — saara-ai"
-              sub="Authored and published an open-source Python package for automated PDF-to-dataset pipelines"
-              link="https://pypi.org/project/saara-ai/"
-            />
-          </div>
-        </Section>
-
-      </main>
-
-      <style>{`
+      <style jsx global>{`
         @media print {
           .no-print { display: none !important; }
-          body { background: white !important; }
-          .resume-page { max-width: 100% !important; padding: 0 !important; }
+          body { background: white !important; padding: 0 !important; margin: 0 !important; }
+          .resume-container { 
+            max-width: 100% !important; 
+            box-shadow: none !important; 
+            padding: 0 !important;
+            margin: 0 !important;
+            border: none !important;
+          }
         }
+        .list-square { list-style-type: square; }
         @page {
           size: A4;
-          margin: 18mm 16mm;
+          margin: 15mm;
         }
-        .resume-page { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; }
       `}</style>
-    </>
+    </div>
   );
 }
 
-/* ── Sub-components ── */
+/* --- Utilities --- */
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="mb-6">
-      <h2 className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-violet-600 border-b border-violet-100 pb-1">
-        {title}
-      </h2>
+    <section className="mb-10">
+      <div className="flex items-center gap-4 mb-5">
+        <h2 className="text-xs font-black uppercase tracking-[0.25em] text-black whitespace-nowrap">{title}</h2>
+        <div className="h-[1px] w-full bg-zinc-100" />
+      </div>
       {children}
     </section>
   );
 }
 
-function ProjectItem({
-  name, role, date, link, tags, bullets,
-}: {
-  name: string; role: string; date: string; link?: string;
-  tags: string[]; bullets: string[];
-}) {
-  return (
-    <div className="mb-5 last:mb-0">
-      <div className="flex items-start justify-between gap-2 mb-1">
-        <div>
-          {link ? (
-            <a href={link} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-[#0f172a] hover:text-violet-600 hover:underline">
-              {name}
-            </a>
-          ) : (
-            <p className="text-sm font-bold text-[#0f172a]">{name}</p>
-          )}
-          <p className="text-xs text-violet-600 font-semibold">{role}</p>
-        </div>
-        <span className="text-xs text-gray-400 shrink-0">{date}</span>
-      </div>
-      <div className="mb-1.5 flex flex-wrap gap-1">
-        {tags.map((t) => (
-          <span key={t} className="rounded px-1.5 py-0.5 text-[10px] font-semibold bg-violet-50 text-violet-700 border border-violet-100">
-            {t}
-          </span>
-        ))}
-      </div>
-      <ul className="space-y-1 pl-3">
-        {bullets.map((b, i) => (
-          <li key={i} className="text-xs leading-relaxed text-gray-600 list-disc">{b}</li>
-        ))}
-      </ul>
+function ContactInfo({ icon: Icon, text, href }: { icon: any; text: string; href?: string }) {
+  const content = (
+    <div className="flex items-center justify-end gap-2 text-[10px] font-bold text-zinc-600 hover:text-accent-cyan transition-colors uppercase tracking-wider">
+      <span>{text}</span>
+      <Icon size={12} className="text-accent-cyan" />
     </div>
   );
+  return href ? <a href={href} target="_blank">{content}</a> : content;
 }
 
-function SkillRow({ label, skills }: { label: string; skills: string }) {
+function MapPin(props: any) {
   return (
-    <div className="flex gap-2 text-xs">
-      <span className="w-28 shrink-0 font-bold text-[#0f172a]">{label}</span>
-      <span className="text-gray-600">{skills}</span>
-    </div>
-  );
-}
-
-function AwardItem({ title, sub, date, link }: { title: string; sub: string; date?: string; link?: string }) {
-  return (
-    <div className="flex items-start justify-between gap-2">
-      <div>
-        {link ? (
-          <a href={link} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-[#0f172a] hover:text-violet-600 hover:underline">
-            {title}
-          </a>
-        ) : (
-          <p className="text-xs font-bold text-[#0f172a]">{title}</p>
-        )}
-        <p className="text-xs text-gray-500 mt-0.5">{sub}</p>
-      </div>
-      {date && <span className="text-xs text-gray-400 shrink-0">{date}</span>}
-    </div>
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
   );
 }

@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Package, ArrowRight, MapPin, Download, Sparkles, Code2, Brain, Zap } from 'lucide-react';
+import { Github, Linkedin, Package, ArrowRight, MapPin, Download, Sparkles, Code2, Cpu, Globe } from 'lucide-react';
 
 const fadeUp = (delay = 0) => ({
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] } },
 });
 
 const SOCIALS = [
@@ -16,107 +16,118 @@ const SOCIALS = [
 ];
 
 const ROLES = [
-  { icon: Brain, label: 'Agentic App Builder' },
-  { icon: Zap, label: 'Google ADK Expert' },
-  { icon: Code2, label: 'LLM & RAG Systems' },
+  { icon: Code2, label: 'Frontend Architect' },
+  { icon: Cpu, label: 'AI Agent Engineer' },
+  { icon: Globe, label: 'Full Stack Developer' },
 ];
 
 export function Hero() {
   return (
-    <section id="hero" className="section pt-20 pb-12 lg:pt-28 lg:pb-16">
+    <section id="hero" className="section relative overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32">
       
-      {/* Floating badge */}
-      <motion.div variants={fadeUp(0)} initial="hidden" animate="show" className="mb-8 flex items-center gap-2">
-        <span className="inline-flex items-center gap-2 rounded-full border border-rose-500/30 bg-rose-500/10 px-3 py-1 text-xs font-semibold text-rose-400">
-          <span className="h-1.5 w-1.5 rounded-full bg-rose-500 animate-pulse" />
-          Available for AI Projects
-        </span>
-        <span className="inline-flex items-center gap-1 text-xs text-zinc-500">
-          <MapPin size={12} /> Hyderabad, India
-        </span>
-      </motion.div>
+      {/* Background patterns */}
+      <div className="absolute inset-0 bg-grid-pattern -z-10 opacity-30" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-radial from-accent-cyan/10 to-transparent -z-10" />
 
-      {/* Main heading */}
-      <motion.div variants={fadeUp(0.1)} initial="hidden" animate="show" className="mb-6">
-        <h1 className="display-heading text-[2.5rem] sm:text-[4rem] lg:text-[5.5rem] font-bold tracking-tight text-white">
-          <span className="block">Building AI</span>
-          <span className="block gradient-text">That Architects</span>
-          <span className="block">The Future</span>
-        </h1>
-      </motion.div>
-
-      {/* Role pills */}
-      <motion.div variants={fadeUp(0.15)} initial="hidden" animate="show" className="mb-6 flex flex-wrap gap-2">
-        {ROLES.map(({ icon: Icon, label }) => (
-          <span key={label} className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-zinc-400">
-            <Icon size={12} className="text-rose-500" />
-            {label}
+      {/* Floating Badge */}
+      <motion.div variants={fadeUp(0)} initial="hidden" animate="show" className="mb-10 flex items-center justify-center lg:justify-start gap-3">
+        <div className="glass px-4 py-1.5 rounded-full border-accent-cyan/20 flex items-center gap-2 shadow-2xl shadow-accent-cyan/10">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-cyan opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-cyan"></span>
           </span>
-        ))}
+          <span className="text-[10px] font-bold tracking-widest uppercase text-accent-cyan/80">Open for Strategic Partnerships</span>
+        </div>
+        <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-medium text-zinc-500 uppercase tracking-wider">
+          <MapPin size={10} className="text-zinc-600" /> Hyderabad, IN
+        </div>
       </motion.div>
 
-      {/* Bio */}
-      <motion.p variants={fadeUp(0.2)} initial="hidden" animate="show" className="mb-8 max-w-xl text-base text-zinc-400 leading-relaxed">
-        I engineer production-ready <span className="text-rose-400">agentic applications</span> using Google ADK, AutoGen, and LLM frameworks.
-        Specializing in tool-using AI, multi-agent orchestration, and RAG pipelines.
-        National finalist at the <span className="text-white">OpenAI × NxtWave Buildathon 2026</span>.
-      </motion.p>
+      {/* Hero Content */}
+      <div className="max-w-4xl mx-auto lg:mx-0 text-center lg:text-left">
+        <motion.div variants={fadeUp(0.1)} initial="hidden" animate="show" className="mb-8">
+          <h1 className="display-heading text-[3.5rem] sm:text-[5rem] lg:text-[7.5rem] leading-[0.85] font-black">
+            <span className="text-white">ENGINEERING</span><br />
+            <span className="gradient-text">INTELLIGENT</span><br />
+            <span className="text-white/40">EXPERIENCES</span>
+          </h1>
+        </motion.div>
 
-      {/* CTA buttons */}
-      <motion.div variants={fadeUp(0.25)} initial="hidden" animate="show" className="mb-10 flex flex-wrap gap-3">
-        <Link href="#projects" className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">
-          View Projects <ArrowRight size={15} />
-        </Link>
-        <Link href="https://linkedin.com/in/kilanisainikhil" target="_blank" className="btn-secondary inline-flex items-center gap-2 px-5 py-2.5 text-sm">
-          <Linkedin size={14} /> Connect
-        </Link>
-        <Link href="/resume" className="btn-secondary inline-flex items-center gap-2 px-5 py-2.5 text-sm">
-          <Download size={14} /> Resume
-        </Link>
-      </motion.div>
-
-      {/* Social icons */}
-      <motion.div variants={fadeUp(0.3)} initial="hidden" animate="show" className="flex flex-wrap gap-2">
-        {SOCIALS.map(({ icon: Icon, href, label }) => (
-          <a key={label} href={href} target="_blank" rel="noopener noreferrer" title={label} className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-zinc-500 transition-all hover:border-rose-500/50 hover:text-rose-400 hover:bg-white/10">
-            <Icon size={16} />
-          </a>
-        ))}
-      </motion.div>
-
-      {/* Stats bar - mobile */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="lg:hidden mt-10">
-        <div className="flex gap-4 overflow-x-auto pb-2">
-          {['ADK', 'AutoGen', 'RAG', 'Multi-Agent'].map((stat) => (
-            <div key={stat} className="card rounded-xl px-4 py-3 shrink-0 min-w-[100px]">
-              <p className="text-xs text-zinc-500">{stat}</p>
-              <p className="text-lg font-bold text-white">{stat}</p>
+        {/* Dynamic Role Tags */}
+        <motion.div variants={fadeUp(0.2)} initial="hidden" animate="show" className="mb-10 flex flex-wrap justify-center lg:justify-start gap-3">
+          {ROLES.map(({ icon: Icon, label }) => (
+            <div key={label} className="group relative">
+              <div className="absolute inset-0 bg-accent-cyan/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative glass px-4 py-2 rounded-xl flex items-center gap-2 border-white/5 hover:border-accent-cyan/30 transition-colors">
+                <Icon size={14} className="text-accent-cyan" />
+                <span className="text-xs font-bold text-zinc-300 group-hover:text-white transition-colors">{label}</span>
+              </div>
             </div>
           ))}
+        </motion.div>
+
+        {/* Narrative Bio */}
+        <motion.p variants={fadeUp(0.3)} initial="hidden" animate="show" className="mb-12 max-w-2xl mx-auto lg:mx-0 text-lg lg:text-xl text-zinc-400 leading-relaxed font-medium">
+          I bridge the gap between <span className="text-accent-cyan">sophisticated frontend architecture</span> and <span className="text-accent-purple">autonomous AI agents</span>. 
+          Specializing in crafting high-performance, visually stunning applications that leverage the power of tool-using LLMs and multi-agent orchestration.
+        </motion.p>
+
+        {/* Action Controls */}
+        <motion.div variants={fadeUp(0.4)} initial="hidden" animate="show" className="flex flex-wrap justify-center lg:justify-start gap-4">
+          <Link href="#projects" className="btn-neon flex items-center gap-3">
+            Exploration <ArrowRight size={18} />
+          </Link>
+          <Link href="/resume" className="btn-outline flex items-center gap-3">
+            <Download size={18} /> Credentials
+          </Link>
+          <div className="flex items-center gap-2 ml-2">
+            {SOCIALS.map(({ icon: Icon, href, label }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" title={label} className="w-12 h-12 rounded-full glass flex items-center justify-center text-zinc-500 hover:text-accent-cyan hover:border-accent-cyan/50 transition-all">
+                <Icon size={18} />
+              </a>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Decorative Elements */}
+      <div className="hidden lg:block absolute right-[-5%] top-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-accent-cyan/10 rounded-full -z-10 animate-spin-slow" />
+      <div className="hidden lg:block absolute right-[5%] top-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-accent-purple/10 rounded-full -z-10 animate-spin-slow" style={{ animationDirection: 'reverse' }} />
+      
+      {/* Floating Card UI */}
+      <motion.div 
+        initial={{ opacity: 0, x: 100, rotate: 10 }} 
+        animate={{ opacity: 1, x: 0, rotate: -5 }} 
+        transition={{ delay: 0.6, duration: 1 }}
+        className="hidden xl:block absolute right-20 top-40 w-80 glass p-8 rounded-[2rem] border-accent-cyan/20 shadow-2xl shadow-accent-cyan/5 backdrop-blur-3xl"
+      >
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent-cyan to-accent-purple p-[1px]">
+            <div className="w-full h-full rounded-2xl bg-[#030303] flex items-center justify-center">
+              <Sparkles size={24} className="text-accent-cyan" />
+            </div>
+          </div>
+          <div>
+            <p className="text-[10px] font-bold text-accent-cyan uppercase tracking-tighter">Recognition</p>
+            <p className="text-sm font-black text-white">National Finalist</p>
+          </div>
+        </div>
+        <div className="space-y-4">
+          <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+            <motion.div 
+              initial={{ width: 0 }} 
+              animate={{ width: '92%' }} 
+              transition={{ delay: 1, duration: 1.5 }} 
+              className="h-full bg-accent-cyan" 
+            />
+          </div>
+          <p className="text-[10px] font-medium text-zinc-500">
+            Ranked in the top 0.1% at the OpenAI × NxtWave Buildathon 2026. 
+            Selected for excellence in AI application architecture.
+          </p>
         </div>
       </motion.div>
 
-      {/* Stats card - desktop */}
-      <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5, duration: 0.6 }} className="hidden lg:block absolute right-8 top-32 w-72">
-        <div className="card rounded-2xl p-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center">
-              <Sparkles size={18} className="text-white" />
-            </div>
-            <div>
-              <p className="text-xs text-zinc-500 uppercase tracking-wider">At a Glance</p>
-              <p className="text-sm font-semibold text-white">Agentic App Builder</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            {['ADK', 'RAG', 'Multi-Agent', 'CV'].map((s) => (
-              <div key={s} className="rounded-lg bg-white/5 px-3 py-2 text-center">
-                <p className="text-xs font-medium text-rose-400">{s}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
     </section>
   );
 }
