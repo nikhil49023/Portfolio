@@ -59,7 +59,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-grid-pattern -z-10 opacity-30" />
       <motion.div 
         style={{ y: springY1, opacity }}
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-gradient-radial from-accent-cyan/15 to-transparent -z-10 blur-[120px]" 
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-gradient-radial from-accent-cyan/20 to-transparent -z-10 blur-[120px]" 
       />
 
       <motion.div
@@ -70,14 +70,14 @@ export function Hero() {
       >
         {/* Floating Badge */}
         <motion.div variants={fadeUp} className="mb-12 flex items-center justify-center lg:justify-start gap-4">
-          <div className="glass px-5 py-2 rounded-2xl border-accent-cyan/20 flex items-center gap-3 shadow-2xl shadow-accent-cyan/10">
+          <div className="glass px-5 py-2 rounded-lg border-accent-cyan/20 flex items-center gap-3 shadow-2xl shadow-accent-cyan/10">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-cyan opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent-cyan shadow-[0_0_10px_rgba(0,216,255,0.8)]"></span>
             </span>
-            <span className="text-[10px] font-black tracking-[0.3em] uppercase text-accent-cyan/90">Available for Innovation</span>
+            <span className="text-[10px] font-black tracking-[0.3em] uppercase text-accent-cyan/90">Available for Selected Work</span>
           </div>
-          <div className="hidden sm:flex items-center gap-2 text-[10px] font-bold text-zinc-500 uppercase tracking-widest bg-white/5 px-4 py-2 rounded-2xl border border-white/5">
+          <div className="hidden sm:flex items-center gap-2 text-[10px] font-bold text-zinc-500 uppercase tracking-widest bg-white/5 px-4 py-2 rounded-lg border border-white/5">
             <MapPin size={12} className="text-zinc-600" /> Hyderabad, India
           </div>
         </motion.div>
@@ -85,10 +85,10 @@ export function Hero() {
         {/* Hero Content */}
         <div className="max-w-5xl mx-auto lg:mx-0 text-center lg:text-left">
           <motion.div variants={fadeUp} className="mb-10">
-            <h1 className="display-heading text-[3rem] xs:text-[4rem] sm:text-[6rem] lg:text-[9rem] leading-[0.85] font-black">
-              <span className="text-white">CRAFTING</span><br />
-              <span className="gradient-text">INTELLIGENT</span><br />
-              <span className="text-white/30 italic font-light">FRONTIERS</span>
+            <h1 className="display-heading text-[3.5rem] xs:text-[4.5rem] sm:text-[7rem] lg:text-[10rem] leading-[0.82]">
+              <span className="text-white">Luxury</span><br />
+              <span className="gradient-text italic">Intelligent</span><br />
+              <span className="text-white/35 font-medium">Systems</span>
             </h1>
           </motion.div>
 
@@ -100,8 +100,8 @@ export function Hero() {
                 whileHover={{ y: -5, scale: 1.05 }}
                 className="group relative"
               >
-                <div className="absolute inset-0 bg-accent-cyan/25 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative glass px-6 py-3 rounded-2xl flex items-center gap-3 border-white/5 group-hover:border-accent-cyan/40 transition-all duration-500">
+                <div className="absolute inset-0 bg-accent-cyan/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative glass px-6 py-3 rounded-lg flex items-center gap-3 border-white/5 group-hover:border-accent-cyan/40 transition-all duration-500">
                   <Icon size={16} className="text-accent-cyan group-hover:scale-110 transition-transform duration-500" />
                   <span className="text-xs font-black text-zinc-400 group-hover:text-white uppercase tracking-widest transition-colors">{label}</span>
                 </div>
@@ -111,8 +111,8 @@ export function Hero() {
 
           {/* Narrative Bio */}
           <motion.p variants={fadeUp} className="mb-14 max-w-2xl mx-auto lg:mx-0 text-lg lg:text-2xl text-zinc-400 leading-relaxed font-medium">
-            Architecting the future where <span className="text-accent-cyan font-bold">pixel-perfect interfaces</span> meet <span className="text-accent-purple font-bold">autonomous AI intelligence</span>. 
-            I build systems that don't just respond, but reason.
+            Engineering refined digital products where <span className="text-accent-cyan font-bold">premium interfaces</span> meet <span className="text-accent-purple font-bold">autonomous AI intelligence</span>. 
+            I build systems that feel composed, fast, and deeply capable.
           </motion.p>
 
           {/* Action Controls */}
@@ -141,8 +141,8 @@ export function Hero() {
                   target="_blank" 
                   rel="noopener noreferrer" 
                   title={label}
-                  whileHover={{ y: -5, backgroundColor: 'rgba(0, 216, 255, 0.1)', borderColor: 'rgba(0, 216, 255, 0.4)' }}
-                  className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-zinc-500 hover:text-white border-white/5 transition-all duration-500"
+                  whileHover={{ y: -5, backgroundColor: 'rgba(216, 183, 110, 0.1)', borderColor: 'rgba(216, 183, 110, 0.4)' }}
+                  className="w-14 h-14 rounded-lg glass flex items-center justify-center text-zinc-500 hover:text-white border-white/5 transition-all duration-500"
                 >
                   <Icon size={22} />
                 </motion.a>
@@ -158,9 +158,8 @@ export function Hero() {
         className="hidden lg:block absolute right-[-10%] top-1/4 w-[700px] h-[700px] border border-accent-cyan/5 rounded-full -z-10 animate-spin-slow opacity-50" 
       />
       <motion.div 
-        style={{ y: springY1 }}
+        style={{ y: springY1, animationDirection: 'reverse' }}
         className="hidden lg:block absolute right-[0%] top-1/3 w-[500px] h-[500px] border border-accent-purple/5 rounded-full -z-10 animate-spin-slow opacity-50" 
-        style={{ animationDirection: 'reverse' }} 
       />
       
       {/* Floating Status UI */}
@@ -169,17 +168,17 @@ export function Hero() {
         animate={{ opacity: 1, x: 0, rotate: -8 }} 
         transition={{ delay: 1, duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
         whileHover={{ rotate: 0, scale: 1.05, transition: { duration: 0.5 } }}
-        className="hidden xl:block absolute right-24 top-64 w-80 glass p-10 rounded-[2.5rem] border-accent-cyan/20 shadow-2xl shadow-accent-cyan/5 backdrop-blur-3xl group cursor-default"
+        className="hidden xl:block absolute right-24 top-64 w-80 glass p-10 rounded-lg border-accent-cyan/20 shadow-2xl shadow-accent-cyan/5 backdrop-blur-3xl group cursor-default"
       >
         <div className="flex items-center gap-5 mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent-cyan via-accent-purple to-accent-pink p-[1px] group-hover:rotate-12 transition-transform duration-700">
-            <div className="w-full h-full rounded-2xl bg-[#050505] flex items-center justify-center">
+          <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-accent-cyan via-accent-purple to-accent-pink p-[1px] group-hover:rotate-12 transition-transform duration-700">
+            <div className="w-full h-full rounded-lg bg-[#050407] flex items-center justify-center">
               <Sparkles size={28} className="text-accent-cyan animate-pulse" />
             </div>
           </div>
           <div>
             <p className="text-[10px] font-black text-accent-cyan uppercase tracking-[0.2em] mb-1">Status Report</p>
-            <p className="text-base font-black text-white uppercase tracking-tighter">Elite Engineer</p>
+            <p className="text-base font-black text-white uppercase tracking-tighter">Luxury Systems</p>
           </div>
         </div>
         <div className="space-y-6">

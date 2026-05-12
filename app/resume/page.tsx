@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Download, FileText, ChevronRight, Briefcase, GraduationCap, Award, Mail, Linkedin, Github, ExternalLink, Sparkles, Code2, Cpu, Database } from 'lucide-react';
+import { useState, useEffect } from 'react';Jimport { Download, FileText, ChevronRight, Briefcase, GraduationCap, Award, Mail, Linkedin, Github, ExternalLink, Sparkles, Code2, Cpu, Database, MapPin, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type ResumeRole = 'AI' | 'FRONTEND' | 'FULLSTACK';
@@ -27,304 +26,43 @@ const RESUMES: Record<ResumeRole, ResumeData> = {
     subtitle: "LLM Orchestration Â· RAG Pipelines Â· Agentic Workflows",
     summary: "Specialized in building production-ready autonomous systems using Google ADK, AutoGen, and advanced RAG architectures. National finalist at OpenAI Ã— NxtWave Buildathon 2026. Published open-source dataset automation engines.",
     skills: [
-      { label: "Agentic AI", items: "Google ADK Â· AutoGen Â· Multi-Agent Orchestration Â· Tool-use Patterns" },
-      { label: "ML/LLMs", items: "PyTorch Â· Hugging Face Â· RAG Â· Prompt Engineering Â· Computer Vision" },
-      { label: "Automation", items: "saara-ai (PyPI) Â· Dataset Curation Â· Layout-aware Parsing Â· PDF Processing" },
-      { label: "Core Dev", items: "Python Â· System Architecture Â· Docker Â· Redis Â· Vector Databases" },
-    ],
-    projects: [
-      {
-        name: "WealthIn â€” AI Financial OS",
-        role: "Lead AI Engineer",
-        date: "Feb 2026",
-        tags: ["Python", "AutoGen", "RAG", "PostgreSQL"],
-        bullets: [
-          "Built a Financial OS for MSMEs, automating institutional-grade DPR generation in < 30 mins.",
-          "Implemented multi-agent orchestration for complex financial modeling and compliance.",
-          "Optimized RAG pipelines for high-accuracy regulatory data retrieval."
-        ]
-      },
-      {
-        name: "saara-ai",
-        role: "Founding Engineer",
-        date: "2025",
-        tags: ["Python", "PyPI", "Document AI", "Automation"],
-        link: "https://pypi.org/project/saara-ai/",
-        bullets: [
-          "Developed an open-source layout-aware document parser for automated dataset curation.",
-          "Achieved 90% reduction in manual data processing time for unstructured PDF documents.",
-          "Maintained full lifecycle from architecture to public package distribution."
-        ]
-      }
-    ]
-  },
-  FRONTEND: {
-    title: "Frontend Architect",
-    subtitle: "High-Performance UI Â· Creative Engineering Â· React/Next.js",
-    summary: "Creative frontend developer dedicated to building visually stunning, pixel-perfect, and highly interactive web experiences. Expert in Next.js, Framer Motion, and modern CSS architectures with a focus on 'AI-ready' interfaces.",
-    skills: [
-      { label: "Core Web", items: "Next.js 14 Â· React 18 Â· TypeScript Â· Responsive Architecture" },
-      { label: "Creative UI", items: "Framer Motion Â· Tailwind CSS Â· Three.js Â· Glassmorphism Â· Bento Layouts" },
-      { label: "State & Data", items: "Zustand Â· React Query Â· SWR Â· Context API" },
-      { label: "Performance", items: "Core Web Vitals Â· SEO Â· Asset Optimization Â· accessibility (A11Y)" },
-    ],
-    projects: [
-      {
-        name: "Digital Architect Portfolio",
-        role: "UI/UX Engineer",
-        date: "2026",
-        tags: ["Next.js", "Framer Motion", "Tailwind", "Unique UI"],
-        bullets: [
-          "Designed and implemented a high-performance portfolio with custom glassmorphism and bento layouts.",
-          "Engineered complex micro-interactions and smooth page transitions using Framer Motion.",
-          "Achieved 100/100 Lighthouse performance scores through aggressive asset optimization."
-        ]
-      },
-      {
-        name: "WealthIn Interface",
-        role: "Frontend Lead",
-        date: "Feb 2026",
-        tags: ["React", "Tailwind", "Data Visualization", "Chart.js"],
-        bullets: [
-          "Crafted a sophisticated dashboard for financial modeling with real-time data visualization.",
-          "Implemented a modular component library used across the entire WealthIn ecosystem.",
-          "Optimized complex form wizards for high conversion and user clarity."
-        ]
-      }
-    ]
-  },
-  FULLSTACK: {
-    title: "Full Stack Developer",
-    subtitle: "Scalable Backends Â· Distributed Systems Â· Modern Web",
-    summary: "Versatile engineer capable of architecting end-to-end applications. Strong focus on backend reliability, database optimization, and seamless frontend integration. Experienced in cloud-native deployment and system design.",
-    skills: [
-      { label: "Backend", items: "Node.js Â· Python (FastAPI/Express) Â· PostgreSQL Â· Redis Â· GraphQL" },
-      { label: "Frontend", items: "Next.js Â· TypeScript Â· Tailwind CSS Â· State Management" },
-      { label: "DevOps", items: "Docker Â· Docker Compose Â· Git Actions Â· AWS/Vercel Â· Linux Systems" },
-      { label: "Architecture", items: "REST APIs Â· System Design Â· Database Schema Design Â· Caching Strategies" },
-    ],
-    projects: [
-      {
-        name: "WealthIn â€” Infrastructure",
-        role: "Software Architect",
-        date: "Feb 2026",
-        tags: ["Docker", "PostgreSQL", "Redis", "FastAPI"],
-        bullets: [
-          "Architected an asynchronous backend processing 100+ complex financial reports simultaneously.",
-          "Implemented a robust caching layer using Redis, reducing API latency by 60%.",
-          "Designed a multi-tenant database schema ensuring 100% data isolation and security."
-        ]
-      },
-      {
-        name: "SAARA Data Engine",
-        role: "Backend Engineer",
-        date: "2025",
-        tags: ["Python", "API Design", "Data Pipelines", "Pytest"],
-        bullets: [
-          "Built the core processing engine for high-volume document parsing and dataset generation.",
-          "Developed comprehensive test suites ensuring 95%+ code coverage for critical data paths.",
-          "Optimized data ingestion pipelines for memory efficiency when handling large PDF files."
-        ]
-      }
-    ]
-  }
-};
+      { label: "Agentic AI", items: "Google ADK Â· AutoGen Â· Mult‹PYÙ[Ü˜Ú\İ˜][Ûˆ0­ÈÛÛ]\ÙH]\›œÈˆKˆÈX™[ˆ“SÓ\È‹][\Îˆ”UÜ˜Ú0­ÈYÙÚ[™È˜XÙH0­ÈQÈ0­È›Û\[™Ú[™Y\š[™È0­ÈÛÛ\]\ˆš\Ú[ÛˆˆKˆÈX™[ˆ]]ÛX][Ûˆ‹][\ÎˆœØX\˜KXZH
+TJH0­È]\Ù]İ\˜][Ûˆ0­È^[İ]X]Ø\™H\œÚ[™È0­Èˆ›ØÙ\ÜÚ[™ÈˆKˆÈX™[ˆÛÜ™H]ˆ‹][\Îˆ”]Ûˆ0­ÈŞ\İ[H\˜Ú]Xİ\™H0­ÈØÚÙ\ˆ0­È™Y\È0­È™XİÜˆ]X˜\Ù\ÈˆKˆKˆ›Ú™XİÎˆÂˆÂˆ˜[YNˆ•ÙX[[ˆ8 %ZHš[˜[˜ÚX[ÔÈ‹ˆ›ÛNˆ“XYRH[™Ú[™Y\ˆ‹ˆ]Nˆ‘™XˆŒˆ‹ˆYÜÎˆÈ”]Ûˆ‹]]ÑÙ[ˆ‹”QÈ‹”ÜİÜ™TÔS—Kˆ[]ÎˆÂˆZ[Hš[˜[˜ÚX[ÔÈ›ÜˆTÓQ\Ë]]ÛX][™È[œİ]][Û˜[YÜ˜YHˆÙ[™\˜][Ûˆ[ˆÌZ[œËˆ‹ˆ’[\[Y[Y][KXYÙ[Ü˜Ú\İ˜][Ûˆ›ÜˆÛÛ\^š[˜[˜ÚX[[Ù[[™È[™ÛÛ\X[˜ÙKˆ‹ˆ“Ü[Z^™YQÈ\[[™\È›ÜˆYÚXXØİ\˜XŞH™Yİ[]ÜH]H™]šY]˜[ˆ‚ˆBˆKˆÂˆ˜[YNˆœØX\˜KXZH‹ˆ›ÛNˆ‘›İ[™[™È[™Ú[™Y\ˆ‹ˆ]NˆŒŒH‹ˆYÜÎˆÈ”]Ûˆ‹”TH‹‘Øİ[Y[RH‹]]ÛX][Ûˆ—Kˆ[šÎˆšÎ‹ËÜ\K›Ü™ËÜ›Ú™XİÜØX\˜KXZKÈ‹ˆ[]ÎˆÂˆ‘]™[ÜY[ˆÜ[‹\Ûİ\˜ÙH^[İ]X]Ø\™HØİ[Y[\œÙ\ˆ›Üˆ]]ÛX]Y]\Ù]İ\˜][Û‹ˆ‹ˆXÚY]™YL	H™YXİ[Ûˆ[ˆX[X[]H›ØÙ\ÜÚ[™È[YH›Üˆ[œİXİ\™Yˆš[\Ëˆ‚ˆ“XZ[Z[™Y[Y™XŞXÛHœ›ÛH\˜Ú]Xİ\™HÈX›XÈXÚØYÙH\İšX][Û‹ˆ‚ˆBˆBˆBˆKˆ”“Ó•S‘ˆÂˆ]Nˆ‘œ›Û[™\˜Ú]Xİ‹ˆİX]Nˆ’YÚT\™›Ü›X[˜ÙHRH0­ÈÜ™X]]™H[™Ú[™Y\š[™È0­È™XXİÓ™^šœÈ‹ˆİ[[X\NˆÜ™X]]™Hœ›Û[™]™[Ü\ˆYXØ]YÈZ[[™Èš\İX[Hİ[›š[™Ë^[\\™™Xİ[™YÚH[\˜Xİ]™HÙXˆ^\šY[˜Ù\Ëˆ^\[ˆ™^šœËœ˜[Y\ˆ[İ[Û‹[™[Ù\›ˆÔÔÈ\˜Ú]Xİ\™\ÈÚ]H›Øİ\ÈÛˆ	ĞRK\™XYIÈ[\™˜XÙ\Ëˆ‹ˆÚÚ[ÎˆÂˆÈX™[ˆÛÜ™HÙXˆ‹][\Îˆ“™^šœÈM0­È™XXİN0­È\TØÜš\0­È™\ÜÛœÚ]™H\˜Ú]Xİ\™HˆKˆÈX™[ˆÜ™X]]™HRH‹][\Îˆ‘œ˜[Y\ˆ[İ[Ûˆ0­ÈZ[Ú[™ÔÔÈ0­È™YKšœÈ0­ÈÛ\ÜÛ[Üœ\ÛH0­È™[È^[İ]ÈˆKˆÈX™[ˆ”İ]H	ˆ]H‹][\Îˆ–\İ[™0­È™XXİ]Y\H0­ÈÕÔˆ0­ÈÛÛ^THˆKˆÈX™[ˆ”\™›Ü›X[˜ÙH‹][\ÎˆÛÜ™HÙXˆš][È0­ÈÑSÈ0­È\ÜÙ]Ü[Z^˜][Ûˆ0­ÈXØÙ\ÜÚXš[]H
+LLVJHˆKˆKˆ›Ú™XİÎˆÂˆÂˆ˜[YNˆ‘YÚ][\˜Ú]XİÜ›Û[È‹ˆ›ÛNˆ•RKÕV[™Ú[™Y\ˆ‹ˆ]NˆŒŒˆ‹ˆYÜÎˆÈ“™^šœÈ‹‘œ˜[Y\ˆ[İ[Ûˆ‹•Z[Ú[™‹•[š\]YHRH—Kˆ[]ÎˆÂˆ‘\ÚYÛ™Y[™[\[Y[YHYÚ\\™›Ü›X[˜ÙHÜ›Û[ÈÚ]İ\İÛHÛ\ÜÛ[Üœ\ÛH[™™[È^[İ]Ëˆ‹ˆ‘[™Ú[™Y\™YÛÛ\^ZXÜ›ËZ[\˜Xİ[ÛœÈ[™Û[ÛİYÙH˜[œÚ][ÛœÈ\Ú[™Èœ˜[Y\ˆ[İ[Û‹ˆ‹ˆXÚY]™YLÌLYÚİ\ÙH\™›Ü›X[˜ÙHØÛÜ™\È›İYÚYÙÜ™\ÜÚ]™H\ÜÙ]Ü[Z^˜][Û‹ˆ‚ˆBˆKˆÂˆ˜[YNˆ•ÙX[[ˆ[\™˜XÙH‹ˆ›ÛNˆ‘œ›Û[™XY‹ˆ]Nˆ‘™XˆŒˆ‹ˆYÜÎˆÈ”™XXİ‹•Z[Ú[™‹‘]Hš\İX[^˜][Ûˆ‹Ú\šœÈ—Kˆ[]ÎˆÂˆÜ˜YYHÛÜ\İXØ]Y\Ú›Ø\™›Üˆš[˜[˜ÚX[[Ù[[™ÈÚ]™X[][YH]Hš\İX[^˜][Û‹ˆ‹ˆ–Ü[Y[YH[Ù[\ˆÛÛ\Û™[Xœ˜\H\ÙYXÜ›ÜÜÈH[\™HÙX[[ˆXÛÜŞ\İ[Kˆ‹ˆ“Ü[Z^™YÛÛ\^›Ü›HÚ^˜\™È›ÜˆYÚÛÛ™\œÚ[Ûˆ[™\Ù\ˆÛ\š]Kˆ‚ˆBˆBˆBˆKˆ•SÕPÒÎˆÂˆ]Nˆ‘[İXÚÈ]™[Ü\ˆ‹ˆİX]Nˆ”ØØ[X›H˜XÚÙ[™È0­È\İšX]YŞ\İ[\È0­È[Ù\›ˆÙXˆ‹ˆİ[[X\Nˆ•™\œØ][H[™Ú[™Y\ˆØ\X›HÙˆ\˜Ú]Xİ[™È[™]ËY[™\XØ][ÛœËˆİ›Û™È›Øİ\ÈÛˆ˜XÚÙ[™™[XXš[]K]X˜\ÙHÜ[Z^˜][Û‹[™ÙX[[\ÜÈœ›Û[™[YÜ˜][Û‹ˆ^\šY[˜ÙY[ˆÛİY[˜]]™H\Ş[Y[[™Ş\İ[H\ÚYÛ‹ˆ‹ˆÚÚ[ÎˆÂˆÈX™[ˆ˜XÚÙ[™‹][\Îˆ“›ÙKšœÈ0­È]Ûˆ
+˜\İTKÑ^™\ÜÊH0­ÈÜİÜ™TÔS0­È™Y\È0­ÈÜ˜\SˆKˆÈX™[ˆ‘œ›Û[™‹][\Îˆ“™^šœÈ0­È\TØÜš\0­ÈZ[Ú[™ÔÔÈ0­Èİ]HX[˜YÙ[Y[ˆKˆÈX™[ˆ‘]“ÜÈ‹][\Îˆ‘ØÚÙ\ˆ0­ÈØÚÙ\ˆÛÛ\ÜÙH0­ÈÚ]Xİ[ÛœÈ0­ÈUÔËÕ™\˜Ù[0­È[^Ş\İ[\ÈˆKˆÈX™[ˆ\˜Ú]Xİ\™H‹][\Îˆ”‘TÕT\È0­ÈŞ\İ[H\ÚYÛˆ0­È]X˜\ÙHØÚ[XH\ÚYÛˆ0­ÈØXÚ[™Èİ˜]YÚY\ÈˆKˆKˆ›Ú™XİÎˆÂˆÂˆ˜[YNˆ•ÙX[[ˆ8 %[™œ˜\İXİ\™H‹ˆ›ÛNˆ”ÛÙØ\™H\˜Ú]Xİ‹ˆ]Nˆ‘™XˆŒˆ‹ˆYÜÎˆÈ‘ØÚÙ\ˆ‹”ÜİÜ™TÔ‹”™Y\È‹‘˜\İTH—Kˆ[]ÎˆÂˆ\˜Ú]XİY[ˆ\Ş[˜Ú›Û›İ\È˜XÚÙ[™›ØÙ\ÜÚ[™ÈL
+ÈÛÛ\^š[˜[˜ÚX[™\ÜÈÚ[][[™[İ\ÛKˆ‹ˆ’[\[Y[YH›Ø\İØXÚ[™È^Y\ˆ\Ú[™È™Y\Ë™YXÚ[™ÈTH][˜ŞHHŒ	Kˆ‹ˆ‘\ÚYÛ™YH][K][˜[]X˜\ÙHØÚ[XH[œİ\š[™ÈL	H]H\ÛÛ][Ûˆ[™ÙXİ\š]Kˆ‚ˆBˆKˆÂˆ˜[YNˆ”ĞPTH]H[™Ú[™H‹ˆ›ÛNˆ˜XÚÙ[™[™Ú[™Y\ˆ‹ˆ]NˆŒŒH‹ˆYÜÎˆÈ”]Ûˆ‹TH\ÚYÛˆ‹‘]H\[[™\È‹”]\İ—Kˆ[]ÎˆÂˆZ[HÛÜ™H›ØÙ\ÜÚ[™È[™Ú[™H›ÜˆYÚ]›Û[YHØİ[Y[\œÚ[™È[™]\Ù]Ù[™\˜][Û‹ˆ‹ˆ‘]™[ÜYÛÛ\™Z[œÚ]™H\İİZ]\È[œİ\š[™ÈMJÉHÛÙHÛİ™\˜YÙH›ÜˆÜš]XØ[]H]Ëˆ‹ˆ“Ü[Z^™Y]H[™Ù\İ[Ûˆ\[[™\È›ÜˆY[[ÜHY™šXÚY[˜ŞHÚ[ˆ[™[™È\™ÙHˆš[\Ëˆ‚ˆBˆBˆBˆBŸNÂ‚˜ÛÛœİÛÛZ[™\•˜\šX[ÈHÂˆY[ˆÈÜXÚ]NˆKˆÚİÎˆÂˆÜXÚ]NˆKˆ˜[œÚ][ÛˆÂˆİYÙÙ\Ú[™[ˆŒKˆKˆKŸNÂ‚˜ÛÛœİ˜YU\HÂˆY[ˆÈÜXÚ]NˆNˆŒš[\ˆ	Ø›\ŠL
+IÈKˆÚİÎˆÈˆÜXÚ]NˆKˆNˆˆš[\ˆ	Ø›\Š
+IËˆ˜[œÚ][ÛˆÈˆ\˜][ÛˆˆX\ÙNˆÌŒM‹KŒËWHˆHˆKŸNÂ‚™^ÜY˜][[˜İ[Ûˆ™\İ[YTYÙJ
+HÂˆÛÛœİØXİ]™T›ÛKÙ]Xİ]™T›ÛWHH\ÙTİ]O™\İ[YT›ÛOŠ	ĞRIÊNÂ‚ˆ\ÙQY™™Xİ
 
-export default function ResumePage() {
-  const [activeRole, setActiveRole] = useState<ResumeRole>('AI');
 
-  useEffect(() => {
-    document.title = `Kilani Sai Nikhil â€” ${RESUMES[activeRole].title}`;
-  }, [activeRole]);
+HOˆÂˆØİ[Y[]HHÚ[[šHØZHšZÚ[8 %	Ô‘TÕSQTÖØXİ]™T›ÛWK]_XÂˆKØXİ]™T›ÛWJNÂ‚ˆ™]\›ˆ
+ˆ]ˆÛ\ÜÓ˜[YOH›Z[‹Z\ØÜ™Y[ˆ™ËVÈÌLLWH^]Ú]H›Û\Ø[œÈÙ[Xİ[Û˜™ËXXØÙ[XŞX[‹ÌÌİ™\™›İË^ZY[ˆ‚ˆˆ
 
-  return (
-    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-accent-cyan/30">
-      
-      {/* --- Floating Control Panel (No Print) --- */}
-      <nav className="no-print fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-2xl flex items-center gap-6 border-white/5 shadow-2xl shadow-black">
-        <div className="flex items-center gap-1">
-          {(Object.keys(RESUMES) as ResumeRole[]).map((role) => (
-            <button
-              key={role}
-              onClick={() => setActiveRole(role)}
-              className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
-                activeRole === role ? 'bg-accent-cyan text-black shadow-lg shadow-accent-cyan/20' : 'text-zinc-500 hover:text-white'
-              }`}
-            >
-              {role}
-            </button>
-          ))}
-        </div>
-        <div className="h-4 w-[1px] bg-white/10" />
-        <div className="flex items-center gap-3">
-          <button onClick={() => window.print()} className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-accent-cyan transition-colors">
-            <Download size={18} />
-          </button>
-          <a href="/" className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-400 transition-colors">
-            <ChevronRight size={18} />
-          </a>
-        </div>
-      </nav>
+ˆ˜XÚÙÜ›İ[™XÛÜˆ
+ŠBˆ]ˆÛ\ÜÓ˜[YOH™š^Y[œÙ]L^‹LLÚ[\‹Y]™[Ë[›Û™H‚ˆ]ˆÛ\ÜÓ˜[YOH˜XœÛÛ]HÜLšYÚLËVÍŒHVÍŒH™ËXXØÙ[XŞX[‹ÍH›\‹VÌMLHˆÏ‚ˆ]ˆÛ\ÜÓ˜[YOH˜XœÛÛ]H›İÛKLYLËVÍLHVÍLH™ËXXØÙ[\\œKÍH›\‹VÌLŒHˆÏ‚ˆÙ]‚‚ˆ
 
-      {/* --- Resume Document --- */}
-      <AnimatePresence mode="wait">
-        <motion.main
-          key={activeRole}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.4 }}
-          className="resume-container mx-auto max-w-[850px] bg-white text-[#111] p-12 shadow-2xl print:shadow-none print:p-0 min-h-[1100px]"
-        >
-          {/* Header */}
-          <header className="flex justify-between items-start border-b-4 border-accent-cyan pb-8 mb-8">
-            <div className="space-y-1">
-              <h1 className="text-4xl font-black tracking-tighter uppercase text-black">Kilani Sai Nikhil</h1>
-              <div className="flex items-center gap-2 text-accent-cyan">
-                <div className="w-8 h-[2px] bg-accent-cyan" />
-                <p className="text-sm font-black uppercase tracking-[0.2em]">{RESUMES[activeRole].title}</p>
-              </div>
-              <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">{RESUMES[activeRole].subtitle}</p>
-            </div>
-            
-            <div className="text-right space-y-2">
-              <ContactInfo icon={Mail} text="kilanisainikhil@gmail.com" />
-              <ContactInfo icon={Linkedin} text="linkedin.com/in/kilanisainikhil" href="https://linkedin.com/in/kilanisainikhil" />
-              <ContactInfo icon={Github} text="github.com/nikhil49023" href="https://github.com/nikhil49023" />
-              <div className="flex items-center justify-end gap-1.5 text-[10px] font-bold text-zinc-400">
-                <MapPin size={10} /> HYDERABAD, INDIA
-              </div>
-            </div>
-          </header>
+ˆKKH›Ø][™ÈÛÛ›Û[™[
+›Èš[
+HKKH
+ŠBˆ˜]ˆÛ\ÜÓ˜[YOH››Ë\š[š^YÜNYLKÌˆ]˜[œÛ]K^LKÌˆ‹VÌLHÛ\ÜÈMˆKLÈ›İ[™YVÌœ™[WH›^][\ËXÙ[\ˆØ\N›Ü™\‹]Ú]KÌLÚYİËVÌÌÌÍŒÜ™Ø˜J
+WH˜XÚÙ›ÜX›\‹LŞ‚ˆ]ˆÛ\ÜÓ˜[YOH™›^][\ËXÙ[\ˆØ\Lˆ‚ˆÊØš™XİšÙ^\Ê‘TÕSQTÊH\È™\İ[YT›ÛV×JK›X\
 
-          {/* Summary */}
-          <Section title="Professional Narrative">
-            <p className="text-sm leading-relaxed text-zinc-600 font-medium italic">
-              "{RESUMES[activeRole].summary}"
-            </p>
-          </Section>
+›ÛJHOˆ
+ˆ]Û‚ˆÙ^O^Ü›Û_BˆÛÛXÚÏ^Ê
+HOˆÙ]Xİ]™T›ÛJ›ÛJ_BˆÛ\ÜÓ˜[YO^ØMˆKL‹H›İ[™YL^VÌLH›ÛX›XÚÈ\\˜Ø\ÙH˜XÚÚ[™ËVÌŒ™[WH˜[œÚ][Û‹X[\˜][Û‹ML	ÂˆXİ]™T›ÛHOOH›ÛHÈ	Ø™ËXXØÙ[XŞX[ˆ^X›XÚÈÚYİËLÚYİËXXØÙ[XŞX[‹ÌŒ	Èˆ	İ^^š[˜ËMLİ™\^]Ú]Hİ™\˜™Ë]Ú]KÍIÂˆXBˆ‚ˆÜ›Û_BˆØ]Û‚ˆ
+J_BˆÙ]‚ˆ]ˆÛ\ÜÓ˜[YOHšMˆËVÌ\H™Ë]Ú]KÌLˆÏ‚ˆ]ˆÛ\ÜÓ˜[YOH™›^][\ËXÙ[\ˆØ\M‚ˆ]ÛˆˆÛÛXÚÏ^Ê
+HOˆÚ[™İËœš[
 
-          {/* Core Competencies */}
-          <Section title="Core Competencies">
-            <div className="grid grid-cols-2 gap-x-12 gap-y-4">
-              {RESUMES[activeRole].skills.map((s) => (
-                <div key={s.label}>
-                  <p className="text-[10px] font-black uppercase tracking-widest text-accent-cyan mb-1">{s.label}</p>
-                  <p className="text-xs text-zinc-600 font-bold leading-relaxed">{s.items}</p>
-                </div>
-              ))}
-            </div>
-          </Section>
+_HˆÛ\ÜÓ˜[YOHœLÈ›İ[™YL™Ë]Ú]KÍHİ™\˜™Ë]Ú]KÌL^XXØÙ[XŞX[ˆ˜[œÚ][Û‹X[›Ü™\ˆ›Ü™\‹]Ú]KÍHİ™\˜›Ü™\‹XXØÙ[XŞX[‹Í‚ˆ]OH‘İÛ›ØYˆ‚ˆ‚ˆİÛ›ØYÚ^™O^ÌNHÏ‚ˆØ]Û‚ˆ[šÈˆ™YH‹ÈˆˆÛ\ÜÓ˜[YOHœLÈ›İ[™YL™Ë]Ú]KÍHİ™\˜™Ë]Ú]KÌL^^š[˜ËM˜[œÚ][Û‹X[›Ü™\ˆ›Ü™\‹]Ú]KÍHİ™\^]Ú]H‚ˆ]OH”™]\›ˆÛYH‚ˆ‚ˆÚ]œ›Û”šYÚÚ^™O^ÌNHÏ‚ˆÓ[šÏ‚ˆÙ]‚ˆÛ˜]‚‚ˆ
 
-          {/* Selected Work */}
-          <Section title="Strategic Implementations">
-            <div className="space-y-8">
-              {RESUMES[activeRole].projects.map((p) => (
-                <div key={p.name} className="relative pl-6 border-l-2 border-zinc-100">
-                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-4 border-accent-cyan" />
-                  <div className="flex justify-between items-start mb-2">
-                    <div>
-                      <h4 className="text-base font-black text-black uppercase flex items-center gap-2">
-                        {p.name} {p.link && <a href={p.link} target="_blank"><ExternalLink size={12} className="text-accent-cyan" /></a>}
-                      </h4>
-                      <p className="text-xs font-bold text-accent-cyan uppercase">{p.role}</p>
-                    </div>
-                    <span className="text-[10px] font-black text-zinc-400 uppercase">{p.date}</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {p.tags.map(t => (
-                      <span key={t} className="text-[8px] font-black px-2 py-0.5 rounded bg-zinc-50 border border-zinc-100 text-zinc-500 uppercase">{t}</span>
-                    ))}
-                  </div>
-                  <ul className="space-y-1.5">
-                    {p.bullets.map((b, i) => (
-                      <li key={i} className="text-xs text-zinc-600 leading-relaxed list-square ml-4">{b}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </Section>
+ˆKKH™\İ[YHØİ[Y[KKH
+ŠBˆ[š[X]T™\Ù[˜ÙH[ÙOHØZ]‚ˆ[İ[Û‹›XZ[‚ˆÙ^O^ØXİ]™T›Û_Bˆ˜\šX[Ï^ØÛÛZ[™\•˜\šX[ßBˆ[š]X[HšY[ˆ‚ˆ[š[X]OHœÚİÈ‚ˆ^]^ŞÈÜXÚ]NˆØØ[NˆN˜[œÚ][ÛˆÈ\˜][ÛˆŒÈH_BˆÛ\ÜÓ˜[YOHœ™\İ[YKXÛÛZ[™\ˆ^X]]ÈX^]ËVÎLH™Ë]Ú]H^VÈÌLLWHLMˆÛNœLŒÚYİËVÌÍLÌLÜ™Ø˜JJWHš[œÚYİË[›Û™Hš[œLZ[‹ZVÌLŒH™[]]™Hİ™\™›İËZY[ˆ^KLÌˆ›İ[™YVÌÜ™[WHš[œ›İ[™Y[›Û™H‚ˆ‚ˆ
 
-          {/* Background */}
-          <div className="grid grid-cols-2 gap-12 mt-12 pt-8 border-t-2 border-zinc-100">
-            <div>
-              <h3 className="text-xs font-black uppercase tracking-widest text-black mb-4 flex items-center gap-2">
-                <GraduationCap size={14} className="text-accent-cyan" /> Academic Roots
-              </h3>
-              <p className="text-xs font-black text-black">NxtWave Institute (NIAT)</p>
-              <p className="text-[10px] font-bold text-accent-cyan uppercase">B.Tech Â· Computer Science</p>
-              <p className="text-[10px] font-medium text-zinc-500 mt-1">2025 â€“ 2029 Â· HYDERABAD</p>
-            </div>
-            <div>
-              <h3 className="text-xs font-black uppercase tracking-widest text-black mb-4 flex items-center gap-2">
-                <Award size={14} className="text-accent-cyan" /> Recognition
-              </h3>
-              <div className="space-y-3">
-                <p className="text-[10px] font-bold text-zinc-600">
-                  <span className="text-black font-black uppercase">National Finalist</span> Â· OpenAI Buildathon 2026 (Top 0.1%)
-                </p>
-                <p className="text-[10px] font-bold text-zinc-600">
-                  <span className="text-black font-black uppercase">Certified Expert</span> Â· AMD AI Academy: Agents 101
-                </p>
-              </div>
-            </div>
-          </div>
-          
-          <footer className="mt-12 text-center">
-            <p className="text-[8px] font-black text-zinc-300 uppercase tracking-[0.4em]">Verified Engineer Portfolio Â· Kilani Sai Nikhil Â· 2026</p>
-          </footer>
-        </motion.main>
-      </AnimatePresence>
+ˆXY\ˆXÛÜˆ
+›Û‹\š[
+H
+ŠBˆ]ˆÛ\ÜÓ˜[YOH˜XœÛÛ]HÜLYLšYÚLLˆ™ËYÜ˜YY[]Ë\ˆœ›ÛKXXØÙ[XŞX[ˆšXKXXØÙ[\\œHËXXØÙ[\[šÈ›Ë\š[ˆÏ‚ˆˆ
 
-      <style jsx global>{`
-        @media print {
-          .no-print { display: none !important; }
-          body { background: white !important; padding: 0 !important; margin: 0 !important; }
-          .resume-container { 
-            max-width: 100% !important; 
-            box-shadow: none !important; 
-            padding: 0 !important;
-            margin: 0 !important;
-            border: none !important;
-          }
-        }
-        .list-square { list-style-type: square; }
-        @page {
-          size: A4;
-          margin: 15mm;
-        }
-      `}</style>
-    </div>
-  );
-}
-
-/* --- Utilities --- */
-
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section className="mb-10">
-      <div className="flex items-center gap-4 mb-5">
-        <h2 className="text-xs font-black uppercase tracking-[0.25em] text-black whitespace-nowrap">{title}</h2>
-        <div className="h-[1px] w-full bg-zinc-100" />
-      </div>
-      {children}
-    </section>
-  );
-}
-
-function ContactInfo({ icon: Icon, text, href }: { icon: any; text: string; href?: string }) {
-  const content = (
-    <div className="flex items-center justify-end gap-2 text-[10px] font-bold text-zinc-600 hover:text-accent-cyan transition-colors uppercase tracking-wider">
-      <span>{text}</span>
-      <Icon size={12} className="text-accent-cyan" />
-    </div>
-  );
-  return href ? <a href={href} target="_blank">{content}</a> : content;
-}
-
-function MapPin(props: any) {
-  return (
-    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-  );
-}
+ˆXY\ˆ
+ŠBˆXY\ˆÛ\ÜÓ˜[YOH™›^›^XÛÛY™›^\›İÈ\İYKX™]ÙY[ˆ][\Ë\İ\›Ü™\‹X‹VÍœH›Ü™\‹XXØÙ[XŞX[ˆ‹LLˆX‹LLˆØ\LL‚ˆ]ˆÛ\ÜÓ˜[YOHœÜXÙK^KM‚ˆHÛ\ÜÓ˜[YOH^M^›ÛX›XÚÈ˜XÚÚ[™Ë]YÚ\ˆ\\˜Ø\ÙH^X›XÚÈXY[™Ë[›Û™H’Ú[[šHØZHšZÚ[ÚO‚ˆ]ˆÛ\ÜÓ˜[YOH™›^][\ËXÙ[\ˆØ\M^XXØÙ[XŞX[ˆ‚ˆ]ˆÛ\ÜÓ˜[YOHËLLˆVÌÜH™ËXXØÙ[XŞX[ˆˆÏ‚ˆÛ\ÜÓ˜[YOH^[È›ÛX›XÚÈ\\˜Ø\ÙH˜XÚÚ[™ËVÌŒY[WHÔ‘TÕSQTÖØXİ]™T›ÛWK]_OÜ‚ˆÙ]‚ˆÛ\ÜÓ˜[YOH^\ÛH›ÛX›Û^^š[˜ËML\\˜Ø\ÙH˜XÚÚ[™Ë]ÚY\İÔ‘TÕSQTÖØXİ]™T›ÛWKœİ[[X\_OÜ‚ˆÙ]‚ˆ

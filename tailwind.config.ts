@@ -9,14 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#050505',
-        foreground: '#ffffff',
+        background: '#050407',
+        foreground: '#f8f1df',
         accent: {
-          cyan: '#00D8FF',
-          purple: '#7C3AED',
-          pink: '#FF2D55',
-          lime: '#10B981',
-          gold: '#F59E0B',
+          cyan: '#d8b76e',
+          purple: '#7a243d',
+          pink: '#c86f57',
+          lime: '#1f7a62',
+          gold: '#f1d89a',
         },
         zinc: {
           '50': '#fafafa',
@@ -67,6 +67,11 @@ const config: Config = {
       },
     },
   },
+  safelist: [
+    {
+      pattern: /(bg|text|border|from|to|via)-accent-(cyan|purple|pink|lime|gold)(\/(5|10|15|20|30|40|50))?/,
+    },
+  ],
   plugins: [],
 };
 
