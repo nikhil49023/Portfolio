@@ -1,13 +1,33 @@
 'use client';
 
+import { useRef } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Github, Linkedin, Package, ArrowRight, MapPin, Download, Sparkles, Code2, Cpu, Globe } from 'lucide-react';
 
-const fadeUp = (delay = 0) => ({
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] } },
-});
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40, filter: 'blur(10px)' },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    filter: 'blur(0px)',
+    transition: { 
+      duration: 1.2, 
+      ease: [0.16, 1, 0.3, 1] 
+    } 
+  },
+};
 
 const SOCIALS = [
   { icon: Github, href: 'https://github.com/nikhil49023', label: 'GitHub' },
@@ -22,109 +42,169 @@ const ROLES = [
 ];
 
 export function Hero() {
+  const containerRef = useRef<HTMLElement>(null);
+  const { scrollY } = useScroll();
+  
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  
+  const springY1 = useSpring(y1, { stiffness: 100, damping: 30 });
+  const springY2 = useSpring(y2, { stiffness: 100, damping: 30 });
+
   return (
-    <section id="hero" className="section relative overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32">
+    <section ref={containerRef} id="hero" className="section relative overflow-hidden pt-32 pb-20 lg:pt-56 lg:pb-40">
       
       {/* Background patterns */}
       <div className="absolute inset-0 bg-grid-pattern -z-10 opacity-30" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-radial from-accent-cyan/10 to-transparent -z-10" />
+      <motion.div 
+        style={{ y: springY1, opacity }}
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-gradient-radial from-accent-cyan/15 to-transparent -z-10 blur-[120px]" 
+      />
 
-      {/* Floating Badge */}
-      <motion.div variants={fadeUp(0)} initial="hidden" animate="show" className="mb-10 flex items-center justify-center lg:justify-start gap-3">
-        <div className="glass px-4 py-1.5 rounded-full border-accent-cyan/20 flex items-center gap-2 shadow-2xl shadow-accent-cyan/10">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-cyan opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-cyan"></span>
-          </span>
-          <span className="text-[10px] font-bold tracking-widest uppercase text-accent-cyan/80">Open for Strategic Partnerships</span>
-        </div>
-        <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-medium text-zinc-500 uppercase tracking-wider">
-          <MapPin size={10} className="text-zinc-600" /> Hyderabad, IN
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="relative z-10"
+      >
+        {/* Floating Badge */}
+        <motion.div variants={fadeUp} className="mb-12 flex items-center justify-center lg:justify-start gap-4">
+          <div className="glass px-5 py-2 rounded-2xl border-accent-cyan/20 flex items-center gap-3 shadow-2xl shadow-accent-cyan/10">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-cyan opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent-cyan shadow-[0_0_10px_rgba(0,216,255,0.8)]"></span>
+            </span>
+            <span className="text-[10px] font-black tracking-[0.3em] uppercase text-accent-cyan/90">Available for Innovation</span>
+          </div>
+          <div className="hidden sm:flex items-center gap-2 text-[10px] font-bold text-zinc-500 uppercase tracking-widest bg-white/5 px-4 py-2 rounded-2xl border border-white/5">
+            <MapPin size={12} className="text-zinc-600" /> Hyderabad, India
+          </div>
+        </motion.div>
+
+        {/* Hero Content */}
+        <div className="max-w-5xl mx-auto lg:mx-0 text-center lg:text-left">
+          <motion.div variants={fadeUp} className="mb-10">
+            <h1 className="display-heading text-[3rem] xs:text-[4rem] sm:text-[6rem] lg:text-[9rem] leading-[0.85] font-black">
+              <span className="text-white">CRAFTING</span><br />
+              <span className="gradient-text">INTELLIGENT</span><br />
+              <span className="text-white/30 italic font-light">FRONTIERS</span>
+            </h1>
+          </motion.div>
+
+          {/* Dynamic Role Tags */}
+          <motion.div variants={fadeUp} className="mb-12 flex flex-wrap justify-center lg:justify-start gap-4">
+            {ROLES.map(({ icon: Icon, label }) => (
+              <motion.div 
+                key={label} 
+                whileHover={{ y: -5, scale: 1.05 }}
+                className="group relative"
+              >
+                <div className="absolute inset-0 bg-accent-cyan/25 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative glass px-6 py-3 rounded-2xl flex items-center gap-3 border-white/5 group-hover:border-accent-cyan/40 transition-all duration-500">
+                  <Icon size={16} className="text-accent-cyan group-hover:scale-110 transition-transform duration-500" />
+                  <span className="text-xs font-black text-zinc-400 group-hover:text-white uppercase tracking-widest transition-colors">{label}</span>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Narrative Bio */}
+          <motion.p variants={fadeUp} className="mb-14 max-w-2xl mx-auto lg:mx-0 text-lg lg:text-2xl text-zinc-400 leading-relaxed font-medium">
+            Architecting the future where <span className="text-accent-cyan font-bold">pixel-perfect interfaces</span> meet <span className="text-accent-purple font-bold">autonomous AI intelligence</span>. 
+            I build systems that don't just respond, but reason.
+          </motion.p>
+
+          {/* Action Controls */}
+          <motion.div variants={fadeUp} className="flex flex-wrap justify-center lg:justify-start gap-6 items-center">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+              <Link href="#projects" className="btn-neon flex items-center gap-4 group">
+                System Artifacts 
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                </motion.div>
+              </Link>
+            </motion.div>
+            
+            <Link href="/resume" className="btn-outline flex items-center gap-4 hover:bg-white/5">
+              <Download size={20} /> Dossier
+            </Link>
+
+            <div className="flex items-center gap-3 ml-2">
+              {SOCIALS.map(({ icon: Icon, href, label }) => (
+                <motion.a 
+                  key={label} 
+                  href={href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  title={label}
+                  whileHover={{ y: -5, backgroundColor: 'rgba(0, 216, 255, 0.1)', borderColor: 'rgba(0, 216, 255, 0.4)' }}
+                  className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-zinc-500 hover:text-white border-white/5 transition-all duration-500"
+                >
+                  <Icon size={22} />
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </motion.div>
 
-      {/* Hero Content */}
-      <div className="max-w-4xl mx-auto lg:mx-0 text-center lg:text-left">
-        <motion.div variants={fadeUp(0.1)} initial="hidden" animate="show" className="mb-8">
-          <h1 className="display-heading text-[2.8rem] xs:text-[3.5rem] sm:text-[5rem] lg:text-[7.5rem] leading-[0.9] lg:leading-[0.85] font-black">
-            <span className="text-white">ENGINEERING</span><br />
-            <span className="gradient-text">INTELLIGENT</span><br />
-            <span className="text-white/40">EXPERIENCES</span>
-          </h1>
-        </motion.div>
-
-        {/* Dynamic Role Tags */}
-        <motion.div variants={fadeUp(0.2)} initial="hidden" animate="show" className="mb-10 flex flex-wrap justify-center lg:justify-start gap-3">
-          {ROLES.map(({ icon: Icon, label }) => (
-            <div key={label} className="group relative">
-              <div className="absolute inset-0 bg-accent-cyan/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="relative glass px-4 py-2 rounded-xl flex items-center gap-2 border-white/5 hover:border-accent-cyan/30 transition-colors">
-                <Icon size={14} className="text-accent-cyan" />
-                <span className="text-xs font-bold text-zinc-300 group-hover:text-white transition-colors">{label}</span>
-              </div>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Narrative Bio */}
-        <motion.p variants={fadeUp(0.3)} initial="hidden" animate="show" className="mb-12 max-w-2xl mx-auto lg:mx-0 text-lg lg:text-xl text-zinc-400 leading-relaxed font-medium">
-          I bridge the gap between <span className="text-accent-cyan">sophisticated frontend architecture</span> and <span className="text-accent-purple">autonomous AI agents</span>. 
-          Specializing in crafting high-performance, visually stunning applications that leverage the power of tool-using LLMs and multi-agent orchestration.
-        </motion.p>
-
-        {/* Action Controls */}
-        <motion.div variants={fadeUp(0.4)} initial="hidden" animate="show" className="flex flex-wrap justify-center lg:justify-start gap-4">
-          <Link href="#projects" className="btn-neon flex items-center gap-3">
-            Exploration <ArrowRight size={18} />
-          </Link>
-          <Link href="/resume" className="btn-outline flex items-center gap-3">
-            <Download size={18} /> Credentials
-          </Link>
-          <div className="flex items-center gap-2 ml-2">
-            {SOCIALS.map(({ icon: Icon, href, label }) => (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer" title={label} className="w-12 h-12 rounded-full glass flex items-center justify-center text-zinc-500 hover:text-accent-cyan hover:border-accent-cyan/50 transition-all">
-                <Icon size={18} />
-              </a>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-
       {/* Decorative Elements */}
-      <div className="hidden lg:block absolute right-[-5%] top-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-accent-cyan/10 rounded-full -z-10 animate-spin-slow" />
-      <div className="hidden lg:block absolute right-[5%] top-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-accent-purple/10 rounded-full -z-10 animate-spin-slow" style={{ animationDirection: 'reverse' }} />
-      
-      {/* Floating Card UI */}
       <motion.div 
-        initial={{ opacity: 0, x: 100, rotate: 10 }} 
-        animate={{ opacity: 1, x: 0, rotate: -5 }} 
-        transition={{ delay: 0.6, duration: 1 }}
-        className="hidden xl:block absolute right-20 top-40 w-80 glass p-8 rounded-[2rem] border-accent-cyan/20 shadow-2xl shadow-accent-cyan/5 backdrop-blur-3xl"
+        style={{ y: springY2 }}
+        className="hidden lg:block absolute right-[-10%] top-1/4 w-[700px] h-[700px] border border-accent-cyan/5 rounded-full -z-10 animate-spin-slow opacity-50" 
+      />
+      <motion.div 
+        style={{ y: springY1 }}
+        className="hidden lg:block absolute right-[0%] top-1/3 w-[500px] h-[500px] border border-accent-purple/5 rounded-full -z-10 animate-spin-slow opacity-50" 
+        style={{ animationDirection: 'reverse' }} 
+      />
+      
+      {/* Floating Status UI */}
+      <motion.div 
+        initial={{ opacity: 0, x: 100, rotate: 15 }} 
+        animate={{ opacity: 1, x: 0, rotate: -8 }} 
+        transition={{ delay: 1, duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+        whileHover={{ rotate: 0, scale: 1.05, transition: { duration: 0.5 } }}
+        className="hidden xl:block absolute right-24 top-64 w-80 glass p-10 rounded-[2.5rem] border-accent-cyan/20 shadow-2xl shadow-accent-cyan/5 backdrop-blur-3xl group cursor-default"
       >
-        <div className="flex items-center gap-4 mb-6">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent-cyan to-accent-purple p-[1px]">
-            <div className="w-full h-full rounded-2xl bg-[#030303] flex items-center justify-center">
-              <Sparkles size={24} className="text-accent-cyan" />
+        <div className="flex items-center gap-5 mb-8">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent-cyan via-accent-purple to-accent-pink p-[1px] group-hover:rotate-12 transition-transform duration-700">
+            <div className="w-full h-full rounded-2xl bg-[#050505] flex items-center justify-center">
+              <Sparkles size={28} className="text-accent-cyan animate-pulse" />
             </div>
           </div>
           <div>
-            <p className="text-[10px] font-bold text-accent-cyan uppercase tracking-tighter">Recognition</p>
-            <p className="text-sm font-black text-white">National Finalist</p>
+            <p className="text-[10px] font-black text-accent-cyan uppercase tracking-[0.2em] mb-1">Status Report</p>
+            <p className="text-base font-black text-white uppercase tracking-tighter">Elite Engineer</p>
           </div>
         </div>
-        <div className="space-y-4">
-          <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-            <motion.div 
-              initial={{ width: 0 }} 
-              animate={{ width: '92%' }} 
-              transition={{ delay: 1, duration: 1.5 }} 
-              className="h-full bg-accent-cyan" 
-            />
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-zinc-500">
+              <span>Optimization</span>
+              <span className="text-accent-cyan">98%</span>
+            </div>
+            <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+              <motion.div 
+                initial={{ width: 0 }} 
+                animate={{ width: '98%' }} 
+                transition={{ delay: 1.5, duration: 2, ease: "easeOut" }} 
+                className="h-full bg-gradient-to-r from-accent-cyan to-accent-purple" 
+              />
+            </div>
           </div>
-          <p className="text-[10px] font-medium text-zinc-500">
-            Ranked in the top 0.1% at the OpenAI × NxtWave Buildathon 2026. 
-            Selected for excellence in AI application architecture.
+          <p className="text-[11px] font-medium text-zinc-500 leading-relaxed italic">
+            "Recognized for architecting highly scalable RAG systems and autonomous multi-agent environments."
           </p>
+        </div>
+        
+        {/* Decorative corner */}
+        <div className="absolute top-0 right-0 w-16 h-16 overflow-hidden rounded-tr-[2.5rem]">
+          <div className="absolute top-0 right-0 w-8 h-8 bg-accent-cyan/10 rotate-45 translate-x-4 -translate-y-4" />
         </div>
       </motion.div>
 

@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <Background />
       <Navbar />
-      <main>
+      <main className="relative z-10 overflow-hidden">
         <Hero />
         <div className="divider" />
         <About />

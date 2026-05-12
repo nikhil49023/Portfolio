@@ -83,7 +83,9 @@ export function ImageCarousel({ images, accent, heightClass = 'h-80', interval =
   if (mockup) {
     return (
       <>
-        <div className="flex flex-col items-center justify-center py-14 px-6 bg-gradient-to-br from-slate-100 via-slate-50 to-indigo-50 min-h-[700px]">
+        <div className="flex flex-col items-center justify-center py-20 px-8 bg-gradient-to-br from-[#0a0a0a] via-[#050505] to-[#0a0a0a] min-h-[700px] relative overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent-purple/5 blur-[120px] pointer-events-none" />
+          
           {/* Phone shell */}
           <div
             className="relative"

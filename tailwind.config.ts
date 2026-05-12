@@ -9,13 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#030303',
+        background: '#050505',
         foreground: '#ffffff',
         accent: {
-          cyan: '#00f2ff',
-          purple: '#bc13fe',
-          pink: '#ff00bd',
-          lime: '#39ff14',
+          cyan: '#00D8FF',
+          purple: '#7C3AED',
+          pink: '#FF2D55',
+          lime: '#10B981',
+          gold: '#F59E0B',
         },
         zinc: {
           '50': '#fafafa',
@@ -34,6 +35,8 @@ const config: Config = {
       backgroundImage: {
         'grid-pattern': "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.04)'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E\")",
         'dots-pattern': "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='8' height='8' fill='rgb(255 255 255 / 0.05)'%3E%3Ccircle cx='16' cy='16' r='1'/%3E%3C/svg%3E\")",
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
@@ -41,21 +44,25 @@ const config: Config = {
       },
       animation: {
         'float': 'float 7s ease-in-out infinite',
-        'float2': 'float 9s ease-in-out 2s infinite',
-        'float3': 'float 11s ease-in-out 4s infinite',
-        'float4': 'float 8s ease-in-out 1s infinite',
-        'spin-slow': 'spin 20s linear infinite',
+        'float-slow': 'float 12s ease-in-out infinite',
+        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'spin-slow': 'spin 25s linear infinite',
         'blink': 'blink 1s step-end infinite',
+        'aurora': 'aurora 20s linear infinite',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-          '33%': { transform: 'translateY(-22px) rotate(3deg)' },
-          '66%': { transform: 'translateY(12px) rotate(-2deg)' },
+          '33%': { transform: 'translateY(-20px) rotate(2deg)' },
+          '66%': { transform: 'translateY(10px) rotate(-1deg)' },
         },
         blink: {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0' },
+        },
+        aurora: {
+          from: { backgroundPosition: '50% 50%, 50% 50%' },
+          to: { backgroundPosition: '350% 50%, 350% 50%' },
         },
       },
     },
