@@ -25,6 +25,8 @@ import {
 import { PROJECTS, ProjectData } from '@/lib/projects';
 import { ImageCarousel } from '@/components/projects/ImageCarousel';
 import { AerialEyeVisualization } from '@/components/projects/AerialEyeVisualization';
+import { VaayuSwarmVisualization } from '@/components/projects/VaayuSwarmVisualization';
+import { SutraSwarmVisualization } from '@/components/projects/SutraSwarmVisualization';
 
 /* ── Interactive Terminal simulation (saara-ai & sleep-health-analytics) ── */
 function TerminalMockup({ slug = 'saara-ai' }: { slug?: string }) {
@@ -182,7 +184,7 @@ const SECTION_LINKS = [
   { id: 'stack', label: '06 Arsenal' },
 ];
 
-const ALL_PROJECT_SLUGS = ['vitt', 'saara-ai', 'aerialeye', 'sleep-health-analytics'];
+const ALL_PROJECT_SLUGS = ['vitt', 'saara-ai', 'vaayu-swarm', 'aerialeye', 'sutra', 'sleep-health-analytics'];
 
 export default function ProjectPage({ params }: { params: Promise<{ slug: string }> | { slug: string } }) {
   const resolvedParams = use(params as any) as { slug: string };
@@ -319,7 +321,11 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
           </div>
 
           <div className="border border-[var(--border-subtle)] bg-[var(--bg-surface)] overflow-hidden shadow-sm">
-            {project.slug === 'aerialeye' ? (
+            {project.slug === 'vaayu-swarm' ? (
+              <VaayuSwarmVisualization detailed />
+            ) : project.slug === 'sutra' ? (
+              <SutraSwarmVisualization detailed />
+            ) : project.slug === 'aerialeye' ? (
               <AerialEyeVisualization detailed />
             ) : project.media === 'images' && project.images ? (
               <div className="p-4 sm:p-8 bg-[var(--bg-void)]">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  Package, Github, Layers, Eye, ExternalLink, Cpu, Terminal, Database, Shield, Zap, BookOpen, GitBranch, Box, Globe, Radio, Compass, Activity
+  Package, Github, Layers, Eye, ExternalLink, Cpu, Terminal, Database, Shield, Zap, BookOpen, GitBranch, Box, Globe, Radio, Compass, Activity, Camera, Radar, Navigation
 } from 'lucide-react';
 
 export interface ProjectNode {
@@ -49,7 +49,7 @@ export interface ProjectData {
   techDetails: ProjectTechDetail[];
   tags: string[];
   links: ProjectLink[];
-  media?: 'images' | 'terminal' | 'custom';
+  media?: 'images' | 'terminal' | 'custom' | 'vaayu' | 'sutra';
   images?: string[];
   stats?: { label: string; value: string }[];
 }
@@ -99,34 +99,34 @@ The application is fully compliant with India's Digital Personal Data Protection
       'Full compliance with India DPDP Act 2023 and SEBI AI Advisory standards',
     ],
     details: [
-      'Eliminates intrusive SMS permissions entirely by utilizing Android\'s isolated Notification Listener Service to extract real-time transaction amounts and merchant metadata.',
-      'Schedules Gemma 4 E2B inference on Android NPU/GPU via LiteRT runtime, reducing battery consumption by 60% compared to standard cloud-polling wrappers.',
-      'Stores user income, expense categories, and monthly summaries inside an AES-256 encrypted SQLite database that never transmits telemetry to external servers.',
-      'Selected for national project showcase at NxtWave x OpenAI Academy x IndiaAI Buildathon 2026.'
+      'Replaces insecure SMS scraping with native Android Notification Listener Service.',
+      'Executes quantized Gemma 4 E2B directly on-device with zero recurrent API token costs.',
+      'Stores encrypted ledger entries and automated category analytics in an offline SQLite database.',
+      'Includes verified legal documentation: DPDP Act 2023 disclosures, Privacy Policy, Terms of Service, and SEBI compliance disclaimers.'
     ],
     stats: [
-      { label: 'Privacy Stance', value: '100% On-Device' },
       { label: 'Inference Speed', value: '~14 tok/sec' },
-      { label: 'Cloud Costs', value: '$0 / month' },
-      { label: 'Encryption', value: 'AES-256 SQLite' },
+      { label: 'Privacy Stance', value: '100% Local / 0 Cloud' },
+      { label: 'Cloud Costs', value: '₹0 / Month' },
+      { label: 'Encryption', value: 'AES-256 Local Vault' },
     ],
     architecture: [
       {
-        title: 'Ingestion Layer',
+        title: 'Android Ingestion Boundary',
         nodes: [
-          { label: 'Android Notification Listener', color: '#00d68f', sublabel: 'Local bank alert scraper' },
-          { label: 'Consent & DPDP Gatekeeper', color: '#ffb700', sublabel: 'LegalDisclosureDialog' }
+          { label: 'Android Notification Listener', color: '#00d68f', sublabel: 'Local event capture' },
+          { label: 'Interactive Legal Disclosure', color: '#3b82f6', sublabel: 'DPDP 2023 consent gate' }
         ]
       },
       {
-        title: 'On-Device AI Engine',
+        title: 'On-Device Reasoning Engine',
         nodes: [
-          { label: 'LiteRT / Android AICore', color: '#3b82f6', sublabel: 'Gemma 4 E2B local model' },
-          { label: 'NPU Hardware Acceleration', color: '#6366f1', sublabel: 'Battery-optimized compute' }
+          { label: 'LiteRT Inference Engine', color: '#a855f7', sublabel: 'Hardware-accelerated NPU' },
+          { label: 'Gemma 4 E2B Local Model', color: '#ffb700', sublabel: 'On-device transaction parsing' }
         ]
       },
       {
-        title: 'Secure Local Storage',
+        title: 'Encrypted Storage & UI',
         nodes: [
           { label: 'AES-256 Encrypted SQLite', color: '#ff2d55', sublabel: 'Zero-cloud offline ledger' },
           { label: 'SEBI Advisory Compliance UI', color: '#00d68f', sublabel: 'Real-time disclaimer guard' }
@@ -157,71 +157,73 @@ The application is fully compliant with India's Digital Personal Data Protection
     ],
     tags: ['On-Device AI', 'Flutter', 'LiteRT', 'Gemma LLM', 'FinTech', 'Privacy-First', 'SQLite'],
     links: [
-      { label: 'GitHub Repository', href: 'https://github.com/nikhil49023', icon: Github, primary: true }
+      { label: 'Landing Page & Docs', href: 'https://github.com/nikhil49023/vitt-landing-page', icon: Globe, primary: true },
+      { label: 'Privacy Policy Repo', href: 'https://github.com/nikhil49023/vitt-privacy', icon: Shield },
+      { label: 'Legal Policies Repo', href: 'https://github.com/nikhil49023/vitt-legal', icon: Github }
     ]
   },
 
   'saara-ai': {
     slug: 'saara-ai',
     name: 'saara-ai',
-    icon: Package,
+    icon: Terminal,
     media: 'terminal',
-    tagline: 'Local-First CLI & SDK Dataset Synthesis Engine',
-    type: 'Open-Source CLI & Python/NPM SDK',
-    category: 'Open-Source & Developer Tooling',
-    status: 'Published · 38 Releases',
-    badge: '2,600+ PyPI Downloads',
+    tagline: 'Local-First Dataset Generation & Distillation Engine',
+    type: 'Developer CLI & Python Package',
+    category: 'Autonomous Systems & Agents',
+    status: 'Published on PyPI & NPM (v2.0)',
+    badge: '38 Releases · 2.6k+ DL',
     date: '2026',
     accent: '#ff2d55',
-    accentDark: '#8a0024',
+    accentDark: '#80001a',
     description:
-      'saara-ai is a local-first CLI and SDK designed for high-fidelity dataset generation, automated labeling, validation, and distillation (SFT / DPO). It integrates with google-adk and crawl4ai to coordinate autonomous ResearchAgents that build machine learning datasets on local hardware.',
-    shortDesc: 'Open-source CLI & SDK for automated dataset synthesis, curation, and distillation published on PyPI and NPM.',
+      'saara-ai is a local-first dataset generation and distillation engine published on PyPI and NPM. It utilizes bounded ResearchAgents (google-adk + crawl4ai) to scrape and synthesize high-quality fine-tuning datasets from documentation and open web sources, with local model routing (Ollama/vLLM) and interactive TUI curation.',
+    shortDesc: 'Local-first dataset generation CLI on PyPI & NPM with 2,600+ downloads, 38 releases, and multi-agent web scraping.',
     longDescription: `
-Building high-fidelity datasets for LLM fine-tuning, reasoning tasks, and supervised fine-tuning (SFT) is notoriously bottlenecked by manual scraping and expensive proprietary API calls. saara-ai solves this through an autonomous, local-first dataset pipeline.
+saara-ai is an open-source, dual-distributed developer tool designed to eliminate high cloud costs and API rate-limits associated with synthetic dataset creation for LLM fine-tuning.
 
-By combining google-adk with crawl4ai, saara-ai orchestrates bounded ResearchAgent bots that crawl web documentation and synthesize structured training datasets locally. Generation tasks are dynamically routed to local LLM engines (Ollama, vLLM), eliminating API subscription overhead.
+Published as a native Python package on PyPI (2,600+ downloads across 38 stable releases) and as an NPX CLI binary on NPM (\`npx saara-ai wizard\`), saara-ai orchestrates bounded ResearchAgents leveraging google-adk and crawl4ai to autonomously discover, parse, and clean structured data from technical documentation and web applications.
 
-Developers can inspect and curate generated records via an interactive terminal user interface (TUI), apply confidence-based validation scoring, and export clean datasets to Parquet, JSONL, Arrow, and Hugging Face Dataset formats. Published globally across 38 package releases on PyPI and NPM.
+The engine routes prompts through local LLM backends (Ollama and vLLM), supporting distillation from large reasoning models down to compact edge models (Llama 3.2, Qwen 2.5). An interactive terminal curation console allows real-time review, score filtering, and direct export to Hugging Face, Parquet, and JSONL formats.
     `.trim(),
-    stack: ['Python', 'TypeScript', 'google-adk', 'crawl4ai', 'Ollama', 'vLLM', 'DPO / SFT Distillation', 'TUI'],
+    stack: ['Python', 'TypeScript', 'google-adk', 'crawl4ai', 'Ollama', 'vLLM', 'PyPI', 'NPM'],
     highlights: [
-      'Published on PyPI across 38 releases with 2,600+ direct package downloads',
-      'Distributed globally on NPM (`npx saara-ai wizard`) and PyPI (`pip install saara-ai`)',
-      'Autonomous ResearchAgents combining google-adk and crawl4ai for structured dataset generation',
-      'Local model routing via Ollama and vLLM supporting SFT, DPO, and reasoning formats',
+      'Dual published on PyPI and NPM with 2,600+ downloads and 38 stable releases',
+      'Interactive terminal CLI wizard (`npx saara-ai wizard`) for zero-configuration dataset synthesis',
+      'Autonomous web exploration using google-adk agents and crawl4ai headless browser integration',
+      'Local model routing through Ollama and vLLM, eliminating external LLM API costs',
     ],
     details: [
-      'Orchestrates multi-step web scraping workflows with crawl4ai, converting raw HTML into LLM-ready markdown for topic extraction.',
-      'Routes high-throughput prompt batches across local Ollama and vLLM instances to minimize latency and token expenditure.',
-      'Features a custom Terminal User Interface (TUI) for manual review, record editing, and confidence scoring of synthetic data.',
-      'Exports production-ready datasets directly to Hugging Face Hub, Apache Parquet, and JSONL formats.'
+      'Engineered multi-agent ResearchAgent orchestration for recursive topic exploration and deep-scraping.',
+      'Built a headless browser tool-use layer via crawl4ai to extract structured ground-truth data from SPAs.',
+      'Supports local distillation pipelines with automated confidence scoring and human-in-the-loop TUI inspection.',
+      'Exports clean dataset partitions directly to Hugging Face Hub, Apache Parquet, and JSONL.'
     ],
     stats: [
       { label: 'PyPI Downloads', value: '2,600+' },
-      { label: 'Package Releases', value: '38 Versions' },
-      { label: 'Registries', value: 'PyPI & NPM' },
-      { label: 'Local Engines', value: 'Ollama & vLLM' },
+      { label: 'Published Releases', value: '38 Stable' },
+      { label: 'Distribution', value: 'PyPI + NPM' },
+      { label: 'Local Routing', value: 'Ollama & vLLM' },
     ],
     architecture: [
       {
-        title: 'Discovery & Scraping Layer',
+        title: 'Research & Ingestion Agent',
         nodes: [
-          { label: 'Bounded ResearchAgent', color: '#ff2d55', sublabel: 'google-adk orchestration' },
-          { label: 'crawl4ai Web Scraper', color: '#ffb700', sublabel: 'High-speed markdown extraction' }
+          { label: 'google-adk ResearchAgent', color: '#ff2d55', sublabel: 'Recursive topic exploration' },
+          { label: 'crawl4ai Browser Tool', color: '#00d68f', sublabel: 'Structured DOM extraction' }
         ]
       },
       {
-        title: 'Local Synthesis & Curation',
+        title: 'Local Distillation Matrix',
         nodes: [
-          { label: 'Local Model Router', color: '#00d68f', sublabel: 'Ollama & vLLM engine' },
-          { label: 'Interactive Curation TUI', color: '#3b82f6', sublabel: 'Terminal validation suite' }
+          { label: 'vLLM & Ollama Engine', color: '#3b82f6', sublabel: 'Local prompt-response dispatch' },
+          { label: 'TUI Human-in-the-Loop', color: '#a855f7', sublabel: 'Real-time confidence scoring' }
         ]
       },
       {
-        title: 'Distillation & Export',
+        title: 'Export & Publishing Pipeline',
         nodes: [
-          { label: 'SFT / DPO Distillation', color: '#6366f1', sublabel: 'Preference pair alignment' },
+          { label: 'Hugging Face Hub Exporter', color: '#ffb700', sublabel: 'Direct dataset upload' },
           { label: 'Multi-Format Exporter', color: '#ff2d55', sublabel: 'HF / Parquet / JSONL output' }
         ]
       }
@@ -252,7 +254,101 @@ Developers can inspect and curate generated records via an interactive terminal 
     links: [
       { label: 'PyPI Package', href: 'https://pypi.org/project/saara-ai/', icon: Box, primary: true },
       { label: 'NPM Package', href: 'https://www.npmjs.com/package/saara-ai', icon: Package },
-      { label: 'GitHub Repository', href: 'https://github.com/nikhil49023', icon: Github }
+      { label: 'GitHub Repository', href: 'https://github.com/nikhil49023/Saara', icon: Github }
+    ]
+  },
+
+  'vaayu-swarm': {
+    slug: 'vaayu-swarm',
+    name: 'VAAYU SWARM',
+    icon: Camera,
+    media: 'vaayu',
+    tagline: 'Indigenous Edge AI CCTV Surveillance Platform for India',
+    type: 'Edge AI & Distributed System',
+    category: 'Edge AI & Embedded',
+    status: "Maker's Conclave 2.0 Finalist",
+    badge: "Maker's Conclave 2.0",
+    date: '2026',
+    accent: '#10b981',
+    accentDark: '#064e3b',
+    description:
+      "VAAYU SWARM is an indigenous, multi-modal edge AI surveillance platform built for Indian environments. Engineered with an active learning pipeline, ESP32-S3 FOMO v3 edge vision, RT-DETR-L TensorRT person detection, YOLOv8-pose 17-keypoint skeletal mapping, MediaMTX RTSP stream proxies, and a React operator dashboard.",
+    shortDesc: "Indigenous edge AI surveillance system combining ESP32-S3 FOMO v3 micro-TPU vision, RT-DETR-L, YOLOv8-pose, and MediaMTX.",
+    longDescription: `
+VAAYU SWARM was conceived and engineered at Maker's Conclave 2.0 (July 2026) to address the unique surveillance challenges of Indian environments — high crowd density, extreme attire variance, regional vehicle profiles, and mixed legacy CCTV infrastructure.
+
+The platform bridges legacy analog/IP cameras into modern AI streams via a MediaMTX RTSP-to-HLS proxy. Inference is partitioned hierarchically: low-power ESP32-S3 microcontrollers run quantized FOMO v3 models (ESP-DL) at 42+ FPS on the edge, while an on-premise CUDA backend runs RT-DETR-L and YOLOv8n-pose for 17-keypoint real-time skeletal mapping (11.8ms latency on RTX 3050).
+
+To eliminate dataset bias inherent in Western computer vision models (COCO/ImageNet), VAAYU features an Active Learning dataset harvester that captures grey-zone confidence frames (0.40–0.70) and routes them into an embedded Label Studio instance for continuous iterative retraining.
+    `.trim(),
+    stack: ['ESP32-S3', 'FOMO v3 (ESP-DL)', 'FastAPI (CUDA)', 'RT-DETR-L', 'YOLOv8-pose', 'MediaMTX (RTSP/HLS)', 'React + Vite', 'Docker Compose'],
+    highlights: [
+      "Built and demonstrated at Maker's Conclave 2.0 for Indian indigenous smart surveillance",
+      'Hierarchical edge-to-server compute: ESP32-S3 (FOMO v3) + Server (RT-DETR-L + YOLOv8-pose)',
+      '17-keypoint COCO skeletal tracking with real-time pose estimation and behavioral telemetry',
+      'Integrated Active Learning harvester with embedded Label Studio for continuous model distillation',
+    ],
+    details: [
+      'Deploys FOMO v3 INT8 models to ESP32-S3 hardware with OV5648 camera modules achieving 42.4 FPS.',
+      'Converts RTSP feeds from non-AI legacy cameras to high-framerate HLS/WebRTC streams via MediaMTX.',
+      'Executes server-side RT-DETR-L and YOLOv8-pose with FP16 TensorRT acceleration on NVIDIA RTX GPUs.',
+      'Containerized full 5-service production stack with Docker Compose and Nginx reverse proxy.'
+    ],
+    stats: [
+      { label: 'Server Inference', value: '11.8ms (TensorRT)' },
+      { label: 'Edge FPS', value: '42.4 FPS (ESP32)' },
+      { label: 'Pose Keypoints', value: '17 COCO Points' },
+      { label: 'Docker Services', value: '5 Services Stack' },
+    ],
+    architecture: [
+      {
+        title: 'Field Ingestion Layer',
+        nodes: [
+          { label: 'ESP32-S3 Edge Nodes', color: '#10b981', sublabel: 'FOMO v3 INT8 + OV5648' },
+          { label: 'Legacy CCTV & IP Cams', color: '#3b82f6', sublabel: 'RTSP stream ingestion' }
+        ]
+      },
+      {
+        title: 'Streaming & Inference Stack',
+        nodes: [
+          { label: 'MediaMTX RTSP Proxy', color: '#f59e0b', sublabel: 'RTSP → HLS / WebRTC bridge' },
+          { label: 'FastAPI CUDA Engine', color: '#a855f7', sublabel: 'RT-DETR-L + YOLOv8-pose' }
+        ]
+      },
+      {
+        title: 'Active Learning & Console',
+        nodes: [
+          { label: 'Active Harvester & Label Studio', color: '#ec4899', sublabel: 'Grey-zone continuous learning' },
+          { label: 'React + Vite Operator Dashboard', color: '#10b981', sublabel: '5-view live monitoring console' }
+        ]
+      }
+    ],
+    techDetails: [
+      {
+        name: 'ESP32-S3 FOMO Edge AI',
+        desc: 'Custom-trained FOMO v3 lightweight vision model compiled via ESP-DL and TFLite Micro for low-power edge microcontrollers.',
+        icon: Cpu
+      },
+      {
+        name: 'RT-DETR-L & YOLOv8-Pose',
+        desc: 'Real-time Transformer object detector paired with 17-keypoint skeletal pose estimation running FP16 on NVIDIA TensorRT.',
+        icon: Eye
+      },
+      {
+        name: 'MediaMTX RTSP Bridge',
+        desc: 'High-throughput video streaming proxy transforming multi-camera RTSP protocols into low-latency WebRTC and HLS feeds.',
+        icon: Radar
+      },
+      {
+        name: 'Active Learning Harvester',
+        desc: 'Automated frame collector sampling uncertain detections and piping them directly to Label Studio for continuous dataset refinement.',
+        icon: Layers
+      }
+    ],
+    tags: ['Edge AI', 'ESP32-S3', 'Computer Vision', 'YOLOv8-pose', 'RT-DETR', 'FastAPI', 'Docker', 'Surveillance'],
+    links: [
+      { label: 'GitHub Repository', href: 'https://github.com/nikhil49023/vaayu-surveillance', icon: Github, primary: true },
+      { label: 'Swarm Config Repo', href: 'https://github.com/nikhil49023/vaayu-swarm', icon: ExternalLink }
     ]
   },
 
@@ -263,7 +359,7 @@ Developers can inspect and curate generated records via an interactive terminal 
     media: 'custom',
     tagline: 'YOLOv11-Nano Disaster Response & Aerial CV Model',
     type: 'Computer Vision Model & Dataset',
-    category: 'Edge AI & Computer Vision',
+    category: 'Edge AI & Embedded',
     status: 'Published on Hugging Face',
     badge: '1,900+ HF Downloads',
     date: '2026',
@@ -346,7 +442,101 @@ The model is trained on a unified, curated dataset of 6,327 high-altitude frames
     tags: ['Computer Vision', 'YOLOv11', 'PyTorch', 'ONNX', 'TFLite', 'Google Coral TPU', 'Hugging Face', 'Disaster Relief'],
     links: [
       { label: 'Hugging Face Hub', href: 'https://huggingface.co/kilanisainikhil/AerialEye', icon: Eye, primary: true },
-      { label: 'GitHub Repository', href: 'https://github.com/nikhil49023', icon: Github }
+      { label: 'Dataset on Hugging Face', href: 'https://huggingface.co/datasets/kilanisainikhil/sutra-aerial-dataset', icon: Database },
+      { label: 'GitHub Repository', href: 'https://github.com/nikhil49023/AerialEye', icon: Github }
+    ]
+  },
+
+  'sutra': {
+    slug: 'sutra',
+    name: 'Project SUTRA',
+    icon: Compass,
+    media: 'sutra',
+    tagline: 'Autonomous Multi-Agent Swarm Monorepo for Disaster Response',
+    type: 'Autonomous Robotics & Monorepo',
+    category: 'Autonomous Systems & Agents',
+    status: 'Monorepo Active',
+    badge: 'ROS 2 Monorepo',
+    date: '2026',
+    accent: '#38bdf8',
+    accentDark: '#0369a1',
+    description:
+      'Project SUTRA is a space-air-ground multi-agent swarm robotics monorepo engineered for disaster management and NDMA rescue operations. Built on ROS 2 Jazzy, PX4 Autopilot offboard control, Gazebo Harmonic simulation, 3D GIS Ground Control Station (React + Mapbox/Three.js), and Deep JSCC neural communication mesh.',
+    shortDesc: 'ROS 2 Jazzy multi-agent swarm monorepo with PX4 Autopilot, Gazebo 8, 3D GIS Ground Control, and Deep JSCC mesh.',
+    longDescription: `
+Project SUTRA is a production-grade multi-agent autonomous swarm monorepo architected across 6 specialized engineering subsystems. Built for National Disaster Management Authority (NDMA) search-and-rescue operations, the system deploys cooperative unmanned aerial vehicles (UAVs) in harsh, communications-denied disaster zones.
+
+The core flight stack integrates ROS 2 Jazzy and PX4 Autopilot over uORB/micro-XRCE-DDS bridges, running autonomous V-formation flight, leader-follower kinematics, and terrain obstacle avoidance in Gazebo Sim 8 (Harmonic).
+
+Inter-drone communication utilizes a Deep JSCC (Joint Source-Channel Coding) neural mesh network that preserves semantic telemetry even at low SNR (-5 dB) and high packet-loss channel conditions. Ground operators monitor real-time 3D flight paths, sensor heatmaps, and target bounding boxes through a React + Mapbox 3D GIS Ground Control Station (GCS).
+    `.trim(),
+    stack: ['ROS 2 Jazzy', 'PX4 Autopilot', 'Gazebo Sim 8', 'Deep JSCC', 'React + TypeScript', 'Mapbox 3D', 'FastDDS', 'Python'],
+    highlights: [
+      'Architected 6-subsystem ROS 2 Jazzy monorepo passing Gate G1–G6 verification milestones',
+      'Autonomous UAV swarm formation & obstacle avoidance in Gazebo Sim 8 Harmonic',
+      'Deep JSCC neural communication mesh operating under harsh -5 dB SNR conditions',
+      'Interactive 3D GIS Ground Control Station (GCS) with real-time telemetry streaming',
+    ],
+    details: [
+      'Subsystem A (GNC & Flight Control): ROS 2 Jazzy node graph interfaced with PX4 via micro-XRCE-DDS.',
+      'Subsystem B (Comms & Neural Mesh): Deep JSCC joint source-channel encoder/decoder for high-loss wireless links.',
+      'Subsystem C (AI Perception): TensorRT-accelerated edge computer vision pipelines for survivor recognition.',
+      'Subsystem D (3D GIS GCS): Browser-based operator dashboard built in React, TypeScript, and 3D GIS Mapbox.'
+    ],
+    stats: [
+      { label: 'ROS 2 Distribution', value: 'Jazzy & Humble' },
+      { label: 'Simulation Engine', value: 'Gazebo 8 Harmonic' },
+      { label: 'Mesh Topology', value: 'Deep JSCC Neural' },
+      { label: 'Subsystems', value: '6 Monorepo Nodes' },
+    ],
+    architecture: [
+      {
+        title: 'Guidance & Swarm Control',
+        nodes: [
+          { label: 'Subsystem A: ROS 2 GNC', color: '#38bdf8', sublabel: 'PX4 offboard attitude & waypoint control' },
+          { label: 'Gazebo 8 Simulation World', color: '#00d68f', sublabel: 'Physics-accurate flight testing' }
+        ]
+      },
+      {
+        title: 'Neural Comms & Vision',
+        nodes: [
+          { label: 'Subsystem B: Deep JSCC Mesh', color: '#f59e0b', sublabel: 'Robust wireless channel coding' },
+          { label: 'Subsystem C: AI Perception Node', color: '#a855f7', sublabel: 'TensorRT survivor detection' }
+        ]
+      },
+      {
+        title: '3D Ground Control & Ops',
+        nodes: [
+          { label: 'Subsystem D: 3D GIS GCS', color: '#ec4899', sublabel: 'Mapbox 3D telemetry console' },
+          { label: 'Subsystem F: NDMA CONOPS', color: '#38bdf8', sublabel: 'Tactical field rescue protocol' }
+        ]
+      }
+    ],
+    techDetails: [
+      {
+        name: 'ROS 2 & PX4 Autopilot GNC',
+        desc: 'High-rate guidance, navigation, and control node graph publishing 100 Hz offboard setpoints over micro-XRCE DDS.',
+        icon: Navigation
+      },
+      {
+        name: 'Deep JSCC Neural Mesh',
+        desc: 'Deep learning joint source-channel encoder preserving high-fidelity telemetry across noisy, jammed RF environments.',
+        icon: Radio
+      },
+      {
+        name: '3D GIS Ground Station',
+        desc: 'Interactive operator dashboard built in React and Mapbox rendering real-time 3D drone positions and survivor bounding boxes.',
+        icon: Globe
+      },
+      {
+        name: 'NDMA CONOPS Framework',
+        desc: 'Standardized operational procedures for multi-UAV disaster reconnaissance, sector partitioning, and medical airdrops.',
+        icon: Shield
+      }
+    ],
+    tags: ['ROS 2', 'PX4 Autopilot', 'Gazebo Sim', 'Deep JSCC', 'Swarm Robotics', 'React', 'Mapbox 3D', 'Disaster Response'],
+    links: [
+      { label: 'GitHub Monorepo', href: 'https://github.com/nikhil49023/SUTRA', icon: Github, primary: true }
     ]
   },
 
@@ -361,8 +551,8 @@ The model is trained on a unified, curated dataset of 6,327 high-altitude frames
     status: 'Published on Kaggle',
     badge: 'Kaggle Capstone',
     date: '2025',
-    accent: '#38bdf8',
-    accentDark: '#0369a1',
+    accent: '#a855f7',
+    accentDark: '#6b21a8',
     description:
       'A comprehensive exploratory data analysis and statistical biometric capstone analyzing the interplay between lifestyle factors, sleep architecture, stress levels, and cardiovascular health. Built with Pandas, NumPy, and Seaborn on Kaggle.',
     shortDesc: 'Statistical biometric EDA and sleep health analysis modeling correlations between stress, sleep quality, and cardiovascular indicators.',
@@ -396,7 +586,7 @@ The project models the correlation between physical activity levels, daily step 
       {
         title: 'Ingestion & Data Cleaning',
         nodes: [
-          { label: 'Raw Clinical Dataset', color: '#38bdf8', sublabel: 'Multidimensional records' },
+          { label: 'Raw Clinical Dataset', color: '#a855f7', sublabel: 'Multidimensional records' },
           { label: 'Pandas Cleaning Pipeline', color: '#ffb700', sublabel: 'Missing value handling' }
         ]
       },
@@ -440,8 +630,7 @@ The project models the correlation between physical activity levels, daily step 
     tags: ['Data Science', 'Python', 'Pandas', 'NumPy', 'Seaborn', 'EDA', 'Kaggle', 'Biometrics'],
     links: [
       { label: 'Kaggle Notebook', href: 'https://www.kaggle.com/code/sainikhilkilani/pandas-sleep-health-data-capstone-project-1', icon: ExternalLink, primary: true },
-      { label: 'GitHub Repository', href: 'https://github.com/nikhil49023', icon: Github }
+      { label: 'GitHub Profile', href: 'https://github.com/nikhil49023', icon: Github }
     ]
   }
 };
-
