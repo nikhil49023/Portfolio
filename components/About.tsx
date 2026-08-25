@@ -176,10 +176,10 @@ export default function About() {
 
   return (
     <section id="about" className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)]">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
         {/* Section Header */}
-        <div className="flex items-baseline gap-4 mb-14">
+        <div className="flex items-baseline gap-4 mb-8">
           <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">01</span>
           <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
             Engineering Identity &amp; Profile
@@ -304,8 +304,8 @@ export default function About() {
         </div>
 
         {/* Core Competencies Grid */}
-        <div className="mt-16">
-          <h3 className="font-bold text-sm text-[var(--ink-primary)] mb-8 uppercase tracking-wider flex items-center gap-2 font-mono">
+        <div className="mt-10">
+          <h3 className="font-bold text-xs text-[var(--ink-primary)] mb-4 uppercase tracking-wider flex items-center gap-2 font-mono">
             <span className="w-1.5 h-1.5 bg-[var(--brand-primary)] rounded-full" />
             <span>Core Engineering Disciplines</span>
           </h3>

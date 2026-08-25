@@ -66,10 +66,10 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)]">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
         {/* Section Header */}
-        <div className="flex items-baseline gap-4 mb-14">
+        <div className="flex items-baseline gap-4 mb-6">
           <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">05</span>
           <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
             Contact

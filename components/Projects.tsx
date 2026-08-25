@@ -34,10 +34,10 @@ export default function Projects() {
 
   return (
     <section id="projects" className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)]">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-10">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-6">
           <div className="flex items-baseline gap-4">
             <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">02</span>
             <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
@@ -50,7 +50,7 @@ export default function Projects() {
         </div>
 
         {/* Filter Switcher Bar */}
-        <div className="flex flex-wrap gap-2 mb-10 justify-start">
+        <div className="flex flex-wrap gap-2 mb-6 justify-start">
           {categories.map((cat) => (
             <button
               key={cat.id}
@@ -67,7 +67,7 @@ export default function Projects() {
         </div>
 
         {/* 2x2 Balanced High-Density Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {filteredProjects.map((proj) => {
             const Icon = proj.icon;
             return (

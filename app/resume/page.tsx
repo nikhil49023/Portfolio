@@ -238,18 +238,18 @@ export default function ResumePage() {
       <style dangerouslySetInnerHTML={{ __html: PRINT_CSS }} />
 
       {/* ── SCREEN VIEW (Premium Executive Digital CV) ── */}
-      <main className="no-print pt-20 pb-24 px-6">
-        <div className="max-w-5xl mx-auto">
+      <main className="no-print pt-12 pb-16 px-6 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto">
 
           {/* Header Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="py-12 border-b border-[var(--border-subtle)] mb-16"
+            className="py-8 border-b border-[var(--border-subtle)] mb-8"
           >
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
-              <div className="space-y-4">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+              <div className="space-y-3">
                 <div className="inline-flex items-center gap-2 px-2.5 py-1 border border-[var(--border-subtle)] bg-[var(--bg-surface)]/80 text-[var(--ink-muted)]">
                   <User size={10} />
                   <span className="font-mono text-[9px] tracking-widest uppercase font-bold">Curriculum Vitae</span>
@@ -263,7 +263,7 @@ export default function ResumePage() {
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 lg:min-w-[440px] p-5 border border-[var(--border-subtle)] bg-[var(--bg-surface)]/30 backdrop-blur-md relative overflow-hidden">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 lg:min-w-[440px] p-4 border border-[var(--border-subtle)] bg-[var(--bg-surface)]/30 backdrop-blur-md relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
                 {[
                   { icon: Mail, val: 'kilanisainikhil@gmail.com', href: 'mailto:kilanisainikhil@gmail.com' },
@@ -295,7 +295,7 @@ export default function ResumePage() {
             variants={containerVariants}
             initial="hidden"
             animate="show"
-            className="grid grid-cols-1 lg:grid-cols-12 gap-16"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-10"
           >
             
             {/* Left Column (Sidebar, 5 cols) */}

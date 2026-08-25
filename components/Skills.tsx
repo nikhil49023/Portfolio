@@ -71,10 +71,10 @@ export default function Skills() {
       {/* Subtle background glow */}
       <div className="absolute top-0 left-1/4 w-[50vw] h-[300px] bg-[radial-gradient(circle_at_top,color-mix(in_oklch,var(--brand-primary)_4%,transparent),transparent_70%)] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-6">
           <div className="flex items-baseline gap-4">
             <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">03</span>
             <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">

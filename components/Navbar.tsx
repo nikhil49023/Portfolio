@@ -289,14 +289,14 @@ export default function Navbar() {
               </button>
             ) : isProjectDetail ? (
               <div className="flex items-center gap-2">
-                {currentProject?.links?.repo && (
+                {currentProject?.links && currentProject.links.length > 0 && (
                   <a
-                    href={currentProject.links.repo}
+                    href={currentProject.links[0].href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 border border-[var(--border-subtle)] hover:border-[var(--ink-primary)] bg-[var(--bg-surface)] text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] text-xs font-mono transition-all no-underline"
                   >
-                    <span>Source</span>
+                    <span>{currentProject.links[0].label}</span>
                     <ExternalLink size={10} />
                   </a>
                 )}

@@ -292,14 +292,14 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       {/* ── Hero Section ── */}
       <section
         ref={heroRef}
-        className="relative border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]/40 overflow-hidden pt-16"
+        className="relative border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]/40 overflow-hidden pt-12"
       >
-        <div className="max-w-6xl mx-auto px-6 pt-16 pb-14 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-10 pb-8 relative z-10">
           <motion.div
             variants={stagger}
             initial="hidden"
             animate="show"
-            className="space-y-8"
+            className="space-y-6"
           >
             {/* Meta tags */}
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3">
@@ -320,7 +320,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             </motion.div>
 
             {/* Title & Tagline */}
-            <motion.div variants={fadeUp} className="space-y-4 max-w-4xl">
+            <motion.div variants={fadeUp} className="space-y-3 max-w-4xl">
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--ink-primary)] font-display">
                 {project.name}
               </h1>
@@ -330,7 +330,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             </motion.div>
 
             {/* Primary Action Buttons */}
-            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 pt-2">
+            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 pt-1">
               {project.links.map((link) => {
                 const LinkIcon = link.icon;
                 return (
@@ -355,11 +355,11 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
             {/* 4-Panel Telemetry Grid */}
             {project.stats && (
-              <motion.div variants={fadeUp} className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-[var(--border-subtle)]">
+              <motion.div variants={fadeUp} className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-[var(--border-subtle)]">
                 {project.stats.map((s) => (
                   <div
                     key={s.label}
-                    className="p-4 border border-[var(--border-subtle)] bg-[var(--bg-void)]"
+                    className="p-3.5 border border-[var(--border-subtle)] bg-[var(--bg-void)]"
                   >
                     <div className="text-[10px] font-mono uppercase tracking-wider text-[var(--ink-muted)] mb-1">
                       {s.label}
@@ -377,7 +377,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
       {/* ── Sticky Subnav Link Bar ── */}
       <nav className="sticky top-14 z-40 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]/90 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-6 overflow-x-auto">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 overflow-x-auto">
           <div className="flex items-center gap-1 py-2 text-xs font-mono">
             {SECTION_LINKS.map((item) => (
               <a
@@ -393,11 +393,11 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
       </nav>
 
       {/* ── Main Content Container ── */}
-      <main className="max-w-6xl mx-auto px-6 py-16 space-y-24">
+      <main className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-10 space-y-12">
         
         {/* ── 01 Visual Architecture / Media ── */}
         <section id="media" className="scroll-mt-28">
-          <div className="flex items-baseline gap-4 mb-8">
+          <div className="flex items-baseline gap-4 mb-5">
             <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">01</span>
             <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
               System Interface &amp; Telemetry Viewport
