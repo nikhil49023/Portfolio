@@ -36,6 +36,8 @@ export default function RootLayout({
                   } else {
                     document.documentElement.classList.remove('dark');
                   }
+                  var palette = localStorage.getItem('palette') || 'cyber-emerald';
+                  document.documentElement.setAttribute('data-palette', palette);
                 } catch (e) {}
               })();
             `,

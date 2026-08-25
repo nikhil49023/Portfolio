@@ -12,45 +12,44 @@
    ───────────────────────────────────────────── */
 
 :root {
-  /* 60% Dominant: Light warm paper theme (hue 80) */
-  --bg-void: oklch(97% 0.006 80); 
-  --bg-surface: oklch(99% 0.003 80);
-  --bg-raised: oklch(94% 0.008 80);
-  --bg-overlay: oklch(88% 0.01 80);
+  /* ── 60% Dominant: Light Alabaster / Crisp High-Tech Canvas ── */
+  --bg-void: oklch(98% 0.003 240); 
+  --bg-surface: oklch(99.5% 0.002 240);
+  --bg-raised: oklch(95% 0.005 240);
+  --bg-overlay: oklch(90% 0.008 240);
   
-  /* 30% Secondary */
-  --ink-primary: oklch(18% 0.008 80);
-  --ink-secondary: oklch(35% 0.008 80);
-  --ink-muted: oklch(55% 0.006 80);
-  --ink-faint: oklch(90% 0.008 80);
+  /* ── 30% Secondary: Deep Typography & Structural Borders ── */
+  --ink-primary: oklch(14% 0.015 240);
+  --ink-secondary: oklch(34% 0.012 240);
+  --ink-muted: oklch(54% 0.01 240);
+  --ink-faint: oklch(88% 0.006 240);
   
-  --border-subtle: oklch(88% 0.008 80);
-  --border-medium: oklch(80% 0.01 80);
-  --border-active: oklch(50% 0.015 80);
+  --border-subtle: oklch(88% 0.006 240);
+  --border-medium: oklch(80% 0.01 240);
+  --border-active: oklch(40% 0.02 240);
   
-  --glass-bg: oklch(99% 0.003 80 / 0.85);
-  --glass-border: oklch(85% 0.008 80 / 0.3);
+  --glass-bg: oklch(99.5% 0.002 240 / 0.90);
+  --glass-border: oklch(86% 0.006 240 / 0.4);
   
-  /* Navbar specific backgrounds to resolve opacity glitches with CSS variables */
-  --navbar-bg: oklch(99% 0.003 80 / 0.45);
-  --navbar-bg-mobile: oklch(97% 0.006 80 / 0.8);
+  --navbar-bg: oklch(99.5% 0.002 240 / 0.75);
+  --navbar-bg-mobile: oklch(98% 0.003 240 / 0.95);
 
-  /* 10% Accent */
-  --brand-primary: oklch(54% 0.18 300);
-  --brand-secondary: oklch(58% 0.12 280);
-  --brand-accent: oklch(50% 0.20 300);
+  /* ── 10% Accent: Cyber Emerald default ── */
+  --brand-primary: oklch(48% 0.18 155);
+  --brand-secondary: oklch(45% 0.14 180);
+  --brand-accent: oklch(52% 0.18 155);
   
-  --accent-emerald: oklch(52% 0.12 155);
-  --accent-amber: oklch(58% 0.14 75);
-  --accent-purple: oklch(54% 0.18 300);
+  --accent-emerald: oklch(48% 0.18 155);
+  --accent-amber: oklch(60% 0.18 75);
+  --accent-purple: oklch(52% 0.20 300);
+  --accent-blue: oklch(50% 0.20 250);
   
   --signal-red: oklch(50% 0.22 25);
   --signal-red-dim: oklch(50% 0.22 25 / 0.08);
 
-  /* Theme-aware background gradient mesh colors */
-  --bg-gradient-1: rgba(168, 85, 247, 0.07);
-  --bg-gradient-2: rgba(251, 191, 36, 0.04);
-  --bg-gradient-3: rgba(139, 92, 246, 0.05);
+  --bg-gradient-1: rgba(16, 185, 129, 0.06);
+  --bg-gradient-2: rgba(59, 130, 246, 0.04);
+  --bg-gradient-3: rgba(168, 85, 247, 0.04);
   
   --font-display: "Space Grotesk", sans-serif;
   --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -64,46 +63,108 @@
 
 html.dark,
 html.dark body {
-  /* 60% Dominant: Cool Slate dark mode (hue 250) */
-  --bg-void: oklch(13% 0.012 250);
-  --bg-surface: oklch(16% 0.014 250);
-  --bg-raised: oklch(19% 0.016 250);
-  --bg-overlay: oklch(24% 0.018 250);
+  /* ── 60% Dominant: Deep OLED Obsidian & Velvet Space ── */
+  --bg-void: oklch(11% 0.01 260);
+  --bg-surface: oklch(14.5% 0.012 260);
+  --bg-raised: oklch(18% 0.015 260);
+  --bg-overlay: oklch(23% 0.018 260);
   
-  /* 30% Secondary: Text and borders */
-  --ink-primary: oklch(95% 0.005 250);
-  --ink-secondary: oklch(84% 0.008 250);
-  --ink-muted: oklch(62% 0.01 250);
-  --ink-faint: oklch(28% 0.012 250);
+  /* ── 30% Secondary: Titanium Crisp Text & Cool Slate Borders ── */
+  --ink-primary: oklch(97% 0.003 260);
+  --ink-secondary: oklch(86% 0.006 260);
+  --ink-muted: oklch(65% 0.01 260);
+  --ink-faint: oklch(26% 0.012 260);
   
-  --border-subtle: oklch(22% 0.012 250 / 0.5);
-  --border-medium: oklch(28% 0.015 250 / 0.6);
-  --border-active: oklch(50% 0.08 250);
+  --border-subtle: oklch(24% 0.012 260 / 0.7);
+  --border-medium: oklch(32% 0.015 260 / 0.8);
+  --border-active: oklch(60% 0.12 155);
   
-  --glass-bg: oklch(16% 0.014 250 / 0.85);
-  --glass-border: oklch(25% 0.015 250 / 0.3);
+  --glass-bg: oklch(14.5% 0.012 260 / 0.85);
+  --glass-border: oklch(28% 0.015 260 / 0.4);
   
-  /* Navbar specific backgrounds to resolve opacity glitches with CSS variables */
-  --navbar-bg: oklch(16% 0.014 250 / 0.45);
-  --navbar-bg-mobile: oklch(13% 0.012 250 / 0.8);
+  --navbar-bg: oklch(14.5% 0.012 260 / 0.75);
+  --navbar-bg-mobile: oklch(11% 0.01 260 / 0.95);
 
-  /* 10% Accent: Focal point (strictly limited cobalt/teal highlights) */
-  --brand-primary: oklch(76% 0.14 300); 
-  --brand-secondary: oklch(80% 0.10 280); 
-  --brand-accent: oklch(70% 0.16 300);
+  /* ── 10% Accent: Electric Cyber Emerald (Awwwards / Linear) ── */
+  --brand-primary: oklch(82% 0.20 155); 
+  --brand-secondary: oklch(82% 0.14 185); 
+  --brand-accent: oklch(78% 0.20 155);
   
-  --signal-red: oklch(63% 0.22 25);
-  --signal-red-dim: oklch(63% 0.22 25 / 0.15);
+  --accent-emerald: oklch(82% 0.20 155);
+  --accent-amber: oklch(82% 0.18 85);
+  --accent-purple: oklch(78% 0.18 300);
+  --accent-blue: oklch(78% 0.18 250);
+  
+  --signal-red: oklch(68% 0.22 25);
+  --signal-red-dim: oklch(68% 0.22 25 / 0.15);
   --signal-red-glow: transparent;
-  
-  --accent-emerald: oklch(75% 0.13 155);
-  --accent-amber: oklch(78% 0.14 75);
-  --accent-purple: oklch(76% 0.14 300);
 
-  /* Theme-aware background gradient mesh colors */
+  --bg-gradient-1: rgba(0, 242, 157, 0.10);
+  --bg-gradient-2: rgba(56, 189, 248, 0.08);
+  --bg-gradient-3: rgba(168, 85, 247, 0.06);
+}
+
+/* ─────────────────────────────────────────────
+   PALETTE VARIANT 1: ELECTRIC BLUE (Linear / OpenAI Tier)
+   ───────────────────────────────────────────── */
+html[data-palette="electric-blue"],
+html.dark[data-palette="electric-blue"] {
+  --brand-primary: oklch(76% 0.18 250);
+  --brand-secondary: oklch(82% 0.12 220);
+  --brand-accent: oklch(72% 0.20 250);
+  --border-active: oklch(65% 0.16 250);
+  --bg-gradient-1: rgba(59, 130, 246, 0.14);
+  --bg-gradient-2: rgba(14, 165, 233, 0.10);
+}
+
+html:not(.dark)[data-palette="electric-blue"] {
+  --brand-primary: oklch(48% 0.20 250);
+  --brand-secondary: oklch(44% 0.16 220);
+  --brand-accent: oklch(45% 0.22 250);
+  --border-active: oklch(48% 0.20 250);
+  --bg-gradient-1: rgba(59, 130, 246, 0.07);
+}
+
+/* ─────────────────────────────────────────────
+   PALETTE VARIANT 2: SOLAR AMBER (Industrial Swiss / Terminal)
+   ───────────────────────────────────────────── */
+html[data-palette="amber-terminal"],
+html.dark[data-palette="amber-terminal"] {
+  --brand-primary: oklch(82% 0.18 75);
+  --brand-secondary: oklch(80% 0.16 55);
+  --brand-accent: oklch(78% 0.20 75);
+  --border-active: oklch(70% 0.16 75);
+  --bg-gradient-1: rgba(245, 158, 11, 0.14);
+  --bg-gradient-2: rgba(239, 68, 68, 0.08);
+}
+
+html:not(.dark)[data-palette="amber-terminal"] {
+  --brand-primary: oklch(52% 0.18 65);
+  --brand-secondary: oklch(48% 0.16 45);
+  --brand-accent: oklch(50% 0.20 65);
+  --border-active: oklch(52% 0.18 65);
+  --bg-gradient-1: rgba(245, 158, 11, 0.08);
+}
+
+/* ─────────────────────────────────────────────
+   PALETTE VARIANT 3: VIOLET MONOLITH (Deep Cyber Nebula)
+   ───────────────────────────────────────────── */
+html[data-palette="violet-monolith"],
+html.dark[data-palette="violet-monolith"] {
+  --brand-primary: oklch(78% 0.18 300);
+  --brand-secondary: oklch(80% 0.14 325);
+  --brand-accent: oklch(74% 0.20 300);
+  --border-active: oklch(65% 0.16 300);
   --bg-gradient-1: rgba(168, 85, 247, 0.14);
-  --bg-gradient-2: rgba(251, 191, 36, 0.08);
-  --bg-gradient-3: rgba(139, 92, 246, 0.11);
+  --bg-gradient-2: rgba(236, 72, 153, 0.08);
+}
+
+html:not(.dark)[data-palette="violet-monolith"] {
+  --brand-primary: oklch(50% 0.20 300);
+  --brand-secondary: oklch(46% 0.16 325);
+  --brand-accent: oklch(48% 0.22 300);
+  --border-active: oklch(50% 0.20 300);
+  --bg-gradient-1: rgba(168, 85, 247, 0.08);
 }
 
 /* ─── RESET & BASE ──────────────────────── */
