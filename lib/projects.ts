@@ -17,7 +17,7 @@ export interface ProjectArchitecture {
 export interface ProjectTechDetail {
   name: string;
   desc: string;
-  icon: React.ReactNode;
+  icon: React.ComponentType<any>;
 }
 
 export interface ProjectLink {
@@ -137,22 +137,22 @@ The application is fully compliant with India's Digital Personal Data Protection
       {
         name: 'Notification Scraper',
         desc: 'Native Android service parsing banking notifications locally into structured transaction payloads with zero cloud transmission.',
-        icon: React.createElement(Layers, { size: 24 })
+        icon: Layers
       },
       {
         name: 'LiteRT Gemma 4 E2B',
         desc: 'Quantized local model inference engine running on-device with zero latency, zero recurring API cost, and high token efficiency.',
-        icon: React.createElement(Cpu, { size: 24 })
+        icon: Cpu
       },
       {
         name: 'Encrypted SQLite Vault',
         desc: 'Hardware-backed encrypted relational database storing transactional histories and ledger analytics with strict offline boundary.',
-        icon: React.createElement(Database, { size: 24 })
+        icon: Database
       },
       {
         name: 'DPDP & SEBI Compliance',
         desc: 'Integrated regulatory consent flows, explicit data erasure mechanisms, and advisory disclaimers meeting national standards.',
-        icon: React.createElement(Shield, { size: 24 })
+        icon: Shield
       }
     ],
     tags: ['On-Device AI', 'Flutter', 'LiteRT', 'Gemma LLM', 'FinTech', 'Privacy-First', 'SQLite'],
@@ -230,22 +230,22 @@ Developers can inspect and curate generated records via an interactive terminal 
       {
         name: 'ResearchAgent Engine',
         desc: 'Autonomous orchestrator leveraging google-adk to crawl technical documentation and extract validated training samples.',
-        icon: React.createElement(Layers, { size: 24 })
+        icon: Layers
       },
       {
         name: 'Local LLM Routing',
         desc: 'High-throughput prompt dispatch matrix interfacing directly with locally hosted vLLM and Ollama inference endpoints.',
-        icon: React.createElement(Cpu, { size: 24 })
+        icon: Cpu
       },
       {
         name: 'TUI Curation Console',
         desc: 'Keyboard-driven interactive terminal interface for real-time inspection, filtering, and annotation of generated dataset samples.',
-        icon: React.createElement(Terminal, { size: 24 })
+        icon: Terminal
       },
       {
         name: 'Dual Package Registry',
         desc: 'Packaged and maintained as a native Python package on PyPI and an NPX CLI binary on NPM with automated CI/CD.',
-        icon: React.createElement(Box, { size: 24 })
+        icon: Box
       }
     ],
     tags: ['Python', 'Dataset Synthesis', 'LLM Distillation', 'PyPI', 'NPM', 'Ollama', 'vLLM', 'google-adk'],
@@ -325,22 +325,22 @@ The model is trained on a unified, curated dataset of 6,327 high-altitude frames
       {
         name: '6 Disaster Classes',
         desc: 'Detects human, SOS markers, vehicles, flood zones, road breaches, and structural cracks in real-time.',
-        icon: React.createElement(Eye, { size: 24 })
+        icon: Eye
       },
       {
         name: 'SAHI Inference Slicing',
         desc: 'Tiled sliding-window inference preserves fine pixel details for tiny objects viewed from high drone altitudes.',
-        icon: React.createElement(Layers, { size: 24 })
+        icon: Layers
       },
       {
         name: 'INT8 Quantization',
         desc: 'Post-training INT8 quantization compressing model weights to run on low-power Google Coral Edge TPU hardware.',
-        icon: React.createElement(Cpu, { size: 24 })
+        icon: Cpu
       },
       {
         name: 'Hugging Face Hub',
         desc: 'Open-access distribution of weights, ONNX pipelines, and training datasets for disaster relief researchers.',
-        icon: React.createElement(Globe, { size: 24 })
+        icon: Globe
       }
     ],
     tags: ['Computer Vision', 'YOLOv11', 'PyTorch', 'ONNX', 'TFLite', 'Google Coral TPU', 'Hugging Face', 'Disaster Relief'],
@@ -419,22 +419,22 @@ The project models the correlation between physical activity levels, daily step 
       {
         name: 'Pandas & NumPy Pipelines',
         desc: 'Vectorized data transformations, missing value imputation, and groupby cohort aggregations across biometric indicators.',
-        icon: React.createElement(Database, { size: 24 })
+        icon: Database
       },
       {
         name: 'Seaborn Statistical Plots',
         desc: 'Multi-variable correlation matrices, pair plots, and distribution visualizers exposing hidden lifestyle patterns.',
-        icon: React.createElement(Layers, { size: 24 })
+        icon: Layers
       },
       {
         name: 'Biometric Feature Engineering',
         desc: 'Derived indicators for cardiovascular stress and sleep efficiency scores derived from raw clinical telemetry.',
-        icon: React.createElement(Cpu, { size: 24 })
+        icon: Cpu
       },
       {
         name: 'Kaggle Notebook Publishing',
         desc: 'Fully documented narrative markdown with reproducible execution cells shared openly with the data community.',
-        icon: React.createElement(Globe, { size: 24 })
+        icon: Globe
       }
     ],
     tags: ['Data Science', 'Python', 'Pandas', 'NumPy', 'Seaborn', 'EDA', 'Kaggle', 'Biometrics'],
