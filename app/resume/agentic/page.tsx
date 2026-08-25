@@ -59,15 +59,15 @@ const agenticProjects = [
     ],
   },
   {
-    name: 'Super Orchestrator',
-    subtitle: 'High-Fidelity Master Agent Orchestration Protocol',
-    date: 'May 2026',
-    tech: 'TypeScript · Vertex AI · Docker · Firecrawl · code-review-graph',
+    name: 'Sleep Health Analytics',
+    subtitle: 'Statistical Biometric Feature Modeling & Analysis',
+    date: '2025',
+    tech: 'Python · Pandas · NumPy · Seaborn · Matplotlib · Kaggle',
     bullets: [
-      'Engineered a master-worker orchestration framework designed to handle large-scale codebase refactors with 95% token efficiency.',
-      'Designed a Safelock Gatekeeper protocol to manage autonomous tool execution risks, preventing prompt-injection and CLI deadlocks.',
-      'Integrated local Firecrawl Docker instances to enable high-fidelity documentation RAG without external API dependency or rate limits.',
-      'Developed a Task-to-Worker Routing Matrix that dynamically selects the optimal SLM (Llama 3.2-3B) or LLM (Gemini 1.5 Pro) based on task complexity.',
+      'Engineered an automated data extraction and feature engineering pipeline on multidimensional biometric datasets.',
+      'Decomposed compound blood pressure metrics and handled missing clinical distributions using vectorized Pandas operations.',
+      'Constructed correlation matrices and statistical distribution plots to expose relationships between stress and sleep architecture.',
+      'Published reproducible Jupyter/Pandas workflows on Kaggle Hub for public validation and statistical review.',
     ],
   },
   {
@@ -104,24 +104,6 @@ export default function AgenticResumePage() {
   return (
     <div className="min-h-screen bg-[#fcfcfc] py-10 font-sans text-black">
       <style dangerouslySetInnerHTML={{ __html: PRINT_CSS }} />
-
-      {/* ── NAVBAR (Non-Printing) ── */}
-      <div className="no-print fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-        <div className="container max-w-[900px] flex justify-between items-center py-3">
-          <Link href="/resume" className="flex items-center gap-2 px-3 py-1.5 rounded-none hover:bg-gray-100 text-sm font-bold text-gray-600 transition-all no-underline">
-            <ArrowLeft size={16} /> Dashboard
-          </Link>
-          <div className="flex items-center gap-4">
-            <span className="text-[10px] font-black uppercase tracking-widest text-emerald-600 bg-emerald-50 px-2 py-1 rounded-none">ATS Optimized</span>
-            <button 
-              onClick={handlePrint} 
-              className="flex items-center gap-2 px-5 py-2 bg-black text-white rounded-none text-sm font-bold hover:bg-gray-800 transition-all"
-            >
-              <Printer size={16} /> Print Resume
-            </button>
-          </div>
-        </div>
-      </div>
 
       {/* ── DOCUMENT VIEW (Open Design: Neutral Modern) ── */}
       <main className="doc-container mx-auto bg-white shadow-[0_0_50px_rgba(0,0,0,0.1)] max-w-[850px] p-[0.5in] md:p-[0.7in] mt-12 mb-20">

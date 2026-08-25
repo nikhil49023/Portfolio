@@ -237,37 +237,8 @@ export default function ResumePage() {
       {/* Inject print CSS safely */}
       <style dangerouslySetInnerHTML={{ __html: PRINT_CSS }} />
 
-      {/* ── NAVBAR (screen only) ── */}
-      <header className="no-print fixed top-0 left-0 right-0 z-50 bg-[var(--navbar-bg)] backdrop-blur-xl border-b border-[var(--border-subtle)] shadow-[0_1px_10px_rgba(0,0,0,0.02)]">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 text-xs font-mono font-bold tracking-wider text-[var(--ink-secondary)] hover:text-[var(--brand-primary)] transition-colors no-underline">
-            <ArrowLeft size={13} /> Back to Systems
-          </Link>
-          <div className="flex items-center gap-3">
-            <span
-              className="font-mono text-[9px] font-bold tracking-widest px-2.5 py-1 border border-emerald-500/20 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400 hidden sm:inline-block"
-            >
-              ✓ ATS VERIFIED
-            </span>
-            <a 
-              href="/resume.pdf" 
-              download="Kilani_Sai_Nikhil_Resume.pdf"
-              className="flex items-center gap-1.5 px-4 py-2 border border-[var(--border-subtle)] hover:border-[var(--ink-primary)] text-[var(--ink-primary)] font-mono text-[10px] font-bold uppercase tracking-wider bg-transparent hover:bg-[var(--bg-surface)] transition-all cursor-pointer no-underline"
-            >
-              Download PDF
-            </a>
-            <button 
-              onClick={handlePrint} 
-              className="flex items-center gap-1.5 px-4 py-2 bg-[var(--ink-primary)] text-[var(--bg-void)] font-mono text-[10px] font-bold uppercase tracking-wider hover:bg-[var(--ink-secondary)] transition-all cursor-pointer border-0"
-            >
-              <Printer size={12} /> Print ATS
-            </button>
-          </div>
-        </div>
-      </header>
-
       {/* ── SCREEN VIEW (Premium Executive Digital CV) ── */}
-      <main className="no-print pt-28 pb-24 px-6">
+      <main className="no-print pt-20 pb-24 px-6">
         <div className="max-w-5xl mx-auto">
 
           {/* Header Section */}

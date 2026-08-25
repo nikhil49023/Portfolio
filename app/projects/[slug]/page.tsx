@@ -203,54 +203,10 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   return (
     <div className="min-h-screen bg-[var(--bg-void)] text-[var(--ink-primary)] font-body selection:bg-[var(--border-active)] selection:text-[var(--ink-primary)]">
       
-      {/* ── Top Navigation Bar ── */}
-      <header className="sticky top-0 z-50 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]/80 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link
-              href="/#projects"
-              className="flex items-center gap-2 font-mono text-xs text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] transition-colors py-1 px-2 border border-transparent hover:border-[var(--border-subtle)]"
-            >
-              <ArrowLeft size={14} />
-              <span>Back to Systems</span>
-            </Link>
-            <span className="text-[var(--border-subtle)]">/</span>
-            <span className="font-mono text-xs text-[var(--brand-primary)] font-bold">
-              {project.name}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            {project.badge && (
-              <span className="hidden sm:inline-flex text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--ink-muted)]">
-                {project.badge}
-              </span>
-            )}
-            <div className="flex items-center gap-1">
-              {project.links.map((link) => {
-                const LinkIcon = link.icon;
-                return (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 border border-[var(--border-subtle)] hover:border-[var(--border-active)] bg-[var(--bg-void)] hover:bg-[var(--bg-surface)] text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] transition-colors"
-                    title={link.label}
-                  >
-                    <LinkIcon size={14} />
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* ── Hero Section ── */}
       <section
         ref={heroRef}
-        className="relative border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]/40 overflow-hidden"
+        className="relative border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]/40 overflow-hidden pt-16"
       >
         <div className="max-w-6xl mx-auto px-6 pt-16 pb-14 relative z-10">
           <motion.div

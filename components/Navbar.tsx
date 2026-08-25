@@ -2,35 +2,93 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { Sun, Moon, User, Folder, Code, Award, Mail, FileText } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Sun,
+  Moon,
+  User,
+  Folder,
+  Code,
+  Award,
+  Mail,
+  FileText,
+  ArrowLeft,
+  Printer,
+  Download,
+  ExternalLink,
+  ChevronRight,
+  Terminal,
+} from 'lucide-react';
+import { PROJECTS } from '@/lib/projects';
 
-const navLinks = [
-  { label: 'About', href: '#about', icon: User },
-  { label: 'Projects', href: '#projects', icon: Folder },
-  { label: 'Skills', href: '#skills', icon: Code },
-  { label: 'Certs', href: '#certifications', icon: Award },
-  { label: 'Contact', href: '#contact', icon: Mail },
+const homeNavLinks = [
+  { id: 'about', label: 'About', href: '/#about', icon: User },
+  { id: 'projects', label: 'Projects', href: '/#projects', icon: Folder },
+  { id: 'skills', label: 'Skills', href: '/#skills', icon: Code },
+  { id: 'certifications', label: 'Certifications', href: '/#certifications', icon: Award },
+  { id: 'contact', label: 'Contact', href: '/#contact', icon: Mail },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [activeSection, setActiveSection] = useState<string>('about');
   const [hoveredPath, setHoveredPath] = useState<string | null>(null);
 
+  const isHome = pathname === '/';
+  const isResume = pathname.startsWith('/resume');
+  const isProjectDetail = pathname.startsWith('/projects/');
+
+  // Extract current project if on /projects/[slug]
+  const projectSlug = isProjectDetail ? pathname.replace('/projects/', '') : null;
+  const currentProject = projectSlug ? PROJECTS[projectSlug] : null;
+
+  // Initialize theme from DOM classList / localStorage
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    
     const isDark = document.documentElement.classList.contains('dark');
     setTheme(isDark ? 'dark' : 'light');
 
-    return () => {
-      window.removeEventListener('scroll', onScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
     };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Set up ScrollSpy IntersectionObserver for home page sections
+  useEffect(() => {
+    if (!isHome) return;
+
+    const sectionIds = ['about', 'projects', 'skills', 'certifications', 'contact'];
+    const observers: IntersectionObserver[] = [];
+
+    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        const obs = new IntersectionObserver(handleIntersect, {
+          rootMargin: '-20% 0px -60% 0px',
+          threshold: 0,
+        });
+        obs.observe(el);
+        observers.push(obs);
+      }
+    });
+
+    return () => {
+      observers.forEach((obs) => obs.disconnect());
+    };
+  }, [isHome]);
 
   const toggleTheme = () => {
     if (theme === 'dark') {
@@ -44,108 +102,180 @@ export default function Navbar() {
     }
   };
 
+  const handlePrint = () => {
+    if (typeof window !== 'undefined') window.print();
+  };
+
   return (
     <>
-      {/* ── DESKTOP NAVBAR (Hidden on mobile, visible on medium screens and up) ── */}
-      <header 
-        className={`fixed left-0 right-0 z-50 hidden md:block transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          scrolled 
-            ? 'top-4 mx-auto w-[92%] max-w-5xl rounded-full bg-[var(--navbar-bg)] backdrop-blur-xl border border-[var(--glass-border)] py-3.5 px-6 shadow-[0_12px_40px_rgba(0,0,0,0.06)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.3)]' 
-            : 'top-0 w-full py-6 px-8 bg-transparent border-b border-transparent'
+      {/* ── TOP GLOBAL NAVBAR (Optimized across all routes) ── */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 no-print ${
+          scrolled
+            ? 'bg-[var(--bg-surface)]/90 backdrop-blur-md border-b border-[var(--border-subtle)] shadow-sm'
+            : 'bg-[var(--bg-void)]/60 backdrop-blur-sm border-b border-[var(--border-subtle)]/50'
         }`}
       >
-        <div className="w-full flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="font-bold text-sm tracking-tight text-[var(--ink-primary)] no-underline font-mono">
-            SAI_NIKHIL
-          </Link>
-
-          {/* Nav links */}
-          <nav className="flex items-center gap-2 relative">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onMouseEnter={() => setHoveredPath(link.href)}
-                onMouseLeave={() => setHoveredPath(null)}
-                className="relative text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] transition-colors text-xs font-semibold no-underline px-4 py-2 z-10 font-mono tracking-wide"
+        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+          
+          {/* Left Block: Contextual Brand / Back Breadcrumb */}
+          {isHome ? (
+            <div className="flex items-center gap-3">
+              <Link
+                href="/"
+                className="font-mono font-bold text-xs tracking-wider text-[var(--ink-primary)] hover:text-[var(--brand-primary)] transition-colors flex items-center gap-2"
               >
-                {link.label}
-                {hoveredPath === link.href && (
-                  <motion.div
-                    layoutId="navHover"
-                    className="absolute inset-0 bg-[var(--bg-surface)] border border-[var(--border-subtle)] rounded-full -z-10"
-                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                  />
+                <span>KILANI_SAI_NIKHIL</span>
+              </Link>
+              <span className="hidden sm:inline-flex items-center gap-1.5 font-mono text-[9px] text-[var(--ink-muted)] border border-[var(--border-subtle)] bg-[var(--bg-surface)] px-2 py-0.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>ONLINE // HYD_IN</span>
+              </span>
+            </div>
+          ) : isProjectDetail ? (
+            <div className="flex items-center gap-2 font-mono text-xs">
+              <Link
+                href="/#projects"
+                className="flex items-center gap-1.5 text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] transition-colors py-1 px-1.5"
+              >
+                <ArrowLeft size={13} />
+                <span className="hidden sm:inline">Systems Archive</span>
+                <span className="sm:hidden">Back</span>
+              </Link>
+              <span className="text-[var(--border-subtle)]">/</span>
+              <span className="font-bold text-[var(--brand-primary)] truncate max-w-[140px] sm:max-w-none">
+                {currentProject ? currentProject.name : projectSlug}
+              </span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2 font-mono text-xs">
+              <Link
+                href="/"
+                className="flex items-center gap-1.5 text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] transition-colors py-1 px-1.5"
+              >
+                <ArrowLeft size={13} />
+                <span>Portfolio</span>
+              </Link>
+              <span className="text-[var(--border-subtle)]">/</span>
+              <span className="font-bold text-[var(--brand-primary)]">
+                Dossier &amp; Resume
+              </span>
+            </div>
+          )}
+
+          {/* Center Block: Desktop Section Navigation (Home page only) */}
+          {isHome && (
+            <nav className="hidden md:flex items-center gap-1">
+              {homeNavLinks.map((link) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <a
+                    key={link.id}
+                    href={link.href}
+                    onMouseEnter={() => setHoveredPath(link.id)}
+                    onMouseLeave={() => setHoveredPath(null)}
+                    className={`relative px-3.5 py-1.5 text-xs font-mono transition-colors ${
+                      isActive
+                        ? 'text-[var(--ink-primary)] font-bold'
+                        : 'text-[var(--ink-muted)] hover:text-[var(--ink-primary)]'
+                    }`}
+                  >
+                    <span className="relative z-10">{link.label}</span>
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeNavTab"
+                        className="absolute inset-0 bg-[var(--bg-surface)] border border-[var(--border-subtle)] shadow-xs -z-10"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </a>
+                );
+              })}
+            </nav>
+          )}
+
+          {/* Right Block: Actions (Theme switcher, PDF print, Resume button) */}
+          <div className="flex items-center gap-2.5">
+            {isResume ? (
+              <>
+                <button
+                  onClick={handlePrint}
+                  className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-[var(--ink-primary)] text-[var(--bg-void)] hover:bg-[var(--brand-primary)] text-xs font-mono font-bold transition-colors cursor-pointer border-0"
+                >
+                  <Printer size={12} />
+                  <span>Print ATS</span>
+                </button>
+              </>
+            ) : isProjectDetail ? (
+              <>
+                {currentProject?.links[0] && (
+                  <a
+                    href={currentProject.links[0].href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hidden sm:flex items-center gap-1 px-2.5 py-1 border border-[var(--border-subtle)] hover:border-[var(--border-active)] bg-[var(--bg-surface)] text-[var(--ink-primary)] text-xs font-mono transition-colors"
+                  >
+                    <span>Source</span>
+                    <ExternalLink size={11} />
+                  </a>
                 )}
-              </a>
-            ))}
-          </nav>
+                <Link
+                  href="/resume"
+                  className="hidden sm:flex items-center gap-1 px-3 py-1 bg-[var(--ink-primary)] text-[var(--bg-void)] hover:bg-[var(--brand-primary)] text-xs font-mono font-bold transition-colors"
+                >
+                  <span>Resume</span>
+                </Link>
+              </>
+            ) : (
+              <Link
+                href="/resume"
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 border border-[var(--border-subtle)] hover:border-[var(--ink-primary)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface)] text-[var(--ink-primary)] text-xs font-mono font-semibold transition-all"
+              >
+                <FileText size={12} />
+                <span>Resume</span>
+              </Link>
+            )}
 
-          {/* Actions */}
-          <div className="flex items-center gap-4">
-            {/* Theme Toggle */}
-            <motion.button
+            {/* Global Theme Toggle Button */}
+            <button
               onClick={toggleTheme}
-              whileTap={{ scale: 0.92, rotate: 180 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="w-9 h-9 border border-[var(--border-subtle)] hover:border-[var(--border-active)] hover:bg-[var(--bg-surface)] text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] transition-colors duration-200 bg-transparent cursor-pointer flex items-center justify-center rounded-full"
+              className="w-8 h-8 flex items-center justify-center border border-[var(--border-subtle)] hover:border-[var(--border-active)] bg-[var(--bg-surface)] text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] transition-colors cursor-pointer"
               aria-label="Toggle Theme"
+              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
-              {theme === 'dark' ? <Sun size={14} strokeWidth={1.5} /> : <Moon size={14} strokeWidth={1.5} />}
-            </motion.button>
-
-            <Link
-              href="/resume"
-              className="border border-[var(--border-subtle)] hover:border-[var(--ink-primary)] text-[var(--ink-primary)] px-4 py-2 text-xs font-semibold no-underline transition-all rounded-full uppercase tracking-wider font-mono"
-            >
-              Resume
-            </Link>
+              {theme === 'dark' ? (
+                <Sun size={14} className="text-amber-400" />
+              ) : (
+                <Moon size={14} className="text-blue-500" />
+              )}
+            </button>
           </div>
         </div>
       </header>
 
-      {/* ── MOBILE TOP BAR (Logo + Theme Toggle + Resume Link) ── */}
-      <div className="fixed top-0 left-0 right-0 z-40 md:hidden flex justify-between items-center px-6 py-4 bg-[var(--navbar-bg-mobile)] backdrop-blur-md border-b border-[var(--border-subtle)] no-print">
-        <Link href="/" className="font-bold text-xs tracking-wider text-[var(--ink-primary)] font-mono">
-          SAI_NIKHIL
-        </Link>
-        <div className="flex items-center gap-3">
-          <Link
-            href="/resume"
-            className="w-8 h-8 border border-[var(--border-subtle)] hover:bg-[var(--bg-surface)] text-[var(--ink-secondary)] flex items-center justify-center rounded-full active:scale-95 bg-transparent cursor-pointer"
-            aria-label="View Resume"
-          >
-            <FileText size={13} strokeWidth={1.8} />
-          </Link>
-          <motion.button
-            onClick={toggleTheme}
-            whileTap={{ scale: 0.92, rotate: 180 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="w-8 h-8 border border-[var(--border-subtle)] hover:bg-[var(--bg-surface)] text-[var(--ink-secondary)] flex items-center justify-center rounded-full bg-transparent cursor-pointer"
-            aria-label="Toggle Theme"
-          >
-            {theme === 'dark' ? <Sun size={13} strokeWidth={1.8} /> : <Moon size={13} strokeWidth={1.8} />}
-          </motion.button>
-        </div>
-      </div>
-
-      {/* ── MOBILE BOTTOM NAVBAR (App-style navigation floating pill) ── */}
-      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] max-w-sm z-50 rounded-full border border-[var(--glass-border)] bg-[var(--glass-bg)]/80 backdrop-blur-xl py-2 px-3 flex justify-around items-center shadow-lg md:hidden no-print">
-        {navLinks.map((link) => {
-          const Icon = link.icon;
-          return (
-            <a
-              key={link.href}
-              href={link.href}
-              className="flex flex-col items-center justify-center gap-1.5 text-[8px] font-mono font-bold tracking-widest text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] transition-colors no-underline py-1 px-3"
-            >
-              <Icon size={16} strokeWidth={1.8} />
-              <span>{link.label.toUpperCase()}</span>
-            </a>
-          );
-        })}
-      </nav>
+      {/* ── MOBILE BOTTOM FLOATING DOCK (Home page only) ── */}
+      {isHome && (
+        <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] max-w-sm z-50 border border-[var(--border-subtle)] bg-[var(--bg-surface)]/95 backdrop-blur-lg py-2 px-3 flex justify-around items-center shadow-lg md:hidden no-print">
+          {homeNavLinks.map((link) => {
+            const Icon = link.icon;
+            const isActive = activeSection === link.id;
+            return (
+              <a
+                key={link.id}
+                href={link.href}
+                className={`flex flex-col items-center justify-center gap-1 text-[9px] font-mono transition-colors py-1 px-2.5 ${
+                  isActive
+                    ? 'text-[var(--brand-primary)] font-bold'
+                    : 'text-[var(--ink-muted)] hover:text-[var(--ink-primary)]'
+                }`}
+              >
+                <Icon size={15} />
+                <span>{link.label}</span>
+              </a>
+            );
+          })}
+        </nav>
+      )}
     </>
   );
 }
