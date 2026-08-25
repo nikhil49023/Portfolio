@@ -1,107 +1,218 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Database, Cpu, Layout, Boxes } from 'lucide-react';
+import { BookOpen, Sparkles, Terminal, Cpu, Database, Layers, Radio } from 'lucide-react';
 
-const SKILLS = [
+const matrixData = [
   {
-    category: "Interfaces",
-    icon: Layout,
-    items: ["Next.js 14", "React 18", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js"]
+    category: 'Core Languages & Systems',
+    icon: Terminal,
+    native: {
+      skills: ['Python 3.11', 'C++17', 'Linux Syscalls', 'Bash / Zsh', 'POSIX'],
+      desc: 'Hand-engineering core algorithms, memory management, file descriptor operations, multi-threading, and system utilities on Linux.'
+    },
+    augmented: {
+      skills: ['TypeScript', 'Rust FFI', 'Dart 3.5', 'Bun'],
+      desc: 'Rapid scaffolding of interface definitions, type-safe API boundaries, and runtime interop bridges using AI agent loops.'
+    }
   },
   {
-    category: "Agentics",
-    icon: Cpu,
-    items: ["Google ADK", "AutoGen", "Multi-Agent Systems", "LangChain", "Prompt Engineering", "Tool Use"]
-  },
-  {
-    category: "Systems",
+    category: 'Databases & Relational Modeling',
     icon: Database,
-    items: ["Python", "Node.js", "PostgreSQL", "Redis", "Vector DBs", "Docker"]
+    native: {
+      skills: ['SQL (Postgres / SQLite)', 'B-Tree Indexing', '3NF Schemas', 'AES-256 Vault'],
+      desc: 'Designing strict relational schemas, complex joins, indexing strategies, and hardware-encrypted local databases compliant with DPDP Act 2023.'
+    },
+    augmented: {
+      skills: ['Vector MBTiles', 'ChromaDB', 'Prisma ORM', 'Supabase'],
+      desc: 'Automating database migrations, synthesizing test seed fixtures, and setting up hybrid relational/vector search layers.'
+    }
   },
   {
-    category: "Architecture",
-    icon: Boxes,
-    items: ["RAG Pipelines", "CV Pipelines", "Dataset Curation", "Hugging Face", "ETL Processes", "Data Viz"]
+    category: 'Edge ML & Computer Vision',
+    icon: Cpu,
+    native: {
+      skills: ['YOLOv11-Nano', 'SAHI Tiling', 'PyTorch 2.5', 'INT8 TFLite', 'Google Coral TPU'],
+      desc: 'Curating aerial vision datasets, architecting SAHI sliding-window inference, and quantizing weights to INT8 for sub-watt micro-TPU execution.'
+    },
+    augmented: {
+      skills: ['LiteRT (Gemma 4 E2B)', 'ONNX Runtime', 'Hugging Face Hub'],
+      desc: 'Orchestrating system-level on-device language models via LiteRT and packaging automated CI/CD model card pipelines.'
+    }
+  },
+  {
+    category: 'Agent Orchestration & Tooling',
+    icon: Layers,
+    native: {
+      skills: ['Docker Stacks', 'Firecrawl Local', 'Git Trunk Flow', 'code-review-graph'],
+      desc: 'Deploying self-hosted container stacks, pre-indexing semantic call graphs, and enforcing Safelock risk protocols to eliminate token waste.'
+    },
+    augmented: {
+      skills: ['Model Context Protocol (MCP)', 'google-adk', 'vLLM Routing', 'crawl4ai'],
+      desc: 'Designing autonomous multi-agent delegation loops, custom MCP servers, and dynamic prompt distillation workflows (SFT / DPO).'
+    }
+  },
+  {
+    category: 'Deep Tech, Mesh & Robotics',
+    icon: Radio,
+    native: {
+      skills: ['ROS 2 (rclpy)', 'Gazebo ODEs', 'BLE 5.4 Mesh', 'Android NDK'],
+      desc: 'Formulating differential kinematic equations for wheel slip recovery, 50 Hz ROS 2 velocity publishers, and peer-to-peer store-and-forward mesh routing.'
+    },
+    augmented: {
+      skills: ['Deep JSCC Neural Mesh', 'PyTorch FiLM Modulation', 'Sentinel-1 SAR Radar'],
+      desc: 'Prototyping joint source-channel neural transceivers (98.2% compression) and orbital radar flood vectorization under blackout conditions.'
+    }
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20, filter: 'blur(10px)' },
-  show: { 
-    opacity: 1, 
-    y: 0, 
-    filter: 'blur(0px)',
-    transition: { 
-      duration: 1, 
-      ease: [0.16, 1, 0.3, 1] 
-    } 
-  },
-};
-
-export function Skills() {
+export default function Skills() {
   return (
-    <section id="skills" className="section relative">
-      <motion.div 
-        variants={containerVariants}
-        initial="hidden" 
-        whileInView="show" 
-        viewport={{ once: true, amount: 0.2 }} 
-        className="space-y-32"
-      >
-        <motion.div variants={fadeUp} className="text-center max-w-4xl mx-auto">
-          <p className="eyebrow justify-center">Core Capabilities</p>
-          <h2 className="display-heading text-[4rem] sm:text-[6rem] lg:text-[8rem] mb-12 uppercase tracking-tighter">
-            SYSTEM <span className="gradient-text">INTELLIGENCE</span>
-          </h2>
-          <p className="text-xl text-white/40 font-medium leading-relaxed font-display italic">
-            "A technical arsenal engineered for the next generation of autonomous and premium digital experiences."
-          </p>
-        </motion.div>
+    <section id="skills" className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)] relative overflow-hidden select-none reveal-on-scroll">
+      {/* Subtle background glow */}
+      <div className="absolute top-0 left-1/4 w-[50vw] h-[300px] bg-[radial-gradient(circle_at_top,color-mix(in_oklch,var(--brand-primary)_4%,transparent),transparent_70%)] pointer-events-none" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 border border-white/5 rounded-[2rem] overflow-hidden">
-          {SKILLS.map((skill, index) => (
-            <motion.div
-              key={skill.category}
-              variants={fadeUp}
-              className="bg-[#050505] p-12 lg:p-16 group relative"
-            >
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-12">
-                  <div className="flex items-center gap-6">
-                    <div className="w-12 h-12 rounded-xl bg-accent-cyan/5 flex items-center justify-center border border-accent-cyan/10">
-                      <skill.icon size={20} className="text-accent-cyan" />
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-14">
+          <div className="flex items-baseline gap-4">
+            <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">03</span>
+            <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
+              Dual Capability Matrix
+            </h2>
+          </div>
+          <div className="font-mono text-[10px] text-[var(--ink-muted)]">
+            <span>NATIVE HAND-WRITTEN INTERNALS + 10X AI-AUGMENTED VELOCITY</span>
+          </div>
+        </div>
+
+        {/* Desktop Matrix (Table-like grid) */}
+        <div className="hidden md:block border border-[var(--border-subtle)] bg-[var(--bg-surface)]/40 backdrop-blur-sm shadow-sm overflow-hidden">
+          {/* Table Header */}
+          <div className="grid grid-cols-12 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]/80 py-4 px-6 text-[10px] font-mono font-bold tracking-widest text-[var(--ink-muted)] uppercase">
+            <div className="col-span-3">System Domain</div>
+            <div className="col-span-4 flex items-center gap-1.5 border-l border-[var(--border-subtle)]/50 pl-6">
+              <BookOpen size={12} className="text-[var(--ink-primary)]" />
+              <span className="text-[var(--ink-primary)]">Native Mastery (Hand-Engineered Logic)</span>
+            </div>
+            <div className="col-span-5 flex items-center gap-1.5 border-l border-[var(--border-subtle)]/50 pl-6">
+              <Sparkles size={12} className="text-[var(--brand-primary)]" />
+              <span className="text-[var(--brand-primary)]">AI-Augmented Superpowers (MCP &amp; Tooling)</span>
+            </div>
+          </div>
+
+          {/* Table Body */}
+          <div className="divide-y divide-[var(--border-subtle)]">
+            {matrixData.map((row) => {
+              const RowIcon = row.icon;
+              return (
+                <div 
+                  key={row.category} 
+                  className="grid grid-cols-12 py-6 px-6 hover:bg-[var(--bg-surface)]/60 transition-colors duration-200 group"
+                >
+                  {/* Category name with domain icon */}
+                  <div className="col-span-3 pr-4 flex items-start gap-2.5">
+                    <div className="w-6 h-6 flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--brand-primary)] shrink-0 mt-0.5">
+                      <RowIcon size={12} />
                     </div>
-                    <h3 className="text-2xl font-black text-white uppercase tracking-tighter">{skill.category}</h3>
+                    <div>
+                      <h3 className="font-display font-bold text-sm text-[var(--ink-primary)] tracking-tight group-hover:text-[var(--brand-primary)] transition-colors duration-200">
+                        {row.category}
+                      </h3>
+                    </div>
                   </div>
-                  <span className="text-[10px] font-bold text-white/10 uppercase tracking-widest">A-0{index + 1}</span>
+
+                  {/* Native competency */}
+                  <div className="col-span-4 border-l border-[var(--border-subtle)]/40 pl-6 space-y-2.5">
+                    <div className="flex flex-wrap gap-1">
+                      {row.native.skills.map(s => (
+                        <span key={s} className="text-[9px] font-mono px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--ink-primary)] font-semibold">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="text-xs leading-relaxed text-[var(--ink-muted)] pr-4">
+                      {row.native.desc}
+                    </p>
+                  </div>
+
+                  {/* AI-Augmented competency */}
+                  <div className="col-span-5 border-l border-[var(--border-subtle)]/40 pl-6 space-y-2.5">
+                    <div className="flex flex-wrap gap-1">
+                      {row.augmented.skills.map(s => (
+                        <span key={s} className="text-[9px] font-mono px-2 py-0.5 border border-[var(--brand-primary)]/20 bg-[var(--brand-primary)]/5 text-[var(--brand-primary)] font-semibold">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="text-xs leading-relaxed text-[var(--ink-muted)] pr-4">
+                      {row.augmented.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Mobile Stack Layout */}
+        <div className="md:hidden space-y-6">
+          {matrixData.map((row) => {
+            const RowIcon = row.icon;
+            return (
+              <div 
+                key={row.category} 
+                className="border border-[var(--border-subtle)] bg-[var(--bg-surface)]/50 p-5 space-y-5 shadow-sm"
+              >
+                <div className="flex items-center gap-2 border-b border-[var(--border-subtle)] pb-2">
+                  <RowIcon size={14} className="text-[var(--brand-primary)]" />
+                  <h3 className="font-display font-bold text-sm text-[var(--ink-primary)] tracking-tight">
+                    {row.category}
+                  </h3>
                 </div>
                 
-                <div className="flex flex-wrap gap-3">
-                  {skill.items.map((item) => (
-                    <span 
-                      key={item} 
-                      className="text-[10px] font-bold px-5 py-2.5 rounded-full glass border-white/5 text-white/30 hover:text-accent-cyan hover:border-accent-cyan/20 transition-all duration-500 uppercase tracking-widest"
-                    >
-                      {item}
-                    </span>
-                  ))}
+                {/* Native block */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-1.5 text-[9px] font-mono font-bold tracking-widest text-[var(--ink-muted)] uppercase">
+                    <BookOpen size={10} />
+                    <span>Native Systems Baseline</span>
+                  </div>
+                  <div className="flex flex-wrap gap-1 py-1">
+                    {row.native.skills.map(s => (
+                      <span key={s} className="text-[9px] font-mono px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--ink-primary)] font-semibold">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-xs leading-relaxed text-[var(--ink-muted)]">
+                    {row.native.desc}
+                  </p>
+                </div>
+
+                {/* Augmented block */}
+                <div className="space-y-2 pt-3 border-t border-[var(--border-subtle)]/50">
+                  <div className="flex items-center gap-1.5 text-[9px] font-mono font-bold tracking-widest text-[var(--brand-primary)] uppercase">
+                    <Sparkles size={10} />
+                    <span>AI-Augmented Accelerator</span>
+                  </div>
+                  <div className="flex flex-wrap gap-1 py-1">
+                    {row.augmented.skills.map(s => (
+                      <span key={s} className="text-[9px] font-mono px-2 py-0.5 border border-[var(--brand-primary)]/20 bg-[var(--brand-primary)]/5 text-[var(--brand-primary)] font-semibold">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-xs leading-relaxed text-[var(--ink-muted)]">
+                    {row.augmented.desc}
+                  </p>
                 </div>
               </div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
-      </motion.div>
+
+      </div>
     </section>
   );
 }
+

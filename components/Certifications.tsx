@@ -1,167 +1,172 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Trophy, Award, Globe, ExternalLink, Cpu } from 'lucide-react';
+import { ExternalLink, CheckCircle2, Award, Shield, BookOpen, Sparkles, Trophy } from 'lucide-react';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+const certs = [
+  {
+    title: 'Google Cloud Gen AI Master Certificate',
+    issuer: 'Google Cloud Skills Boost',
+    date: 'Jul 2026',
+    description: 'Master verification demonstrating enterprise proficiency across Vertex AI, Generative AI models, multimodal agent deployment, and RAG architectures.',
+    link: 'https://www.skills.google/public_profiles/44a41e60-6e04-4a73-abbf-963ea83c87eb',
+    icon: Sparkles,
+    badge: 'Master Credential',
+    tags: ['Google Cloud', 'Vertex AI', 'Gen AI', 'RAG'],
   },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30, filter: 'blur(10px)' },
-  show: { 
-    opacity: 1, 
-    y: 0, 
-    filter: 'blur(0px)',
-    transition: { 
-      duration: 1, 
-      ease: [0.16, 1, 0.3, 1] 
-    } 
+  {
+    title: 'Build & Deploy Agents in Production',
+    issuer: 'Google Cloud Skills Boost',
+    date: '2025',
+    description: 'Advanced engineering badge covering production-grade agent deployment patterns, monitoring, observability, and scaling on Google Cloud.',
+    link: 'https://www.skills.google/public_profiles/44a41e60-6e04-4a73-abbf-963ea83c87eb/badges/23799611',
+    icon: CheckCircle2,
+    badge: 'Verified Badge',
+    tags: ['GCP', 'Production', 'Agent Architecture'],
   },
-};
+  {
+    title: 'Agents 101 Certification',
+    issuer: 'AMD AI Academy',
+    date: '2025',
+    description: 'Foundational certification covering AI agent architectures, tool-use patterns, cognitive loops, and multi-agent coordination concepts.',
+    link: 'https://academy.amd.com/certs/31042/D5539744A4B347368F37FF267ED373CD166281.pdf',
+    icon: Shield,
+    badge: 'AMD Certified',
+    tags: ['AMD', 'AI Agents', 'Tool Calling'],
+  },
+  {
+    title: 'Deploy Your First Agent',
+    issuer: 'Google Cloud Skills Boost',
+    date: '2025',
+    description: 'Hands-on validation badge for deploying autonomous AI agents to Google Cloud infrastructure using Vertex AI tooling.',
+    link: 'https://www.skills.google/public_profiles/44a41e60-6e04-4a73-abbf-963ea83c87eb/badges/23799788',
+    icon: Award,
+    badge: 'Verified Badge',
+    tags: ['Vertex AI', 'GCP', 'Agent Deploy'],
+  },
+  {
+    title: 'Intermediate SQL',
+    issuer: 'DataCamp',
+    date: '2026',
+    description: 'Advanced relational queries covering grouping with HAVING, multi-table joins, subqueries, set operations, and relational query tuning.',
+    link: 'https://www.datacamp.com/completed/statement-of-accomplishment/course/ee43fbec5c8180e4a47a8aaa8eba801ebc59519f',
+    icon: BookOpen,
+    badge: 'DataCamp Accomplishment',
+    tags: ['SQL', 'Relational DB', 'Query Optimization'],
+  },
+  {
+    title: 'Introduction to SQL',
+    issuer: 'DataCamp',
+    date: '2025',
+    description: 'Structured Query Language fundamentals — SELECT queries, JOINs, filtering, aggregations, and relational database normalization.',
+    link: 'https://drive.google.com/file/d/1beBfZeQvKUGlmvTbkR8P7i9B4UhZ_MyC/view?usp=sharing',
+    icon: BookOpen,
+    badge: 'DataCamp Certificate',
+    tags: ['SQL', 'Data Modeling', 'PostgreSQL'],
+  },
+  {
+    title: 'National Project Showcase Finalist (Vitt)',
+    issuer: 'NxtWave x OpenAI Academy x IndiaAI',
+    date: '2026',
+    description: 'Selected as a national buildathon finalist for engineering Vitt: 100% on-device AI financial tracking compliant with DPDP Act 2023.',
+    link: 'https://github.com/nikhil49023',
+    icon: Trophy,
+    badge: 'National Finalist',
+    tags: ['OpenAI Academy', 'IndiaAI', 'On-Device AI'],
+  },
+  {
+    title: 'FinAgent Hackathon Award',
+    issuer: 'Unstop',
+    date: '2026',
+    description: 'Participation and achievement credential in the FinAgent Hackathon, demonstrating skills in autonomous financial AI agent systems.',
+    link: 'https://drive.google.com/file/d/1ZE8qmctlFchAgu9nPbzp8FcNYn5u_wgt/view?usp=sharing',
+    icon: Trophy,
+    badge: 'Hackathon Award',
+    tags: ['FinTech', 'AI Agents', 'Unstop'],
+  },
+];
 
-export function Certifications() {
+export default function Certifications() {
   return (
-    <section id="certifications" className="section relative overflow-hidden">
-      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-accent-cyan/5 blur-[150px] -z-10" />
-      
-      <motion.div 
-        variants={containerVariants}
-        initial="hidden" 
-        whileInView="show" 
-        viewport={{ once: true, amount: 0.2 }} 
-        className="space-y-24"
-      >
-        <motion.div variants={fadeUp} className="max-w-4xl">
-          <p className="eyebrow">Milestones & Validation</p>
-          <h2 className="display-heading text-[3rem] sm:text-[5rem] lg:text-[6.5rem] mb-10 uppercase tracking-tighter leading-[0.85]">
-            RECOGNIZED <span className="gradient-text">EXCELLENCE</span>
-          </h2>
-          <p className="text-xl lg:text-2xl text-zinc-400 font-medium leading-relaxed max-w-3xl">
-            A selection of industry recognitions and academic achievements that validate my technical expertise and commitment to <span className="text-white font-bold">innovation</span>.
-          </p>
-        </motion.div>
-
-        <div className="bento-grid">
-          {/* Main Award */}
-          <motion.div variants={fadeUp} className="col-span-1 lg:col-span-2 card overflow-hidden group relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-accent-cyan/10 to-accent-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            <div className="relative z-10 bg-gradient-to-r from-accent-cyan/15 to-accent-purple/15 p-10 border-b border-white/10">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
-                <div className="flex items-center gap-6">
-                  <div className="w-20 h-20 rounded-[2rem] bg-[#050505] flex items-center justify-center border-2 border-accent-cyan/20 shadow-2xl group-hover:scale-110 transition-transform duration-500">
-                    <Trophy size={40} className="text-accent-cyan" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-accent-cyan bg-accent-cyan/10 px-3 py-1 rounded-full border border-accent-cyan/20">Top 0.1% National Rank</span>
-                    </div>
-                    <h3 className="text-3xl font-black text-white mt-4 uppercase tracking-tighter">OpenAI × NxtWave Buildathon</h3>
-                  </div>
-                </div>
-                <div className="text-left sm:text-right space-y-1">
-                  <p className="text-sm font-black text-white uppercase tracking-widest">FEB 2026</p>
-                  <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.3em]">NATIONAL FINALIST</p>
-                </div>
-              </div>
-            </div>
-            <div className="relative z-10 p-10 space-y-8">
-              <p className="text-lg text-zinc-400 leading-relaxed font-medium">
-                Ranked among the top 90 participants out of 70,000+ across India. Recognized for excellence in architecting production-ready AI applications during an intensive national competition.
-              </p>
-              <motion.a 
-                href="https://openai-buildathon.nxtwave.tech/" 
-                target="_blank" 
-                whileHover={{ x: 5 }}
-                className="inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.25em] text-accent-cyan hover:text-white transition-all group"
-              >
-                Verify Achievement <ExternalLink size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </motion.a>
-            </div>
-          </motion.div>
-
-          {/* Certificate Card */}
-          <motion.div variants={fadeUp} className="col-span-1 card group overflow-hidden relative">
-            <div className="aspect-[3/4] relative bg-[#080808]">
-              <div className="absolute inset-0 z-10 opacity-100 group-hover:opacity-0 transition-opacity duration-700">
-                <img src="/certificates/amd-cover.jpg" alt="AMD AI Academy" className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
-                <div className="absolute bottom-10 left-10">
-                  <p className="text-[10px] font-black text-accent-purple uppercase tracking-[0.3em] mb-3">AMD AI Academy</p>
-                  <h4 className="text-2xl font-black text-white uppercase tracking-tighter leading-tight">AI Agents 101</h4>
-                </div>
-              </div>
-              <iframe 
-                src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7453371520891932673?collapsed=1" 
-                className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100" 
-                frameBorder="0"
-                title="LinkedIn Embed"
-              />
-            </div>
-          </motion.div>
-
-          {/* Package Publisher */}
-          <motion.div variants={fadeUp} whileHover={{ y: -10 }} className="col-span-1 card p-10 flex flex-col justify-between group overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent-lime/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            <div className="relative z-10 space-y-8">
-              <div className="w-16 h-16 rounded-[1.5rem] bg-accent-lime/10 flex items-center justify-center border border-accent-lime/20 group-hover:rotate-6 transition-all duration-500 shadow-xl">
-                <Cpu size={32} className="text-accent-lime" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-black text-white uppercase tracking-tighter mb-2">Package Publisher</h3>
-                <p className="text-[10px] font-black text-accent-lime uppercase tracking-[0.2em] mb-6 px-3 py-1 bg-accent-lime/10 w-fit rounded-lg border border-accent-lime/20">saara-ai (PyPI)</p>
-                <p className="text-base text-zinc-400 leading-relaxed font-medium">
-                  Published and maintaining an open-source Python library for automated layout-aware parsing and dataset generation.
-                </p>
-              </div>
-            </div>
-            <motion.a 
-              href="https://pypi.org/project/saara-ai/" 
-              target="_blank" 
-              whileHover={{ x: 5 }}
-              className="relative z-10 mt-12 text-[10px] font-black uppercase tracking-[0.25em] text-accent-lime hover:text-white transition-all flex items-center gap-3 group"
-            >
-              System Repository <ExternalLink size={12} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </motion.a>
-          </motion.div>
-
-          {/* Technical Specializations */}
-          <motion.div variants={fadeUp} className="col-span-1 lg:col-span-2 card p-10 group overflow-hidden relative">
-             <div className="absolute inset-0 bg-gradient-to-br from-accent-cyan/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center gap-8 mb-12">
-              <div className="w-16 h-16 rounded-[1.5rem] bg-accent-cyan/10 flex items-center justify-center border border-accent-cyan/20 group-hover:scale-110 transition-transform duration-500 shadow-xl">
-                <Globe size={32} className="text-accent-cyan" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-black text-white uppercase tracking-tighter">Technical Specializations</h3>
-                <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] mt-1">Google Cloud & AI Frameworks</p>
-              </div>
-            </div>
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                { title: "Generative AI Fundamentals", sub: "Google Cloud Skills Boost", color: "cyan" },
-                { title: "Introduction to LLMs", sub: "Architectural Foundations", color: "purple" }
-              ].map((badge) => (
-                <div key={badge.title} className="p-6 rounded-2xl glass border-white/5 flex items-center gap-6 group/badge hover:border-accent-cyan/40 transition-all duration-500 hover:bg-white/[0.04]">
-                  <div className={`w-14 h-14 rounded-2xl bg-accent-${badge.color}/10 flex items-center justify-center text-accent-${badge.color} border border-accent-${badge.color}/20 group-hover/badge:rotate-12 transition-all shadow-xl`}>
-                    <Award size={24} />
-                  </div>
-                  <div>
-                    <h4 className="text-base font-black text-white leading-tight uppercase tracking-tight">{badge.title}</h4>
-                    <p className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em] mt-2">{badge.sub}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+    <section id="certifications" className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)] reveal-on-scroll">
+      <div className="max-w-6xl mx-auto px-6">
+        
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-14">
+          <div className="flex items-baseline gap-4">
+            <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">04</span>
+            <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
+              Verified Credentials &amp; Honours
+            </h2>
+          </div>
+          <div className="font-mono text-[10px] text-[var(--ink-muted)]">
+            <span>GOOGLE CLUSTER · AMD ACADEMY · DATACAMP · NATIONAL HACKATHONS</span>
+          </div>
         </div>
-      </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {certs.map((cert, i) => {
+            const Icon = cert.icon;
+            return (
+              <motion.div
+                key={cert.title}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4, borderColor: "var(--border-active)" }}
+                transition={{ 
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
+                  delay: i * 0.03
+                }}
+                className="p-5 border border-[var(--border-subtle)] bg-[var(--bg-surface)]/60 hover:bg-[var(--bg-surface)] transition-colors duration-300 flex flex-col justify-between group cursor-pointer shadow-sm relative"
+              >
+                <div>
+                  <div className="flex items-start justify-between mb-3">
+                    <div
+                      className="w-9 h-9 flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--brand-primary)] shrink-0"
+                    >
+                      <Icon size={16} />
+                    </div>
+                    <a
+                      href={cert.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-7 h-7 flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-void)] hover:border-[var(--border-active)] text-[var(--ink-muted)] hover:text-[var(--brand-primary)] transition-all duration-200"
+                      title="Verify credential link"
+                    >
+                      <ExternalLink size={12} />
+                    </a>
+                  </div>
+
+                  <div className="text-[9.5px] font-mono tracking-wider mb-1 font-bold uppercase text-[var(--brand-secondary)]">
+                    {cert.issuer} · {cert.date}
+                  </div>
+
+                  <h3 className="font-bold text-[var(--ink-primary)] text-sm leading-tight mb-2 tracking-tight font-display">
+                    {cert.title}
+                  </h3>
+
+                  <p className="text-xs leading-relaxed text-[var(--ink-muted)] mb-4">{cert.description}</p>
+                </div>
+
+                <div className="flex flex-wrap gap-1 pt-3 border-t border-[var(--border-subtle)]">
+                  {cert.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[9px] font-mono px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--ink-secondary)]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
     </section>
   );
 }
+

@@ -1,172 +1,207 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import Link from 'next/link';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, ArrowUpRight } from 'lucide-react';
-import { PROJECTS } from '@/lib/projects';
-import { ImageCarousel } from '@/components/projects/ImageCarousel';
-import { AerialEyeVisualization } from '@/components/projects/AerialEyeVisualization';
+import Link from 'next/link';
+import { 
+  Folder, ArrowUpRight, Star, GitFork, ArrowRight, Layers, Eye, Package, Radio, Terminal, Activity, CheckCircle2, ShieldCheck, Download
+} from 'lucide-react';
+import { PROJECTS, ProjectData } from '@/lib/projects';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
+const categories = [
+  { id: 'all', label: 'All Systems' },
+  { id: 'on-device', label: 'On-Device AI & Mobile' },
+  { id: 'open-source', label: 'Open-Source & SDKs' },
+  { id: 'vision-deep-tech', label: 'Vision & Deep Tech' },
+  { id: 'robotics-agents', label: 'Robotics & Orchestration' },
+];
+
+const categoryMap: Record<string, string[]> = {
+  'vitt': ['all', 'on-device'],
+  'saara-ai': ['all', 'open-source'],
+  'aerialeye': ['all', 'vision-deep-tech'],
+  'prithvi-lifeline': ['all', 'vision-deep-tech'],
+  'super-orchestrator': ['all', 'open-source', 'robotics-agents'],
+  'neuronav-ros2': ['all', 'robotics-agents'],
 };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30, filter: 'blur(10px)' },
-  show: { 
-    opacity: 1, 
-    y: 0, 
-    filter: 'blur(0px)',
-    transition: { 
-      duration: 1, 
-      ease: [0.16, 1, 0.3, 1] 
-    } 
-  },
-};
+export default function Projects() {
+  const [filter, setFilter] = useState('all');
 
-function MiniTerminal() {
-  return (
-    <div className="w-full h-full flex items-center justify-center bg-[#050505] p-12">
-      <div className="w-full max-w-sm font-mono relative">
-        <div className="absolute inset-0 bg-accent-cyan/5 blur-3xl rounded-full animate-pulse" />
-        <div className="relative glass-cyan p-6 rounded-2xl border-white/5 space-y-4">
-          <div className="flex justify-between items-center border-b border-white/5 pb-3">
-             <span className="text-[9px] font-black text-accent-cyan uppercase tracking-[0.2em]">Data Exhibit</span>
-             <div className="h-1 w-8 bg-accent-cyan/20 rounded-full" />
-          </div>
-          <div className="space-y-2">
-            <p className="text-[10px] text-white/40 leading-relaxed uppercase tracking-tighter">
-              ❯ Executing simulation...<br/>
-              ❯ Parameters: Optimized<br/>
-              ❯ State: <span className="text-accent-cyan">Production</span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+  const projectList: ProjectData[] = Object.values(PROJECTS);
 
-export function Projects() {
-  const [query, setQuery] = useState('');
-  const categories = useMemo(() => ['All', ...Array.from(new Set(PROJECTS.map((p) => p.category.split('·')[0].trim())))], []);
-  const [activeCategory, setActiveCategory] = useState(categories[0]);
-
-  const filtered = PROJECTS.filter((p) => {
-    const q = query.toLowerCase();
-    return (activeCategory === 'All' || p.category.startsWith(activeCategory)) &&
-      (p.name.toLowerCase().includes(q) || p.tagline.toLowerCase().includes(q) || p.tags.some((t) => t.toLowerCase().includes(q)));
+  const filteredProjects = projectList.filter((proj) => {
+    const cats = categoryMap[proj.slug] || ['all'];
+    return cats.includes(filter);
   });
 
   return (
-    <section id="projects" className="section relative">
-      <motion.div 
-        variants={containerVariants}
-        initial="hidden" 
-        whileInView="show" 
-        viewport={{ once: true, amount: 0.1 }} 
-        className="space-y-32"
-      >
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12">
-          <motion.div variants={fadeUp} className="max-w-3xl">
-            <p className="eyebrow">Project Exhibits</p>
-            <h2 className="display-heading text-[4rem] sm:text-[6rem] lg:text-[9rem] uppercase">SELECTED <span className="gradient-text">WORKS</span></h2>
-          </motion.div>
-
-          <motion.div variants={fadeUp} className="relative w-full lg:w-96">
-            <div className="relative glass-cyan rounded-full border-white/5 flex items-center px-6 py-4">
-              <Search size={16} className="text-white/20" />
-              <input 
-                type="text" 
-                placeholder="Query Database..." 
-                value={query} 
-                onChange={(e) => setQuery(e.target.value)} 
-                className="w-full bg-transparent border-none focus:ring-0 text-[10px] font-bold text-white placeholder:text-white/20 ml-4 uppercase tracking-[0.2em]" 
-              />
-              {query && <button onClick={() => setQuery('')} className="text-white/20 hover:text-white transition-colors"><X size={14} /></button>}
-            </div>
-          </motion.div>
+    <section id="projects" className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)] reveal-on-scroll">
+      <div className="max-w-6xl mx-auto px-6">
+        
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-12">
+          <div className="flex items-baseline gap-4">
+            <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">02</span>
+            <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
+              Engineering Systems &amp; Deployments
+            </h2>
+          </div>
+          <div className="font-mono text-[10px] text-[var(--ink-muted)]">
+            <span>SHOWING 6 VERIFIED PRODUCTION REPOSITORIES &amp; MODELS</span>
+          </div>
         </div>
 
-        {/* Filters */}
-        <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
+        {/* Filter Switcher Bar */}
+        <div className="flex flex-wrap gap-2 mb-10 justify-start">
           {categories.map((cat) => (
-            <button 
-              key={cat} 
-              onClick={() => setActiveCategory(cat)} 
-              className={`px-8 py-2.5 rounded-full text-[9px] font-black uppercase tracking-[0.25em] transition-all duration-700 ${
-                activeCategory === cat 
-                  ? 'bg-accent-cyan text-black' 
-                  : 'glass border-white/5 text-white/30 hover:text-white'
+            <button
+              key={cat.id}
+              onClick={() => setFilter(cat.id)}
+              className={`px-3.5 py-1.5 text-xs font-mono font-semibold transition-all duration-200 cursor-pointer border ${
+                filter === cat.id
+                  ? 'bg-[var(--ink-primary)] text-[var(--bg-void)] border-[var(--ink-primary)] font-bold shadow-sm'
+                  : 'text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:border-[var(--border-active)]'
               }`}
             >
-              {cat}
+              {cat.label}
             </button>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Grid */}
-        <AnimatePresence mode="popLayout">
-          <motion.div 
-            layout
-            className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/5 border border-white/5 rounded-[3rem] overflow-hidden"
-          >
-            {filtered.map((p, index) => (
-              <motion.div 
-                key={p.slug} 
-                layout
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1 }}
-                className="bg-[#050505] p-10 lg:p-14 group relative"
-              >
-                <Link href={`/projects/${p.slug}`} className="block h-full space-y-12">
-                  <div className="aspect-[16/9] relative overflow-hidden rounded-[2rem] border border-white/5 bg-[#080808]">
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] to-transparent opacity-60 z-10" />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20">
-                      <div className="glass px-8 py-3 rounded-full text-white text-[9px] font-black uppercase tracking-[0.3em] border-white/10">
-                        View Artifact <ArrowUpRight size={14} className="inline ml-2 text-accent-cyan" />
+        {/* Dynamic Project Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((proj) => {
+              const Icon = proj.icon;
+              return (
+                <motion.div
+                  key={proj.slug}
+                  layout
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  whileHover={{ y: -6, borderColor: "var(--border-active)" }}
+                  transition={{ 
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 24
+                  }}
+                  className="border border-[var(--border-subtle)] bg-[var(--bg-surface)] transition-colors duration-300 p-6 flex flex-col justify-between cursor-pointer group shadow-sm relative overflow-hidden"
+                >
+                  {/* Top accent strip on hover */}
+                  <div 
+                    className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ backgroundColor: proj.accent }}
+                  />
+
+                  <div>
+                    {/* Repo Header */}
+                    <div className="flex items-start justify-between gap-2 mb-3">
+                      <div className="flex items-center gap-2 text-[var(--ink-primary)]">
+                        <div 
+                          className="w-7 h-7 flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-void)] text-xs shrink-0"
+                          style={{ color: proj.accent }}
+                        >
+                          <Icon size={14} />
+                        </div>
+                        <h3 className="font-bold text-base tracking-tight font-display text-[var(--ink-primary)]">
+                          {proj.name}
+                        </h3>
                       </div>
+                      
+                      {proj.badge && (
+                        <span className="font-mono text-[9px] px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--brand-secondary)] font-bold whitespace-nowrap">
+                          {proj.badge}
+                        </span>
+                      )}
                     </div>
+
+                    {/* Tagline */}
+                    <p className="text-[11px] font-mono font-bold text-[var(--brand-secondary)] mb-3 tracking-tight">
+                      {proj.tagline}
+                    </p>
                     
-                    <div className="w-full h-full grayscale group-hover:grayscale-0 transition-all duration-1000">
-                      {p.slug === 'aerial-eye' ? <AerialEyeVisualization /> : p.media === 'images' && p.images ? <ImageCarousel images={p.images} accent={p.accent} heightClass="h-full" interval={3500} /> : <MiniTerminal />}
+                    {/* Description */}
+                    <p className="text-xs leading-relaxed text-[var(--ink-muted)] mb-5">
+                      {proj.shortDesc}
+                    </p>
+
+                    {/* Verified Metrics Strip */}
+                    {proj.stats && (
+                      <div className="grid grid-cols-2 gap-2 mb-5 p-2.5 bg-[var(--bg-void)]/60 border border-[var(--border-subtle)]">
+                        {proj.stats.slice(0, 2).map((s) => (
+                          <div key={s.label}>
+                            <div className="text-[8.5px] font-mono text-[var(--ink-muted)] uppercase tracking-wider">{s.label}</div>
+                            <div className="text-[11px] font-mono font-bold text-[var(--ink-primary)]">{s.value}</div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Key Highlights */}
+                    <div className="mb-6 pt-3 border-t border-[var(--border-subtle)]">
+                      <div className="text-[9px] font-mono text-[var(--ink-muted)] mb-2 font-bold uppercase tracking-wider">
+                        Key Milestones
+                      </div>
+                      <ul className="space-y-1.5 list-none p-0 m-0">
+                        {proj.highlights.slice(0, 2).map((h, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <span 
+                              className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0"
+                              style={{ backgroundColor: proj.accent }}
+                            />
+                            <span className="text-[11px] leading-tight text-[var(--ink-secondary)]">{h}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-                  
-                  <div className="space-y-8">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <p className="text-[10px] font-black text-accent-cyan uppercase tracking-[0.3em] mb-3">{p.tagline}</p>
-                        <h3 className="text-4xl font-black text-white uppercase tracking-tighter font-display">{p.name}</h3>
-                      </div>
-                      <span className="text-[9px] font-bold text-white/10 uppercase tracking-widest mt-2">{p.date}</span>
-                    </div>
-                    
-                    <p className="text-white/40 text-lg leading-relaxed font-display italic">"{p.shortDesc}"</p>
-                    
-                    <div className="flex flex-wrap gap-2">
-                      {p.tags.slice(0, 4).map((t) => (
-                        <span key={t} className="text-[8px] font-bold px-4 py-1.5 rounded-full border border-white/5 text-white/20 uppercase tracking-widest">
-                          {t}
+
+                  {/* Footer and Links */}
+                  <div>
+                    <div className="flex flex-wrap gap-1 mb-5">
+                      {proj.stack.slice(0, 4).map((tech) => (
+                        <span 
+                          key={tech} 
+                          className="text-[9px] font-mono px-2 py-0.5 border border-[var(--border-subtle)] text-[var(--ink-secondary)] bg-[var(--bg-void)]"
+                        >
+                          {tech}
                         </span>
                       ))}
                     </div>
+
+                    <div className="flex items-center justify-between pt-4 border-t border-[var(--border-subtle)]">
+                      {/* Deep dive internal link */}
+                      <Link
+                        href={`/projects/${proj.slug}`}
+                        className="text-xs font-mono font-bold text-[var(--ink-primary)] hover:text-[var(--brand-primary)] flex items-center gap-1.5 no-underline transition-colors"
+                      >
+                        <span>Deep Dive</span>
+                        <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                      </Link>
+
+                      {/* Primary external action */}
+                      {proj.links[0] && (
+                        <a
+                          href={proj.links[0].href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="py-1 px-2.5 text-[10px] font-mono font-semibold border border-[var(--border-subtle)] hover:border-[var(--border-active)] hover:bg-[var(--bg-void)] text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] flex items-center gap-1 no-underline transition-colors"
+                        >
+                          <span>{proj.links[0].label.split(' ')[0]}</span>
+                          <ArrowUpRight size={10} className="text-[var(--brand-primary)]" />
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
-      </motion.div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
+      </div>
     </section>
   );
 }
+

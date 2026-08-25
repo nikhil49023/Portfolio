@@ -14,10 +14,10 @@ type DetectionBox = {
 };
 
 const DETECTIONS: DetectionBox[] = [
-  { id: 'person', label: 'person', confidence: '0.93', left: '12%', top: '30%', width: '14%', height: '38%' },
-  { id: 'car', label: 'car', confidence: '0.96', left: '40%', top: '42%', width: '20%', height: '22%' },
-  { id: 'truck', label: 'truck', confidence: '0.88', left: '66%', top: '38%', width: '24%', height: '29%' },
-  { id: 'bike', label: 'bicycle', confidence: '0.84', left: '30%', top: '68%', width: '15%', height: '18%' },
+  { id: 'human', label: 'human', confidence: '0.94', left: '12%', top: '30%', width: '14%', height: '38%' },
+  { id: 'vehicle', label: 'vehicle', confidence: '0.91', left: '66%', top: '38%', width: '24%', height: '29%' },
+  { id: 'sos', label: 'sos', confidence: '0.97', left: '42%', top: '48%', width: '18%', height: '18%' },
+  { id: 'road_damage', label: 'road_damage', confidence: '0.86', left: '30%', top: '68%', width: '22%', height: '18%' },
 ];
 
 export function AerialEyeVisualization({ detailed = false }: { detailed?: boolean }) {
@@ -82,9 +82,9 @@ export function AerialEyeVisualization({ detailed = false }: { detailed?: boolea
       <div className="absolute inset-x-0 bottom-0 z-20 flex items-center justify-between border-t border-cyan-200/20 bg-slate-950/45 px-4 py-2.5 backdrop-blur-sm">
         <div className="flex items-center gap-2 text-[11px] text-cyan-100/90">
           <LocateFixed size={13} />
-          <span className="font-semibold">5-class aerial object detector</span>
+          <span className="font-semibold">6-class aerial & disaster detector</span>
         </div>
-        <span className="text-[11px] font-semibold text-orange-200">YOLOv8 · ONNX · PyTorch</span>
+        <span className="text-[11px] font-semibold text-orange-200">YOLOv11 · SAHI · ONNX · TFLite</span>
       </div>
     </div>
   );

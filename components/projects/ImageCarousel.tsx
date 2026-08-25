@@ -48,7 +48,7 @@ export function ImageCarousel({ images, accent, heightClass = 'h-80', interval =
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0.9 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
             className="relative w-full max-w-sm h-[80vh]"
             onClick={(e) => e.stopPropagation()}
           >
@@ -122,7 +122,7 @@ export function ImageCarousel({ images, accent, heightClass = 'h-80', interval =
                   initial={{ opacity: 0, x: 24 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -18 }}
-                  transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] as const }}
                   className="absolute inset-0"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -229,7 +229,7 @@ export function ImageCarousel({ images, accent, heightClass = 'h-80', interval =
             initial={{ opacity: 0, x: 32 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -24 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
             className="absolute inset-0"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}

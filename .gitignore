@@ -35,3 +35,15 @@ next-env.d.ts
 
 # raw image exports (renamed copies are in public/)
 /Images/
+# Added by code-review-graph
+.code-review-graph/
+
+# python virtual environment
+.venv/
+__pycache__/
+*.pyc
+
+# temp root assets
+image.png
+A_sleek,_professional_portrait_of_202606121456.jpeg
+

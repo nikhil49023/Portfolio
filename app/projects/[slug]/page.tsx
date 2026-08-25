@@ -12,60 +12,134 @@ import { PROJECTS } from '@/lib/projects';
 import { ImageCarousel } from '@/components/projects/ImageCarousel';
 import { AerialEyeVisualization } from '@/components/projects/AerialEyeVisualization';
 
-/* ── Terminal mockup (SAARA) ── */
-function TerminalMockup() {
+/* ── Terminal mockup (SAARA, Super Orchestrator, NeuroNav) ── */
+function TerminalMockup({ slug = 'saara-ai' }: { slug?: string }) {
+  const isOrchestrator = slug === 'super-orchestrator';
+  const isNeuroNav = slug === 'neuronav-ros2';
+
   return (
-    <div className="w-full h-full flex items-center justify-center bg-[#050505] p-8 overflow-hidden group/terminal">
-      <div className="w-full max-w-xl select-none">
-        <div className="flex items-center gap-2 px-6 py-4 bg-white/[0.03] rounded-t-[1.5rem] border border-white/10 border-b-0 backdrop-blur-xl">
+    <div className="w-full h-full flex items-center justify-center bg-[#050505] p-6 sm:p-8 overflow-hidden group/terminal">
+      <div className="w-full max-w-2xl select-none">
+        <div className="flex items-center gap-2 px-6 py-3.5 bg-white/[0.03] rounded-t-[1.25rem] border border-white/10 border-b-0 backdrop-blur-xl">
           <div className="flex gap-2">
-            <div className="w-3 h-3 rounded-full bg-accent-pink/40" />
-            <div className="w-3 h-3 rounded-full bg-accent-gold/40" />
-            <div className="w-3 h-3 rounded-full bg-accent-lime/40" />
+            <div className="w-2.5 h-2.5 rounded-full bg-rose-500/60" />
+            <div className="w-2.5 h-2.5 rounded-full bg-amber-500/60" />
+            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/60" />
           </div>
-          <span className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.3em] ml-4 flex items-center gap-2">
-            <TerminalIcon size={12} className="text-accent-cyan" /> saara-ai — core_v4.2
+          <span className="text-zinc-500 text-[10px] font-mono font-bold uppercase tracking-[0.25em] ml-4 flex items-center gap-2">
+            <TerminalIcon size={12} className="text-emerald-400" /> 
+            {isNeuroNav ? 'neuronav-ros2 — rclpy_node_v1.0' : isOrchestrator ? 'super-orchestrator — master_v2.0' : 'saara-ai — dataset_v2.0'}
           </span>
         </div>
-        <div className="bg-black/60 px-6 py-8 font-mono text-[11px] space-y-3 rounded-b-[1.5rem] border border-white/10 backdrop-blur-3xl shadow-2xl relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-accent-cyan/[0.02] to-transparent pointer-events-none" />
+        <div className="bg-black/80 px-6 py-6 font-mono text-[11px] space-y-3 rounded-b-[1.25rem] border border-white/10 backdrop-blur-3xl shadow-2xl relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/[0.02] to-transparent pointer-events-none" />
           
-          <div className="relative z-10"><span className="text-accent-cyan">❯</span> <span className="text-zinc-300 font-bold uppercase tracking-tight">pip install saara-ai</span></div>
-          <div className="relative z-10 text-zinc-500 font-medium">Collecting resources from high-fidelity mirrors...</div>
-          <div className="relative z-10 flex items-center gap-4">
-            <div className="flex gap-1">
-              {Array.from({ length: 20 }).map((_, i) => (
-                <motion.div 
-                  key={i} 
-                  initial={{ opacity: 0.2 }}
-                  animate={{ opacity: i < 17 ? 1 : 0.2 }}
-                  transition={{ delay: i * 0.05 }}
-                  className={`w-2.5 h-4 rounded-sm ${i < 17 ? 'bg-accent-cyan' : 'bg-white/5'}`} 
-                />
+          {isNeuroNav ? (
+            <>
+              <div className="relative z-10"><span className="text-purple-400">❯</span> <span className="text-zinc-300 font-bold">ros2 run neuronav_planner endocrine_gated_node</span></div>
+              <div className="relative z-10 text-zinc-500 font-medium">Initializing PyTorch FiLM conditioning layers and Gazebo IMU subscriber...</div>
+              <div className="relative z-10 flex items-center gap-4">
+                <div className="flex gap-1">
+                  {Array.from({ length: 20 }).map((_, i) => (
+                    <motion.div 
+                      key={i} 
+                      initial={{ opacity: 0.2 }}
+                      animate={{ opacity: i < 20 ? 1 : 0.2 }}
+                      transition={{ delay: i * 0.04 }}
+                      className={`w-2.5 h-4 rounded-sm ${i < 20 ? 'bg-purple-500' : 'bg-white/5'}`} 
+                    />
+                  ))}
+                </div>
+                <span className="text-purple-400 font-black">50 Hz ACTIVE</span>
+              </div>
+              <div className="relative z-10 text-emerald-400 font-bold uppercase tracking-widest text-[9px] flex items-center gap-2">
+                <Zap size={10} /> ZERO-SHOT SLIP RECOVERY LOOP RUNNING
+              </div>
+              <div className="mt-4 relative z-10"><span className="text-purple-400">❯</span> <span className="text-zinc-300">TELEMETRY_LOG // Gazebo World: IcePatch_03</span></div>
+              {[
+                { color: '#a855f7', label: 'SLIP_RATIO', text: 'Anomaly detected: s = 0.68 > threshold (0.25)' },
+                { color: '#f59e0b', label: 'HORMONE_SURGE', text: 'Adrenaline ODE: da/dt = +2.41 | Cortisol: 1.82' },
+                { color: '#10b981', label: 'FILM_MODULATION', text: 'Policy affine transform applied | /cmd_vel: [0.35, -0.42]' },
+              ].map(({ color, label, text }) => (
+                <div key={label} className="flex gap-3 relative z-10">
+                  <span style={{ color }} className="font-bold text-[9px] min-w-[95px]">{label}</span>
+                  <span className="text-zinc-400 font-medium">{text}</span>
+                </div>
               ))}
-            </div>
-            <span className="text-accent-cyan font-black">85%</span>
-          </div>
-          <div className="relative z-10 text-accent-lime font-black uppercase tracking-widest text-[9px] flex items-center gap-2">
-            <Zap size={10} /> SYSTEM INJECTED SUCCESSFULLY
-          </div>
-          <div className="mt-4 relative z-10"><span className="text-accent-cyan">❯</span> <span className="text-zinc-300 uppercase tracking-tighter">saara compute --artifact data.v4</span></div>
-          {[
-            { color: 'var(--accent-cyan)', label: 'PHASE_01', text: 'Structure Decomposition → 100% COMPLETE' },
-            { color: 'var(--accent-purple)', label: 'PHASE_02', text: 'Semantic Mapping → VECTOR_SYNC_ACTIVE' },
-            { color: 'var(--accent-pink)', label: 'PHASE_03', text: 'Validation Loop → COHERENCE: 0.992' },
-          ].map(({ color, label, text }) => (
-            <div key={label} className="flex gap-4 relative z-10">
-              <span style={{ color }} className="font-black text-[9px] min-w-[60px]">{label}</span>
-              <span className="text-zinc-400 font-medium">{text}</span>
-            </div>
-          ))}
+            </>
+          ) : isOrchestrator ? (
+            <>
+              <div className="relative z-10"><span className="text-sky-400">❯</span> <span className="text-zinc-300 font-bold uppercase tracking-tight">opencode run --yolo "Initialize the code-review-graph"</span></div>
+              <div className="relative z-10 text-zinc-500 font-medium">Bootstrapping local dependencies &amp; indexing directory call trees...</div>
+              <div className="relative z-10 flex items-center gap-4">
+                <div className="flex gap-1">
+                  {Array.from({ length: 20 }).map((_, i) => (
+                    <motion.div 
+                      key={i} 
+                      initial={{ opacity: 0.2 }}
+                      animate={{ opacity: i < 19 ? 1 : 0.2 }}
+                      transition={{ delay: i * 0.04 }}
+                      className={`w-2.5 h-4 rounded-sm ${i < 19 ? 'bg-sky-400' : 'bg-white/5'}`} 
+                    />
+                  ))}
+                </div>
+                <span className="text-sky-400 font-black">95% TOKEN SAVINGS</span>
+              </div>
+              <div className="relative z-10 text-emerald-400 font-bold uppercase tracking-widest text-[9px] flex items-center gap-2">
+                <Zap size={10} /> SAFELOCK GATEKEEPER ENGAGED
+              </div>
+              <div className="mt-4 relative z-10"><span className="text-sky-400">❯</span> <span className="text-zinc-300">super-orchestrator run --task "Audit database connections"</span></div>
+              {[
+                { color: '#38bdf8', label: 'PHASE_01', text: 'Safelock Gatekeeper → LOW_RISK_APPROVED' },
+                { color: '#818cf8', label: 'PHASE_02', text: 'Code Review Graph → Pre-indexed 42 classes & imports' },
+                { color: '#f43f5e', label: 'PHASE_03', text: 'Firecrawl Docker → Extracted docs with zero cloud fees' },
+              ].map(({ color, label, text }) => (
+                <div key={label} className="flex gap-3 relative z-10">
+                  <span style={{ color }} className="font-bold text-[9px] min-w-[70px]">{label}</span>
+                  <span className="text-zinc-400 font-medium">{text}</span>
+                </div>
+              ))}
+            </>
+          ) : (
+            <>
+              <div className="relative z-10"><span className="text-rose-400">❯</span> <span className="text-zinc-300 font-bold">npx saara-ai wizard</span></div>
+              <div className="relative z-10 text-zinc-500 font-medium">Initializing local dataset generation wizard (PyPI: 2,600+ DL)...</div>
+              <div className="relative z-10 flex items-center gap-4">
+                <div className="flex gap-1">
+                  {Array.from({ length: 20 }).map((_, i) => (
+                    <motion.div 
+                      key={i} 
+                      initial={{ opacity: 0.2 }}
+                      animate={{ opacity: i < 20 ? 1 : 0.2 }}
+                      transition={{ delay: i * 0.04 }}
+                      className={`w-2.5 h-4 rounded-sm ${i < 20 ? 'bg-rose-500' : 'bg-white/5'}`} 
+                    />
+                  ))}
+                </div>
+                <span className="text-rose-400 font-black">100% COMPILED</span>
+              </div>
+              <div className="relative z-10 text-emerald-400 font-bold uppercase tracking-widest text-[9px] flex items-center gap-2">
+                <Zap size={10} /> 38 PACKAGE RELEASES VERIFIED
+              </div>
+              <div className="mt-4 relative z-10"><span className="text-rose-400">❯</span> <span className="text-zinc-300">saara generate --topic "Quantum Robotics" --distill dpo</span></div>
+              {[
+                { color: '#f43f5e', label: 'RESEARCH_BOT', text: 'google-adk + crawl4ai web crawl → 1,420 raw samples' },
+                { color: '#38bdf8', label: 'LOCAL_ROUTER', text: 'Ollama & vLLM routing → Structured prompt distillation' },
+                { color: '#10b981', label: 'TUI_CURATOR', text: 'Interactive confidence validator → Export to HF & Parquet' },
+              ].map(({ color, label, text }) => (
+                <div key={label} className="flex gap-3 relative z-10">
+                  <span style={{ color }} className="font-bold text-[9px] min-w-[85px]">{label}</span>
+                  <span className="text-zinc-400 font-medium">{text}</span>
+                </div>
+              ))}
+            </>
+          )}
           <div className="relative z-10 flex items-center gap-2 pt-2">
-            <span className="text-accent-cyan">❯</span>
+            <span className="text-emerald-400">❯</span>
             <motion.span 
               animate={{ opacity: [1, 0, 1] }}
               transition={{ duration: 0.8, repeat: Infinity }}
-              className="w-2 h-4 bg-accent-cyan/60 rounded-sm inline-block" 
+              className="w-2 h-3.5 bg-emerald-400/80 rounded-sm inline-block" 
             />
           </div>
         </div>
@@ -77,7 +151,7 @@ function TerminalMockup() {
 /* ── Animation variants ── */
 const fadeUp = {
   hidden: { opacity: 0, y: 40, filter: 'blur(10px)' },
-  show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+  show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const } },
 };
 
 const stagger = {
@@ -100,7 +174,7 @@ const SECTION_LINKS = [
 ];
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = PROJECTS.find((p) => p.slug === params.slug);
+  const project = PROJECTS[params.slug];
   if (!project) notFound();
 
   const heroRef = useRef<HTMLDivElement>(null);
@@ -159,7 +233,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
           className="absolute top-10 left-10 z-20"
         >
           <Link
@@ -268,7 +342,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             <div className="space-y-4">
               <p className="eyebrow">Visual Architecture</p>
               <h2 className="display-heading text-[2.5rem] sm:text-[4.5rem] uppercase tracking-tighter">
-                {project.slug === 'aerial-eye' ? 'SYSTEM' : project.media === 'images' ? 'INTERFACE' : 'TERMINAL'}{' '}
+                {project.slug === 'aerialeye' ? 'SYSTEM' : project.media === 'images' ? 'INTERFACE' : 'TERMINAL'}{' '}
                 <span className="gradient-text">INSIGHTS</span>
               </h2>
             </div>
@@ -281,13 +355,13 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </motion.div>
 
           <motion.div variants={fadeUp} className="card overflow-hidden border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.9)] group">
-            {project.slug === 'aerial-eye' ? (
+            {project.slug === 'aerialeye' ? (
               <AerialEyeVisualization detailed />
             ) : project.media === 'images' && project.images ? (
               <ImageCarousel images={project.images} accent={project.accent} mockup interval={2800} />
             ) : (
               <div className="aspect-[16/10] md:h-[600px]">
-                <TerminalMockup />
+                <TerminalMockup slug={project.slug} />
               </div>
             )}
           </motion.div>
@@ -508,7 +582,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
           className="rounded-[3.5rem] p-12 sm:p-24 text-center relative overflow-hidden group shadow-[0_50px_100px_rgba(0,0,0,0.9)]"
           style={{ background: `linear-gradient(135deg, ${project.accentDark}40 0%, ${project.accent}20 100%)` }}
         >

@@ -1,193 +1,425 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { MapPin, GraduationCap, Github, Linkedin, Package, Sparkles, Terminal, Rocket, Cpu } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FileCode, GraduationCap, Briefcase, ChevronRight, FileText, Cpu, Terminal, Layers, Radio, Shield, Globe } from 'lucide-react';
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30, filter: 'blur(10px)' },
-  show: { 
-    opacity: 1, 
-    y: 0, 
-    filter: 'blur(0px)',
-    transition: { 
-      duration: 1, 
-      ease: [0.16, 1, 0.3, 1] 
-    } 
+const systemsData = [
+  {
+    name: 'Vitt (Artha)',
+    type: 'On-Device AI Financial Assistant',
+    status: 'Ready for Play Store & Indus Release',
+    stack: 'Flutter, LiteRT (Gemma 4 E2B), AES-256 SQLite',
+    privacy: '100% On-Device · Zero SMS Permissions · DPDP Act 2023 Compliant'
   },
+  {
+    name: 'saara-ai',
+    type: 'Local-First Dataset Synthesis Engine',
+    status: 'Published on PyPI & NPM (38 Releases)',
+    downloads: '2,600+ PyPI Direct Downloads',
+    stack: 'Python, TypeScript, google-adk, crawl4ai, Ollama, vLLM'
+  },
+  {
+    name: 'AerialEye',
+    type: 'YOLOv11 Aerial & Disaster Response Model',
+    status: 'Hosted on Hugging Face Hub (kilanisainikhil/AerialEye)',
+    downloads: '1,900+ Transfers · 6,327 Curated Images',
+    stack: 'YOLOv11, SAHI Tiling, PyTorch, ONNX, INT8 Coral Edge TPU'
+  },
+  {
+    name: 'PRITHVI-LIFELINE',
+    type: 'Space-Ground Disaster Mesh & Deep JSCC',
+    status: 'iQOO Hackathon 2026 Master Proposal',
+    specs: 'Single-Shot Deep JSCC (98.2% Compression) · Sentinel-1 SAR Radar',
+    stack: 'PyTorch Deep JSCC, BLE 5.4 Mesh, Android NDK Haptics'
+  }
+];
+
+const experienceData = [
+  {
+    role: 'Open-Source SDK Creator & Maintainer',
+    org: 'saara-ai (PyPI & NPM)',
+    period: '2025 - Present',
+    impact: 'Architected local dataset synthesis engine with 38 releases and 2,600+ direct PyPI downloads. Integrated google-adk and crawl4ai for bounded autonomous research agents.'
+  },
+  {
+    role: 'On-Device AI Mobile Architect',
+    org: 'Vitt (Play Store & Indus Appstore)',
+    period: '2025 - 2026',
+    impact: 'Engineered 100% private financial tracker using LiteRT Gemma 4 E2B (~14 tok/s). Eliminated SMS permissions using Android Notification Listener and encrypted local SQLite.'
+  },
+  {
+    role: 'Edge ML & Computer Vision Researcher',
+    org: 'AerialEye (Hugging Face Hub)',
+    period: '2025 - 2026',
+    impact: 'Curated 6,327 high-altitude disaster images, fine-tuned YOLOv11-Nano with SAHI slicing (89.4% mAP@0.5), and exported INT8 TFLite for Google Coral TPUs (1,900+ downloads).'
+  },
+  {
+    role: 'Space-Air-Ground Systems Architect',
+    org: 'PRITHVI-LIFELINE (iQOO Hackathon 2026)',
+    period: '2026',
+    impact: 'Developed Deep JSCC neural wireless photo compression (98.2% reduction) eliminating the digital cliff effect during grid blackout, paired with Sentinel-1 SAR flood tiles.'
+  }
+];
+
+const educationData = [
+  {
+    degree: 'B.Tech in Computer Science & Engineering',
+    institution: 'NxtWave Institute',
+    period: '2025 - 2029 (Expected)',
+    curriculum: 'Data Structures & Algorithms, Systems Programming, Database Architecture, Machine Learning, Operating Systems'
+  },
+  {
+    degree: 'Continuous Verification & Certifications',
+    institution: 'Google Cloud Skills Boost, AMD AI Academy, DataCamp',
+    period: '2025 - 2026',
+    credentials: 'Gen AI Master Certificate, AMD Agents 101, DataCamp SQL Professional, IndiaAI Buildathon Finalist'
+  }
+];
+
+const hardwareData = {
+  os: 'Linux (Ubuntu 24.04 LTS)',
+  runtime_environments: ['Python 3.11 / PyTorch 2.5', 'Node.js 22 LTS / Bun', 'Flutter 3.24 / Dart 3.5', 'ROS 2 Humble / Jazzy'],
+  accelerators: ['Google Coral Edge TPU (INT8 USB Accelerator)', 'Local vLLM & Ollama CUDA Clusters'],
+  agent_tooling: ['Model Context Protocol (MCP)', 'Firecrawl Local Docker Stack', 'code-review-graph Semantic Indexer']
 };
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+const competencies = [
+  {
+    title: 'On-Device AI & LiteRT',
+    desc: 'Deploying quantized small language models (Gemma 4 E2B) locally on mobile hardware with zero cloud latency, zero recurring API cost, and strict privacy.',
+    tags: ['LiteRT', 'Gemma 4', 'AICore', 'Flutter', 'SQLite AES-256'],
+    icon: Cpu
   },
-};
+  {
+    title: 'Edge Vision & Disaster CV',
+    desc: 'Fine-tuning YOLOv11 with SAHI dynamic tile slicing for small high-altitude objects, quantized to INT8 precision for low-power Google Coral TPUs.',
+    tags: ['YOLOv11', 'SAHI', 'PyTorch', 'ONNX', 'Coral Edge TPU'],
+    icon: Layers
+  },
+  {
+    title: 'Deep Tech & Wireless Mesh',
+    desc: 'Designing Deep JSCC neural wireless image transceivers with 98.2% payload reduction and offline Sentinel-1 SAR orbital flood radar mapping.',
+    tags: ['Deep JSCC', 'SAR Radar', 'BLE 5.4 Mesh', 'Android NDK', 'Rust'],
+    icon: Radio
+  },
+  {
+    title: 'Agentic Tooling & MCP',
+    desc: 'Architecting cost-efficient multi-agent orchestration frameworks saving up to 95% tokens via semantic code graphs and local scraping.',
+    tags: ['MCP', 'Docker', 'Firecrawl', 'google-adk', 'code-review-graph'],
+    icon: Terminal
+  }
+];
 
-export function About() {
+// Helper components for JSON formatting & coloring on screen
+function JsonHighlighter({ data }: { data: any }) {
+  const jsonString = JSON.stringify(data, null, 2);
+  const lines = jsonString.split('\n');
+  
   return (
-    <section id="about" className="section relative">
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent-purple/10 blur-[150px] -z-10" />
-      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-accent-cyan/10 blur-[120px] -z-10" />
-      
-      <motion.div 
-        variants={containerVariants}
-        initial="hidden" 
-        whileInView="show" 
-        viewport={{ once: true, amount: 0.2 }} 
-        className="space-y-24"
-      >
-        <motion.div variants={fadeUp} className="max-w-4xl">
-          <p className="eyebrow">Philosophies & Foundations</p>
-          <h2 className="display-heading text-[3rem] sm:text-[5rem] lg:text-[6.5rem] mb-10 uppercase tracking-tighter">
-            DECODING THE <span className="gradient-text">DIGITAL</span><br />
-            <span className="text-white">FRONTIER</span>
+    <pre className="font-mono text-xs md:text-sm overflow-x-auto text-[var(--ink-secondary)] leading-relaxed select-text p-1">
+      <code>
+        {lines.map((line, i) => {
+          const keyRegex = /^(\s*)"([^"]+)"\s*:/;
+          const stringRegex = /:\s*"([^"]+)"(,)?$/;
+          const numberRegex = /:\s*(true|false|\d+)(,)?$/;
+          
+          if (keyRegex.test(line)) {
+            const match = line.match(keyRegex);
+            if (match) {
+              const spaces = match[1];
+              const key = match[2];
+              const rest = line.substring(match[0].length);
+              
+              if (stringRegex.test(rest)) {
+                const valMatch = rest.match(stringRegex);
+                if (valMatch) {
+                  const val = valMatch[1];
+                  const comma = valMatch[2] || '';
+                  return (
+                    <div key={i} className="whitespace-pre">
+                      {spaces}
+                      <span className="text-[var(--brand-secondary)] font-medium">"{key}"</span>:
+                      <span className="text-emerald-600 dark:text-emerald-400">"{val}"</span>{comma}
+                    </div>
+                  );
+                }
+              } else if (numberRegex.test(rest)) {
+                const valMatch = rest.match(numberRegex);
+                if (valMatch) {
+                  const val = valMatch[1];
+                  const comma = valMatch[2] || '';
+                  return (
+                    <div key={i} className="whitespace-pre">
+                      {spaces}
+                      <span className="text-[var(--brand-secondary)] font-medium">"{key}"</span>:
+                      <span className="text-amber-600 dark:text-amber-400 font-bold">{val}</span>{comma}
+                    </div>
+                  );
+                }
+              }
+              
+              return (
+                <div key={i} className="whitespace-pre">
+                  {spaces}
+                  <span className="text-[var(--brand-secondary)] font-medium">"{key}"</span>:
+                  {rest}
+                </div>
+              );
+            }
+          }
+          
+          const charElements = line.split('').map((char, charIdx) => {
+            if (['{', '}', '[', ']'].includes(char)) {
+              return <span key={charIdx} className="text-blue-500 dark:text-sky-400 font-bold">{char}</span>;
+            }
+            return char;
+          });
+
+          return (
+            <div key={i} className="whitespace-pre">
+              {charElements}
+            </div>
+          );
+        })}
+      </code>
+    </pre>
+  );
+}
+
+export default function About() {
+  const [activeFile, setActiveFile] = useState<'README.md' | 'systems.json' | 'experience.json' | 'environment.json'>('README.md');
+
+  return (
+    <section id="about" className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)] reveal-on-scroll">
+      <div className="max-w-6xl mx-auto px-6">
+        
+        {/* Section Header */}
+        <div className="flex items-baseline gap-4 mb-16">
+          <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">01</span>
+          <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
+            Engineering Identity &amp; Profile
           </h2>
-          <p className="text-xl lg:text-2xl text-zinc-400 leading-relaxed font-medium">
-            I am a specialized engineer focused on the intersection of human-centric design and autonomous intelligence. 
-            My work revolves around creating systems that aren't just functional, but inherently <span className="text-white">"aware"</span> and highly performant.
-          </p>
-        </motion.div>
+        </div>
 
-        <div className="bento-grid">
-          {/* Identity Card */}
-          <motion.div variants={fadeUp} className="col-span-1 lg:col-span-2 row-span-1 card p-10 flex flex-col justify-between group overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent-cyan/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            <div className="relative z-10 flex items-center gap-8">
-              <div className="relative">
-                <div className="w-24 h-24 rounded-[2rem] overflow-hidden border-2 border-accent-cyan/20 group-hover:border-accent-cyan/40 transition-colors duration-500">
-                  <img src="https://raw.githubusercontent.com/nikhil49023/Portfolio/main/public/profile.jpeg" alt="Kilani Sai Nikhil" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700" />
-                </div>
-                <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-2xl bg-accent-cyan flex items-center justify-center border-4 border-[#050505] shadow-xl group-hover:rotate-12 transition-transform">
-                  <Terminal size={18} className="text-[#050505]" />
-                </div>
-              </div>
-              <div>
-                <h3 className="text-3xl font-black text-white uppercase tracking-tighter">Sai Nikhil</h3>
-                <p className="text-accent-cyan font-black tracking-[0.2em] text-[10px] uppercase mt-1">Strategic Systems Architect</p>
-              </div>
-            </div>
-            <div className="relative z-10 mt-12 space-y-6">
-              <div className="flex items-center gap-4 text-xs font-bold text-zinc-500 uppercase tracking-widest bg-white/5 w-fit px-5 py-2.5 rounded-2xl border border-white/5">
-                <MapPin size={14} className="text-accent-cyan" /> Hyderabad, India
-              </div>
-              <div className="flex flex-wrap gap-4">
-                {[
-                  { icon: Github, href: 'https://github.com/nikhil49023', label: 'GitHub' },
-                  { icon: Linkedin, href: 'https://linkedin.com/in/kilanisainikhil', label: 'LinkedIn' },
-                  { icon: Package, href: 'https://pypi.org/user/SaiNikhil/', label: 'PyPI' },
-                ].map(({ icon: Icon, href, label }) => (
-                  <motion.a 
-                    key={label} 
-                    href={href} 
-                    target="_blank" 
-                    whileHover={{ y: -5, scale: 1.1 }}
-                    className="p-4 rounded-2xl glass border-white/5 hover:border-accent-cyan/50 hover:text-accent-cyan transition-all duration-500 shadow-xl"
-                  >
-                    <Icon size={20} />
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Education Card */}
-          <motion.div variants={fadeUp} className="col-span-1 card p-10 flex flex-col justify-center gap-6 group">
-            <div className="w-16 h-16 rounded-[1.5rem] bg-accent-purple/10 flex items-center justify-center border border-accent-purple/20 group-hover:scale-110 transition-transform duration-500">
-              <GraduationCap size={32} className="text-accent-purple" />
-            </div>
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
+          
+          {/* Left Block - Text Bio & Description */}
+          <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
-              <p className="text-[10px] font-black text-accent-purple uppercase tracking-[0.3em] mb-2">Academic Core</p>
-              <h4 className="text-xl font-black text-white uppercase tracking-tight">NxtWave Institute</h4>
-              <p className="text-sm font-bold text-zinc-500 uppercase tracking-widest mt-1">B.Tech CS</p>
-              <div className="mt-4 px-4 py-1.5 bg-accent-purple/10 w-fit rounded-lg border border-accent-purple/20">
-                <p className="text-[10px] font-black text-accent-purple uppercase tracking-widest">Class of 2029</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Expertise Pillars */}
-          <motion.div variants={fadeUp} className="col-span-1 card p-10 flex flex-col justify-between group">
-            <div className="flex items-center gap-4 mb-8">
-              <Rocket size={24} className="text-accent-lime group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              <h4 className="text-xs font-black text-white uppercase tracking-[0.2em]">Pillars</h4>
-            </div>
-            <div className="space-y-4">
-              {[
-                { label: 'Next.js 14', color: 'cyan', value: '100%' },
-                { label: 'Agentic Flow', color: 'purple', value: '95%' },
-                { label: 'RAG Systems', color: 'pink', value: '90%' },
-                { label: 'Cloud Infra', color: 'lime', value: '85%' },
-              ].map(({ label, color, value }) => (
-                <div key={label} className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{label}</span>
-                    <span className={`text-[9px] font-black text-accent-${color}`}>{value}</span>
-                  </div>
-                  <div className="h-1 w-full rounded-full bg-white/5 overflow-hidden">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      whileInView={{ width: value }}
-                      transition={{ duration: 1.5, ease: "easeOut" }}
-                      className={`h-full bg-accent-${color} shadow-[0_0_8px_rgba(var(--accent-${color}),0.5)]`} 
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Innovation Card */}
-          <motion.div variants={fadeUp} className="col-span-1 lg:col-span-2 card p-10 overflow-hidden relative group">
-            <div className="absolute top-[-20%] right-[-10%] w-80 h-80 bg-accent-cyan/10 rounded-full blur-[100px] group-hover:bg-accent-cyan/20 transition-colors duration-1000" />
-            <div className="relative z-10 flex flex-col lg:flex-row gap-10 items-start">
-              <div className="w-20 h-20 rounded-[2rem] bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:rotate-12 transition-transform duration-700 shadow-2xl">
-                <Cpu size={40} className="text-accent-cyan" />
-              </div>
-              <div className="space-y-6">
-                <h4 className="text-2xl font-black text-white uppercase tracking-tight">The Hybrid Strategy</h4>
-                <p className="text-base text-zinc-400 leading-relaxed max-w-xl font-medium">
-                  My approach combines <span className="text-accent-cyan font-bold">pixel-perfect frontend engineering</span> with 
-                  <span className="text-accent-purple font-bold"> deep algorithmic intelligence</span>. 
-                  I build intelligent bridges between complex data and intuitive user interaction.
-                </p>
-                <div className="flex gap-8">
-                  <div className="space-y-1">
-                    <p className="text-3xl font-black text-white">90%</p>
-                    <p className="text-[9px] text-zinc-500 uppercase font-black tracking-widest">Efficiency Gain</p>
-                  </div>
-                  <div className="w-[1px] h-12 bg-white/10" />
-                  <div className="space-y-1">
-                    <p className="text-3xl font-black text-white">0.1%</p>
-                    <p className="text-[9px] text-zinc-500 uppercase font-black tracking-widest">National Rank</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Award/Highlight */}
-          <motion.div variants={fadeUp} className="col-span-1 lg:col-span-2 card p-10 bg-gradient-to-br from-accent-purple/5 to-transparent border-accent-purple/20 group relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-150 transition-transform duration-1000">
-               <Sparkles size={120} className="text-accent-purple" />
-            </div>
-            <div className="relative z-10">
-              <div className="flex items-center gap-5 mb-6">
-                <div className="w-14 h-14 rounded-2xl bg-accent-purple/20 flex items-center justify-center shadow-2xl border border-accent-purple/30">
-                  <Sparkles size={28} className="text-accent-purple animate-pulse" />
-                </div>
-                <h4 className="text-2xl font-black text-white uppercase tracking-tight">Pioneering AI Research</h4>
-              </div>
-              <p className="text-base text-zinc-400 leading-relaxed font-medium">
-                Authored <span className="text-white font-black italic tracking-tight">saara-ai</span>, a published Python engine that automates dataset curation from unstructured documents. 
-                This project exemplifies my commitment to building tools that solve complex data challenges through <span className="text-accent-purple font-bold">elegant automation</span>.
+              <h3 className="text-2xl sm:text-3xl font-bold text-[var(--ink-primary)] tracking-tight mb-5 font-display">
+                Engineering at the Intersection of Edge ML &amp; Systems Architecture
+              </h3>
+              <p className="text-sm leading-relaxed text-[var(--ink-secondary)] mb-4">
+                I am a Computer Science student at NxtWave (Class of 2029) based in Hyderabad, India. My engineering philosophy combines <strong className="text-[var(--ink-primary)]">rock-solid native CS fundamentals</strong> (C++, Python, SQL, Linux, Docker, PyTorch) with <strong className="text-[var(--ink-primary)]">10x AI-augmented velocity</strong> (MCP orchestration, LiteRT on-device inference, semantic code graphs).
+              </p>
+              <p className="text-sm leading-relaxed text-[var(--ink-muted)] mb-8">
+                I focus on building software that runs directly on edge hardware—eliminating recurring cloud subscription costs, safeguarding personal privacy through zero-cloud architectures, and maintaining resilience during severe infrastructure disruption.
               </p>
             </div>
-          </motion.div>
+            
+            {/* Live Environment Spec Box */}
+            <div className="border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-4 relative text-xs text-[var(--ink-secondary)] shadow-sm">
+              <div className="flex items-center justify-between mb-3 font-mono text-[10px] text-[var(--ink-muted)] border-b border-[var(--border-subtle)] pb-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>runtime_telemetry</span>
+                </div>
+                <span className="text-[var(--brand-primary)] font-bold">HYD // IST (UTC+5:30)</span>
+              </div>
+              <div className="space-y-1.5 font-mono text-[11px] text-[var(--ink-primary)]">
+                <div className="flex justify-between">
+                  <span className="text-[var(--ink-muted)]">Active Node:</span>
+                  <span>saara-ai (PyPI: 2.6k+ DL)</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[var(--ink-muted)]">Edge Inference:</span>
+                  <span>LiteRT / Google Coral Edge TPU</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[var(--ink-muted)]">Education:</span>
+                  <span>B.Tech CSE (2025–2029)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Block - Code Editor IDE Container */}
+          <div className="lg:col-span-7 flex flex-col">
+            <div className="w-full border border-[var(--border-subtle)] bg-[var(--bg-surface)] flex flex-col shadow-sm">
+              
+              {/* Window Header */}
+              <div className="flex items-center justify-between border-b border-[var(--border-subtle)] px-4 py-3 bg-[var(--bg-surface)]/80">
+                {/* Window control dots */}
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
+                </div>
+                <span className="text-[10px] font-mono text-[var(--ink-muted)]">workspace // kilani-sai-nikhil</span>
+                <span className="text-[10px] font-mono text-[var(--brand-primary)] font-bold">UTF-8</span>
+              </div>
+
+              {/* Tab Header Selector */}
+              <div className="flex border-b border-[var(--border-subtle)] bg-[var(--bg-void)]/60 text-xs font-mono overflow-x-auto">
+                {[
+                  { name: 'README.md', icon: FileText },
+                  { name: 'systems.json', icon: FileCode },
+                  { name: 'experience.json', icon: Briefcase },
+                  { name: 'environment.json', icon: Cpu },
+                ].map((file) => {
+                  const FileIcon = file.icon;
+                  const isActive = activeFile === file.name;
+                  return (
+                    <button
+                      key={file.name}
+                      onClick={() => setActiveFile(file.name as any)}
+                      className={`relative flex items-center gap-2 px-3.5 py-2.5 transition-all border-r border-[var(--border-subtle)] cursor-pointer rounded-none border-0 whitespace-nowrap ${
+                        isActive
+                          ? 'bg-[var(--bg-surface)] text-[var(--ink-primary)] font-bold'
+                          : 'text-[var(--ink-secondary)] hover:bg-[var(--bg-surface)]/30 hover:text-[var(--ink-primary)]'
+                      }`}
+                    >
+                      <FileIcon size={12} className={isActive ? 'text-[var(--brand-primary)]' : 'text-[var(--ink-muted)]'} />
+                      <span className="z-10">{file.name}</span>
+                      {isActive && (
+                        <motion.div
+                          layoutId="activeTabIndicator"
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--brand-primary)]"
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Tab Content Panel */}
+              <div className="p-6 min-h-[360px] bg-[var(--bg-surface)] overflow-y-auto max-h-[440px]">
+                <AnimatePresence mode="wait">
+                  {activeFile === 'README.md' && (
+                    <motion.div
+                      key="readme"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                      className="font-sans space-y-4 text-sm leading-relaxed text-[var(--ink-secondary)]"
+                    >
+                      <h4 className="text-lg font-bold text-[var(--ink-primary)] font-mono border-b border-[var(--border-subtle)] pb-2 flex items-center gap-1.5">
+                        <ChevronRight size={16} className="text-[var(--brand-primary)]" />
+                        <span>Kilani Sai Nikhil // Profile Overview</span>
+                      </h4>
+                      <p>
+                        I am pursuing a Bachelor of Technology in Computer Science &amp; Engineering at NxtWave Institute (2025–2029). I engineer local-first software systems, open-source AI tooling, and edge computer vision models.
+                      </p>
+                      <div className="space-y-2 font-mono text-xs text-[var(--ink-secondary)] mt-4">
+                        <div className="font-bold text-[var(--brand-secondary)] uppercase tracking-wider text-[10px]">Dual-Track Engineering Philosophy:</div>
+                        <ul className="list-disc pl-5 space-y-1.5">
+                          <li><strong className="text-[var(--ink-primary)]">Native Systems Mastery:</strong> Deep proficiency in Python, C++, SQL relational modeling, Linux OS internals, and Docker containerization.</li>
+                          <li><strong className="text-[var(--ink-primary)]">10x AI Augmentation:</strong> Accelerated scaffolding, semantic code-review graph traversal, and multi-agent MCP toolchain orchestration.</li>
+                          <li><strong className="text-[var(--ink-primary)]">Edge Privacy Stance:</strong> 100% on-device inference via LiteRT &amp; Google Coral TPUs with zero external cloud dependencies.</li>
+                        </ul>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {activeFile === 'systems.json' && (
+                    <motion.div
+                      key="systems"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      <JsonHighlighter data={systemsData} />
+                    </motion.div>
+                  )}
+
+                  {activeFile === 'experience.json' && (
+                    <motion.div
+                      key="experience"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      <JsonHighlighter data={experienceData} />
+                    </motion.div>
+                  )}
+
+                  {activeFile === 'environment.json' && (
+                    <motion.div
+                      key="environment"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      <JsonHighlighter data={hardwareData} />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+            </div>
+          </div>
+          
         </div>
-      </motion.div>
+
+        {/* Core Competencies Grid */}
+        <div className="mt-16">
+          <h3 className="font-bold text-sm text-[var(--ink-primary)] mb-8 uppercase tracking-wider flex items-center gap-2 font-mono">
+            <span className="w-1.5 h-1.5 bg-[var(--brand-primary)] rounded-full" />
+            <span>Core Engineering Disciplines</span>
+          </h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {competencies.map((item, idx) => {
+              const CompIcon = item.icon;
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -4, borderColor: "var(--border-active)" }}
+                  transition={{ 
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 20,
+                    delay: idx * 0.04
+                  }}
+                  className="p-5 border border-[var(--border-subtle)] hover:bg-[var(--bg-surface)] transition-colors duration-300 flex flex-col justify-between bg-[var(--bg-surface)]/60 group cursor-pointer shadow-sm"
+                >
+                  <div>
+                    <div className="w-8 h-8 flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--brand-primary)] mb-4">
+                      <CompIcon size={16} />
+                    </div>
+                    <h4 className="font-bold text-[var(--ink-primary)] text-sm mb-2 tracking-tight group-hover:text-[var(--brand-primary)] transition-colors font-display">
+                      {item.title}
+                    </h4>
+                    <p className="text-xs leading-relaxed text-[var(--ink-muted)] mb-4">{item.desc}</p>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-1 pt-3 border-t border-[var(--border-subtle)]">
+                    {item.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[9px] font-mono px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--ink-secondary)]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+      </div>
     </section>
   );
 }
+

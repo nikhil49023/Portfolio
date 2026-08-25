@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "code-review-graph": {
+      "command": "uvx",
+      "args": [
+        "code-review-graph",
+        "serve"
+      ],
+      "cwd": "/media/nikhil/f470dc98-92e4-4f7d-af60-1bfe0fc74e046/Portfolio",
+      "type": "stdio"
+    }
+  }
+}

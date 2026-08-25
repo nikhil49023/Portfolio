@@ -1,21 +1,52 @@
-import type { Metadata } from 'next';
-import './globals.css';
+import type { Metadata } from "next";
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Background from "@/components/Background";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: 'Kilani Sai Nikhil — Machine Learning Engineer',
+  title: "Kilani Sai Nikhil — Developer & Builder",
   description:
-    'Machine Learning Engineer specializing in LLM systems, RAG pipelines, computer vision, and scalable AI architecture.',
-  keywords: ['Machine Learning Engineer', 'LLMs', 'RAG', 'Computer Vision', 'PyTorch', 'Hugging Face', 'Portfolio', 'Kilani Sai Nikhil'],
-  authors: [{ name: 'Kilani Sai Nikhil' }],
+    "Computer Science student building ML tools, full-stack applications, and computer vision systems. Creator of saara-ai, Vitt, and AerialEye.",
+  keywords: ["developer", "ML", "computer vision", "full-stack", "Python", "Flutter", "Next.js"],
+  authors: [{ name: "Kilani Sai Nikhil" }],
+  openGraph: {
+    title: "Kilani Sai Nikhil — Developer & Builder",
+    description:
+      "CS student. ML tools. Full-stack apps. Computer vision. Hyderabad, India.",
+    type: "website",
+  },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('theme');
+                  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body>
-        <div className="fixed inset-0 -z-10 pointer-events-none">
-          <div className="absolute inset-0 bg-[var(--bg-main)]" />
-        </div>
+        <Background />
+        <Navbar />
+        <ScrollReveal />
         {children}
       </body>
     </html>
