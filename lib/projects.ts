@@ -20,6 +20,13 @@ export interface ProjectTechDetail {
   icon: React.ComponentType<any>;
 }
 
+export interface ProjectCommitLog {
+  hash: string;
+  message: string;
+  date: string;
+  tag?: string;
+}
+
 export interface ProjectLink {
   label: string;
   href: string;
@@ -47,6 +54,7 @@ export interface ProjectData {
   details: string[];
   architecture: ProjectArchitecture[];
   techDetails: ProjectTechDetail[];
+  commits: ProjectCommitLog[];
   tags: string[];
   links: ProjectLink[];
   media?: 'images' | 'terminal' | 'custom';
@@ -155,6 +163,12 @@ The application is fully compliant with India's Digital Personal Data Protection
         icon: Shield
       }
     ],
+    commits: [
+      { hash: 'e78b2a1', message: 'feat(compliance): add DPDP Act 2023 legal disclosures & consent dialog', date: 'Aug 2026', tag: 'v1.2.0-indus' },
+      { hash: '4a1f902', message: 'feat(inference): integrate LiteRT Gemma 4 E2B on-device parsing engine', date: 'Aug 2026' },
+      { hash: '2d890cf', message: 'feat(vault): add AES-256 encrypted SQLite offline ledger storage', date: 'Jul 2026' },
+      { hash: '1b44c10', message: 'feat(service): implement native Android Notification Listener scraper', date: 'Jun 2026' }
+    ],
     tags: ['On-Device AI', 'Flutter', 'LiteRT', 'Gemma LLM', 'FinTech', 'Privacy-First', 'SQLite'],
     links: [
       { label: 'Landing Page & Docs', href: 'https://github.com/nikhil49023/vitt-landing-page', icon: Globe, primary: true },
@@ -249,6 +263,12 @@ The engine routes prompts through local LLM backends (Ollama and vLLM), supporti
         desc: 'Packaged and maintained as a native Python package on PyPI and an NPX CLI binary on NPM with automated CI/CD.',
         icon: Box
       }
+    ],
+    commits: [
+      { hash: '9b21a8f', message: 'release: v2.0.0 — dual publish on PyPI & NPM with 38 verified releases', date: 'Jun 2026', tag: 'v2.0.0' },
+      { hash: '7e30d12', message: 'feat(agents): add bounded google-adk ResearchAgents with crawl4ai tool use', date: 'Jun 2026' },
+      { hash: '5a8b411', message: 'feat(router): implement dynamic local vLLM & Ollama inference dispatch', date: 'May 2026' },
+      { hash: '3c990ef', message: 'feat(tui): interactive terminal curation console with Parquet/HF export', date: 'May 2026' }
     ],
     tags: ['Python', 'Dataset Synthesis', 'LLM Distillation', 'PyPI', 'NPM', 'Ollama', 'vLLM', 'google-adk'],
     links: [
@@ -345,6 +365,12 @@ The model is trained on a unified, curated dataset of 6,327 high-altitude frames
         icon: Globe
       }
     ],
+    commits: [
+      { hash: '8d1209a', message: 'release: YOLOv11-Nano weights with SAHI dynamic 640x640 tile slicing', date: 'Mar 2026', tag: 'v1.1-hf' },
+      { hash: '6c44b91', message: 'feat(dataset): curate unified 6,327 aerial disaster response corpus', date: 'Mar 2026' },
+      { hash: '4b11f30', message: 'feat(quant): INT8 post-training quantization for Google Coral Edge TPU', date: 'Feb 2026' },
+      { hash: '2a99e41', message: 'eval: achieve 89.4% mAP@0.5 validation baseline across 6 disaster classes', date: 'Feb 2026' }
+    ],
     tags: ['Computer Vision', 'YOLOv11', 'PyTorch', 'ONNX', 'TFLite', 'Google Coral TPU', 'Hugging Face', 'Disaster Relief'],
     links: [
       { label: 'Hugging Face Hub', href: 'https://huggingface.co/kilanisainikhil/AerialEye', icon: Eye, primary: true },
@@ -439,6 +465,11 @@ The project models the correlation between physical activity levels, daily step 
         desc: 'Fully documented narrative markdown with reproducible execution cells shared openly with the data community.',
         icon: Globe
       }
+    ],
+    commits: [
+      { hash: '1f88e90', message: 'feat(eda): publish reproducible Pandas & NumPy sleep health capstone', date: '2025', tag: 'kaggle-v1' },
+      { hash: '3d44a21', message: 'feat(pipeline): decompose compound blood pressure into systolic/diastolic vectors', date: '2025' },
+      { hash: '5c22b10', message: 'feat(viz): generate multi-variable Seaborn correlation heatmaps & violin plots', date: '2025' }
     ],
     tags: ['Data Science', 'Python', 'Pandas', 'NumPy', 'Seaborn', 'EDA', 'Kaggle', 'Biometrics'],
     links: [

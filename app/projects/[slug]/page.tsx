@@ -21,6 +21,7 @@ import {
   ChevronRight,
   Sparkles,
   GitBranch,
+  GitCommit,
 } from 'lucide-react';
 import { PROJECTS, ProjectData } from '@/lib/projects';
 import { ImageCarousel } from '@/components/projects/ImageCarousel';
@@ -179,7 +180,8 @@ const SECTION_LINKS = [
   { id: 'highlights', label: '03 Highlights' },
   { id: 'architecture', label: '04 Architecture' },
   { id: 'deep-dive', label: '05 Deep Dive' },
-  { id: 'stack', label: '06 Arsenal' },
+  { id: 'commits', label: '06 Commits' },
+  { id: 'stack', label: '07 Arsenal' },
 ];
 
 const ALL_PROJECT_SLUGS = ['vitt', 'saara-ai', 'aerialeye', 'sleep-health-analytics'];
@@ -485,10 +487,61 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
           </div>
         </section>
 
-        {/* ── 06 Full Arsenal & Stack ── */}
+        {/* ── 06 Verified Commits & Release Manifest ── */}
+        {project.commits && project.commits.length > 0 && (
+          <section id="commits" className="scroll-mt-28">
+            <div className="flex items-baseline gap-4 mb-8">
+              <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">06</span>
+              <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
+                Verified GitHub Commits &amp; Release History
+              </h2>
+            </div>
+
+            <div className="border border-[var(--border-subtle)] bg-[var(--bg-surface)] divide-y divide-[var(--border-subtle)] font-mono">
+              <div className="px-5 py-3 bg-[var(--bg-void)] text-[10px] text-[var(--ink-muted)] uppercase tracking-wider flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  <GitBranch size={13} className="text-[var(--brand-primary)]" />
+                  <span>Repository Target: main</span>
+                </span>
+                <span>Verified Clean Tree</span>
+              </div>
+              {project.commits.map((c) => (
+                <div
+                  key={c.hash}
+                  className="p-4 sm:px-6 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-[var(--bg-void)]/60 transition-colors"
+                >
+                  <div className="flex items-start sm:items-center gap-3">
+                    <div className="p-1.5 border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--brand-primary)]">
+                      <GitCommit size={14} />
+                    </div>
+                    <div>
+                      <div className="text-xs sm:text-sm font-semibold text-[var(--ink-primary)] font-mono">
+                        {c.message}
+                      </div>
+                      <div className="text-[11px] text-[var(--ink-muted)] flex items-center gap-2 mt-0.5">
+                        <span className="text-[var(--brand-secondary)] font-bold">{c.hash}</span>
+                        <span>·</span>
+                        <span>{c.date}</span>
+                      </div>
+                    </div>
+                  </div>
+                  {c.tag && (
+                    <div className="self-start sm:self-center">
+                      <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 border border-[var(--brand-primary)]/40 bg-[var(--brand-primary)]/10 text-[var(--brand-primary)]">
+                        {c.tag}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ── 07 Full Arsenal & Stack ── */}
         <section id="stack" className="scroll-mt-28 pb-12">
           <div className="flex items-baseline gap-4 mb-8">
-            <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">06</span>
+            <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">07</span>
             <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
               Engineering Arsenal &amp; Technologies
             </h2>

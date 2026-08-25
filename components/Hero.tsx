@@ -109,7 +109,7 @@ export default function Hero() {
               animate="show"
               className="text-sm md:text-base leading-relaxed text-[var(--ink-secondary)] mb-6 max-w-xl"
             >
-              Computer Science student at NxtWave (Class of 2029) engineering local-first on-device AI architectures (<span className="text-[var(--ink-primary)] font-semibold">Vitt</span>), dataset distillation engines (<span className="text-[var(--ink-primary)] font-semibold">saara-ai</span>), quantized aerial vision models (<span className="text-[var(--ink-primary)] font-semibold">AerialEye</span>), and space-ground wireless mesh protocols (<span className="text-[var(--ink-primary)] font-semibold">PRITHVI-LIFELINE</span>).
+              Computer Science student at NxtWave (Class of 2029) engineering local-first on-device AI architectures (<span className="text-[var(--ink-primary)] font-semibold">Vitt</span>), dataset distillation engines (<span className="text-[var(--ink-primary)] font-semibold">saara-ai</span>), quantized aerial vision models (<span className="text-[var(--ink-primary)] font-semibold">AerialEye</span>), and biometric data pipelines (<span className="text-[var(--ink-primary)] font-semibold">Sleep Health Analytics</span>).
             </motion.p>
 
             {/* Interactive Multi-Command Snippet Switcher */}
