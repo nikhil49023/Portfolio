@@ -40,11 +40,11 @@ const matrixData = [
     }
   },
   {
-    category: 'Agent Orchestration & Tooling',
+    category: 'Developer Tooling & Environments',
     icon: Layers,
     native: {
-      skills: ['Docker Stacks', 'Firecrawl Local', 'Git Trunk Flow', 'code-review-graph'],
-      desc: 'Deploying self-hosted container stacks, pre-indexing semantic call graphs, and enforcing Safelock risk protocols to eliminate token waste.'
+      skills: ['Docker Stacks', 'Local Firecrawl', 'Git Trunk Flow', 'Linux Daemons'],
+      desc: 'Deploying self-hosted container stacks, configuring local documentation scrapers, and structuring robust CI/CD release pipelines.'
     },
     augmented: {
       skills: ['Model Context Protocol (MCP)', 'google-adk', 'vLLM Routing', 'crawl4ai'],
@@ -52,15 +52,15 @@ const matrixData = [
     }
   },
   {
-    category: 'Deep Tech, Mesh & Robotics',
+    category: 'Robotics & Neuromodulated Control',
     icon: Radio,
     native: {
-      skills: ['ROS 2 (rclpy)', 'Gazebo ODEs', 'BLE 5.4 Mesh', 'Android NDK'],
-      desc: 'Formulating differential kinematic equations for wheel slip recovery, 50 Hz ROS 2 velocity publishers, and peer-to-peer store-and-forward mesh routing.'
+      skills: ['ROS 2 (rclpy)', 'Gazebo ODEs', 'Differential Kinematics', 'C++ / Python'],
+      desc: 'Formulating differential kinematic equations for wheel slip recovery, 50 Hz ROS 2 velocity publishers, and Gazebo physics benchmarking.'
     },
     augmented: {
-      skills: ['Deep JSCC Neural Mesh', 'PyTorch FiLM Modulation', 'Sentinel-1 SAR Radar'],
-      desc: 'Prototyping joint source-channel neural transceivers (98.2% compression) and orbital radar flood vectorization under blackout conditions.'
+      skills: ['PyTorch FiLM Modulation', 'Artificial Hormone ODEs', 'Coral Edge TPU'],
+      desc: 'Prototyping homeostatic endocrine gating layers (Adrenaline / Cortisol ODEs) and dynamic affine policy transformations for zero-shot slip recovery.'
     }
   }
 ];

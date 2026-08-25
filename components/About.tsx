@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileCode, GraduationCap, Briefcase, ChevronRight, FileText, Cpu, Terminal, Layers, Radio, Shield, Globe } from 'lucide-react';
+import { FileCode, GraduationCap, Briefcase, ChevronRight, FileText, Cpu, Terminal, Layers, Radio, Shield, Globe, Activity } from 'lucide-react';
 
 const systemsData = [
   {
@@ -27,11 +27,11 @@ const systemsData = [
     stack: 'YOLOv11, SAHI Tiling, PyTorch, ONNX, INT8 Coral Edge TPU'
   },
   {
-    name: 'PRITHVI-LIFELINE',
-    type: 'Space-Ground Disaster Mesh & Deep JSCC',
-    status: 'iQOO Hackathon 2026 Master Proposal',
-    specs: 'Single-Shot Deep JSCC (98.2% Compression) · Sentinel-1 SAR Radar',
-    stack: 'PyTorch Deep JSCC, BLE 5.4 Mesh, Android NDK Haptics'
+    name: 'NeuroNav-ROS2',
+    type: 'Homeostatic Neuromodulated Local Planner',
+    status: 'Active Research Project (ROS 2 & Gazebo)',
+    specs: 'PyTorch FiLM Modulation · 50 Hz Real-Time ODE Recovery',
+    stack: 'ROS 2 (rclpy), Gazebo, PyTorch FiLM, Kinematics, Python'
   }
 ];
 
@@ -55,10 +55,10 @@ const experienceData = [
     impact: 'Curated 6,327 high-altitude disaster images, fine-tuned YOLOv11-Nano with SAHI slicing (89.4% mAP@0.5), and exported INT8 TFLite for Google Coral TPUs (1,900+ downloads).'
   },
   {
-    role: 'Space-Air-Ground Systems Architect',
-    org: 'PRITHVI-LIFELINE (iQOO Hackathon 2026)',
+    role: 'Robotics & Neuromodulation Researcher',
+    org: 'NeuroNav-ROS2 (ROS 2 & Gazebo)',
     period: '2026',
-    impact: 'Developed Deep JSCC neural wireless photo compression (98.2% reduction) eliminating the digital cliff effect during grid blackout, paired with Sentinel-1 SAR flood tiles.'
+    impact: 'Designed an endocrine-gated ROS 2 navigation planner utilizing artificial hormone ODEs and PyTorch FiLM layers for zero-shot slip compensation without online backpropagation.'
   }
 ];
 
@@ -81,7 +81,7 @@ const hardwareData = {
   os: 'Linux (Ubuntu 24.04 LTS)',
   runtime_environments: ['Python 3.11 / PyTorch 2.5', 'Node.js 22 LTS / Bun', 'Flutter 3.24 / Dart 3.5', 'ROS 2 Humble / Jazzy'],
   accelerators: ['Google Coral Edge TPU (INT8 USB Accelerator)', 'Local vLLM & Ollama CUDA Clusters'],
-  agent_tooling: ['Model Context Protocol (MCP)', 'Firecrawl Local Docker Stack', 'code-review-graph Semantic Indexer']
+  agent_tooling: ['Model Context Protocol (MCP)', 'Local Docker Stacks', 'Local Firecrawl Documentation Scrapers']
 };
 
 const competencies = [
@@ -98,15 +98,15 @@ const competencies = [
     icon: Layers
   },
   {
-    title: 'Deep Tech & Wireless Mesh',
-    desc: 'Designing Deep JSCC neural wireless image transceivers with 98.2% payload reduction and offline Sentinel-1 SAR orbital flood radar mapping.',
-    tags: ['Deep JSCC', 'SAR Radar', 'BLE 5.4 Mesh', 'Android NDK', 'Rust'],
-    icon: Radio
+    title: 'Robotics & Neuromodulated Planning',
+    desc: 'Engineering endocrine-gated ROS 2 local planners with artificial hormone dynamics and PyTorch FiLM conditioning for zero-shot robot recovery.',
+    tags: ['ROS 2 (rclpy)', 'Gazebo', 'PyTorch FiLM', 'Slip ODEs', 'Kinematics'],
+    icon: Activity
   },
   {
-    title: 'Agentic Tooling & MCP',
-    desc: 'Architecting cost-efficient multi-agent orchestration frameworks saving up to 95% tokens via semantic code graphs and local scraping.',
-    tags: ['MCP', 'Docker', 'Firecrawl', 'google-adk', 'code-review-graph'],
+    title: 'Open-Source Tooling & MCP',
+    desc: 'Publishing production developer SDKs and dataset distillation engines on PyPI and NPM with clean architecture and automated CI/CD pipelines.',
+    tags: ['Python', 'TypeScript', 'PyPI', 'NPM', 'google-adk', 'MCP'],
     icon: Terminal
   }
 ];

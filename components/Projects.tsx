@@ -12,17 +12,15 @@ const categories = [
   { id: 'all', label: 'All Systems' },
   { id: 'on-device', label: 'On-Device AI & Mobile' },
   { id: 'open-source', label: 'Open-Source & SDKs' },
-  { id: 'vision-deep-tech', label: 'Vision & Deep Tech' },
-  { id: 'robotics-agents', label: 'Robotics & Orchestration' },
+  { id: 'vision-edge', label: 'Vision & Edge ML' },
+  { id: 'robotics', label: 'Robotics & Systems' },
 ];
 
 const categoryMap: Record<string, string[]> = {
   'vitt': ['all', 'on-device'],
   'saara-ai': ['all', 'open-source'],
-  'aerialeye': ['all', 'vision-deep-tech'],
-  'prithvi-lifeline': ['all', 'vision-deep-tech'],
-  'super-orchestrator': ['all', 'open-source', 'robotics-agents'],
-  'neuronav-ros2': ['all', 'robotics-agents'],
+  'aerialeye': ['all', 'vision-edge'],
+  'neuronav-ros2': ['all', 'robotics'],
 };
 
 export default function Projects() {
@@ -48,7 +46,7 @@ export default function Projects() {
             </h2>
           </div>
           <div className="font-mono text-[10px] text-[var(--ink-muted)]">
-            <span>SHOWING 6 VERIFIED PRODUCTION REPOSITORIES &amp; MODELS</span>
+            <span>SHOWING 4 VERIFIED REPOSITORIES &amp; RESEARCH SYSTEMS</span>
           </div>
         </div>
 

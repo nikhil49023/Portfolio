@@ -188,30 +188,16 @@ const projects = [
     accent: 'var(--accent-amber)',
   },
   {
-    name: 'PRITHVI-LIFELINE',
-    type: 'Space-Ground Disaster Mesh · iQOO Hackathon 2026',
+    name: 'NeuroNav-ROS2',
+    type: 'Robotics & Deep Learning · ROS 2 & Gazebo',
     date: '2026',
-    role: 'Deep Tech & Communications Architect',
-    tech: 'PyTorch Deep JSCC · Sentinel-1 SAR Radar · BLE 5.4 / Wi-Fi Direct Mesh · Android NDK Haptics',
+    role: 'Robotics & Neuromodulation Researcher',
+    tech: 'ROS 2 (rclpy) · Gazebo · PyTorch FiLM Layers · Kinematics · Slip ODEs',
     bullets: [
-      'Engineered a sovereign Space-Air-Ground disaster communications architecture for 72-hour survival under catastrophic grid blackout.',
-      'Implemented single-shot Deep JSCC neural photo compression with 98.2% payload reduction, eliminating the digital cliff effect.',
-      'Integrated pre-cached Sentinel-1 SAR orbital flood radar risk tiles with an energy-optimized BLE 5.4 store-and-forward mesh network.',
-      'Fused barometric altimeter vertical water-rise telemetry with Android NDK linear haptic directional guidance.',
-    ],
-    accent: 'var(--brand-primary)',
-  },
-  {
-    name: 'Super Orchestrator',
-    type: 'Multi-Agent Framework · Open Source',
-    date: '2026',
-    role: 'Creator & Maintainer',
-    tech: 'TypeScript · Vertex AI · Docker · Firecrawl · opencode CLI · code-review-graph',
-    bullets: [
-      'Developed a master agent orchestration protocol reducing codebase-traversal token costs by up to 95% using semantic code graphs.',
-      'Built a Safelock Gatekeeper protocol classifying operational risk levels to prevent interactive prompt deadlocks and unsafe mutations.',
-      'Self-hosted Dockerized Firecrawl instances for zero-cost documentation search and high-fidelity markdown extraction.',
-      'Orchestrated multi-agent subtask distribution routing routine scaffolding to free open-source worker models.',
+      'Engineered an endocrine-gated real-time ROS 2 local planner utilizing artificial hormone dynamics (Adrenaline / Cortisol ODEs).',
+      'Integrated PyTorch FiLM (Feature-wise Linear Modulation) conditioning layers for real-time (50 Hz) navigation policy weight scaling.',
+      'Achieved zero-shot trajectory recovery and slip compensation in dynamic Gazebo environments without online backpropagation.',
+      'Constructed automated Gazebo benchmarking suite evaluating against Nav2 DWA and unmodulated MLPs.',
     ],
     accent: 'var(--brand-primary)',
   },
@@ -440,7 +426,7 @@ export default function ResumePage() {
                 <div className="p-6 border border-[var(--border-subtle)] bg-[var(--bg-surface)]/20 backdrop-blur-sm relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle_at_top_right,color-mix(in_oklch,var(--brand-primary)_5%,transparent),transparent_60%)] pointer-events-none" />
                   <p className="text-sm md:text-base leading-relaxed text-[var(--ink-secondary)] font-normal">
-                    AI-Augmented Systems and Deep Tech Engineer combining rigorous native computer science fundamentals (C++, Python, SQL relational design, Linux, Docker, PyTorch) with 10x agentic scaffolding velocity (Model Context Protocol, LiteRT on-device inference, semantic code graphs). Author of <strong className="text-[var(--ink-primary)]">saara-ai</strong> (38 releases, 2,600+ PyPI downloads), architect of <strong className="text-[var(--ink-primary)]">Vitt</strong> (100% on-device Gemma 4 E2B via LiteRT, AES-256 SQLite), trainer of <strong className="text-[var(--ink-primary)]">AerialEye</strong> (1,900+ Hugging Face downloads, 89.4% mAP@0.5 YOLOv11), and co-architect of <strong className="text-[var(--ink-primary)]">PRITHVI-LIFELINE</strong> (Deep JSCC space-ground disaster mesh).
+                    AI-Augmented Systems and Deep Tech Engineer combining rigorous native computer science fundamentals (C++, Python, SQL relational design, Linux, Docker, PyTorch) with 10x agentic scaffolding velocity (Model Context Protocol, LiteRT on-device inference, semantic code graphs). Author of <strong className="text-[var(--ink-primary)]">saara-ai</strong> (38 releases, 2,600+ PyPI downloads), architect of <strong className="text-[var(--ink-primary)]">Vitt</strong> (100% on-device Gemma 4 E2B via LiteRT, AES-256 SQLite), trainer of <strong className="text-[var(--ink-primary)]">AerialEye</strong> (1,900+ Hugging Face downloads, 89.4% mAP@0.5 YOLOv11), and researcher on <strong className="text-[var(--ink-primary)]">NeuroNav-ROS2</strong> (endocrine-gated local planner in ROS 2 / Gazebo).
                   </p>
                 </div>
               </motion.section>
@@ -507,14 +493,14 @@ export default function ResumePage() {
 
         <div className="print-section">Professional Summary</div>
         <div className="print-skills-line">
-          AI-Augmented Systems and Deep Tech Engineer combining native computer science fundamentals (C++, Python, SQL relational design, Linux, Docker, PyTorch) with 10x agentic scaffolding velocity (Model Context Protocol, LiteRT on-device inference, semantic code graphs). Author of saara-ai (38 releases, 2,600+ PyPI downloads), architect of Vitt (100% on-device Gemma 4 E2B via LiteRT, AES-256 SQLite), trainer of AerialEye (1,900+ Hugging Face downloads, 89.4% mAP@0.5 YOLOv11), and co-architect of PRITHVI-LIFELINE (Deep JSCC space-ground disaster mesh). Certified across Google Cloud Gen AI Master, AMD AI Academy, and DataCamp SQL Professional.
+          AI-Augmented Systems and Deep Tech Engineer combining native computer science fundamentals (C++, Python, SQL relational design, Linux, Docker, PyTorch) with 10x agentic scaffolding velocity (Model Context Protocol, LiteRT on-device inference, semantic code graphs). Author of saara-ai (38 releases, 2,600+ PyPI downloads), architect of Vitt (100% on-device Gemma 4 E2B via LiteRT, AES-256 SQLite), trainer of AerialEye (1,900+ Hugging Face downloads, 89.4% mAP@0.5 YOLOv11), and researcher on NeuroNav-ROS2 (homeostatic neuromodulated local planner in ROS 2). Certified across Google Cloud Gen AI Master, AMD AI Academy, and DataCamp SQL Professional.
         </div>
 
         <div className="print-section">Technical Skills</div>
         <div className="print-skills-line"><strong>Languages &amp; Systems:</strong> Python 3.11, C++17, SQL (PostgreSQL, SQLite), TypeScript, Dart 3.5, Linux Syscalls, POSIX, Bash</div>
         <div className="print-skills-line"><strong>Databases &amp; Relational Modeling:</strong> PostgreSQL, SQLite (AES-256 Encrypted Vault), Redis, Vector MBTiles, B-Tree Indexing, 3NF Normalization</div>
         <div className="print-skills-line"><strong>Edge ML &amp; Computer Vision:</strong> PyTorch 2.5, YOLOv11-Nano, SAHI Slicing, LiteRT (Gemma 4 E2B), INT8 TFLite, Google Coral TPU, Hugging Face Hub</div>
-        <div className="print-skills-line"><strong>Deep Tech &amp; Agent Tooling:</strong> Deep JSCC Neural Mesh, Sentinel-1 SAR Radar, ROS 2 (rclpy), Docker Stacks, Firecrawl Local, Model Context Protocol (MCP)</div>
+        <div className="print-skills-line"><strong>Robotics &amp; Developer Tooling:</strong> ROS 2 (rclpy), Gazebo Physics, PyTorch FiLM Layers, Docker Stacks, Local Firecrawl, Model Context Protocol (MCP)</div>
 
         <div className="print-section">Technical Projects</div>
 
@@ -545,22 +531,13 @@ export default function ResumePage() {
           <li>Published model cards and pipelines on Hugging Face Hub (kilanisainikhil/AerialEye) with 1,900+ total community downloads.</li>
         </ul>
 
-        <div className="print-item-head"><span>PRITHVI-LIFELINE — Space-Ground Disaster Mesh &amp; Deep JSCC Wireless Network</span><span>2026</span></div>
-        <div className="print-item-sub">Deep Tech &amp; Communications Architect | PyTorch Deep JSCC, Sentinel-1 SAR Radar, BLE 5.4 Mesh, Android NDK Haptics</div>
+        <div className="print-item-head"><span>NeuroNav-ROS2 — Homeostatic Neuromodulated Local Planner</span><span>2026</span></div>
+        <div className="print-item-sub">Robotics &amp; Neuromodulation Researcher | ROS 2 (rclpy), Gazebo, PyTorch FiLM Layers, Slip ODEs</div>
         <ul className="print-bullets">
-          <li>Engineered a sovereign Space-Air-Ground disaster communications architecture for 72-hour survival under catastrophic grid blackout.</li>
-          <li>Implemented single-shot Deep JSCC neural photo compression with 98.2% payload reduction, eliminating the digital cliff effect.</li>
-          <li>Integrated pre-cached Sentinel-1 SAR orbital flood radar risk tiles with an energy-optimized BLE 5.4 store-and-forward mesh network.</li>
-          <li>Fused barometric altimeter vertical water-rise telemetry with Android NDK linear haptic directional guidance.</li>
-        </ul>
-
-        <div className="print-item-head"><span>Super Orchestrator — Master Agent Multi-Agent Orchestration Protocol</span><span>2026</span></div>
-        <div className="print-item-sub">Creator &amp; Maintainer | TypeScript, Vertex AI, Docker, Firecrawl, opencode CLI, code-review-graph</div>
-        <ul className="print-bullets">
-          <li>Developed a master agent orchestration protocol reducing codebase-traversal token costs by up to 95% using semantic code graphs.</li>
-          <li>Built a Safelock Gatekeeper protocol classifying operational risk levels to prevent interactive prompt deadlocks and unsafe mutations.</li>
-          <li>Self-hosted Dockerized Firecrawl instances for zero-cost documentation search and high-fidelity markdown extraction.</li>
-          <li>Orchestrated multi-agent subtask distribution routing routine scaffolding to free open-source worker models.</li>
+          <li>Engineered an endocrine-gated real-time ROS 2 local planner utilizing artificial hormone dynamics (Adrenaline / Cortisol ODEs).</li>
+          <li>Integrated PyTorch FiLM conditioning layers for real-time (50 Hz) navigation policy weight scaling.</li>
+          <li>Achieved zero-shot trajectory recovery and slip compensation in dynamic Gazebo environments without online backpropagation.</li>
+          <li>Constructed automated Gazebo benchmarking suite evaluating against Nav2 DWA and unmodulated MLPs.</li>
         </ul>
 
         <div className="print-section">Verified Credentials &amp; Honours</div>

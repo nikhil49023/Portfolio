@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { use, useRef } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
@@ -12,9 +12,8 @@ import { PROJECTS } from '@/lib/projects';
 import { ImageCarousel } from '@/components/projects/ImageCarousel';
 import { AerialEyeVisualization } from '@/components/projects/AerialEyeVisualization';
 
-/* ── Terminal mockup (SAARA, Super Orchestrator, NeuroNav) ── */
+/* ── Terminal mockup (SAARA, NeuroNav) ── */
 function TerminalMockup({ slug = 'saara-ai' }: { slug?: string }) {
-  const isOrchestrator = slug === 'super-orchestrator';
   const isNeuroNav = slug === 'neuronav-ros2';
 
   return (
@@ -28,7 +27,7 @@ function TerminalMockup({ slug = 'saara-ai' }: { slug?: string }) {
           </div>
           <span className="text-zinc-500 text-[10px] font-mono font-bold uppercase tracking-[0.25em] ml-4 flex items-center gap-2">
             <TerminalIcon size={12} className="text-emerald-400" /> 
-            {isNeuroNav ? 'neuronav-ros2 — rclpy_node_v1.0' : isOrchestrator ? 'super-orchestrator — master_v2.0' : 'saara-ai — dataset_v2.0'}
+            {isNeuroNav ? 'neuronav-ros2 — rclpy_node_v1.0' : 'saara-ai — dataset_v2.0'}
           </span>
         </div>
         <div className="bg-black/80 px-6 py-6 font-mono text-[11px] space-y-3 rounded-b-[1.25rem] border border-white/10 backdrop-blur-3xl shadow-2xl relative overflow-hidden">
@@ -63,39 +62,6 @@ function TerminalMockup({ slug = 'saara-ai' }: { slug?: string }) {
               ].map(({ color, label, text }) => (
                 <div key={label} className="flex gap-3 relative z-10">
                   <span style={{ color }} className="font-bold text-[9px] min-w-[95px]">{label}</span>
-                  <span className="text-zinc-400 font-medium">{text}</span>
-                </div>
-              ))}
-            </>
-          ) : isOrchestrator ? (
-            <>
-              <div className="relative z-10"><span className="text-sky-400">❯</span> <span className="text-zinc-300 font-bold uppercase tracking-tight">opencode run --yolo "Initialize the code-review-graph"</span></div>
-              <div className="relative z-10 text-zinc-500 font-medium">Bootstrapping local dependencies &amp; indexing directory call trees...</div>
-              <div className="relative z-10 flex items-center gap-4">
-                <div className="flex gap-1">
-                  {Array.from({ length: 20 }).map((_, i) => (
-                    <motion.div 
-                      key={i} 
-                      initial={{ opacity: 0.2 }}
-                      animate={{ opacity: i < 19 ? 1 : 0.2 }}
-                      transition={{ delay: i * 0.04 }}
-                      className={`w-2.5 h-4 rounded-sm ${i < 19 ? 'bg-sky-400' : 'bg-white/5'}`} 
-                    />
-                  ))}
-                </div>
-                <span className="text-sky-400 font-black">95% TOKEN SAVINGS</span>
-              </div>
-              <div className="relative z-10 text-emerald-400 font-bold uppercase tracking-widest text-[9px] flex items-center gap-2">
-                <Zap size={10} /> SAFELOCK GATEKEEPER ENGAGED
-              </div>
-              <div className="mt-4 relative z-10"><span className="text-sky-400">❯</span> <span className="text-zinc-300">super-orchestrator run --task "Audit database connections"</span></div>
-              {[
-                { color: '#38bdf8', label: 'PHASE_01', text: 'Safelock Gatekeeper → LOW_RISK_APPROVED' },
-                { color: '#818cf8', label: 'PHASE_02', text: 'Code Review Graph → Pre-indexed 42 classes & imports' },
-                { color: '#f43f5e', label: 'PHASE_03', text: 'Firecrawl Docker → Extracted docs with zero cloud fees' },
-              ].map(({ color, label, text }) => (
-                <div key={label} className="flex gap-3 relative z-10">
-                  <span style={{ color }} className="font-bold text-[9px] min-w-[70px]">{label}</span>
                   <span className="text-zinc-400 font-medium">{text}</span>
                 </div>
               ))}
@@ -173,8 +139,9 @@ const SECTION_LINKS = [
   { id: 'stack', label: 'Arsenal' },
 ];
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = PROJECTS[params.slug];
+export default function ProjectPage({ params }: { params: Promise<{ slug: string }> | { slug: string } }) {
+  const resolvedParams = use(params as any) as { slug: string };
+  const project = PROJECTS[resolvedParams.slug];
   if (!project) notFound();
 
   const heroRef = useRef<HTMLDivElement>(null);
