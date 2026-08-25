@@ -1,9 +1,9 @@
 'use client';
 
-import { use, useRef } from 'react';
+import { use, useRef, useState } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -22,8 +22,15 @@ import {
   Sparkles,
   GitBranch,
   GitCommit,
+  Code2,
+  FileCode,
+  AlertCircle,
+  BarChart3,
+  Copy,
+  Check,
+  CheckCircle,
 } from 'lucide-react';
-import { PROJECTS, ProjectData } from '@/lib/projects';
+import { PROJECTS, ProjectData, CodeSnippet, TechnicalChallenge, BenchmarkRow } from '@/lib/projects';
 import { ImageCarousel } from '@/components/projects/ImageCarousel';
 import { AerialEyeVisualization } from '@/components/projects/AerialEyeVisualization';
 
@@ -158,6 +165,84 @@ function TerminalMockup({ slug = 'saara-ai' }: { slug?: string }) {
   );
 }
 
+/* ── Interactive Code Explorer Component ── */
+function CodeExplorer({ snippets }: { snippets: CodeSnippet[] }) {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [copied, setCopied] = useState(false);
+
+  if (!snippets || snippets.length === 0) return null;
+  const current = snippets[activeIdx];
+
+  const handleCopy = () => {
+    if (typeof navigator !== 'undefined') {
+      navigator.clipboard.writeText(current.code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  return (
+    <div className="border border-[var(--border-subtle)] bg-[var(--bg-surface)] shadow-sm">
+      {/* Tab bar */}
+      <div className="flex flex-wrap items-center justify-between border-b border-[var(--border-subtle)] bg-[var(--bg-void)] px-3 py-2">
+        <div className="flex items-center gap-1.5 overflow-x-auto">
+          {snippets.map((s, idx) => (
+            <button
+              key={s.filename}
+              onClick={() => { setActiveIdx(idx); setCopied(false); }}
+              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono transition-colors border ${
+                activeIdx === idx
+                  ? 'border-[var(--brand-primary)] bg-[var(--bg-surface)] text-[var(--ink-primary)] font-bold'
+                  : 'border-transparent text-[var(--ink-muted)] hover:text-[var(--ink-primary)]'
+              }`}
+            >
+              <FileCode size={12} className={activeIdx === idx ? 'text-[var(--brand-primary)]' : ''} />
+              <span>{s.filename}</span>
+            </button>
+          ))}
+        </div>
+
+        <button
+          onClick={handleCopy}
+          className="flex items-center gap-1.5 text-xs font-mono text-[var(--ink-muted)] hover:text-[var(--ink-primary)] px-2 py-1 transition-colors"
+        >
+          {copied ? (
+            <>
+              <Check size={13} className="text-emerald-500" />
+              <span className="text-emerald-500 font-bold">COPIED</span>
+            </>
+          ) : (
+            <>
+              <Copy size={13} />
+              <span>COPY CODE</span>
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* Description strip */}
+      <div className="px-5 py-3 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]/60 text-xs font-mono text-[var(--brand-secondary)] flex items-center gap-2">
+        <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand-primary)]" />
+        <span>{current.description}</span>
+      </div>
+
+      {/* Code viewport with line numbers */}
+      <div className="p-5 bg-[var(--bg-void)] overflow-x-auto">
+        <pre className="font-mono text-xs text-[var(--ink-primary)] leading-relaxed flex gap-4">
+          <div className="select-none text-[var(--ink-muted)]/50 text-right min-w-[24px]">
+            {current.code.trim().split('\n').map((_, i) => (
+              <div key={i}>{i + 1}</div>
+            ))}
+          </div>
+          <code className="text-[var(--ink-primary)] whitespace-pre">
+            {current.code.trim()}
+          </code>
+        </pre>
+      </div>
+    </div>
+  );
+}
+
 /* ── Animation variants ── */
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -193,7 +278,6 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   // Calculate next project slug for seamless footer navigation
   const currentIndex = ALL_PROJECT_SLUGS.indexOf(project.slug);
@@ -453,15 +537,16 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
           </div>
         </section>
 
-        {/* ── 05 Technology Deep Dive ── */}
-        <section id="deep-dive" className="scroll-mt-28">
-          <div className="flex items-baseline gap-4 mb-8">
+        {/* ── 05 Subsystem Technology Deep Dive ── */}
+        <section id="deep-dive" className="scroll-mt-28 space-y-12">
+          <div className="flex items-baseline gap-4 mb-2">
             <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">05</span>
             <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
-              Subsystem Technology Deep Dive
+              Subsystem Technology Deep Dive &amp; Implementation
             </h2>
           </div>
 
+          {/* Subsystem architecture cards */}
           <div className="grid sm:grid-cols-2 gap-5">
             {project.techDetails.map((tech) => {
               const TechIcon = tech.icon;
@@ -485,6 +570,102 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
               );
             })}
           </div>
+
+          {/* Interactive Code Implementation Explorer */}
+          {project.snippets && project.snippets.length > 0 && (
+            <div className="space-y-4 pt-4">
+              <div className="flex items-center gap-2">
+                <Code2 size={16} className="text-[var(--brand-primary)]" />
+                <h3 className="font-mono text-xs uppercase font-bold tracking-wider text-[var(--ink-primary)]">
+                  Implementation Code &amp; Core Pipelines
+                </h3>
+              </div>
+              <CodeExplorer snippets={project.snippets} />
+            </div>
+          )}
+
+          {/* Engineering Challenges & Solutions */}
+          {project.challenges && project.challenges.length > 0 && (
+            <div className="space-y-4 pt-4">
+              <div className="flex items-center gap-2">
+                <AlertCircle size={16} className="text-[var(--brand-primary)]" />
+                <h3 className="font-mono text-xs uppercase font-bold tracking-wider text-[var(--ink-primary)]">
+                  Engineering Challenges &amp; Technical Breakthroughs
+                </h3>
+              </div>
+
+              <div className="grid gap-4">
+                {project.challenges.map((ch, idx) => (
+                  <div
+                    key={idx}
+                    className="border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 space-y-4"
+                  >
+                    <h4 className="font-display font-bold text-base text-[var(--ink-primary)]">
+                      {ch.title}
+                    </h4>
+
+                    <div className="grid sm:grid-cols-3 gap-4 text-xs">
+                      <div className="p-3.5 bg-[var(--bg-void)] border border-[var(--border-subtle)] space-y-1.5">
+                        <div className="font-mono text-[10px] text-rose-500 font-bold uppercase tracking-wider">
+                          Problem / Bottleneck
+                        </div>
+                        <p className="text-[var(--ink-secondary)] leading-relaxed">{ch.problem}</p>
+                      </div>
+
+                      <div className="p-3.5 bg-[var(--bg-void)] border border-[var(--border-subtle)] space-y-1.5">
+                        <div className="font-mono text-[10px] text-[var(--brand-primary)] font-bold uppercase tracking-wider">
+                          Engineering Solution
+                        </div>
+                        <p className="text-[var(--ink-secondary)] leading-relaxed">{ch.solution}</p>
+                      </div>
+
+                      <div className="p-3.5 bg-[var(--bg-void)] border border-[var(--border-subtle)] space-y-1.5">
+                        <div className="font-mono text-[10px] text-emerald-500 font-bold uppercase tracking-wider">
+                          Measured Impact
+                        </div>
+                        <p className="text-[var(--ink-secondary)] leading-relaxed font-semibold">{ch.impact}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Performance Benchmarks Table */}
+          {project.benchmarks && project.benchmarks.length > 0 && (
+            <div className="space-y-4 pt-4">
+              <div className="flex items-center gap-2">
+                <BarChart3 size={16} className="text-[var(--brand-primary)]" />
+                <h3 className="font-mono text-xs uppercase font-bold tracking-wider text-[var(--ink-primary)]">
+                  Performance Benchmarks &amp; Efficiency Gains
+                </h3>
+              </div>
+
+              <div className="border border-[var(--border-subtle)] bg-[var(--bg-surface)] overflow-x-auto">
+                <table className="w-full text-left font-mono text-xs border-collapse">
+                  <thead>
+                    <tr className="border-b border-[var(--border-subtle)] bg-[var(--bg-void)] text-[10px] text-[var(--ink-muted)] uppercase tracking-wider">
+                      <th className="py-3 px-5 font-bold">Metric / Criterion</th>
+                      <th className="py-3 px-5 font-bold">Standard Baseline</th>
+                      <th className="py-3 px-5 font-bold text-[var(--brand-primary)]">Optimized System</th>
+                      <th className="py-3 px-5 font-bold text-emerald-500">Net Improvement</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[var(--border-subtle)]">
+                    {project.benchmarks.map((b) => (
+                      <tr key={b.metric} className="hover:bg-[var(--bg-void)]/50 transition-colors">
+                        <td className="py-3 px-5 font-semibold text-[var(--ink-primary)]">{b.metric}</td>
+                        <td className="py-3 px-5 text-[var(--ink-muted)]">{b.baseline}</td>
+                        <td className="py-3 px-5 font-bold text-[var(--brand-secondary)]">{b.optimized}</td>
+                        <td className="py-3 px-5 font-bold text-emerald-600 dark:text-emerald-400">{b.gain}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </section>
 
         {/* ── 06 Verified Commits & Release Manifest ── */}
@@ -573,35 +754,38 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
                 {nextProject.tagline}
               </p>
             </div>
-
-            <div className="flex items-center gap-3">
-              <Link
-                href="/#projects"
-                className="px-4 py-2 border border-[var(--border-subtle)] bg-[var(--bg-void)] text-xs font-mono text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] hover:border-[var(--border-active)] transition-colors"
-              >
-                All Projects
-              </Link>
-              <Link
-                href={`/projects/${nextProject.slug}`}
-                className="px-4 py-2 bg-[var(--ink-primary)] text-[var(--bg-void)] hover:bg-[var(--brand-primary)] text-xs font-mono font-bold transition-colors flex items-center gap-1.5"
-              >
-                <span>View System</span>
-                <ChevronRight size={14} />
-              </Link>
-            </div>
+            
+            <Link
+              href={`/projects/${nextProject.slug}`}
+              className="inline-flex items-center gap-3 px-6 py-3 bg-[var(--ink-primary)] text-[var(--bg-void)] text-xs font-mono font-bold hover:bg-[var(--brand-primary)] transition-all shadow-sm group shrink-0"
+            >
+              <span>View System</span>
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </section>
 
       </main>
-
-      {/* ── Page Footer ── */}
-      <footer className="border-t border-[var(--border-subtle)] bg-[var(--bg-void)] py-8 text-center text-xs font-mono text-[var(--ink-muted)]">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>Kilani Sai Nikhil // Verified Production Artifacts</div>
-          <div>Hyderabad, India (UTC+5:30)</div>
-        </div>
-      </footer>
-
     </div>
+  );
+}
+
+function ArrowRight({ size = 16, className = "" }: { size?: number; className?: string }) {
+  return (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width={size} 
+      height={size} 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      className={className}
+    >
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </svg>
   );
 }
