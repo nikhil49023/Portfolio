@@ -13,14 +13,14 @@ const categories = [
   { id: 'on-device', label: 'On-Device AI & Mobile' },
   { id: 'open-source', label: 'Open-Source & SDKs' },
   { id: 'vision-edge', label: 'Vision & Edge ML' },
-  { id: 'robotics', label: 'Robotics & Systems' },
+  { id: 'data-analytics', label: 'Data Science & Analytics' },
 ];
 
 const categoryMap: Record<string, string[]> = {
   'vitt': ['all', 'on-device'],
   'saara-ai': ['all', 'open-source'],
   'aerialeye': ['all', 'vision-edge'],
-  'neuronav-ros2': ['all', 'robotics'],
+  'sleep-health-analytics': ['all', 'data-analytics'],
 };
 
 export default function Projects() {

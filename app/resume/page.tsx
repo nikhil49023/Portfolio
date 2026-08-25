@@ -188,18 +188,18 @@ const projects = [
     accent: 'var(--accent-amber)',
   },
   {
-    name: 'NeuroNav-ROS2',
-    type: 'Robotics & Deep Learning · ROS 2 & Gazebo',
-    date: '2026',
-    role: 'Robotics & Neuromodulation Researcher',
-    tech: 'ROS 2 (rclpy) · Gazebo · PyTorch FiLM Layers · Kinematics · Slip ODEs',
+    name: 'Sleep Health Biometrics & Analytics',
+    type: 'Data Science & Statistical Modeling · Kaggle Capstone',
+    date: '2025',
+    role: 'Data Science & Biometrics Researcher',
+    tech: 'Python · Pandas · NumPy · Seaborn · Matplotlib · Statistical EDA · Kaggle',
     bullets: [
-      'Engineered an endocrine-gated real-time ROS 2 local planner utilizing artificial hormone dynamics (Adrenaline / Cortisol ODEs).',
-      'Integrated PyTorch FiLM (Feature-wise Linear Modulation) conditioning layers for real-time (50 Hz) navigation policy weight scaling.',
-      'Achieved zero-shot trajectory recovery and slip compensation in dynamic Gazebo environments without online backpropagation.',
-      'Constructed automated Gazebo benchmarking suite evaluating against Nav2 DWA and unmodulated MLPs.',
+      'Engineered an exploratory data analysis (EDA) and feature engineering pipeline on multidimensional biometric datasets.',
+      'Decomposed compound blood pressure readings into discrete systolic/diastolic components with normalized distributions.',
+      'Constructed correlation heatmaps and violin plots modeling links between occupational stress, sleep architecture, and heart rate.',
+      'Published reproducible Jupyter/Pandas workflows and analytical reports on Kaggle Hub for public peer review.',
     ],
-    accent: 'var(--brand-primary)',
+    accent: 'var(--accent-cyan, #38bdf8)',
   },
 ];
 
@@ -426,7 +426,7 @@ export default function ResumePage() {
                 <div className="p-6 border border-[var(--border-subtle)] bg-[var(--bg-surface)]/20 backdrop-blur-sm relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle_at_top_right,color-mix(in_oklch,var(--brand-primary)_5%,transparent),transparent_60%)] pointer-events-none" />
                   <p className="text-sm md:text-base leading-relaxed text-[var(--ink-secondary)] font-normal">
-                    AI-Augmented Systems and Deep Tech Engineer combining rigorous native computer science fundamentals (C++, Python, SQL relational design, Linux, Docker, PyTorch) with 10x agentic scaffolding velocity (Model Context Protocol, LiteRT on-device inference, semantic code graphs). Author of <strong className="text-[var(--ink-primary)]">saara-ai</strong> (38 releases, 2,600+ PyPI downloads), architect of <strong className="text-[var(--ink-primary)]">Vitt</strong> (100% on-device Gemma 4 E2B via LiteRT, AES-256 SQLite), trainer of <strong className="text-[var(--ink-primary)]">AerialEye</strong> (1,900+ Hugging Face downloads, 89.4% mAP@0.5 YOLOv11), and researcher on <strong className="text-[var(--ink-primary)]">NeuroNav-ROS2</strong> (endocrine-gated local planner in ROS 2 / Gazebo).
+                    AI-Augmented Systems and Deep Tech Engineer combining rigorous native computer science fundamentals (C++, Python, SQL relational design, Linux, Docker, PyTorch) with 10x agentic scaffolding velocity (Model Context Protocol, LiteRT on-device inference, semantic code graphs). Author of <strong className="text-[var(--ink-primary)]">saara-ai</strong> (38 releases, 2,600+ PyPI downloads), architect of <strong className="text-[var(--ink-primary)]">Vitt</strong> (100% on-device Gemma 4 E2B via LiteRT, AES-256 SQLite), trainer of <strong className="text-[var(--ink-primary)]">AerialEye</strong> (1,900+ Hugging Face downloads, 89.4% mAP@0.5 YOLOv11), and author of <strong className="text-[var(--ink-primary)]">Sleep Health Biometrics &amp; Analytics</strong> (Kaggle Data Science Capstone).
                   </p>
                 </div>
               </motion.section>
@@ -488,19 +488,20 @@ export default function ResumePage() {
           Hyderabad, India &nbsp;|&nbsp; <a href="mailto:kilanisainikhil@gmail.com">kilanisainikhil@gmail.com</a> &nbsp;|&nbsp;
           <a href="https://github.com/nikhil49023">github.com/nikhil49023</a> &nbsp;|&nbsp; <a href="https://linkedin.com/in/kilanisainikhil">linkedin.com/in/kilanisainikhil</a> &nbsp;|&nbsp;
           <a href="https://huggingface.co/kilanisainikhil">huggingface.co/kilanisainikhil</a> &nbsp;|&nbsp; <a href="https://pypi.org/project/saara-ai/">pypi.org/project/saara-ai</a> &nbsp;|&nbsp;
-          <a href="https://www.npmjs.com/package/saara-ai">npmjs.com/package/saara-ai</a>
+          <a href="https://www.npmjs.com/package/saara-ai">npmjs.com/package/saara-ai</a> &nbsp;|&nbsp;
+          <a href="https://www.kaggle.com/code/sainikhilkilani/pandas-sleep-health-data-capstone-project-1">kaggle.com/code/sainikhilkilani</a>
         </div>
 
         <div className="print-section">Professional Summary</div>
         <div className="print-skills-line">
-          AI-Augmented Systems and Deep Tech Engineer combining native computer science fundamentals (C++, Python, SQL relational design, Linux, Docker, PyTorch) with 10x agentic scaffolding velocity (Model Context Protocol, LiteRT on-device inference, semantic code graphs). Author of saara-ai (38 releases, 2,600+ PyPI downloads), architect of Vitt (100% on-device Gemma 4 E2B via LiteRT, AES-256 SQLite), trainer of AerialEye (1,900+ Hugging Face downloads, 89.4% mAP@0.5 YOLOv11), and researcher on NeuroNav-ROS2 (homeostatic neuromodulated local planner in ROS 2). Certified across Google Cloud Gen AI Master, AMD AI Academy, and DataCamp SQL Professional.
+          AI-Augmented Systems and Deep Tech Engineer combining native computer science fundamentals (C++, Python, SQL relational design, Linux, Docker, PyTorch) with 10x agentic scaffolding velocity (Model Context Protocol, LiteRT on-device inference, semantic code graphs). Author of saara-ai (38 releases, 2,600+ PyPI downloads), architect of Vitt (100% on-device Gemma 4 E2B via LiteRT, AES-256 SQLite), trainer of AerialEye (1,900+ Hugging Face downloads, 89.4% mAP@0.5 YOLOv11), and author of Sleep Health Biometrics &amp; Analytics (Kaggle Data Science Capstone). Certified across Google Cloud Gen AI Master, AMD AI Academy, and DataCamp SQL Professional.
         </div>
 
         <div className="print-section">Technical Skills</div>
         <div className="print-skills-line"><strong>Languages &amp; Systems:</strong> Python 3.11, C++17, SQL (PostgreSQL, SQLite), TypeScript, Dart 3.5, Linux Syscalls, POSIX, Bash</div>
-        <div className="print-skills-line"><strong>Databases &amp; Relational Modeling:</strong> PostgreSQL, SQLite (AES-256 Encrypted Vault), Redis, Vector MBTiles, B-Tree Indexing, 3NF Normalization</div>
+        <div className="print-skills-line"><strong>Databases &amp; Data Science:</strong> Pandas, NumPy, Seaborn, Matplotlib, PostgreSQL, SQLite (AES-256 Encrypted Vault), B-Tree Indexing, 3NF Normalization</div>
         <div className="print-skills-line"><strong>Edge ML &amp; Computer Vision:</strong> PyTorch 2.5, YOLOv11-Nano, SAHI Slicing, LiteRT (Gemma 4 E2B), INT8 TFLite, Google Coral TPU, Hugging Face Hub</div>
-        <div className="print-skills-line"><strong>Robotics &amp; Developer Tooling:</strong> ROS 2 (rclpy), Gazebo Physics, PyTorch FiLM Layers, Docker Stacks, Local Firecrawl, Model Context Protocol (MCP)</div>
+        <div className="print-skills-line"><strong>Developer Tooling &amp; MLOps:</strong> Docker Stacks, Local Firecrawl, Model Context Protocol (MCP), Git, Kaggle Hub, CI/CD Workflows</div>
 
         <div className="print-section">Technical Projects</div>
 
@@ -531,13 +532,13 @@ export default function ResumePage() {
           <li>Published model cards and pipelines on Hugging Face Hub (kilanisainikhil/AerialEye) with 1,900+ total community downloads.</li>
         </ul>
 
-        <div className="print-item-head"><span>NeuroNav-ROS2 — Homeostatic Neuromodulated Local Planner</span><span>2026</span></div>
-        <div className="print-item-sub">Robotics &amp; Neuromodulation Researcher | ROS 2 (rclpy), Gazebo, PyTorch FiLM Layers, Slip ODEs</div>
+        <div className="print-item-head"><span>Sleep Health Biometrics &amp; Analytics — Statistical EDA &amp; Modeling</span><span>2025</span></div>
+        <div className="print-item-sub">Data Science &amp; Biometrics Researcher | Python, Pandas, NumPy, Seaborn, Matplotlib, Kaggle</div>
         <ul className="print-bullets">
-          <li>Engineered an endocrine-gated real-time ROS 2 local planner utilizing artificial hormone dynamics (Adrenaline / Cortisol ODEs).</li>
-          <li>Integrated PyTorch FiLM conditioning layers for real-time (50 Hz) navigation policy weight scaling.</li>
-          <li>Achieved zero-shot trajectory recovery and slip compensation in dynamic Gazebo environments without online backpropagation.</li>
-          <li>Constructed automated Gazebo benchmarking suite evaluating against Nav2 DWA and unmodulated MLPs.</li>
+          <li>Engineered an exploratory data analysis (EDA) and feature engineering pipeline on multidimensional clinical lifestyle datasets.</li>
+          <li>Decomposed compound blood pressure readings into discrete systolic/diastolic components with normalized distributions.</li>
+          <li>Constructed correlation heatmaps and violin plots modeling links between occupational stress, sleep architecture, and heart rate.</li>
+          <li>Published reproducible Jupyter/Pandas workflows and analytical reports on Kaggle Hub for public peer review.</li>
         </ul>
 
         <div className="print-section">Verified Credentials &amp; Honours</div>

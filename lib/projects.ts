@@ -350,96 +350,97 @@ The model is trained on a unified, curated dataset of 6,327 high-altitude frames
     ]
   },
 
-  'neuronav-ros2': {
-    slug: 'neuronav-ros2',
-    name: 'NeuroNav-ROS2',
-    icon: Activity,
-    media: 'custom',
-    tagline: 'Homeostatic Neuromodulated Local Planner in ROS 2',
-    type: 'Robotics & Deep Learning Research',
-    category: 'Robotics & Autonomous Systems',
-    status: 'Active Research Milestone',
-    badge: 'Research Capstone',
-    date: '2026',
-    accent: '#a855f7',
-    accentDark: '#6b21a8',
+  'sleep-health-analytics': {
+    slug: 'sleep-health-analytics',
+    name: 'Sleep Health Biometrics & Analytics',
+    icon: Database,
+    media: 'terminal',
+    tagline: 'Statistical Biometric Modeling & Lifestyle Sleep Health Analysis',
+    type: 'Data Science & Statistical Analysis',
+    category: 'Data Science & Analytics',
+    status: 'Published on Kaggle',
+    badge: 'Kaggle Capstone',
+    date: '2025',
+    accent: '#38bdf8',
+    accentDark: '#0369a1',
     description:
-      'NeuroNav-ROS2 is an endocrine-gated real-time local planner in ROS 2 that utilizes artificial hormone dynamics (Cortisol / Adrenaline) modulated via PyTorch FiLM layers to achieve zero-shot trajectory recovery and slip compensation in dynamic Gazebo environments without online backpropagation.',
-    shortDesc: 'Endocrine-gated ROS 2 local planner with PyTorch FiLM artificial hormone dynamics for zero-shot robot recovery.',
+      'A comprehensive exploratory data analysis and statistical biometric capstone analyzing the interplay between lifestyle factors, sleep architecture, stress levels, and cardiovascular health. Built with Pandas, NumPy, and Seaborn on Kaggle.',
+    shortDesc: 'Statistical biometric EDA and sleep health analysis modeling correlations between stress, sleep quality, and cardiovascular indicators.',
     longDescription: `
-Autonomous mobile robots navigating hazardous, unpredictable terrain (such as ice, loose gravel, or sudden obstacles) often suffer catastrophic failure when standard kinematic planners (like Nav2 DWA) encounter unmodeled wheel slip or actuator latency.
+Sleep disorders and chronic fatigue are strongly tied to lifestyle factors, occupational stress, and physiological biometrics. This Capstone Project conducts an in-depth exploratory data analysis (EDA) on multidimensional biometric datasets.
 
-NeuroNav-ROS2 investigates a novel biological inspiration: an Endocrine-Gated Local Planner running inside a real-time ROS 2 node. The system models artificial stress hormones through coupled differential equations (ODEs). When sensor telemetry detects sudden jerk or wheel slip ratio anomalies, hormone levels surge.
+Leveraging Python, Pandas, NumPy, Matplotlib, and Seaborn, the analysis cleanses raw clinical records, decomposes blood pressure readings into discrete systolic/diastolic components, and computes normalized statistical distributions across diverse occupational cohorts.
 
-These hormone states are fed into PyTorch FiLM (Feature-wise Linear Modulation) conditioning layers, dynamically scaling navigation policy weights in real-time (30–50 Hz) without requiring computationally prohibitive online backpropagation. Benchmarked in Gazebo differential-drive simulations.
+The project models the correlation between physical activity levels, daily step counts, sleep duration, and heart rate metrics, providing actionable statistical insights into sleep apnea and insomnia risk factors. Published as an open, reproducible notebook on Kaggle Hub.
     `.trim(),
-    stack: ['ROS 2 (rclpy)', 'Gazebo Simulation', 'PyTorch FiLM Layers', 'Differential Kinematics', 'Slip ODEs', 'Python'],
+    stack: ['Python', 'Pandas', 'NumPy', 'Seaborn', 'Matplotlib', 'Kaggle', 'Statistical EDA'],
     highlights: [
-      'Endocrine-gated local planner modeling artificial Cortisol and Adrenaline stress dynamics',
-      'PyTorch FiLM layer conditioning for real-time (30–50 Hz) dynamic policy weight modulation',
-      'Zero-shot slip compensation and recovery in Gazebo without online backpropagation',
-      'Targeted for 4-page IEEE / arXiv research preprint with full ablation benchmarks',
+      'Comprehensive biometric data pipeline cleaning, feature engineering, and blood pressure decomposition',
+      'Statistical correlation analysis identifying key lifestyle drivers behind sleep quality and stress levels',
+      'Cohort segmentation across occupational stress brackets, BMI categories, and cardiovascular metrics',
+      'Published open notebook on Kaggle Hub demonstrating reproducible data science methodologies',
     ],
     details: [
-      'Formulates biological hormone accumulation and decay using continuous differential equations ($ds/dt$).',
-      'Uses PyTorch FiLM conditioning to affine-transform intermediate policy layers based on immediate robot stress states.',
-      'Publishes real-time velocity commands to `/cmd_vel` at 50 Hz from a lightweight rclpy node in ROS 2 Humble/Jazzy.',
-      'Executes 50 automated Gazebo benchmark runs comparing against standard Nav2 DWA and unmodulated MLPs.'
+      'Engineers feature pipelines splitting compound metrics (e.g. Systolic/Diastolic BP) and handling categorical encodings.',
+      'Generates correlation heatmaps and violin distribution plots to expose relationships between stress indices and sleep duration.',
+      'Analyzes sleep disorder prevalence (None vs. Sleep Apnea vs. Insomnia) across daily physical activity thresholds.',
+      'Published live as a public interactive notebook on Kaggle Hub for data science peer review.'
     ],
     stats: [
-      { label: 'Control Frequency', value: '50 Hz Real-Time' },
-      { label: 'Modulation Type', value: 'PyTorch FiLM' },
-      { label: 'Simulation Engine', value: 'Gazebo & ROS 2' },
-      { label: 'Target Output', value: 'IEEE / arXiv Paper' },
+      { label: 'Platform', value: 'Kaggle Notebook' },
+      { label: 'Core Libraries', value: 'Pandas & NumPy' },
+      { label: 'Focus Area', value: 'Biometrics & EDA' },
+      { label: 'Visualizations', value: 'Seaborn & Matplotlib' },
     ],
     architecture: [
       {
-        title: 'Sensor Telemetry & Slip Sensing',
+        title: 'Ingestion & Data Cleaning',
         nodes: [
-          { label: 'IMU Jerk & LiDAR Stream', color: '#a855f7', sublabel: 'Real-time state telemetry' },
-          { label: 'Slip Ratio Estimator ODE', color: '#ff2d55', sublabel: 'Wheel slip & hazard detection' }
+          { label: 'Raw Clinical Dataset', color: '#38bdf8', sublabel: 'Multidimensional records' },
+          { label: 'Pandas Cleaning Pipeline', color: '#ffb700', sublabel: 'Missing value handling' }
         ]
       },
       {
-        title: 'Endocrine Gating Engine',
+        title: 'Feature Engineering',
         nodes: [
-          { label: 'Hormone Dynamic Model', color: '#00d68f', sublabel: 'Cortisol / Adrenaline ODEs' },
-          { label: 'PyTorch FiLM Gating Layers', color: '#38bdf8', sublabel: 'Affine policy transformation' }
+          { label: 'Blood Pressure Split', color: '#00d68f', sublabel: 'Systolic / Diastolic values' },
+          { label: 'Stress & BMI Cohorts', color: '#ff2d55', sublabel: 'Stratified lifestyle brackets' }
         ]
       },
       {
-        title: 'Actuation & Benchmarking',
+        title: 'Statistical Modeling & EDA',
         nodes: [
-          { label: 'Real-Time /cmd_vel Publisher', color: '#ffb700', sublabel: '50 Hz trajectory execution' },
-          { label: 'Gazebo Automated Benchmarks', color: '#a855f7', sublabel: 'Nav2 DWA ablation suite' }
+          { label: 'Correlation Heatmaps', color: '#a855f7', sublabel: 'Seaborn statistical plots' },
+          { label: 'Kaggle Hub Distribution', color: '#38bdf8', sublabel: 'Public reproducible notebook' }
         ]
       }
     ],
     techDetails: [
       {
-        name: 'Hormone Dynamics ODE',
-        desc: 'Mathematical differential equation model computing synthetic stress levels from IMU accelerations and wheel slip.',
-        icon: React.createElement(Activity, { size: 24 })
+        name: 'Pandas & NumPy Pipelines',
+        desc: 'Vectorized data transformations, missing value imputation, and groupby cohort aggregations across biometric indicators.',
+        icon: React.createElement(Database, { size: 24 })
       },
       {
-        name: 'PyTorch FiLM Layers',
-        desc: 'Feature-wise Linear Modulation conditioning neural network layers without computationally costly online retraining.',
-        icon: React.createElement(Cpu, { size: 24 })
-      },
-      {
-        name: 'ROS 2 rclpy Node',
-        desc: 'Low-latency ROS 2 navigation node streaming modulated velocity vectors to the differential drive base at 50 Hz.',
+        name: 'Seaborn Statistical Plots',
+        desc: 'Multi-variable correlation matrices, pair plots, and distribution visualizers exposing hidden lifestyle patterns.',
         icon: React.createElement(Layers, { size: 24 })
       },
       {
-        name: 'Gazebo Simulation Suite',
-        desc: 'Custom simulated worlds featuring dynamic ground friction plugins, ice patches, and obstacle mazes.',
+        name: 'Biometric Feature Engineering',
+        desc: 'Derived indicators for cardiovascular stress and sleep efficiency scores derived from raw clinical telemetry.',
+        icon: React.createElement(Cpu, { size: 24 })
+      },
+      {
+        name: 'Kaggle Notebook Publishing',
+        desc: 'Fully documented narrative markdown with reproducible execution cells shared openly with the data community.',
         icon: React.createElement(Globe, { size: 24 })
       }
     ],
-    tags: ['ROS 2', 'Robotics', 'PyTorch', 'Gazebo', 'Deep Learning', 'Kinematics', 'Neuromodulation', 'Research'],
+    tags: ['Data Science', 'Python', 'Pandas', 'NumPy', 'Seaborn', 'EDA', 'Kaggle', 'Biometrics'],
     links: [
-      { label: 'GitHub Repository', href: 'https://github.com/nikhil49023', icon: Github, primary: true }
+      { label: 'Kaggle Notebook', href: 'https://www.kaggle.com/code/sainikhilkilani/pandas-sleep-health-data-capstone-project-1', icon: ExternalLink, primary: true },
+      { label: 'GitHub Repository', href: 'https://github.com/nikhil49023', icon: Github }
     ]
   }
 };

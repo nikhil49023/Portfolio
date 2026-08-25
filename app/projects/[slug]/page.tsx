@@ -12,9 +12,9 @@ import { PROJECTS } from '@/lib/projects';
 import { ImageCarousel } from '@/components/projects/ImageCarousel';
 import { AerialEyeVisualization } from '@/components/projects/AerialEyeVisualization';
 
-/* ── Terminal mockup (SAARA, NeuroNav) ── */
+/* ── Terminal mockup (SAARA, Sleep Health Analytics) ── */
 function TerminalMockup({ slug = 'saara-ai' }: { slug?: string }) {
-  const isNeuroNav = slug === 'neuronav-ros2';
+  const isKaggle = slug === 'sleep-health-analytics';
 
   return (
     <div className="w-full h-full flex items-center justify-center bg-[#050505] p-6 sm:p-8 overflow-hidden group/terminal">
@@ -27,16 +27,16 @@ function TerminalMockup({ slug = 'saara-ai' }: { slug?: string }) {
           </div>
           <span className="text-zinc-500 text-[10px] font-mono font-bold uppercase tracking-[0.25em] ml-4 flex items-center gap-2">
             <TerminalIcon size={12} className="text-emerald-400" /> 
-            {isNeuroNav ? 'neuronav-ros2 — rclpy_node_v1.0' : 'saara-ai — dataset_v2.0'}
+            {isKaggle ? 'kaggle-notebook — sleep_health_eda.ipynb' : 'saara-ai — dataset_v2.0'}
           </span>
         </div>
         <div className="bg-black/80 px-6 py-6 font-mono text-[11px] space-y-3 rounded-b-[1.25rem] border border-white/10 backdrop-blur-3xl shadow-2xl relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/[0.02] to-transparent pointer-events-none" />
           
-          {isNeuroNav ? (
+          {isKaggle ? (
             <>
-              <div className="relative z-10"><span className="text-purple-400">❯</span> <span className="text-zinc-300 font-bold">ros2 run neuronav_planner endocrine_gated_node</span></div>
-              <div className="relative z-10 text-zinc-500 font-medium">Initializing PyTorch FiLM conditioning layers and Gazebo IMU subscriber...</div>
+              <div className="relative z-10"><span className="text-sky-400">❯</span> <span className="text-zinc-300 font-bold">python -m analysis.sleep_health_eda --dataset biometric_records.csv</span></div>
+              <div className="relative z-10 text-zinc-500 font-medium">Executing Pandas DataFrame feature engineering &amp; Seaborn statistical pipelines...</div>
               <div className="relative z-10 flex items-center gap-4">
                 <div className="flex gap-1">
                   {Array.from({ length: 20 }).map((_, i) => (
@@ -45,20 +45,20 @@ function TerminalMockup({ slug = 'saara-ai' }: { slug?: string }) {
                       initial={{ opacity: 0.2 }}
                       animate={{ opacity: i < 20 ? 1 : 0.2 }}
                       transition={{ delay: i * 0.04 }}
-                      className={`w-2.5 h-4 rounded-sm ${i < 20 ? 'bg-purple-500' : 'bg-white/5'}`} 
+                      className={`w-2.5 h-4 rounded-sm ${i < 20 ? 'bg-sky-500' : 'bg-white/5'}`} 
                     />
                   ))}
                 </div>
-                <span className="text-purple-400 font-black">50 Hz ACTIVE</span>
+                <span className="text-sky-400 font-black">EDA COMPLETE</span>
               </div>
               <div className="relative z-10 text-emerald-400 font-bold uppercase tracking-widest text-[9px] flex items-center gap-2">
-                <Zap size={10} /> ZERO-SHOT SLIP RECOVERY LOOP RUNNING
+                <Zap size={10} /> KAGGLE CAPSTONE REPRODUCIBLE PIPELINE
               </div>
-              <div className="mt-4 relative z-10"><span className="text-purple-400">❯</span> <span className="text-zinc-300">TELEMETRY_LOG // Gazebo World: IcePatch_03</span></div>
+              <div className="mt-4 relative z-10"><span className="text-sky-400">❯</span> <span className="text-zinc-300">df.groupby(['BMI_Category', 'Sleep_Disorder']).mean()</span></div>
               {[
-                { color: '#a855f7', label: 'SLIP_RATIO', text: 'Anomaly detected: s = 0.68 > threshold (0.25)' },
-                { color: '#f59e0b', label: 'HORMONE_SURGE', text: 'Adrenaline ODE: da/dt = +2.41 | Cortisol: 1.82' },
-                { color: '#10b981', label: 'FILM_MODULATION', text: 'Policy affine transform applied | /cmd_vel: [0.35, -0.42]' },
+                { color: '#38bdf8', label: 'BP_DECOMPOSE', text: 'Systolic/Diastolic feature vectors extracted (n=374)' },
+                { color: '#f59e0b', label: 'CORRELATION', text: 'Stress Level vs Sleep Duration: r = -0.81 (p < 0.001)' },
+                { color: '#10b981', label: 'DISORDER_RISK', text: 'Sleep Apnea identified in 84.6% of Obese cohort with >135 mmHg BP' },
               ].map(({ color, label, text }) => (
                 <div key={label} className="flex gap-3 relative z-10">
                   <span style={{ color }} className="font-bold text-[9px] min-w-[95px]">{label}</span>

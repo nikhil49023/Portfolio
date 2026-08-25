@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileCode, GraduationCap, Briefcase, ChevronRight, FileText, Cpu, Terminal, Layers, Radio, Shield, Globe, Activity } from 'lucide-react';
+import { FileCode, GraduationCap, Briefcase, ChevronRight, FileText, Cpu, Terminal, Layers, Radio, Shield, Globe, Activity, Database } from 'lucide-react';
 
 const systemsData = [
   {
@@ -27,11 +27,11 @@ const systemsData = [
     stack: 'YOLOv11, SAHI Tiling, PyTorch, ONNX, INT8 Coral Edge TPU'
   },
   {
-    name: 'NeuroNav-ROS2',
-    type: 'Homeostatic Neuromodulated Local Planner',
-    status: 'Active Research Project (ROS 2 & Gazebo)',
-    specs: 'PyTorch FiLM Modulation · 50 Hz Real-Time ODE Recovery',
-    stack: 'ROS 2 (rclpy), Gazebo, PyTorch FiLM, Kinematics, Python'
+    name: 'Sleep Health Analytics',
+    type: 'Statistical Biometric EDA & Modeling',
+    status: 'Published on Kaggle Hub',
+    specs: 'Pandas & NumPy Pipelines · Seaborn Correlation Matrices',
+    stack: 'Python, Pandas, NumPy, Seaborn, Matplotlib, Kaggle'
   }
 ];
 
@@ -55,10 +55,10 @@ const experienceData = [
     impact: 'Curated 6,327 high-altitude disaster images, fine-tuned YOLOv11-Nano with SAHI slicing (89.4% mAP@0.5), and exported INT8 TFLite for Google Coral TPUs (1,900+ downloads).'
   },
   {
-    role: 'Robotics & Neuromodulation Researcher',
-    org: 'NeuroNav-ROS2 (ROS 2 & Gazebo)',
-    period: '2026',
-    impact: 'Designed an endocrine-gated ROS 2 navigation planner utilizing artificial hormone ODEs and PyTorch FiLM layers for zero-shot slip compensation without online backpropagation.'
+    role: 'Data Science & Biometrics Researcher',
+    org: 'Sleep Health Capstone (Kaggle)',
+    period: '2025',
+    impact: 'Engineered exploratory data pipelines in Pandas & NumPy to model correlations between occupational stress, sleep architecture, and cardiovascular metrics.'
   }
 ];
 
@@ -79,7 +79,7 @@ const educationData = [
 
 const hardwareData = {
   os: 'Linux (Ubuntu 24.04 LTS)',
-  runtime_environments: ['Python 3.11 / PyTorch 2.5', 'Node.js 22 LTS / Bun', 'Flutter 3.24 / Dart 3.5', 'ROS 2 Humble / Jazzy'],
+  runtime_environments: ['Python 3.11 / PyTorch 2.5', 'Node.js 22 LTS / Bun', 'Flutter 3.24 / Dart 3.5', 'Jupyter / Pandas / NumPy'],
   accelerators: ['Google Coral Edge TPU (INT8 USB Accelerator)', 'Local vLLM & Ollama CUDA Clusters'],
   agent_tooling: ['Model Context Protocol (MCP)', 'Local Docker Stacks', 'Local Firecrawl Documentation Scrapers']
 };
@@ -98,10 +98,10 @@ const competencies = [
     icon: Layers
   },
   {
-    title: 'Robotics & Neuromodulated Planning',
-    desc: 'Engineering endocrine-gated ROS 2 local planners with artificial hormone dynamics and PyTorch FiLM conditioning for zero-shot robot recovery.',
-    tags: ['ROS 2 (rclpy)', 'Gazebo', 'PyTorch FiLM', 'Slip ODEs', 'Kinematics'],
-    icon: Activity
+    title: 'Data Science & Biometrics',
+    desc: 'Conducting statistical exploratory data analysis, feature engineering, and distribution modeling on clinical datasets using Pandas, NumPy, and Seaborn.',
+    tags: ['Python', 'Pandas', 'NumPy', 'Seaborn', 'Kaggle', 'EDA'],
+    icon: Database
   },
   {
     title: 'Open-Source Tooling & MCP',

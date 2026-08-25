@@ -52,15 +52,15 @@ const matrixData = [
     }
   },
   {
-    category: 'Robotics & Neuromodulated Control',
-    icon: Radio,
+    category: 'Data Science & Statistical Modeling',
+    icon: Database,
     native: {
-      skills: ['ROS 2 (rclpy)', 'Gazebo ODEs', 'Differential Kinematics', 'C++ / Python'],
-      desc: 'Formulating differential kinematic equations for wheel slip recovery, 50 Hz ROS 2 velocity publishers, and Gazebo physics benchmarking.'
+      skills: ['Pandas & NumPy', 'Statistical EDA', 'Feature Engineering', 'Blood Pressure Splits'],
+      desc: 'Cleaning multi-dimensional biometric datasets, decomposing compound metrics, imputing missing values, and engineering structured pipelines.'
     },
     augmented: {
-      skills: ['PyTorch FiLM Modulation', 'Artificial Hormone ODEs', 'Coral Edge TPU'],
-      desc: 'Prototyping homeostatic endocrine gating layers (Adrenaline / Cortisol ODEs) and dynamic affine policy transformations for zero-shot slip recovery.'
+      skills: ['Seaborn Heatmaps', 'Matplotlib Figures', 'Kaggle Notebooks', 'Jupyter Lab'],
+      desc: 'Generating multi-variable distribution pairplots, correlation matrices, and automated statistical report synthesis.'
     }
   }
 ];
