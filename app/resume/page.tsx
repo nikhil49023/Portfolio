@@ -174,20 +174,6 @@ const projects = [
     accent: 'var(--brand-secondary)',
   },
   {
-    name: 'VAAYU SWARM',
-    type: "Edge AI CCTV Platform · Maker's Conclave 2.0",
-    date: '2026',
-    role: 'Edge ML & Systems Architect',
-    tech: 'ESP32-S3 · FOMO v3 (ESP-DL) · RT-DETR-L · YOLOv8-pose · MediaMTX RTSP · FastAPI (CUDA) · React',
-    bullets: [
-      'Engineered indigenous multi-camera surveillance platform for Indian environments presented at Maker\'s Conclave 2.0.',
-      'Partitioned edge-to-server compute: ESP32-S3 (FOMO v3 INT8 at 42.4 FPS) + Server (RT-DETR-L and YOLOv8 17-keypoint pose at 11.8ms).',
-      'Integrated MediaMTX RTSP proxy enabling zero-latency CCTV feed ingestion with WebSocket broadcast to React operator console.',
-      'Built an Active Learning harvester sampling uncertain frames into Label Studio for automated iterative model distillation.',
-    ],
-    accent: 'var(--accent-emerald)',
-  },
-  {
     name: 'AerialEye',
     type: 'Computer Vision Model & Dataset · Hugging Face Hub',
     date: '2026',
@@ -202,20 +188,6 @@ const projects = [
     accent: 'var(--accent-amber)',
   },
   {
-    name: 'Project SUTRA',
-    type: 'Autonomous Multi-Agent Swarm Monorepo · NDMA Rescue Ops',
-    date: '2026',
-    role: 'Lead Architect & Systems Engineer',
-    tech: 'ROS 2 Jazzy · PX4 Autopilot · Gazebo Sim 8 · Deep JSCC Mesh · React · Mapbox 3D',
-    bullets: [
-      'Architected a 6-subsystem ROS 2 Jazzy monorepo for space-air-ground multi-agent swarm operations in disaster zones.',
-      'Integrated PX4 offboard guidance with Gazebo Sim 8 physics to simulate cooperative V-formation flight and obstacle avoidance.',
-      'Developed Deep JSCC neural communication mesh maintaining telemetry integrity under noisy -5 dB SNR RF conditions.',
-      'Constructed browser-based 3D GIS Ground Control Station in React and Mapbox streaming real-time drone telemetry and survivor coordinates.',
-    ],
-    accent: 'var(--accent-cyan, #38bdf8)',
-  },
-  {
     name: 'Sleep Health Biometrics & Analytics',
     type: 'Data Science & Statistical Modeling · Kaggle Capstone',
     date: '2025',
@@ -227,7 +199,7 @@ const projects = [
       'Constructed correlation heatmaps and violin plots modeling links between occupational stress, sleep architecture, and heart rate.',
       'Published reproducible Jupyter/Pandas workflows and analytical reports on Kaggle Hub for public peer review.',
     ],
-    accent: 'var(--accent-purple, #a855f7)',
+    accent: 'var(--accent-cyan, #38bdf8)',
   },
 ];
 
@@ -522,15 +494,6 @@ export default function ResumePage() {
           <li>Integrated dynamic local LLM routing (Ollama, vLLM) and a custom TUI curation console, exporting to Parquet, JSONL, and HF formats.</li>
         </ul>
 
-        <div className="print-item-head"><span>VAAYU SWARM — Indigenous Edge AI CCTV Surveillance Platform</span><span>2026</span></div>
-        <div className="print-item-sub">Edge ML &amp; Systems Lead | ESP32-S3, FOMO v3 (ESP-DL), RT-DETR-L, YOLOv8-pose, MediaMTX RTSP, FastAPI (CUDA), React</div>
-        <ul className="print-bullets">
-          <li>Engineered indigenous multi-camera surveillance platform for Indian environments presented at Maker's Conclave 2.0.</li>
-          <li>Partitioned edge-to-server compute: ESP32-S3 (FOMO v3 INT8 at 42.4 FPS) + Server (RT-DETR-L and YOLOv8 17-keypoint pose at 11.8ms).</li>
-          <li>Integrated MediaMTX RTSP proxy enabling zero-latency CCTV feed ingestion with WebSocket broadcast to React operator console.</li>
-          <li>Built an Active Learning harvester sampling uncertain frames into Label Studio for automated iterative model distillation.</li>
-        </ul>
-
         <div className="print-item-head"><span>AerialEye — YOLOv11-Nano Aerial &amp; Disaster Response CV Model</span><span>2026</span></div>
         <div className="print-item-sub">Edge CV Researcher &amp; Trainer | YOLOv11-Nano, SAHI Dynamic Slicing, PyTorch, ONNX, INT8 Google Coral Edge TPU</div>
         <ul className="print-bullets">
@@ -538,15 +501,6 @@ export default function ResumePage() {
           <li>Curated and validated a unified dataset of 6,327 aerial images across 6 classes (human, sos, vehicle, flood, road_damage, crack).</li>
           <li>Achieved 89.4% mAP@0.5 validation accuracy with INT8 TFLite quantization for real-time inference on Google Coral Edge TPUs.</li>
           <li>Published model cards and pipelines on Hugging Face Hub (kilanisainikhil/AerialEye) with 1,900+ total community downloads.</li>
-        </ul>
-
-        <div className="print-item-head"><span>Project SUTRA — Autonomous Multi-Agent Swarm Monorepo</span><span>2026</span></div>
-        <div className="print-item-sub">Lead Architect &amp; Systems Engineer | ROS 2 Jazzy, PX4 Autopilot, Gazebo Sim 8, Deep JSCC Mesh, React Mapbox 3D</div>
-        <ul className="print-bullets">
-          <li>Architected a 6-subsystem ROS 2 Jazzy monorepo for space-air-ground multi-agent swarm operations in disaster zones.</li>
-          <li>Integrated PX4 offboard guidance with Gazebo Sim 8 physics to simulate cooperative V-formation flight and obstacle avoidance.</li>
-          <li>Developed Deep JSCC neural communication mesh maintaining telemetry integrity under noisy -5 dB SNR RF conditions.</li>
-          <li>Constructed browser-based 3D GIS Ground Control Station in React and Mapbox streaming real-time drone telemetry and survivor coordinates.</li>
         </ul>
 
         <div className="print-item-head"><span>Sleep Health Biometrics &amp; Analytics — Statistical EDA &amp; Modeling</span><span>2025</span></div>

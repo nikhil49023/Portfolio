@@ -20,25 +20,11 @@ const systemsData = [
     stack: 'Python, TypeScript, google-adk, crawl4ai, Ollama, vLLM'
   },
   {
-    name: 'VAAYU SWARM',
-    type: 'Indigenous Edge AI CCTV Surveillance Platform',
-    status: "Maker's Conclave 2.0 Finalist",
-    specs: 'ESP32-S3 FOMO v3 INT8 · RT-DETR-L · YOLOv8-pose 17-Keypoints',
-    stack: 'ESP32-S3, FastAPI (CUDA), MediaMTX RTSP, React, Docker'
-  },
-  {
     name: 'AerialEye',
     type: 'YOLOv11 Aerial & Disaster Response Model',
     status: 'Hosted on Hugging Face Hub (kilanisainikhil/AerialEye)',
     downloads: '1,900+ Transfers · 6,327 Curated Images',
     stack: 'YOLOv11, SAHI Tiling, PyTorch, ONNX, INT8 Coral Edge TPU'
-  },
-  {
-    name: 'Project SUTRA',
-    type: 'Autonomous Multi-Agent Swarm Monorepo',
-    status: 'ROS 2 Monorepo Active',
-    specs: 'ROS 2 Jazzy · PX4 Autopilot · Gazebo 8 · Deep JSCC Mesh',
-    stack: 'ROS 2, PX4, Gazebo Sim, Deep JSCC, React Mapbox 3D'
   },
   {
     name: 'Sleep Health Analytics',
@@ -63,22 +49,10 @@ const experienceData = [
     impact: 'Engineered 100% private financial tracker using LiteRT Gemma 4 E2B (~14 tok/s). Eliminated SMS permissions using Android Notification Listener and encrypted local SQLite.'
   },
   {
-    role: 'Edge AI & Embedded Systems Lead',
-    org: "VAAYU SWARM (Maker's Conclave 2.0)",
-    period: '2026',
-    impact: 'Architected indigenous surveillance platform with ESP32-S3 FOMO v3 edge vision, RT-DETR-L TensorRT person detection, YOLOv8-pose 17-keypoint skeleton overlay, and MediaMTX streaming.'
-  },
-  {
     role: 'Edge ML & Computer Vision Researcher',
     org: 'AerialEye (Hugging Face Hub)',
     period: '2025 - 2026',
     impact: 'Curated 6,327 high-altitude disaster images, fine-tuned YOLOv11-Nano with SAHI slicing (89.4% mAP@0.5), and exported INT8 TFLite for Google Coral TPUs (1,900+ downloads).'
-  },
-  {
-    role: 'Autonomous Systems & Swarm Engineer',
-    org: 'Project SUTRA (NDMA Monorepo)',
-    period: '2026',
-    impact: 'Designed 6-subsystem ROS 2 Jazzy disaster response monorepo with PX4 offboard control, Gazebo 8 simulation, and Deep JSCC neural communication channel.'
   },
   {
     role: 'Data Science & Biometrics Researcher',

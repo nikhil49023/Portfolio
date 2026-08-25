@@ -10,8 +10,8 @@ import { PROJECTS, ProjectData } from '@/lib/projects';
 
 const categories = [
   { id: 'all', label: 'All Systems' },
-  { id: 'on-device', label: 'Edge AI & Embedded' },
-  { id: 'autonomous', label: 'Autonomous Agents & Swarms' },
+  { id: 'on-device', label: 'On-Device AI & Mobile' },
+  { id: 'autonomous', label: 'Autonomous LLM Agents' },
   { id: 'vision-edge', label: 'Computer Vision & Slicing' },
   { id: 'data-analytics', label: 'Data Science & Biometrics' },
 ];
@@ -19,9 +19,7 @@ const categories = [
 const categoryMap: Record<string, string[]> = {
   'vitt': ['all', 'on-device'],
   'saara-ai': ['all', 'autonomous'],
-  'vaayu-swarm': ['all', 'on-device', 'vision-edge'],
   'aerialeye': ['all', 'vision-edge', 'on-device'],
-  'sutra': ['all', 'autonomous'],
   'sleep-health-analytics': ['all', 'data-analytics'],
 };
 
@@ -48,7 +46,7 @@ export default function Projects() {
             </h2>
           </div>
           <div className="font-mono text-[10px] text-[var(--ink-muted)]">
-            <span>SHOWING 6 VERIFIED REPOSITORIES &amp; RESEARCH PLATFORMS</span>
+            <span>SHOWING 4 VERIFIED PRODUCTION SYSTEMS &amp; CAPSTONES</span>
           </div>
         </div>
 
