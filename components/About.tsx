@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FileCode, GraduationCap, Briefcase, ChevronRight, FileText, Cpu, Terminal, Layers, Radio, Shield, Globe, Activity, Database } from 'lucide-react';
+import { FileCode, GraduationCap, Briefcase, ChevronRight, FileText, Cpu, Terminal, Layers, Shield, Activity, Database } from 'lucide-react';
 
 const systemsData = [
   {
@@ -59,21 +58,6 @@ const experienceData = [
     org: 'Sleep Health Capstone (Kaggle)',
     period: '2025',
     impact: 'Engineered exploratory data pipelines in Pandas & NumPy to model correlations between occupational stress, sleep architecture, and cardiovascular metrics.'
-  }
-];
-
-const educationData = [
-  {
-    degree: 'B.Tech in Computer Science & Engineering',
-    institution: 'NxtWave Institute',
-    period: '2025 - 2029 (Expected)',
-    curriculum: 'Data Structures & Algorithms, Systems Programming, Database Architecture, Machine Learning, Operating Systems'
-  },
-  {
-    degree: 'Continuous Verification & Certifications',
-    institution: 'Google Cloud Skills Boost, AMD AI Academy, DataCamp',
-    period: '2025 - 2026',
-    credentials: 'Gen AI Master Certificate, AMD Agents 101, DataCamp SQL Professional, IndiaAI Buildathon Finalist'
   }
 ];
 
@@ -191,41 +175,38 @@ export default function About() {
   const [activeFile, setActiveFile] = useState<'README.md' | 'systems.json' | 'experience.json' | 'environment.json'>('README.md');
 
   return (
-    <section id="about" className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)] reveal-on-scroll">
+    <section id="about" className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)]">
       <div className="max-w-6xl mx-auto px-6">
         
         {/* Section Header */}
-        <div className="flex items-baseline gap-4 mb-16">
+        <div className="flex items-baseline gap-4 mb-14">
           <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">01</span>
           <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
             Engineering Identity &amp; Profile
           </h2>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
+        {/* Two-Column Core Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
-          {/* Left Block - Text Bio & Description */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
-            <div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[var(--ink-primary)] tracking-tight mb-5 font-display">
-                Engineering at the Intersection of Edge ML &amp; Systems Architecture
-              </h3>
-              <p className="text-sm leading-relaxed text-[var(--ink-secondary)] mb-4">
-                I am a Computer Science student at NxtWave (Class of 2029) based in Hyderabad, India. My engineering philosophy combines <strong className="text-[var(--ink-primary)]">rock-solid native CS fundamentals</strong> (C++, Python, SQL, Linux, Docker, PyTorch) with <strong className="text-[var(--ink-primary)]">10x AI-augmented velocity</strong> (MCP orchestration, LiteRT on-device inference, semantic code graphs).
-              </p>
-              <p className="text-sm leading-relaxed text-[var(--ink-muted)] mb-8">
-                I focus on building software that runs directly on edge hardware—eliminating recurring cloud subscription costs, safeguarding personal privacy through zero-cloud architectures, and maintaining resilience during severe infrastructure disruption.
-              </p>
-            </div>
+          {/* Left Narrative Block */}
+          <div className="lg:col-span-5 space-y-6">
+            <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[var(--ink-primary)] leading-tight">
+              Engineering at the Intersection of Edge ML &amp; Systems Architecture
+            </h3>
             
-            {/* Live Environment Spec Box */}
-            <div className="border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-4 relative text-xs text-[var(--ink-secondary)] shadow-sm">
-              <div className="flex items-center justify-between mb-3 font-mono text-[10px] text-[var(--ink-muted)] border-b border-[var(--border-subtle)] pb-2">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>runtime_telemetry</span>
-                </div>
+            <p className="text-sm leading-relaxed text-[var(--ink-secondary)]">
+              I am a Computer Science student at NxtWave (Class of 2029) based in Hyderabad, India. My engineering philosophy combines <strong className="text-[var(--ink-primary)] font-bold">rock-solid native CS fundamentals</strong> (C++, Python, SQL, Linux, Docker, PyTorch) with <strong className="text-[var(--ink-primary)] font-bold">10x AI-augmented velocity</strong> (MCP orchestration, LiteRT on-device inference, semantic code graphs).
+            </p>
+
+            <p className="text-sm leading-relaxed text-[var(--ink-secondary)]">
+              I focus on building software that runs directly on edge hardware—eliminating recurring cloud subscription costs, safeguarding personal privacy through zero-cloud architectures, and maintaining resilience during severe infrastructure disruption.
+            </p>
+
+            {/* Quick Metrics Badge */}
+            <div className="p-4 border border-[var(--border-subtle)] bg-[var(--bg-surface)] space-y-3">
+              <div className="flex justify-between items-center text-[10px] font-mono border-b border-[var(--border-subtle)] pb-2">
+                <span className="text-[var(--ink-muted)] uppercase tracking-wider">runtime_telemetry</span>
                 <span className="text-[var(--brand-primary)] font-bold">HYD // IST (UTC+5:30)</span>
               </div>
               <div className="space-y-1.5 font-mono text-[11px] text-[var(--ink-primary)]">
@@ -245,18 +226,12 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right Block - Code Editor IDE Container */}
+          {/* Right Block - Code Workspace Container */}
           <div className="lg:col-span-7 flex flex-col">
             <div className="w-full border border-[var(--border-subtle)] bg-[var(--bg-surface)] flex flex-col shadow-sm">
               
               {/* Window Header */}
               <div className="flex items-center justify-between border-b border-[var(--border-subtle)] px-4 py-3 bg-[var(--bg-surface)]/80">
-                {/* Window control dots */}
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
-                </div>
                 <span className="text-[10px] font-mono text-[var(--ink-muted)]">workspace // kilani-sai-nikhil</span>
                 <span className="text-[10px] font-mono text-[var(--brand-primary)] font-bold">UTF-8</span>
               </div>
@@ -277,90 +252,50 @@ export default function About() {
                       onClick={() => setActiveFile(file.name as any)}
                       className={`relative flex items-center gap-2 px-3.5 py-2.5 transition-all border-r border-[var(--border-subtle)] cursor-pointer rounded-none border-0 whitespace-nowrap ${
                         isActive
-                          ? 'bg-[var(--bg-surface)] text-[var(--ink-primary)] font-bold'
+                          ? 'bg-[var(--bg-surface)] text-[var(--ink-primary)] font-bold border-b-2 border-b-[var(--brand-primary)]'
                           : 'text-[var(--ink-secondary)] hover:bg-[var(--bg-surface)]/30 hover:text-[var(--ink-primary)]'
                       }`}
                     >
                       <FileIcon size={12} className={isActive ? 'text-[var(--brand-primary)]' : 'text-[var(--ink-muted)]'} />
-                      <span className="z-10">{file.name}</span>
-                      {isActive && (
-                        <motion.div
-                          layoutId="activeTabIndicator"
-                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--brand-primary)]"
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        />
-                      )}
+                      <span>{file.name}</span>
                     </button>
                   );
                 })}
               </div>
 
               {/* Tab Content Panel */}
-              <div className="p-6 min-h-[360px] bg-[var(--bg-surface)] overflow-y-auto max-h-[440px]">
-                <AnimatePresence mode="wait">
-                  {activeFile === 'README.md' && (
-                    <motion.div
-                      key="readme"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.15 }}
-                      className="font-sans space-y-4 text-sm leading-relaxed text-[var(--ink-secondary)]"
-                    >
-                      <h4 className="text-lg font-bold text-[var(--ink-primary)] font-mono border-b border-[var(--border-subtle)] pb-2 flex items-center gap-1.5">
-                        <ChevronRight size={16} className="text-[var(--brand-primary)]" />
-                        <span>Kilani Sai Nikhil // Profile Overview</span>
-                      </h4>
-                      <p>
-                        I am pursuing a Bachelor of Technology in Computer Science &amp; Engineering at NxtWave Institute (2025–2029). I engineer local-first software systems, open-source AI tooling, and edge computer vision models.
-                      </p>
-                      <div className="space-y-2 font-mono text-xs text-[var(--ink-secondary)] mt-4">
-                        <div className="font-bold text-[var(--brand-secondary)] uppercase tracking-wider text-[10px]">Dual-Track Engineering Philosophy:</div>
-                        <ul className="list-disc pl-5 space-y-1.5">
-                          <li><strong className="text-[var(--ink-primary)]">Native Systems Mastery:</strong> Deep proficiency in Python, C++, SQL relational modeling, Linux OS internals, and Docker containerization.</li>
-                          <li><strong className="text-[var(--ink-primary)]">10x AI Augmentation:</strong> Accelerated scaffolding, semantic code-review graph traversal, and multi-agent MCP toolchain orchestration.</li>
-                          <li><strong className="text-[var(--ink-primary)]">Edge Privacy Stance:</strong> 100% on-device inference via LiteRT &amp; Google Coral TPUs with zero external cloud dependencies.</li>
-                        </ul>
-                      </div>
-                    </motion.div>
-                  )}
+              <div className="p-6 min-h-[340px] bg-[var(--bg-surface)] overflow-y-auto max-h-[440px]">
+                {activeFile === 'README.md' && (
+                  <div className="font-sans space-y-4 text-sm leading-relaxed text-[var(--ink-secondary)]">
+                    <h4 className="text-lg font-bold text-[var(--ink-primary)] font-mono border-b border-[var(--border-subtle)] pb-2 flex items-center gap-1.5">
+                      <ChevronRight size={16} className="text-[var(--brand-primary)]" />
+                      <span>Kilani Sai Nikhil // Profile Overview</span>
+                    </h4>
+                    <p>
+                      I am pursuing a Bachelor of Technology in Computer Science &amp; Engineering at NxtWave Institute (2025–2029). I engineer local-first software systems, open-source AI tooling, and edge computer vision models.
+                    </p>
+                    <div className="space-y-2 font-mono text-xs text-[var(--ink-secondary)] mt-4">
+                      <div className="font-bold text-[var(--brand-secondary)] uppercase tracking-wider text-[10px]">Dual-Track Engineering Philosophy:</div>
+                      <ul className="list-disc pl-5 space-y-1.5">
+                        <li><strong className="text-[var(--ink-primary)]">Native Systems Mastery:</strong> Deep proficiency in Python, C++, SQL relational modeling, Linux OS internals, and Docker containerization.</li>
+                        <li><strong className="text-[var(--ink-primary)]">10x AI Augmentation:</strong> Accelerated scaffolding, semantic code-review graph traversal, and multi-agent MCP toolchain orchestration.</li>
+                        <li><strong className="text-[var(--ink-primary)]">Edge Privacy Stance:</strong> 100% on-device inference via LiteRT &amp; Google Coral TPUs with zero external cloud dependencies.</li>
+                      </ul>
+                    </div>
+                  </div>
+                )}
 
-                  {activeFile === 'systems.json' && (
-                    <motion.div
-                      key="systems"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.15 }}
-                    >
-                      <JsonHighlighter data={systemsData} />
-                    </motion.div>
-                  )}
+                {activeFile === 'systems.json' && (
+                  <JsonHighlighter data={systemsData} />
+                )}
 
-                  {activeFile === 'experience.json' && (
-                    <motion.div
-                      key="experience"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.15 }}
-                    >
-                      <JsonHighlighter data={experienceData} />
-                    </motion.div>
-                  )}
+                {activeFile === 'experience.json' && (
+                  <JsonHighlighter data={experienceData} />
+                )}
 
-                  {activeFile === 'environment.json' && (
-                    <motion.div
-                      key="environment"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.15 }}
-                    >
-                      <JsonHighlighter data={hardwareData} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {activeFile === 'environment.json' && (
+                  <JsonHighlighter data={hardwareData} />
+                )}
               </div>
 
             </div>
@@ -375,44 +310,36 @@ export default function About() {
             <span>Core Engineering Disciplines</span>
           </h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {competencies.map((item, idx) => {
+            {competencies.map((item) => {
               const CompIcon = item.icon;
               return (
-                <motion.div
+                <div
                   key={item.title}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -4, borderColor: "var(--border-active)" }}
-                  transition={{ 
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20,
-                    delay: idx * 0.04
-                  }}
-                  className="p-5 border border-[var(--border-subtle)] hover:bg-[var(--bg-surface)] transition-colors duration-300 flex flex-col justify-between bg-[var(--bg-surface)]/60 group cursor-pointer shadow-sm"
+                  className="p-5 border border-[var(--border-subtle)] bg-[var(--bg-surface)]/70 hover:bg-[var(--bg-surface)] hover:border-[var(--border-active)] transition-all duration-300 flex flex-col justify-between shadow-sm cursor-pointer"
                 >
                   <div>
                     <div className="w-8 h-8 flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--brand-primary)] mb-4">
                       <CompIcon size={16} />
                     </div>
-                    <h4 className="font-bold text-[var(--ink-primary)] text-sm mb-2 tracking-tight group-hover:text-[var(--brand-primary)] transition-colors font-display">
+                    <h4 className="font-bold text-[var(--ink-primary)] text-sm tracking-tight mb-2 font-display">
                       {item.title}
                     </h4>
-                    <p className="text-xs leading-relaxed text-[var(--ink-muted)] mb-4">{item.desc}</p>
+                    <p className="text-xs leading-relaxed text-[var(--ink-secondary)] mb-4">
+                      {item.desc}
+                    </p>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-1 pt-3 border-t border-[var(--border-subtle)]">
-                    {item.tags.map((tag) => (
+                    {item.tags.map((t) => (
                       <span
-                        key={tag}
+                        key={t}
                         className="text-[9px] font-mono px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--ink-secondary)]"
                       >
-                        {tag}
+                        {t}
                       </span>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -422,4 +349,3 @@ export default function About() {
     </section>
   );
 }
-

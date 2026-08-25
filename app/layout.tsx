@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Background from "@/components/Background";
-import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Kilani Sai Nikhil — Developer & Builder",
@@ -46,7 +45,6 @@ export default function RootLayout({
       <body>
         <Background />
         <Navbar />
-        <ScrollReveal />
         {children}
       </body>
     </html>

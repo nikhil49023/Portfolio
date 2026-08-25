@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { ExternalLink, CheckCircle2, Award, Shield, BookOpen, Sparkles, Trophy } from 'lucide-react';
 
 const certs = [
@@ -88,11 +87,11 @@ const certs = [
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)] reveal-on-scroll">
+    <section id="certifications" className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)]">
       <div className="max-w-6xl mx-auto px-6">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-14">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-12">
           <div className="flex items-baseline gap-4">
             <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">04</span>
             <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
@@ -105,27 +104,17 @@ export default function Certifications() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {certs.map((cert, i) => {
+          {certs.map((cert) => {
             const Icon = cert.icon;
             return (
-              <motion.div
+              <div
                 key={cert.title}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -4, borderColor: "var(--border-active)" }}
-                transition={{ 
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 20,
-                  delay: i * 0.03
-                }}
-                className="p-5 border border-[var(--border-subtle)] bg-[var(--bg-surface)]/60 hover:bg-[var(--bg-surface)] transition-colors duration-300 flex flex-col justify-between group cursor-pointer shadow-sm relative"
+                className="p-5 border border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:border-[var(--border-active)] transition-all duration-300 flex flex-col justify-between group cursor-pointer shadow-sm relative"
               >
                 <div>
                   <div className="flex items-start justify-between mb-3">
                     <div
-                      className="w-9 h-9 flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--brand-primary)] shrink-0"
+                      className="w-8 h-8 flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--brand-primary)] shrink-0"
                     >
                       <Icon size={16} />
                     </div>
@@ -148,7 +137,7 @@ export default function Certifications() {
                     {cert.title}
                   </h3>
 
-                  <p className="text-xs leading-relaxed text-[var(--ink-muted)] mb-4">{cert.description}</p>
+                  <p className="text-xs leading-relaxed text-[var(--ink-secondary)] mb-4">{cert.description}</p>
                 </div>
 
                 <div className="flex flex-wrap gap-1 pt-3 border-t border-[var(--border-subtle)]">
@@ -161,7 +150,7 @@ export default function Certifications() {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
@@ -169,4 +158,3 @@ export default function Certifications() {
     </section>
   );
 }
-

@@ -1,6 +1,6 @@
 'use client';
 
-import { BookOpen, Sparkles, Terminal, Cpu, Database, Layers, Radio } from 'lucide-react';
+import { BookOpen, Sparkles, Terminal, Cpu, Database, Layers } from 'lucide-react';
 
 const matrixData = [
   {
@@ -67,14 +67,14 @@ const matrixData = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)] relative overflow-hidden select-none reveal-on-scroll">
+    <section id="skills" className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)] relative overflow-hidden select-none">
       {/* Subtle background glow */}
       <div className="absolute top-0 left-1/4 w-[50vw] h-[300px] bg-[radial-gradient(circle_at_top,color-mix(in_oklch,var(--brand-primary)_4%,transparent),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-14">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-12">
           <div className="flex items-baseline gap-4">
             <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">03</span>
             <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
@@ -87,15 +87,15 @@ export default function Skills() {
         </div>
 
         {/* Desktop Matrix (Table-like grid) */}
-        <div className="hidden md:block border border-[var(--border-subtle)] bg-[var(--bg-surface)]/40 backdrop-blur-sm shadow-sm overflow-hidden">
+        <div className="hidden md:block border border-[var(--border-subtle)] bg-[var(--bg-surface)]/60 shadow-sm overflow-hidden">
           {/* Table Header */}
-          <div className="grid grid-cols-12 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]/80 py-4 px-6 text-[10px] font-mono font-bold tracking-widest text-[var(--ink-muted)] uppercase">
+          <div className="grid grid-cols-12 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)] py-4 px-6 text-[10px] font-mono font-bold tracking-widest text-[var(--ink-muted)] uppercase">
             <div className="col-span-3">System Domain</div>
-            <div className="col-span-4 flex items-center gap-1.5 border-l border-[var(--border-subtle)]/50 pl-6">
+            <div className="col-span-4 flex items-center gap-1.5 border-l border-[var(--border-subtle)] pl-6">
               <BookOpen size={12} className="text-[var(--ink-primary)]" />
               <span className="text-[var(--ink-primary)]">Native Mastery (Hand-Engineered Logic)</span>
             </div>
-            <div className="col-span-5 flex items-center gap-1.5 border-l border-[var(--border-subtle)]/50 pl-6">
+            <div className="col-span-5 flex items-center gap-1.5 border-l border-[var(--border-subtle)] pl-6">
               <Sparkles size={12} className="text-[var(--brand-primary)]" />
               <span className="text-[var(--brand-primary)]">AI-Augmented Superpowers (MCP &amp; Tooling)</span>
             </div>
@@ -108,7 +108,7 @@ export default function Skills() {
               return (
                 <div 
                   key={row.category} 
-                  className="grid grid-cols-12 py-6 px-6 hover:bg-[var(--bg-surface)]/60 transition-colors duration-200 group"
+                  className="grid grid-cols-12 py-5 px-6 hover:bg-[var(--bg-surface)] transition-colors duration-200 group"
                 >
                   {/* Category name with domain icon */}
                   <div className="col-span-3 pr-4 flex items-start gap-2.5">
@@ -122,30 +122,36 @@ export default function Skills() {
                     </div>
                   </div>
 
-                  {/* Native competency */}
-                  <div className="col-span-4 border-l border-[var(--border-subtle)]/40 pl-6 space-y-2.5">
-                    <div className="flex flex-wrap gap-1">
-                      {row.native.skills.map(s => (
-                        <span key={s} className="text-[9px] font-mono px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--ink-primary)] font-semibold">
+                  {/* Native column */}
+                  <div className="col-span-4 pl-6 pr-4 border-l border-[var(--border-subtle)] space-y-2">
+                    <div className="flex flex-wrap gap-1.5">
+                      {row.native.skills.map((s) => (
+                        <span 
+                          key={s} 
+                          className="font-mono text-[9.5px] px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--ink-primary)] font-bold"
+                        >
                           {s}
                         </span>
                       ))}
                     </div>
-                    <p className="text-xs leading-relaxed text-[var(--ink-muted)] pr-4">
+                    <p className="text-xs leading-relaxed text-[var(--ink-secondary)]">
                       {row.native.desc}
                     </p>
                   </div>
 
-                  {/* AI-Augmented competency */}
-                  <div className="col-span-5 border-l border-[var(--border-subtle)]/40 pl-6 space-y-2.5">
-                    <div className="flex flex-wrap gap-1">
-                      {row.augmented.skills.map(s => (
-                        <span key={s} className="text-[9px] font-mono px-2 py-0.5 border border-[var(--brand-primary)]/20 bg-[var(--brand-primary)]/5 text-[var(--brand-primary)] font-semibold">
+                  {/* AI-Augmented column */}
+                  <div className="col-span-5 pl-6 border-l border-[var(--border-subtle)] space-y-2">
+                    <div className="flex flex-wrap gap-1.5">
+                      {row.augmented.skills.map((s) => (
+                        <span 
+                          key={s} 
+                          className="font-mono text-[9.5px] px-2 py-0.5 border border-[var(--brand-primary)]/30 bg-[var(--brand-primary)]/5 text-[var(--brand-primary)] font-bold"
+                        >
                           {s}
                         </span>
                       ))}
                     </div>
-                    <p className="text-xs leading-relaxed text-[var(--ink-muted)] pr-4">
+                    <p className="text-xs leading-relaxed text-[var(--ink-secondary)]">
                       {row.augmented.desc}
                     </p>
                   </div>
@@ -155,64 +161,55 @@ export default function Skills() {
           </div>
         </div>
 
-        {/* Mobile Stack Layout */}
+        {/* Mobile View */}
         <div className="md:hidden space-y-6">
-          {matrixData.map((row) => {
-            const RowIcon = row.icon;
-            return (
-              <div 
-                key={row.category} 
-                className="border border-[var(--border-subtle)] bg-[var(--bg-surface)]/50 p-5 space-y-5 shadow-sm"
-              >
-                <div className="flex items-center gap-2 border-b border-[var(--border-subtle)] pb-2">
-                  <RowIcon size={14} className="text-[var(--brand-primary)]" />
-                  <h3 className="font-display font-bold text-sm text-[var(--ink-primary)] tracking-tight">
-                    {row.category}
-                  </h3>
-                </div>
-                
-                {/* Native block */}
-                <div className="space-y-2">
-                  <div className="flex items-center gap-1.5 text-[9px] font-mono font-bold tracking-widest text-[var(--ink-muted)] uppercase">
-                    <BookOpen size={10} />
-                    <span>Native Systems Baseline</span>
-                  </div>
-                  <div className="flex flex-wrap gap-1 py-1">
-                    {row.native.skills.map(s => (
-                      <span key={s} className="text-[9px] font-mono px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--ink-primary)] font-semibold">
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="text-xs leading-relaxed text-[var(--ink-muted)]">
-                    {row.native.desc}
-                  </p>
-                </div>
+          {matrixData.map((row) => (
+            <div 
+              key={row.category}
+              className="border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-5 space-y-4 shadow-sm"
+            >
+              <h3 className="font-display font-bold text-base text-[var(--ink-primary)] tracking-tight">
+                {row.category}
+              </h3>
 
-                {/* Augmented block */}
-                <div className="space-y-2 pt-3 border-t border-[var(--border-subtle)]/50">
-                  <div className="flex items-center gap-1.5 text-[9px] font-mono font-bold tracking-widest text-[var(--brand-primary)] uppercase">
-                    <Sparkles size={10} />
-                    <span>AI-Augmented Accelerator</span>
-                  </div>
-                  <div className="flex flex-wrap gap-1 py-1">
-                    {row.augmented.skills.map(s => (
-                      <span key={s} className="text-[9px] font-mono px-2 py-0.5 border border-[var(--brand-primary)]/20 bg-[var(--brand-primary)]/5 text-[var(--brand-primary)] font-semibold">
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="text-xs leading-relaxed text-[var(--ink-muted)]">
-                    {row.augmented.desc}
-                  </p>
+              <div className="space-y-2 p-3 bg-[var(--bg-void)] border border-[var(--border-subtle)]">
+                <div className="text-[10px] font-mono font-bold text-[var(--ink-primary)] flex items-center gap-1.5 uppercase">
+                  <BookOpen size={12} />
+                  <span>Native Mastery</span>
                 </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {row.native.skills.map((s) => (
+                    <span key={s} className="font-mono text-[9px] px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--ink-primary)]">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-xs text-[var(--ink-secondary)] leading-relaxed">
+                  {row.native.desc}
+                </p>
               </div>
-            );
-          })}
+
+              <div className="space-y-2 p-3 bg-[var(--brand-primary)]/5 border border-[var(--brand-primary)]/20">
+                <div className="text-[10px] font-mono font-bold text-[var(--brand-primary)] flex items-center gap-1.5 uppercase">
+                  <Sparkles size={12} />
+                  <span>AI-Augmented Velocity</span>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {row.augmented.skills.map((s) => (
+                    <span key={s} className="font-mono text-[9px] px-2 py-0.5 border border-[var(--brand-primary)]/30 bg-[var(--bg-surface)] text-[var(--brand-primary)] font-bold">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-xs text-[var(--ink-secondary)] leading-relaxed">
+                  {row.augmented.desc}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
 
       </div>
     </section>
   );
 }
-
