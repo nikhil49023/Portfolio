@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Zap, ShieldCheck, Cpu, Lock, Sparkles, Activity } from "lucide-react";
+import { Zap, ShieldCheck, Cpu, Lock, Sparkles, Activity, Radio } from "lucide-react";
 import { NumberTicker } from "@/registry/magicui/number-ticker";
 
 export interface StatBarItem {
@@ -131,6 +131,42 @@ const DIMENSIONS: MetricDimension[] = [
         sublabel: "Desktop GPU dependent, heavy binary runtime",
         percentage: 46,
         metricDetail: "Non-portable mobile stack",
+      },
+    ],
+  },
+  {
+    id: "swarm-avionics",
+    label: "Swarm GNC & DDS",
+    icon: Radio,
+    badge: "50Hz MICROXRCE-DDS LOOP",
+    title: "Real-Time Swarm Telemetry vs. Legacy Links",
+    subtitle: "Measuring offboard setpoint frequency, jitter variance, and packet preservation under simulated RF jamming (-5 dB SNR).",
+    items: [
+      {
+        label: "Standard MAVLink 10Hz",
+        sublabel: "High network jitter (±14.2 ms), prone to failsafe RTL dropouts",
+        percentage: 30,
+        metricDetail: "10 Hz / high jitter",
+      },
+      {
+        label: "ROS 1 Rosbridge WS",
+        sublabel: "TCP head-of-line blocking, single-threaded bottlenecks",
+        percentage: 42,
+        metricDetail: "Heavy serialization overhead",
+      },
+      {
+        label: "SUTRA MicroXRCE-DDS",
+        sublabel: "50 Hz offboard setpoints, lock-free ring buffers, ±0.8 ms jitter",
+        percentage: 100,
+        isHighlighted: true,
+        highlightBadge: "50 Hz Loop / ±0.8ms Jitter",
+        metricDetail: "212/212 passing SITL tests",
+      },
+      {
+        label: "Deep JSCC Neural Mesh",
+        sublabel: "Preserves telemetry and target coords across low SNR (-5 dB)",
+        percentage: 94,
+        metricDetail: "Zero dropped mission packets",
       },
     ],
   },

@@ -4,15 +4,29 @@ import Navbar from "@/components/Navbar";
 import Background from "@/components/Background";
 
 export const metadata: Metadata = {
-  title: "Kilani Sai Nikhil — Developer & Builder",
+  title: "Kilani Sai Nikhil — Systems, Autonomous Robotics & Physical AI",
   description:
-    "Computer Science student building ML tools, full-stack applications, and computer vision systems. Creator of saara-ai, Vitt, and AerialEye.",
-  keywords: ["developer", "ML", "computer vision", "full-stack", "Python", "Flutter", "Next.js"],
+    "High-Agency Systems, Robotics & AI Engineer based in Hyderabad, India. Architect of Project SUTRA (Autonomous UAV Swarm, 50Hz DDS), Vitt (100% On-Device AI), saara-ai (Dataset Distillation CLI), and AerialEye.",
+  keywords: [
+    "Kilani Sai Nikhil",
+    "Robotics Engineer",
+    "Systems Architecture",
+    "ROS 2",
+    "PX4 Autopilot",
+    "MicroXRCE-DDS",
+    "Edge AI",
+    "TensorRT",
+    "LiteRT",
+    "C++17",
+    "Python",
+    "Autonomous Swarm",
+    "Hyderabad"
+  ],
   authors: [{ name: "Kilani Sai Nikhil" }],
   openGraph: {
-    title: "Kilani Sai Nikhil — Developer & Builder",
+    title: "Kilani Sai Nikhil — Systems, Autonomous Robotics & Physical AI",
     description:
-      "CS student. ML tools. Full-stack apps. Computer vision. Hyderabad, India.",
+      "Deterministic autonomy, 50Hz offboard swarm avionics, and sovereign on-device intelligence on bare silicon.",
     type: "website",
   },
 };

@@ -125,11 +125,16 @@ export default function Projects() {
                     </div>
 
                     <div>
-                      <h4 className="font-display font-bold text-base sm:text-lg text-[var(--ink-primary)] group-hover:text-[#D71920] transition-colors flex items-center gap-2">
+                      <h4 className="font-display font-bold text-base sm:text-lg text-[var(--ink-primary)] group-hover:text-[#D71920] transition-colors flex items-center gap-2 flex-wrap">
                         <span>{proj.name}</span>
                         {proj.badge && (
                           <span className="text-[9px] font-mono font-bold px-2 py-0.5 border border-[var(--border-subtle)] dark:border-white/10 bg-[var(--bg-void)] text-[var(--ink-primary)] rounded-full">
                             {proj.badge}
+                          </span>
+                        )}
+                        {proj.status && (
+                          <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                            {proj.status}
                           </span>
                         )}
                       </h4>
@@ -142,7 +147,7 @@ export default function Projects() {
                   {/* Center: Architecture & Stack */}
                   <div className="lg:w-5/12 space-y-1.5">
                     <div className="text-xs font-body text-[var(--ink-secondary)] line-clamp-1">
-                      {proj.tagline}
+                      {proj.shortDesc || proj.tagline}
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {proj.stack.slice(0, 4).map((tech) => (
@@ -157,8 +162,13 @@ export default function Projects() {
                   </div>
 
                   {/* Right: Date, Status & Interactive Dialog Trigger */}
-                  <div className="lg:w-1/4 flex items-center justify-between lg:justify-end gap-4 pt-2 lg:pt-0 border-t lg:border-t-0 border-[var(--border-subtle)] dark:border-white/5">
-                    <span className="text-[10px] font-mono text-[var(--ink-muted)]">
+                  <div className="lg:w-1/4 flex items-center justify-between lg:justify-end gap-3 pt-2 lg:pt-0 border-t lg:border-t-0 border-[var(--border-subtle)] dark:border-white/5">
+                    {proj.stats && proj.stats[0] && (
+                      <span className="hidden xl:inline-flex items-center text-[10px] font-mono px-2 py-0.5 rounded-full bg-[var(--bg-void)] border border-[var(--border-subtle)] text-[var(--ink-muted)]">
+                        {proj.stats[0].label}: <strong className="text-[var(--ink-primary)] ml-1">{proj.stats[0].value}</strong>
+                      </span>
+                    )}
+                    <span className="text-[10px] font-mono text-[var(--ink-muted)] shrink-0">
                       {proj.date}
                     </span>
                     
@@ -167,7 +177,7 @@ export default function Projects() {
                         e.stopPropagation();
                         handleOpenDialog(proj);
                       }}
-                      className="group/btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--border-subtle)] dark:border-white/10 hover:border-[#D71920] bg-[var(--bg-void)] text-xs font-mono font-bold text-[var(--ink-primary)] hover:text-[#D71920] transition-all duration-200 cursor-pointer active:scale-[0.95]"
+                      className="group/btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--border-subtle)] dark:border-white/10 hover:border-[#D71920] bg-[var(--bg-void)] text-xs font-mono font-bold text-[var(--ink-primary)] hover:text-[#D71920] transition-all duration-200 cursor-pointer active:scale-[0.95] shrink-0"
                     >
                       <Eye size={12} className="text-[#D71920]" />
                       <span>Inspect</span>

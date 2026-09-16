@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  Package, Github, Layers, Eye, ExternalLink, Cpu, Terminal, Database, Shield, Zap, BookOpen, GitBranch, Box, Globe, Radio, Compass, Activity
+  Package, Github, Layers, Eye, ExternalLink, Cpu, Terminal, Database, Shield, Zap, BookOpen, GitBranch, Box, Globe, Radio, Compass, Activity, Navigation
 } from 'lucide-react';
 
 export interface ProjectNode {
@@ -87,6 +87,138 @@ export interface ProjectData {
 }
 
 export const PROJECTS: Record<string, ProjectData> = {
+  'sutra': {
+    slug: 'sutra',
+    name: 'Project SUTRA',
+    icon: Compass,
+    media: 'images',
+    images: [
+      '/projects/sutra/sutra_swarm_hero.jpg',
+      '/projects/sutra/sutra_gcs_dashboard_preview.jpg',
+      '/projects/sutra/sutra_gnc_flight_concept.jpg',
+      '/projects/sutra/sutra_swarm_comms_concept.jpg',
+    ],
+    tagline: 'Autonomous Multi-UAV Swarm Monorepo (50Hz DDS, PX4, Gazebo 8)',
+    type: 'Autonomous Robotics & Swarm GNC',
+    category: 'Autonomous Systems & Robotics',
+    status: '212/212 Passing Tests',
+    badge: 'Flagship Swarm Stack',
+    date: '2026',
+    accent: '#38bdf8',
+    accentDark: '#0369a1',
+    description:
+      'Project SUTRA is a production-grade multi-UAV autonomous swarm monorepo engineered for disaster search-and-rescue. Built with ROS 2 Humble/Jazzy, PX4 Autopilot offboard trajectory control at 50 Hz via MicroXRCE-DDS, Gazebo Sim 8 (Harmonic) physics, and Deep JSCC neural communication mesh.',
+    shortDesc: 'Multi-UAV autonomous swarm monorepo with 50Hz PX4 DDS control, Gazebo 8 SITL, ByteTrack MOT, and 212/212 tests passing.',
+    longDescription: `
+Project SUTRA is an autonomous multi-UAV search-and-rescue swarm monorepo architected across 6 production-grade engineering subsystems. Engineered for GPS-denied, communications-severed disaster environments, the system operates without human pilots or cloud reliance.
+
+The core flight stack streams offboard setpoints at 50 Hz over MicroXRCE-DDS to PX4 Autopilot, running cooperative V-formation kinematics, leader-follower consensus, and real-time obstacle avoidance validated in Gazebo Sim 8 (Harmonic).
+
+Inter-drone telemetry is preserved across low SNR (-5 dB) jamming environments using a Deep JSCC neural communication mesh. Aerial perception is powered by TensorRT-quantized YOLOv8 FP16 paired with ByteTrack MOT multi-object tracking. Ground operators monitor real-time 3D flight paths and target coordinates via an interactive 3D GIS Ground Control Station (React + Mapbox).
+    `.trim(),
+    stack: ['ROS 2 Humble', 'PX4 Autopilot', 'MicroXRCE-DDS (50Hz)', 'Gazebo Sim 8', 'TensorRT YOLOv8', 'ByteTrack MOT', 'C++17 / Python'],
+    highlights: [
+      '50 Hz offboard setpoint streaming over MicroXRCE-DDS with zero telemetry drop',
+      'Autonomous UAV swarm formation & dynamic obstacle avoidance in Gazebo Sim 8 Harmonic',
+      '212/212 unit, integration, and SITL flight simulation tests passing deterministically',
+      'Deep JSCC neural mesh maintaining mission telemetry across harsh -5 dB SNR conditions',
+    ],
+    details: [
+      'GNC & Flight Control: Deterministic C++ ROS 2 node graph publishing 50 Hz trajectory setpoints to PX4 Autopilot.',
+      'Perception Stack: Real-time survivor detection via TensorRT YOLOv8 FP16 (38.4 FPS on Jetson Orin) with ByteTrack MOT.',
+      'Mesh Networking: Deep JSCC joint source-channel encoder preserving high-fidelity telemetry in RF-jammed zones.',
+      'Verification Suite: 212 automated tests covering EKF2 odometry fusion, formation geometry, and failsafe RTL triggers.'
+    ],
+    stats: [
+      { label: 'Offboard Loop Rate', value: '50 Hz DDS' },
+      { label: 'SITL Passing Tests', value: '212 / 212' },
+      { label: 'Simulation Engine', value: 'Gazebo 8 Harmonic' },
+      { label: 'Edge Detection Speed', value: '38.4 FPS INT8' },
+    ],
+    architecture: [
+      {
+        title: 'Guidance & Swarm Control',
+        nodes: [
+          { label: 'Subsystem A: ROS 2 GNC', color: '#38bdf8', sublabel: 'PX4 offboard attitude & waypoint control' },
+          { label: 'Gazebo 8 Simulation World', color: '#00d68f', sublabel: 'Physics-accurate flight testing' }
+        ]
+      },
+      {
+        title: 'Neural Comms & Vision',
+        nodes: [
+          { label: 'Subsystem B: Deep JSCC Mesh', color: '#f59e0b', sublabel: 'Robust wireless channel coding' },
+          { label: 'Subsystem C: AI Perception Node', color: '#a855f7', sublabel: 'TensorRT survivor detection' }
+        ]
+      },
+      {
+        title: '3D Ground Control & Ops',
+        nodes: [
+          { label: 'Subsystem D: 3D GIS GCS', color: '#ec4899', sublabel: 'Mapbox 3D telemetry console' },
+          { label: 'Subsystem F: Field Ops CONOPS', color: '#38bdf8', sublabel: 'Tactical field rescue protocol' }
+        ]
+      }
+    ],
+    techDetails: [
+      {
+        name: 'ROS 2 & PX4 Autopilot GNC',
+        desc: 'High-rate guidance, navigation, and control node graph publishing 50 Hz offboard setpoints over MicroXRCE-DDS.',
+        icon: Navigation
+      },
+      {
+        name: 'Deep JSCC Neural Mesh',
+        desc: 'Deep learning joint source-channel encoder preserving high-fidelity telemetry across noisy, jammed RF environments.',
+        icon: Radio
+      },
+      {
+        name: '3D GIS Ground Station',
+        desc: 'Interactive operator dashboard built in React and Mapbox rendering real-time 3D drone positions and survivor bounding boxes.',
+        icon: Globe
+      },
+      {
+        name: 'Deterministic Verification Gates',
+        desc: 'Rigorous 212/212 automated test harness validating state estimation, failover RTL, and formation stabilization.',
+        icon: Shield
+      }
+    ],
+    commits: [
+      { hash: 'e6a8259', message: 'feat(sutra): 50Hz offboard setpoint streaming & MicroXRCE-DDS bridge', date: '2026-09-02' },
+      { hash: 'aa48ccb', message: 'feat(gnc): autonomous V-formation flight & leader-follower consensus', date: '2026-08-28' },
+      { hash: '11c6306', message: 'test(sitl): 212/212 unit & Gazebo 8 integration tests passing', date: '2026-08-25' }
+    ],
+    snippets: [
+      {
+        filename: 'offboard_control.cpp',
+        language: 'cpp',
+        description: '50 Hz Offboard Trajectory Streaming over MicroXRCE-DDS',
+        code: `// Offboard Control Setpoint Publisher at 50 Hz
+void OffboardControl::publish_trajectory_setpoint() {
+  px4_msgs::msg::TrajectorySetpoint msg{};
+  msg.position = {target_x_, target_y_, target_z_};
+  msg.yaw = target_yaw_;
+  msg.timestamp = this->get_clock()->now().nanoseconds() / 1000;
+  trajectory_setpoint_pub_->publish(msg);
+}`
+      }
+    ],
+    challenges: [
+      {
+        title: 'Jitter-Free 50Hz DDS Streaming',
+        problem: 'Network jitter caused PX4 to trip failsafe land modes during offboard setpoint streaming.',
+        solution: 'Implemented dedicated real-time POSIX timer threads with lock-free ring buffers in C++17.',
+        impact: 'Zero offboard dropouts across 100+ simulated mission hours in Gazebo 8.'
+      }
+    ],
+    benchmarks: [
+      { metric: 'Loop Rate', baseline: '10 Hz MAVLink', optimized: '50 Hz MicroXRCE-DDS', gain: '5x frequency' },
+      { metric: 'Jitter Variance', baseline: '±14.2 ms', optimized: '±0.8 ms POSIX', gain: '17x stability' },
+      { metric: 'Detection Latency', baseline: '112 ms CPU', optimized: '26 ms Jetson TensorRT', gain: '4.3x faster' }
+    ],
+    tags: ['ROS 2', 'PX4 Autopilot', 'Gazebo Sim', 'Deep JSCC', 'Swarm Robotics', 'React', 'Mapbox 3D', 'Disaster Response'],
+    links: [
+      { label: 'GitHub Monorepo', href: 'https://github.com/nikhil49023/SUTRA', icon: Github, primary: true }
+    ]
+  },
+
   'vitt': {
     slug: 'vitt',
     name: 'Vitt (Artha)',

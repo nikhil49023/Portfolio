@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { FileText, ArrowDown, Github, Linkedin, Package, Brain, Copy, Check, Volume2, VolumeX, Cpu, Radio, ShieldCheck, Sparkles } from 'lucide-react';
+import { FileText, ArrowDown, Github, Linkedin, Package, Brain, Copy, Check, Volume2, VolumeX, Cpu, Radio, ShieldCheck, Sparkles, Navigation, Layers } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -9,6 +9,7 @@ import { Spotlight } from '@/components/ui/spotlight';
 import { MachinedButton } from '@/components/ui/machined-button';
 import { TextScramble } from '@/components/ui/text-scramble';
 import { hapticAudio } from '@/lib/audio';
+import { cn } from '@/lib/utils';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -19,6 +20,51 @@ const socialLinks = [
   { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/kilanisainikhil' },
   { icon: Brain, label: 'HuggingFace', href: 'https://huggingface.co/kilanisainikhil' },
   { icon: Package, label: 'PyPI', href: 'https://pypi.org/project/saara-ai/' },
+];
+
+const proofMetrics = [
+  {
+    label: 'Loop Frequency',
+    value: '50 Hz DDS',
+    subtext: 'PX4 Offboard Control',
+    icon: Radio,
+    accentClass: 'text-cyan-400',
+  },
+  {
+    label: 'Edge Inference',
+    value: '38.4 FPS',
+    subtext: 'TensorRT INT8 on Jetson',
+    icon: Cpu,
+    accentClass: 'text-emerald-400',
+  },
+  {
+    label: 'Autonomous CLI',
+    value: '2,600+',
+    subtext: 'saara-ai / 38 Releases',
+    icon: Package,
+    accentClass: 'text-amber-400',
+  },
+  {
+    label: 'Aerial Dataset',
+    value: '6,327',
+    subtext: 'Annotated Drone Frames',
+    icon: Brain,
+    accentClass: 'text-purple-400',
+  },
+  {
+    label: 'Cloud Egress',
+    value: '0 Bytes',
+    subtext: '100% On-Device Vault',
+    icon: ShieldCheck,
+    accentClass: 'text-emerald-500',
+  },
+  {
+    label: 'Automated Tests',
+    value: '212 / 212',
+    subtext: 'Deterministic Passing Gates',
+    icon: Check,
+    accentClass: 'text-[#D71920]',
+  },
 ];
 
 export default function Hero() {
@@ -32,6 +78,7 @@ export default function Hero() {
   const terminalRef = useRef<HTMLDivElement>(null);
   const socialsRef = useRef<HTMLDivElement>(null);
   const rightColRef = useRef<HTMLDivElement>(null);
+  const proofBarRef = useRef<HTMLDivElement>(null);
 
   const [copied, setCopied] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -86,9 +133,15 @@ export default function Hero() {
         { opacity: 0, x: 40, scale: 0.98 },
         { opacity: 1, x: 0, scale: 1, duration: 1.0 },
         '-=0.8'
+      )
+      .fromTo(
+        proofBarRef.current,
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.8 },
+        '-=0.4'
       );
 
-    // 2. Parallax Exit toward Cinematic 3D Canvas
+    // 2. Parallax Exit
     if (containerRef.current) {
       gsap.to([titleLine1Ref.current, titleLine2Ref.current, thesisRef.current], {
         yPercent: -20,
@@ -159,7 +212,7 @@ export default function Hero() {
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-[#D71920] animate-pulse shadow-[0_0_8px_#D71920]" />
             <span className="font-mono text-xs text-[var(--ink-secondary)] uppercase tracking-widest font-medium">
-              BENGALURU, IN // PHYSICAL AI &amp; AUTONOMOUS SYSTEMS
+              HYDERABAD, IN [17.3850° N] // PHYSICAL AI &amp; DETERMINISTIC AUTONOMY
             </span>
           </div>
 
@@ -195,7 +248,7 @@ export default function Hero() {
             <div ref={badgeRef} className="mb-4">
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#D71920] font-bold px-3 py-1 rounded-full border border-[#D71920]/20 bg-[#D71920]/5 inline-flex items-center gap-1.5">
                 <span className="w-1 h-1 rounded-full bg-[#D71920]" />
-                SYSTEMS ARCHITECT &amp; EDGE RESEARCHER
+                DETERMINISTIC AUTONOMY &amp; SOVEREIGN EDGE AI
               </span>
             </div>
 
@@ -218,7 +271,7 @@ export default function Hero() {
               ref={thesisRef}
               className="text-lg sm:text-xl leading-relaxed text-[var(--ink-secondary)] mb-8 max-w-2xl font-body"
             >
-              Engineering sovereign on-device intelligence, PX4 autonomous drone avionics, and automated dataset distillation. Building bare-metal physical AI systems that run directly on silicon without cloud dependencies or recurring API overhead.
+              Engineering autonomous systems that operate without cloud dependencies, API latency, or safety nets. Real-time multi-UAV swarm robotics at 50 Hz, sub-watt edge ML on bare silicon, and sovereign architectures compliant with DPDP Act 2023.
             </p>
 
             {/* Action Group */}
@@ -289,55 +342,103 @@ export default function Hero() {
                 <div className="flex items-center justify-between pb-3 border-b border-[var(--border-subtle)] dark:border-white/5 mb-4">
                   <span className="font-mono text-xs font-bold text-[var(--ink-primary)] uppercase tracking-wider flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#D71920]" />
-                    HARDWARE SPECIFICATION
+                    SYSTEM ARCHITECTURE
                   </span>
                   <span className="text-[10px] font-mono text-cyan-500 font-semibold px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20">
-                    OPTIX 5.2
+                    50Hz DDS
                   </span>
                 </div>
 
                 <div className="space-y-4 font-mono text-xs">
                   <div>
                     <div className="text-[var(--ink-muted)] uppercase text-[10px] tracking-widest mb-1 flex items-center justify-between">
-                      <span>01 // EMBEDDED PHYSICAL AI</span>
-                      <span className="text-emerald-500 text-[9px] font-bold">SUB-WATT</span>
-                    </div>
-                    <div className="text-[var(--ink-primary)] font-medium">
-                      NVIDIA Jetson Orin Nano, TensorRT INT8 Quantization, CUDA Graph Acceleration
-                    </div>
-                  </div>
-
-                  <div className="pt-3 border-t border-[var(--border-subtle)] dark:border-white/5">
-                    <div className="text-[var(--ink-muted)] uppercase text-[10px] tracking-widest mb-1 flex items-center justify-between">
-                      <span>02 // AUTONOMOUS AVIONICS</span>
+                      <span>01 // SWARM GNC &amp; AVIONICS</span>
                       <span className="text-cyan-500 text-[9px] font-bold">50Hz DDS</span>
                     </div>
                     <div className="text-[var(--ink-primary)] font-medium">
-                      PX4 Autopilot v1.14+, ROS 2 Humble, MicroXRCE-DDS Offboard Trajectory Control
+                      PX4 Autopilot v1.14+, ROS 2 Humble/Jazzy, MicroXRCE-DDS Offboard Control, Gazebo Sim 8 SITL
                     </div>
                   </div>
 
                   <div className="pt-3 border-t border-[var(--border-subtle)] dark:border-white/5">
                     <div className="text-[var(--ink-muted)] uppercase text-[10px] tracking-widest mb-1 flex items-center justify-between">
-                      <span>03 // SOVEREIGN ARCHITECTURES</span>
+                      <span>02 // EMBEDDED PHYSICAL AI</span>
+                      <span className="text-emerald-500 text-[9px] font-bold">38.4 FPS</span>
+                    </div>
+                    <div className="text-[var(--ink-primary)] font-medium">
+                      NVIDIA Jetson Orin Nano, TensorRT INT8 Quantization, CUDA Graph Acceleration, ByteTrack MOT
+                    </div>
+                  </div>
+
+                  <div className="pt-3 border-t border-[var(--border-subtle)] dark:border-white/5">
+                    <div className="text-[var(--ink-muted)] uppercase text-[10px] tracking-widest mb-1 flex items-center justify-between">
+                      <span>03 // SOVEREIGN LOCAL SLMs</span>
                       <span className="text-[#D71920] text-[9px] font-bold">ZERO-EGRESS</span>
                     </div>
                     <div className="text-[var(--ink-primary)] font-medium">
-                      Local LiteRT &amp; Gemma 4, DPDP Act 2023 Compliant AES-256 Vaults, Offline Inference
+                      Vitt (LiteRT + Gemma 4), AES-256 Encrypted SQLite Vault, DPDP Act 2023 Compliant Offline Inference
+                    </div>
+                  </div>
+
+                  <div className="pt-3 border-t border-[var(--border-subtle)] dark:border-white/5">
+                    <div className="text-[var(--ink-muted)] uppercase text-[10px] tracking-widest mb-1 flex items-center justify-between">
+                      <span>04 // DATASET DISTILLATION</span>
+                      <span className="text-amber-500 text-[9px] font-bold">2.6K+ PYPI</span>
+                    </div>
+                    <div className="text-[var(--ink-primary)] font-medium">
+                      saara-ai v2.0 CLI (38 Releases on PyPI), Bounded Agentic Loops, Automated Parquet Corpora
                     </div>
                   </div>
                 </div>
 
                 {/* Micro Telemetry Bar */}
                 <div className="mt-5 pt-3 border-t border-[var(--border-subtle)] dark:border-white/5 flex items-center justify-between text-[10px] font-mono text-[var(--ink-muted)]">
-                  <span>KERNEL: LINUX x86_64</span>
-                  <span className="text-emerald-500 font-bold">100% SATELLITE LOCK</span>
+                  <span>KERNEL: LINUX x86_64 / ARM64</span>
+                  <span className="text-emerald-500 font-bold">212/212 TESTS PASSING</span>
                 </div>
               </div>
             </div>
           </div>
 
         </div>
+
+        {/* ── 6-NODE HIGH-DENSITY TELEMETRY PROOF BAR ── */}
+        <div ref={proofBarRef} className="mt-12 pt-8 border-t border-[var(--border-subtle)]">
+          <div className="machined-bezel rounded-[20px] overflow-hidden shadow-lg">
+            <div className="machined-inner rounded-[18px] p-4 sm:p-5 bg-[var(--bg-surface)]">
+              <div className="flex items-center justify-between pb-3 mb-3 border-b border-[var(--border-subtle)] dark:border-white/5">
+                <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[var(--ink-muted)]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>DETERMINISTIC VERIFICATION LEDGER // LIVE BENCHMARKS</span>
+                </div>
+                <div className="font-mono text-[10px] text-zinc-500 hidden sm:block">
+                  SOURCE: ROS2 / PX4 SITL / TENSORRT / PYPI METRICS
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 divide-y sm:divide-y-0 sm:divide-x divide-[var(--border-subtle)] dark:divide-white/5">
+                {proofMetrics.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={item.label} className={cn("flex flex-col justify-center px-2 py-1", idx > 0 && "sm:pl-4")}>
+                      <span className="text-[10px] font-mono text-[var(--ink-muted)] uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                        <Icon size={11} className={item.accentClass} />
+                        {item.label}
+                      </span>
+                      <span className="font-mono text-lg sm:text-xl font-bold text-[var(--ink-primary)] tracking-tight">
+                        {item.value}
+                      </span>
+                      <span className="text-[10px] font-mono text-[var(--ink-muted)] mt-0.5">
+                        {item.subtext}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );

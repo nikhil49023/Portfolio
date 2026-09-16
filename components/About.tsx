@@ -15,6 +15,8 @@ import {
   HardDrive,
   Compass,
   ArrowUpRight,
+  Radio,
+  Navigation,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Terminal, AnimatedSpan, TypingAnimation } from '@/registry/magicui/terminal';
@@ -49,35 +51,41 @@ export function About() {
     },
     {
       num: '02',
-      title: 'Deterministic Dataset Distillation',
-      tagline: 'High-Entropy Synthesis Over Prompt Hacks',
-      icon: Layers,
-      accentColor: '#F59E0B', // Amber
-      badgeClass: 'text-amber-500 bg-amber-500/10 border-amber-500/20',
-      desc: 'Transforming unstructured technical documentation into structured Parquet and Hugging Face corpora via bounded autonomous research agent loops (saara-ai CLI).',
-      badge: '38 Package Releases',
+      title: 'Real-Time Deterministic Autonomy',
+      tagline: '50 Hz Control Loops Over Jitter',
+      icon: Navigation,
+      accentColor: '#06B6D4', // Cyan
+      badgeClass: 'text-cyan-500 bg-cyan-500/10 border-cyan-500/20',
+      desc: 'Engineering multi-UAV autonomous swarm flight stacks using ROS 2, MicroXRCE-DDS, and PX4 Autopilot. Offboard trajectory setpoints stream at 50 Hz with 212/212 unit, integration, and SITL tests passing deterministically.',
+      badge: '50 Hz / 212 Tests',
     },
     {
       num: '03',
-      title: 'Sub-Watt Edge Spatial Perception',
-      tagline: 'INT8 Quantization & Tile Slicing',
-      icon: Cpu,
-      accentColor: '#06B6D4', // Cyan
-      badgeClass: 'text-cyan-500 bg-cyan-500/10 border-cyan-500/20',
-      desc: 'Optimizing high-altitude disaster computer vision using SAHI dynamic tile slicing on YOLOv11-Nano, quantized for real-time sub-watt inference on Google Coral Edge TPUs.',
-      badge: '89.4% mAP@0.5',
+      title: 'Deterministic Dataset Distillation',
+      tagline: 'High-Entropy Synthesis Beats Ephemeral Prompts',
+      icon: Layers,
+      accentColor: '#F59E0B', // Amber
+      badgeClass: 'text-amber-500 bg-amber-500/10 border-amber-500/20',
+      desc: 'Transforming unstructured technical documentation into structured Parquet and Hugging Face corpora via bounded autonomous research agent loops (saara-ai CLI, 38 releases on PyPI).',
+      badge: '38 Releases / 2.6k+ DL',
     },
   ];
 
   const hardwareSpecs = [
-    { category: 'Host Kernel', value: 'Linux (Ubuntu 24.04 LTS)', meta: 'POSIX syscalls, Bash, systemd daemons' },
-    { category: 'Edge Accelerators', value: 'Google Coral Edge TPU + Mobile NPUs', meta: 'Sub-watt INT8/INT4 quantization' },
-    { category: 'Primary Languages', value: 'Python 3.11, C++17, Dart 3.5, TypeScript, SQL', meta: 'Memory-safe & high-throughput systems' },
-    { category: 'Local ML Runtimes', value: 'vLLM, Ollama, LiteRT, PyTorch 2.5, ONNX', meta: 'Offline execution with zero telemetry' },
+    { category: 'Host Kernel', value: 'Linux (Ubuntu 24.04 LTS x86_64 / ARM64)', meta: 'POSIX syscalls, real-time timers, lock-free queues' },
+    { category: 'Autonomous Avionics', value: 'PX4 Autopilot v1.14+ & ROS 2 Humble/Jazzy', meta: '50Hz MicroXRCE-DDS, Gazebo Sim 8 Harmonic SITL' },
+    { category: 'Edge Accelerators', value: 'NVIDIA Jetson Orin Nano + Coral Edge TPU', meta: 'TensorRT INT8 quantization (38.4 FPS), CUDA Graphs' },
+    { category: 'Primary Languages', value: 'C++17, Python 3.11, Rust FFI, Dart 3.5, SQL', meta: 'Memory-safe layouts, zero-copy buffers, SIMD' },
+    { category: 'Local ML Runtimes', value: 'LiteRT, TensorRT, vLLM, PyTorch 2.5, ONNX', meta: '100% offline execution with zero telemetry' },
     { category: 'Agent Scaffolding', value: 'Model Context Protocol (MCP), google-adk', meta: 'Deterministic Maker/Checker test gates' },
   ];
 
   const milestones = [
+    {
+      date: '2026',
+      title: 'Project SUTRA: Autonomous Swarm Monorepo',
+      desc: 'Architected 6 production subsystems for multi-UAV disaster SAR: 50Hz DDS offboard control, Deep JSCC mesh, and 212/212 passing SITL tests.',
+    },
     {
       date: '2026',
       title: 'saara-ai v2.0 Distributed CLI',
@@ -180,7 +188,7 @@ export function About() {
             <div className="w-2 h-2 bg-[#D71920] shadow-[0_0_8px_#D71920]" />
             <h2 className="text-xs font-mono tracking-widest uppercase text-[var(--ink-primary)] font-bold flex items-center gap-2">
               <span className="text-[#D71920]">01 //</span>
-              <span>Architectural Identity &amp; Profile</span>
+              <span>Architectural Identity &amp; Mission</span>
             </h2>
           </div>
           <div className="font-mono text-[10px] text-[var(--ink-muted)] flex items-center gap-2">
@@ -196,19 +204,19 @@ export function About() {
           <div ref={leftColRef} className="lg:col-span-5 space-y-6">
             <div className="space-y-2">
               <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#D71920] border border-[#D71920]/20 bg-[#D71920]/5 px-3 py-1 rounded-full inline-block">
-                SYSTEMS ARCHITECT &amp; DEEP TECH ENGINEER
+                SYSTEMS ARCHITECT &amp; AUTONOMY ENGINEER
               </span>
               <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--ink-primary)] leading-tight">
-                Engineering Local-First Intelligence on Physical Silicon.
+                Deterministic Autonomy on Bare Silicon.
               </h3>
             </div>
 
             <p className="text-sm leading-relaxed text-[var(--ink-secondary)] font-body">
-              I am <strong className="text-[var(--ink-primary)] font-bold">Kilani Sai Nikhil</strong>, a Computer Science student at NxtWave Institute of Advanced Technologies (Class of 2029) based in Hyderabad, India.
+              Autonomy is binary: at 50 Hz, either the flight controller calculates the correct trajectory setpoint or the vehicle drops. No cloud API can rescue a failing control loop with 200 milliseconds of network latency.
             </p>
 
             <p className="text-sm leading-relaxed text-[var(--ink-secondary)] font-body">
-              My core mission is to liberate machine intelligence from centralized cloud monopolies. I build software architectures where neural models execute <strong className="text-[var(--ink-primary)] font-bold">directly on edge hardware</strong>—eliminating recurring cloud subscription taxes, enforcing zero-cloud personal privacy, and maintaining offline resilience during infrastructure disruption.
+              I bridge low-level systems programming (POSIX syscalls, memory budgets, lock-free ring buffers, C++17) with cutting-edge physical AI and multi-agent systems. I engineer sovereign software stacks where models execute <strong className="text-[var(--ink-primary)] font-bold">directly on physical silicon</strong>—eliminating API taxes, guaranteeing zero cloud egress, and surviving in communications-denied environments.
             </p>
 
             {/* Micro-Telemetry Badge */}
@@ -223,16 +231,20 @@ export function About() {
                 </div>
                 <div className="space-y-1.5 text-[11px] text-[var(--ink-primary)]">
                   <div className="flex justify-between">
-                    <span className="text-[var(--ink-muted)]">Active Tooling:</span>
-                    <span className="font-bold text-[#D71920]">saara-ai (38 Releases)</span>
+                    <span className="text-[var(--ink-muted)]">Active Systems:</span>
+                    <span className="font-bold text-[#D71920]">Project SUTRA + saara-ai</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[var(--ink-muted)]">Target Architecture:</span>
-                    <span className="font-bold">ARM64 / Coral TPU / x86_64</span>
+                    <span className="text-[var(--ink-muted)]">Autonomous Stack:</span>
+                    <span className="font-bold text-cyan-400">50Hz DDS + Gazebo 8 SITL</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[var(--ink-muted)]">Privacy Standard:</span>
-                    <span className="font-bold text-emerald-500">DPDP Act 2023 Zero-Egress</span>
+                    <span className="text-[var(--ink-muted)]">Edge Accelerators:</span>
+                    <span className="font-bold">Jetson Orin + Coral TPU</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[var(--ink-muted)]">Verification Gates:</span>
+                    <span className="font-bold text-emerald-500">212/212 Passing Tests</span>
                   </div>
                 </div>
               </div>
@@ -301,31 +313,35 @@ export function About() {
                       >
                         <Terminal className="bg-[#0A0A0C] text-zinc-300 font-mono text-xs border border-zinc-800 rounded-[18px]">
                           <TypingAnimation className="text-[#D71920] font-bold">
-                            $ nikhil --init --target=edge-silicon --compliance=dpdp
+                            $ nikhil --boot --mode=autonomous-systems --silicon=bare-metal
                           </TypingAnimation>
 
-                          <AnimatedSpan delay={300} className="text-zinc-400">
-                            <span>✔ Host: Linux 6.8.0-generic (Ubuntu 24.04 LTS x86_64/ARM64)</span>
+                          <AnimatedSpan delay={250} className="text-zinc-400">
+                            <span>✔ Host: Linux 6.8.0-generic (Ubuntu 24.04 LTS x86_64 / ARM64)</span>
                           </AnimatedSpan>
 
-                          <AnimatedSpan delay={600} className="text-zinc-400">
-                            <span>✔ Accelerators: Google Coral Edge TPU + Mobile NPU INT8 Active</span>
+                          <AnimatedSpan delay={500} className="text-zinc-400">
+                            <span>✔ Avionics: PX4 Autopilot v1.14+ streaming 50Hz setpoints via MicroXRCE-DDS</span>
                           </AnimatedSpan>
 
-                          <AnimatedSpan delay={900} className="text-zinc-400">
+                          <AnimatedSpan delay={750} className="text-zinc-400">
+                            <span>✔ Physics SITL: Gazebo Sim 8 (Harmonic) // 212/212 tests passing deterministically</span>
+                          </AnimatedSpan>
+
+                          <AnimatedSpan delay={1000} className="text-zinc-400">
+                            <span>✔ Edge Vision: TensorRT INT8 YOLOv8 (38.4 FPS on Jetson Orin) + ByteTrack MOT</span>
+                          </AnimatedSpan>
+
+                          <AnimatedSpan delay={1250} className="text-zinc-400">
                             <span>✔ Tooling: saara-ai v2.0 (38 releases / 2,600+ PyPI downloads)</span>
                           </AnimatedSpan>
 
-                          <AnimatedSpan delay={1200} className="text-zinc-400">
-                            <span>✔ Vision Model: AerialEye YOLOv11-Nano (89.4% mAP@0.5 on HF)</span>
-                          </AnimatedSpan>
-
                           <AnimatedSpan delay={1500} className="text-zinc-400">
-                            <span>✔ Local Vault: Vitt Play Store Ready (LiteRT / Gemma 4 / DPDP compliant)</span>
+                            <span>✔ Local Vault: Vitt (LiteRT + Gemma 4 / DPDP Act 2023 zero-egress)</span>
                           </AnimatedSpan>
 
-                          <AnimatedSpan delay={1800} className="text-emerald-400 font-bold">
-                            <span>[SUCCESS] Zero cloud telemetry detected. System executing locally.</span>
+                          <AnimatedSpan delay={1750} className="text-emerald-400 font-bold">
+                            <span>[VERIFIED] All systems executing locally on silicon. Zero cloud dependencies.</span>
                           </AnimatedSpan>
                         </Terminal>
                       </motion.div>
@@ -342,10 +358,10 @@ export function About() {
                         className="space-y-4 font-body text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed"
                       >
                         <p>
-                          High-level abstractions are only as reliable as the low-level systems underneath them. My technical methodology bridges classical operating systems fundamentals (POSIX syscalls, file descriptors, virtual memory) with cutting-edge on-device neural acceleration.
+                          High-level abstractions are only as reliable as the low-level systems underneath them. My technical methodology bridges classical operating systems fundamentals (POSIX syscalls, lock-free ring buffers, real-time timers) with real-time autonomous robotics and on-device neural acceleration.
                         </p>
                         <p>
-                          Rather than treating AI as a cloud API wrapper, I design complete local execution stacks: curating distillation datasets with <strong className="text-[var(--ink-primary)]">saara-ai</strong>, fine-tuning quantized weights with <strong className="text-[var(--ink-primary)]">PyTorch</strong>, and executing inference directly on mobile silicon with <strong className="text-[var(--ink-primary)]">LiteRT</strong> and <strong className="text-[var(--ink-primary)]">Google Coral Edge TPUs</strong>.
+                          Rather than treating AI as a cloud API wrapper, I design complete sovereign execution stacks: real-time 50 Hz offboard flight guidance with <strong className="text-[var(--ink-primary)]">PX4 &amp; ROS 2</strong>, curating dataset distillation pipelines with <strong className="text-[var(--ink-primary)]">saara-ai</strong>, quantizing vision models for <strong className="text-[var(--ink-primary)]">Jetson Orin TensorRT</strong>, and running offline language models with <strong className="text-[var(--ink-primary)]">LiteRT &amp; Gemma 4</strong>.
                         </p>
                       </motion.div>
                     )}

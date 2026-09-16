@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { BookOpen, Sparkles, Terminal, Cpu, Database, Layers, BarChart3 } from 'lucide-react';
+import { BookOpen, Sparkles, Terminal, Cpu, Database, Layers, BarChart3, Navigation, Radio, Compass } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -39,12 +39,28 @@ const matrixData: SkillCategory[] = [
     badgeBg: 'bg-amber-500/10',
     badgeText: 'text-amber-500 dark:text-amber-400',
     native: {
-      skills: ['Python 3.11', 'C++17', 'Linux Syscalls', 'Bash / Zsh', 'POSIX'],
-      desc: 'Hand-engineering core algorithms, memory management, file descriptor operations, multi-threading, and system utilities on Linux.'
+      skills: ['C++17', 'Python 3.11', 'Linux Syscalls', 'Bash / Zsh', 'POSIX Threads'],
+      desc: 'Hand-engineering core algorithms, memory budgets, lock-free ring buffers, file descriptor operations, and real-time POSIX timers on Linux.'
     },
     augmented: {
       skills: ['TypeScript', 'Rust FFI', 'Dart 3.5', 'Bun'],
       desc: 'Rapid scaffolding of interface definitions, type-safe API boundaries, and runtime interop bridges using AI agent loops.'
+    }
+  },
+  {
+    category: 'Autonomous Robotics & Swarm GNC',
+    icon: Compass,
+    accentColor: '#38bdf8',
+    badgeBorder: 'border-sky-500/30',
+    badgeBg: 'bg-sky-500/10',
+    badgeText: 'text-sky-600 dark:text-sky-400',
+    native: {
+      skills: ['ROS 2 Humble/Jazzy', 'PX4 Autopilot (v1.14+)', 'MicroXRCE-DDS 50Hz', 'Gazebo Sim 8 Harmonic', 'EKF2 Odometry'],
+      desc: 'Architecting deterministic guidance, navigation, and control (GNC) node graphs in C++17, lock-free ring buffers for 50Hz offboard setpoints, and multi-vehicle SITL swarm simulations.'
+    },
+    augmented: {
+      skills: ['Deep JSCC Neural Mesh', 'ByteTrack MOT', 'TensorRT YOLOv8 FP16', '3D GIS GCS (Mapbox)'],
+      desc: 'Orchestrating robust neural channel coding across RF-jammed channels (-5 dB SNR), real-time aerial target tracking, and 3D geospatial telemetry consoles.'
     }
   },
   {
