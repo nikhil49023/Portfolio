@@ -1,351 +1,469 @@
 'use client';
 
-import { useState } from 'react';
-import { FileCode, GraduationCap, Briefcase, ChevronRight, FileText, Cpu, Terminal, Layers, Shield, Activity, Database } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import {
+  Terminal as TerminalIcon,
+  Cpu,
+  Shield,
+  Layers,
+  Sparkles,
+  GitCommit,
+  HardDrive,
+  Compass,
+  ArrowUpRight,
+} from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { Terminal, AnimatedSpan, TypingAnimation } from '@/registry/magicui/terminal';
+import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
+import { hapticAudio } from '@/lib/audio';
+import Link from 'next/link';
 
-const systemsData = [
-  {
-    name: 'Vitt (Artha)',
-    type: 'On-Device AI Financial Assistant',
-    status: 'Ready for Play Store & Indus Release',
-    stack: 'Flutter, LiteRT (Gemma 4 E2B), AES-256 SQLite',
-    privacy: '100% On-Device · Zero SMS Permissions · DPDP Act 2023 Compliant'
-  },
-  {
-    name: 'saara-ai',
-    type: 'Local-First Dataset Synthesis Engine',
-    status: 'Published on PyPI & NPM (38 Releases)',
-    downloads: '2,600+ PyPI Direct Downloads',
-    stack: 'Python, TypeScript, google-adk, crawl4ai, Ollama, vLLM'
-  },
-  {
-    name: 'AerialEye',
-    type: 'YOLOv11 Aerial & Disaster Response Model',
-    status: 'Hosted on Hugging Face Hub (kilanisainikhil/AerialEye)',
-    downloads: '1,900+ Transfers · 6,327 Curated Images',
-    stack: 'YOLOv11, SAHI Tiling, PyTorch, ONNX, INT8 Coral Edge TPU'
-  },
-  {
-    name: 'Sleep Health Analytics',
-    type: 'Statistical Biometric EDA & Modeling',
-    status: 'Published on Kaggle Hub',
-    specs: 'Pandas & NumPy Pipelines · Seaborn Correlation Matrices',
-    stack: 'Python, Pandas, NumPy, Seaborn, Matplotlib, Kaggle'
-  }
-];
-
-const experienceData = [
-  {
-    role: 'Open-Source SDK Creator & Maintainer',
-    org: 'saara-ai (PyPI & NPM)',
-    period: '2025 - Present',
-    impact: 'Architected local dataset synthesis engine with 38 releases and 2,600+ direct PyPI downloads. Integrated google-adk and crawl4ai for bounded autonomous research agents.'
-  },
-  {
-    role: 'On-Device AI Mobile Architect',
-    org: 'Vitt (Play Store & Indus Appstore)',
-    period: '2025 - 2026',
-    impact: 'Engineered 100% private financial tracker using LiteRT Gemma 4 E2B (~14 tok/s). Eliminated SMS permissions using Android Notification Listener and encrypted local SQLite.'
-  },
-  {
-    role: 'Edge ML & Computer Vision Researcher',
-    org: 'AerialEye (Hugging Face Hub)',
-    period: '2025 - 2026',
-    impact: 'Curated 6,327 high-altitude disaster images, fine-tuned YOLOv11-Nano with SAHI slicing (89.4% mAP@0.5), and exported INT8 TFLite for Google Coral TPUs (1,900+ downloads).'
-  },
-  {
-    role: 'Data Science & Biometrics Researcher',
-    org: 'Sleep Health Capstone (Kaggle)',
-    period: '2025',
-    impact: 'Engineered exploratory data pipelines in Pandas & NumPy to model correlations between occupational stress, sleep architecture, and cardiovascular metrics.'
-  }
-];
-
-const hardwareData = {
-  os: 'Linux (Ubuntu 24.04 LTS)',
-  runtime_environments: ['Python 3.11 / PyTorch 2.5', 'Node.js 22 LTS / Bun', 'Flutter 3.24 / Dart 3.5', 'Jupyter / Pandas / NumPy'],
-  accelerators: ['Google Coral Edge TPU (INT8 USB Accelerator)', 'Local vLLM & Ollama CUDA Clusters'],
-  agent_tooling: ['Model Context Protocol (MCP)', 'Local Docker Stacks', 'Local Firecrawl Documentation Scrapers']
-};
-
-const competencies = [
-  {
-    title: 'On-Device AI & LiteRT',
-    desc: 'Deploying quantized small language models (Gemma 4 E2B) locally on mobile hardware with zero cloud latency, zero recurring API cost, and strict privacy.',
-    tags: ['LiteRT', 'Gemma 4', 'AICore', 'Flutter', 'SQLite AES-256'],
-    icon: Cpu
-  },
-  {
-    title: 'Edge Vision & Disaster CV',
-    desc: 'Fine-tuning YOLOv11 with SAHI dynamic tile slicing for small high-altitude objects, quantized to INT8 precision for low-power Google Coral TPUs.',
-    tags: ['YOLOv11', 'SAHI', 'PyTorch', 'ONNX', 'Coral Edge TPU'],
-    icon: Layers
-  },
-  {
-    title: 'Data Science & Biometrics',
-    desc: 'Conducting statistical exploratory data analysis, feature engineering, and distribution modeling on clinical datasets using Pandas, NumPy, and Seaborn.',
-    tags: ['Python', 'Pandas', 'NumPy', 'Seaborn', 'Kaggle', 'EDA'],
-    icon: Database
-  },
-  {
-    title: 'Open-Source Tooling & MCP',
-    desc: 'Publishing production developer SDKs and dataset distillation engines on PyPI and NPM with clean architecture and automated CI/CD pipelines.',
-    tags: ['Python', 'TypeScript', 'PyPI', 'NPM', 'google-adk', 'MCP'],
-    icon: Terminal
-  }
-];
-
-// Helper components for JSON formatting & coloring on screen
-function JsonHighlighter({ data }: { data: any }) {
-  const jsonString = JSON.stringify(data, null, 2);
-  const lines = jsonString.split('\n');
-  
-  return (
-    <pre className="font-mono text-xs md:text-sm overflow-x-auto text-[var(--ink-secondary)] leading-relaxed select-text p-1">
-      <code>
-        {lines.map((line, i) => {
-          const keyRegex = /^(\s*)"([^"]+)"\s*:/;
-          const stringRegex = /:\s*"([^"]+)"(,)?$/;
-          const numberRegex = /:\s*(true|false|\d+)(,)?$/;
-          
-          if (keyRegex.test(line)) {
-            const match = line.match(keyRegex);
-            if (match) {
-              const spaces = match[1];
-              const key = match[2];
-              const rest = line.substring(match[0].length);
-              
-              if (stringRegex.test(rest)) {
-                const valMatch = rest.match(stringRegex);
-                if (valMatch) {
-                  const val = valMatch[1];
-                  const comma = valMatch[2] || '';
-                  return (
-                    <div key={i} className="whitespace-pre">
-                      {spaces}
-                      <span className="text-[var(--brand-secondary)] font-medium">"{key}"</span>:
-                      <span className="text-emerald-600 dark:text-emerald-400">"{val}"</span>{comma}
-                    </div>
-                  );
-                }
-              } else if (numberRegex.test(rest)) {
-                const valMatch = rest.match(numberRegex);
-                if (valMatch) {
-                  const val = valMatch[1];
-                  const comma = valMatch[2] || '';
-                  return (
-                    <div key={i} className="whitespace-pre">
-                      {spaces}
-                      <span className="text-[var(--brand-secondary)] font-medium">"{key}"</span>:
-                      <span className="text-amber-600 dark:text-amber-400 font-bold">{val}</span>{comma}
-                    </div>
-                  );
-                }
-              }
-              
-              return (
-                <div key={i} className="whitespace-pre">
-                  {spaces}
-                  <span className="text-[var(--brand-secondary)] font-medium">"{key}"</span>:
-                  {rest}
-                </div>
-              );
-            }
-          }
-          
-          const charElements = line.split('').map((char, charIdx) => {
-            if (['{', '}', '[', ']'].includes(char)) {
-              return <span key={charIdx} className="text-blue-500 dark:text-sky-400 font-bold">{char}</span>;
-            }
-            return char;
-          });
-
-          return (
-            <div key={i} className="whitespace-pre">
-              {charElements}
-            </div>
-          );
-        })}
-      </code>
-    </pre>
-  );
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
 }
 
-export default function About() {
-  const [activeFile, setActiveFile] = useState<'README.md' | 'systems.json' | 'experience.json' | 'environment.json'>('README.md');
+type DossierTab = 'boot' | 'narrative' | 'stack' | 'milestones';
+
+export function About() {
+  const [activeTab, setActiveTab] = useState<DossierTab>('boot');
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const leftColRef = useRef<HTMLDivElement>(null);
+  const rightColRef = useRef<HTMLDivElement>(null);
+  const tenetsRef = useRef<HTMLDivElement>(null);
+
+  const tenets = [
+    {
+      num: '01',
+      title: 'Zero-Cloud Egress & Sovereign Privacy',
+      tagline: '100% On-Device Neural Execution',
+      icon: Shield,
+      accentColor: '#10B981', // Emerald
+      badgeClass: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
+      desc: 'Architecting local-first intelligence where sensitive data never leaves physical silicon. Powered by LiteRT, Gemma 4, and AES-256 SQLite vaults compliant with the DPDP Act 2023.',
+      badge: 'LiteRT / Gemma 4',
+    },
+    {
+      num: '02',
+      title: 'Deterministic Dataset Distillation',
+      tagline: 'High-Entropy Synthesis Over Prompt Hacks',
+      icon: Layers,
+      accentColor: '#F59E0B', // Amber
+      badgeClass: 'text-amber-500 bg-amber-500/10 border-amber-500/20',
+      desc: 'Transforming unstructured technical documentation into structured Parquet and Hugging Face corpora via bounded autonomous research agent loops (saara-ai CLI).',
+      badge: '38 Package Releases',
+    },
+    {
+      num: '03',
+      title: 'Sub-Watt Edge Spatial Perception',
+      tagline: 'INT8 Quantization & Tile Slicing',
+      icon: Cpu,
+      accentColor: '#06B6D4', // Cyan
+      badgeClass: 'text-cyan-500 bg-cyan-500/10 border-cyan-500/20',
+      desc: 'Optimizing high-altitude disaster computer vision using SAHI dynamic tile slicing on YOLOv11-Nano, quantized for real-time sub-watt inference on Google Coral Edge TPUs.',
+      badge: '89.4% mAP@0.5',
+    },
+  ];
+
+  const hardwareSpecs = [
+    { category: 'Host Kernel', value: 'Linux (Ubuntu 24.04 LTS)', meta: 'POSIX syscalls, Bash, systemd daemons' },
+    { category: 'Edge Accelerators', value: 'Google Coral Edge TPU + Mobile NPUs', meta: 'Sub-watt INT8/INT4 quantization' },
+    { category: 'Primary Languages', value: 'Python 3.11, C++17, Dart 3.5, TypeScript, SQL', meta: 'Memory-safe & high-throughput systems' },
+    { category: 'Local ML Runtimes', value: 'vLLM, Ollama, LiteRT, PyTorch 2.5, ONNX', meta: 'Offline execution with zero telemetry' },
+    { category: 'Agent Scaffolding', value: 'Model Context Protocol (MCP), google-adk', meta: 'Deterministic Maker/Checker test gates' },
+  ];
+
+  const milestones = [
+    {
+      date: '2026',
+      title: 'saara-ai v2.0 Distributed CLI',
+      desc: 'Shipped 38 stable package releases on PyPI and NPM. Reached 2,600+ PyPI downloads for automated dataset synthesis.',
+    },
+    {
+      date: '2026',
+      title: 'National Finalist: Vitt (OpenAI Academy x IndiaAI)',
+      desc: 'Engineered 100% on-device AI financial tracking app with local Android notification listeners and zero cloud dependency.',
+    },
+    {
+      date: '2025',
+      title: 'AerialEye Disaster CV & Dataset Launch',
+      desc: 'Curated 6,327 aerial images and fine-tuned YOLOv11-Nano with SAHI slicing on Hugging Face (1,900+ downloads).',
+    },
+    {
+      date: '2025',
+      title: 'Computer Science & Systems Engineering @ NxtWave',
+      desc: 'Class of 2029 (Hyderabad). Focused on systems programming, operating systems, compiler ASTs, and edge AI.',
+    },
+  ];
+
+  useGSAP(() => {
+    if (!sectionRef.current) return;
+
+    // Header reveal
+    gsap.fromTo(
+      headerRef.current,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: 'top 85%',
+        },
+      }
+    );
+
+    // Left manifesto & right terminal stagger
+    gsap.fromTo(
+      [leftColRef.current, rightColRef.current],
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        stagger: 0.15,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: leftColRef.current,
+          start: 'top 80%',
+        },
+      }
+    );
+
+    // Tenets staggered entrance
+    if (tenetsRef.current) {
+      const cards = tenetsRef.current.children;
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 50, scale: 0.96 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: tenetsRef.current,
+            start: 'top 85%',
+          },
+        }
+      );
+    }
+  }, { scope: sectionRef });
+
+  const handleTabChange = (tab: DossierTab) => {
+    hapticAudio.playTactileClick();
+    setActiveTab(tab);
+  };
 
   return (
-    <section id="about" className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <section
+      id="about"
+      ref={sectionRef}
+      className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)] relative overflow-hidden select-none py-16 sm:py-20"
+    >
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
-        {/* Section Header */}
-        <div className="flex items-baseline gap-4 mb-8">
-          <span className="font-mono text-sm text-[var(--brand-primary)] font-bold">01</span>
-          <h2 className="text-sm font-mono tracking-widest uppercase text-[var(--brand-secondary)] font-bold">
-            Engineering Identity &amp; Profile
-          </h2>
+        {/* ── TOP TELEMETRY RIBBON ── */}
+        <div
+          ref={headerRef}
+          className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-10 pb-4 border-b border-[var(--border-subtle)]"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 bg-[#D71920] shadow-[0_0_8px_#D71920]" />
+            <h2 className="text-xs font-mono tracking-widest uppercase text-[var(--ink-primary)] font-bold flex items-center gap-2">
+              <span className="text-[#D71920]">01 //</span>
+              <span>Architectural Identity &amp; Profile</span>
+            </h2>
+          </div>
+          <div className="font-mono text-[10px] text-[var(--ink-muted)] flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span>HYDERABAD, IN [17.3850° N] · NXTWAVE (CLASS OF 2029)</span>
+          </div>
         </div>
 
-        {/* Two-Column Core Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        {/* ── EDITORIAL LEAD-IN & DOSSIER GRID ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-16">
           
-          {/* Left Narrative Block */}
-          <div className="lg:col-span-5 space-y-6">
-            <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[var(--ink-primary)] leading-tight">
-              Engineering at the Intersection of Edge ML &amp; Systems Architecture
-            </h3>
-            
-            <p className="text-sm leading-relaxed text-[var(--ink-secondary)]">
-              I am a Computer Science student at NxtWave (Class of 2029) based in Hyderabad, India. My engineering philosophy combines <strong className="text-[var(--ink-primary)] font-bold">rock-solid native CS fundamentals</strong> (C++, Python, SQL, Linux, Docker, PyTorch) with <strong className="text-[var(--ink-primary)] font-bold">10x AI-augmented velocity</strong> (MCP orchestration, LiteRT on-device inference, semantic code graphs).
+          {/* Left Column: Authoritative Editorial Manifesto */}
+          <div ref={leftColRef} className="lg:col-span-5 space-y-6">
+            <div className="space-y-2">
+              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#D71920] border border-[#D71920]/20 bg-[#D71920]/5 px-3 py-1 rounded-full inline-block">
+                SYSTEMS ARCHITECT &amp; DEEP TECH ENGINEER
+              </span>
+              <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--ink-primary)] leading-tight">
+                Engineering Local-First Intelligence on Physical Silicon.
+              </h3>
+            </div>
+
+            <p className="text-sm leading-relaxed text-[var(--ink-secondary)] font-body">
+              I am <strong className="text-[var(--ink-primary)] font-bold">Kilani Sai Nikhil</strong>, a Computer Science student at NxtWave Institute of Advanced Technologies (Class of 2029) based in Hyderabad, India.
             </p>
 
-            <p className="text-sm leading-relaxed text-[var(--ink-secondary)]">
-              I focus on building software that runs directly on edge hardware—eliminating recurring cloud subscription costs, safeguarding personal privacy through zero-cloud architectures, and maintaining resilience during severe infrastructure disruption.
+            <p className="text-sm leading-relaxed text-[var(--ink-secondary)] font-body">
+              My core mission is to liberate machine intelligence from centralized cloud monopolies. I build software architectures where neural models execute <strong className="text-[var(--ink-primary)] font-bold">directly on edge hardware</strong>—eliminating recurring cloud subscription taxes, enforcing zero-cloud personal privacy, and maintaining offline resilience during infrastructure disruption.
             </p>
 
-            {/* Quick Metrics Badge */}
-            <div className="p-4 border border-[var(--border-subtle)] bg-[var(--bg-surface)] space-y-3">
-              <div className="flex justify-between items-center text-[10px] font-mono border-b border-[var(--border-subtle)] pb-2">
-                <span className="text-[var(--ink-muted)] uppercase tracking-wider">runtime_telemetry</span>
-                <span className="text-[var(--brand-primary)] font-bold">HYD // IST (UTC+5:30)</span>
-              </div>
-              <div className="space-y-1.5 font-mono text-[11px] text-[var(--ink-primary)]">
-                <div className="flex justify-between">
-                  <span className="text-[var(--ink-muted)]">Active Node:</span>
-                  <span>saara-ai (PyPI: 2.6k+ DL)</span>
+            {/* Micro-Telemetry Badge */}
+            <div className="machined-bezel">
+              <div className="machined-inner p-4 space-y-2.5 font-mono">
+                <div className="flex justify-between items-center text-[10px] border-b border-[var(--border-subtle)] dark:border-white/5 pb-2">
+                  <span className="text-[var(--ink-muted)] uppercase tracking-wider font-bold">runtime_status</span>
+                  <span className="text-emerald-500 font-bold flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                    NODE // ONLINE
+                  </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-[var(--ink-muted)]">Edge Inference:</span>
-                  <span>LiteRT / Google Coral Edge TPU</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-[var(--ink-muted)]">Education:</span>
-                  <span>B.Tech CSE (2025–2029)</span>
+                <div className="space-y-1.5 text-[11px] text-[var(--ink-primary)]">
+                  <div className="flex justify-between">
+                    <span className="text-[var(--ink-muted)]">Active Tooling:</span>
+                    <span className="font-bold text-[#D71920]">saara-ai (38 Releases)</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[var(--ink-muted)]">Target Architecture:</span>
+                    <span className="font-bold">ARM64 / Coral TPU / x86_64</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[var(--ink-muted)]">Privacy Standard:</span>
+                    <span className="font-bold text-emerald-500">DPDP Act 2023 Zero-Egress</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Right Block - Code Workspace Container */}
-          <div className="lg:col-span-7 flex flex-col">
-            <div className="w-full border border-[var(--border-subtle)] bg-[var(--bg-surface)] flex flex-col shadow-sm">
-              
-              {/* Window Header */}
-              <div className="flex items-center justify-between border-b border-[var(--border-subtle)] px-4 py-3 bg-[var(--bg-surface)]/80">
-                <span className="text-[10px] font-mono text-[var(--ink-muted)]">workspace // kilani-sai-nikhil</span>
-                <span className="text-[10px] font-mono text-[var(--brand-primary)] font-bold">UTF-8</span>
-              </div>
-
-              {/* Tab Header Selector */}
-              <div className="flex border-b border-[var(--border-subtle)] bg-[var(--bg-void)]/60 text-xs font-mono overflow-x-auto">
-                {[
-                  { name: 'README.md', icon: FileText },
-                  { name: 'systems.json', icon: FileCode },
-                  { name: 'experience.json', icon: Briefcase },
-                  { name: 'environment.json', icon: Cpu },
-                ].map((file) => {
-                  const FileIcon = file.icon;
-                  const isActive = activeFile === file.name;
-                  return (
-                    <button
-                      key={file.name}
-                      onClick={() => setActiveFile(file.name as any)}
-                      className={`relative flex items-center gap-2 px-3.5 py-2.5 transition-all border-r border-[var(--border-subtle)] cursor-pointer rounded-none border-0 whitespace-nowrap ${
-                        isActive
-                          ? 'bg-[var(--bg-surface)] text-[var(--ink-primary)] font-bold border-b-2 border-b-[var(--brand-primary)]'
-                          : 'text-[var(--ink-secondary)] hover:bg-[var(--bg-surface)]/30 hover:text-[var(--ink-primary)]'
-                      }`}
-                    >
-                      <FileIcon size={12} className={isActive ? 'text-[var(--brand-primary)]' : 'text-[var(--ink-muted)]'} />
-                      <span>{file.name}</span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Tab Content Panel */}
-              <div className="p-6 min-h-[340px] bg-[var(--bg-surface)] overflow-y-auto max-h-[440px]">
-                {activeFile === 'README.md' && (
-                  <div className="font-sans space-y-4 text-sm leading-relaxed text-[var(--ink-secondary)]">
-                    <h4 className="text-lg font-bold text-[var(--ink-primary)] font-mono border-b border-[var(--border-subtle)] pb-2 flex items-center gap-1.5">
-                      <ChevronRight size={16} className="text-[var(--brand-primary)]" />
-                      <span>Kilani Sai Nikhil // Profile Overview</span>
-                    </h4>
-                    <p>
-                      I am pursuing a Bachelor of Technology in Computer Science &amp; Engineering at NxtWave Institute (2025–2029). I engineer local-first software systems, open-source AI tooling, and edge computer vision models.
-                    </p>
-                    <div className="space-y-2 font-mono text-xs text-[var(--ink-secondary)] mt-4">
-                      <div className="font-bold text-[var(--brand-secondary)] uppercase tracking-wider text-[10px]">Dual-Track Engineering Philosophy:</div>
-                      <ul className="list-disc pl-5 space-y-1.5">
-                        <li><strong className="text-[var(--ink-primary)]">Native Systems Mastery:</strong> Deep proficiency in Python, C++, SQL relational modeling, Linux OS internals, and Docker containerization.</li>
-                        <li><strong className="text-[var(--ink-primary)]">10x AI Augmentation:</strong> Accelerated scaffolding, semantic code-review graph traversal, and multi-agent MCP toolchain orchestration.</li>
-                        <li><strong className="text-[var(--ink-primary)]">Edge Privacy Stance:</strong> 100% on-device inference via LiteRT &amp; Google Coral TPUs with zero external cloud dependencies.</li>
-                      </ul>
-                    </div>
-                  </div>
-                )}
-
-                {activeFile === 'systems.json' && (
-                  <JsonHighlighter data={systemsData} />
-                )}
-
-                {activeFile === 'experience.json' && (
-                  <JsonHighlighter data={experienceData} />
-                )}
-
-                {activeFile === 'environment.json' && (
-                  <JsonHighlighter data={hardwareData} />
-                )}
-              </div>
-
+            <div>
+              <Link href="/resume" className="no-underline inline-block">
+                <InteractiveHoverButton text="Executive Resume Dossier" className="w-64 h-11" />
+              </Link>
             </div>
           </div>
-          
-        </div>
 
-        {/* Core Competencies Grid */}
-        <div className="mt-10">
-          <h3 className="font-bold text-xs text-[var(--ink-primary)] mb-4 uppercase tracking-wider flex items-center gap-2 font-mono">
-            <span className="w-1.5 h-1.5 bg-[var(--brand-primary)] rounded-full" />
-            <span>Core Engineering Disciplines</span>
-          </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {competencies.map((item) => {
-              const CompIcon = item.icon;
-              return (
-                <div
-                  key={item.title}
-                  className="p-5 border border-[var(--border-subtle)] bg-[var(--bg-surface)]/70 hover:bg-[var(--bg-surface)] hover:border-[var(--border-active)] transition-all duration-300 flex flex-col justify-between shadow-sm cursor-pointer"
-                >
-                  <div>
-                    <div className="w-8 h-8 flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--brand-primary)] mb-4">
-                      <CompIcon size={16} />
-                    </div>
-                    <h4 className="font-bold text-[var(--ink-primary)] text-sm tracking-tight mb-2 font-display">
-                      {item.title}
-                    </h4>
-                    <p className="text-xs leading-relaxed text-[var(--ink-secondary)] mb-4">
-                      {item.desc}
-                    </p>
+          {/* Right Column: Tabbed Technical Terminal Dossier */}
+          <div ref={rightColRef} className="lg:col-span-7">
+            <div className="machined-bezel">
+              <div className="machined-inner overflow-hidden shadow-sm backdrop-blur-xl">
+                
+                {/* Tab Navigation Header */}
+                <div className="flex items-center justify-between border-b border-[var(--border-subtle)] dark:border-white/5 px-4 py-2.5 bg-[var(--bg-raised)]/40 dark:bg-white/[0.02]">
+                  <div className="flex gap-1.5 overflow-x-auto">
+                    {(
+                      [
+                        { id: 'boot', label: '01 // System Boot', icon: TerminalIcon },
+                        { id: 'narrative', label: '02 // Focus & Mission', icon: Compass },
+                        { id: 'stack', label: '03 // Hardware Matrix', icon: HardDrive },
+                        { id: 'milestones', label: '04 // Timeline', icon: GitCommit },
+                      ] as const
+                    ).map((tab) => {
+                      const Icon = tab.icon;
+                      const isActive = activeTab === tab.id;
+                      return (
+                        <button
+                          key={tab.id}
+                          onClick={() => handleTabChange(tab.id)}
+                          className={cn(
+                            'flex items-center gap-1.5 px-3 py-1 text-[11px] font-mono transition-all rounded-full cursor-pointer whitespace-nowrap active:scale-95',
+                            isActive
+                              ? 'bg-[var(--ink-primary)] text-[var(--bg-void)] font-bold shadow-sm'
+                              : 'text-[var(--ink-muted)] hover:text-[var(--ink-primary)] hover:bg-[var(--bg-raised)]'
+                          )}
+                        >
+                          <Icon size={11} className={isActive ? 'text-[#D71920]' : ''} />
+                          <span>{tab.label}</span>
+                        </button>
+                      );
+                    })}
                   </div>
+                  <div className="hidden sm:flex items-center gap-1.5 text-[9px] font-mono text-[var(--ink-muted)] shrink-0 pl-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#D71920]" />
+                    <span>DOSSIER_v2.6</span>
+                  </div>
+                </div>
 
-                  <div className="flex flex-wrap gap-1 pt-3 border-t border-[var(--border-subtle)]">
-                    {item.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="text-[9px] font-mono px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--bg-void)] text-[var(--ink-secondary)]"
+                {/* Tab Content Panel */}
+                <div className="p-6">
+                  <AnimatePresence mode="wait">
+                    {/* TAB 1: System Boot (Live Terminal) */}
+                    {activeTab === 'boot' && (
+                      <motion.div
+                        key="boot"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="space-y-4"
                       >
-                        {t}
+                        <Terminal className="bg-[#0A0A0C] text-zinc-300 font-mono text-xs border border-zinc-800 rounded-[18px]">
+                          <TypingAnimation className="text-[#D71920] font-bold">
+                            $ nikhil --init --target=edge-silicon --compliance=dpdp
+                          </TypingAnimation>
+
+                          <AnimatedSpan delay={300} className="text-zinc-400">
+                            <span>✔ Host: Linux 6.8.0-generic (Ubuntu 24.04 LTS x86_64/ARM64)</span>
+                          </AnimatedSpan>
+
+                          <AnimatedSpan delay={600} className="text-zinc-400">
+                            <span>✔ Accelerators: Google Coral Edge TPU + Mobile NPU INT8 Active</span>
+                          </AnimatedSpan>
+
+                          <AnimatedSpan delay={900} className="text-zinc-400">
+                            <span>✔ Tooling: saara-ai v2.0 (38 releases / 2,600+ PyPI downloads)</span>
+                          </AnimatedSpan>
+
+                          <AnimatedSpan delay={1200} className="text-zinc-400">
+                            <span>✔ Vision Model: AerialEye YOLOv11-Nano (89.4% mAP@0.5 on HF)</span>
+                          </AnimatedSpan>
+
+                          <AnimatedSpan delay={1500} className="text-zinc-400">
+                            <span>✔ Local Vault: Vitt Play Store Ready (LiteRT / Gemma 4 / DPDP compliant)</span>
+                          </AnimatedSpan>
+
+                          <AnimatedSpan delay={1800} className="text-emerald-400 font-bold">
+                            <span>[SUCCESS] Zero cloud telemetry detected. System executing locally.</span>
+                          </AnimatedSpan>
+                        </Terminal>
+                      </motion.div>
+                    )}
+
+                    {/* TAB 2: Narrative */}
+                    {activeTab === 'narrative' && (
+                      <motion.div
+                        key="narrative"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="space-y-4 font-body text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed"
+                      >
+                        <p>
+                          High-level abstractions are only as reliable as the low-level systems underneath them. My technical methodology bridges classical operating systems fundamentals (POSIX syscalls, file descriptors, virtual memory) with cutting-edge on-device neural acceleration.
+                        </p>
+                        <p>
+                          Rather than treating AI as a cloud API wrapper, I design complete local execution stacks: curating distillation datasets with <strong className="text-[var(--ink-primary)]">saara-ai</strong>, fine-tuning quantized weights with <strong className="text-[var(--ink-primary)]">PyTorch</strong>, and executing inference directly on mobile silicon with <strong className="text-[var(--ink-primary)]">LiteRT</strong> and <strong className="text-[var(--ink-primary)]">Google Coral Edge TPUs</strong>.
+                        </p>
+                      </motion.div>
+                    )}
+
+                    {/* TAB 3: Hardware Matrix */}
+                    {activeTab === 'stack' && (
+                      <motion.div
+                        key="stack"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="space-y-3"
+                      >
+                        {hardwareSpecs.map((spec) => (
+                          <div
+                            key={spec.category}
+                            className="p-3 border border-[var(--border-subtle)] dark:border-white/5 bg-[var(--bg-void)] rounded-[14px] flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+                          >
+                            <div>
+                              <div className="text-[10px] font-mono text-[#D71920] font-bold uppercase tracking-wider">
+                                {spec.category}
+                              </div>
+                              <div className="font-mono text-xs font-bold text-[var(--ink-primary)]">
+                                {spec.value}
+                              </div>
+                            </div>
+                            <div className="text-[10px] font-mono text-[var(--ink-muted)] sm:text-right">
+                              {spec.meta}
+                            </div>
+                          </div>
+                        ))}
+                      </motion.div>
+                    )}
+
+                    {/* TAB 4: Timeline */}
+                    {activeTab === 'milestones' && (
+                      <motion.div
+                        key="milestones"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="space-y-4"
+                      >
+                        {milestones.map((m) => (
+                          <div key={m.title} className="border-l-2 border-[#D71920] pl-4 space-y-1">
+                            <div className="flex items-center gap-2">
+                              <span className="font-mono text-[10px] font-bold text-[#D71920]">
+                                [{m.date}]
+                              </span>
+                              <span className="font-mono text-xs font-bold text-[var(--ink-primary)]">
+                                {m.title}
+                              </span>
+                            </div>
+                            <p className="text-xs text-[var(--ink-secondary)] leading-relaxed font-body">
+                              {m.desc}
+                            </p>
+                          </div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* ── 3 CORE ARCHITECTURAL TENETS (MACHINED DOUBLE-BEZEL) ── */}
+        <div ref={tenetsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {tenets.map((t) => {
+            const Icon = t.icon;
+            return (
+              <div
+                key={t.num}
+                className="machined-bezel group hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div className="machined-inner p-6 flex flex-col justify-between h-full">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="font-mono text-xs font-bold text-[#D71920]">
+                        // {t.num}
                       </span>
-                    ))}
+                      <span className={cn('text-[9px] font-mono px-2.5 py-0.5 rounded-full border', t.badgeClass)}>
+                        {t.badge}
+                      </span>
+                    </div>
+
+                    <h4 className="font-display font-bold text-base text-[var(--ink-primary)] mb-1 group-hover:text-[#D71920] transition-colors">
+                      {t.title}
+                    </h4>
+                    <div className="text-[11px] font-mono text-[#D71920] mb-3">
+                      {t.tagline}
+                    </div>
+                    <p className="text-xs text-[var(--ink-secondary)] leading-relaxed font-body">
+                      {t.desc}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 pt-3 border-t border-[var(--border-subtle)] dark:border-white/5 flex items-center justify-between text-[10px] font-mono text-[var(--ink-muted)]">
+                    <span className="flex items-center gap-1.5">
+                      <Icon size={12} style={{ color: t.accentColor }} />
+                      <span className="font-semibold">SYSTEM_VERIFIED</span>
+                    </span>
+                    <span className="text-emerald-500 font-bold">100% LOCAL</span>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
 
       </div>
     </section>
   );
 }
+
+export default About;

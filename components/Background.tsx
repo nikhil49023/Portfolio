@@ -1,67 +1,45 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import React from 'react';
 
 export default function Background() {
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[var(--bg-void)]">
-      {/* Cyber Grid pattern */}
-      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] bg-[linear-gradient(var(--border-subtle)_1px,transparent_1px),linear-gradient(90deg,var(--border-subtle)_1px,transparent_1px)] bg-[size:48px_48px]" />
-
-      {/* Floating Shader Gradients (Mesh blobs) */}
-      <motion.div
-        animate={{
-          x: [0, 80, -40, 0],
-          y: [0, -60, 40, 0],
-          scale: [1, 1.15, 0.9, 1],
-          rotate: [0, 120, 240, 360],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+      {/* ── Cyber-Physical Micro Dot-Matrix Raster Grid ── */}
+      <div 
+        className="absolute inset-0 opacity-[0.07] dark:opacity-[0.12]"
         style={{
-          background: 'radial-gradient(circle, var(--bg-gradient-1) 0%, transparent 70%)',
+          backgroundImage: `radial-gradient(var(--ink-primary) 1px, transparent 1px)`,
+          backgroundSize: '24px 24px',
         }}
-        className="absolute -top-[10%] -left-[10%] w-[50vw] h-[50vw] min-w-[300px] min-h-[300px] rounded-full blur-[80px] md:blur-[120px]"
       />
 
-      <motion.div
-        animate={{
-          x: [0, -90, 60, 0],
-          y: [0, 70, -50, 0],
-          scale: [1, 0.9, 1.1, 1],
-          rotate: [0, -180, -360],
-        }}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+      {/* ── Subtle Technical PCB Circuit Lines ── */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
         style={{
-          background: 'radial-gradient(circle, var(--bg-gradient-2) 0%, transparent 70%)',
+          backgroundImage: `linear-gradient(var(--border-active) 1px, transparent 1px), linear-gradient(90deg, var(--border-active) 1px, transparent 1px)`,
+          backgroundSize: '96px 96px',
         }}
-        className="absolute -bottom-[10%] -right-[10%] w-[60vw] h-[60vw] min-w-[350px] min-h-[350px] rounded-full blur-[90px] md:blur-[140px]"
       />
 
-      <motion.div
-        animate={{
-          x: [0, 60, -70, 0],
-          y: [0, 80, -60, 0],
-          scale: [1, 1.08, 0.92, 1],
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 28,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        style={{
-          background: 'radial-gradient(circle, var(--bg-gradient-3) 0%, transparent 70%)',
-        }}
-        className="absolute top-[35%] left-[25%] w-[45vw] h-[45vw] min-w-[280px] min-h-[280px] rounded-full blur-[80px] md:blur-[110px]"
-      />
+      {/* ── Top Ambient Glyph Illumination Rails ── */}
+      <div className="absolute top-0 left-1/4 -translate-x-1/2 w-[500px] h-[300px] bg-[radial-gradient(ellipse_at_top,rgba(215,25,32,0.08),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-0 right-1/4 translate-x-1/2 w-[400px] h-[250px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.05),transparent_70%)] pointer-events-none" />
+
+      {/* ── Viewport Edge Alignment Reticles ── */}
+      <div className="absolute top-4 left-4 font-mono text-[9px] text-[var(--ink-muted)] opacity-30 select-none hidden lg:block">
+        + [SYS_ALIGN: 0,0]
+      </div>
+      <div className="absolute top-4 right-4 font-mono text-[9px] text-[var(--ink-muted)] opacity-30 select-none hidden lg:block">
+        + [SYS_ALIGN: 1280,0]
+      </div>
+      <div className="absolute bottom-4 left-4 font-mono text-[9px] text-[var(--ink-muted)] opacity-30 select-none hidden lg:block">
+        + [NEURAL_OS // v2.6]
+      </div>
+      <div className="absolute bottom-4 right-4 font-mono text-[9px] text-[var(--ink-muted)] opacity-30 select-none hidden lg:block">
+        + [AUTONOMOUS_ROBOTICS // LIVE]
+      </div>
     </div>
   );
 }

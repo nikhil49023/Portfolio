@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -31,20 +31,18 @@ export default function RootLayout({
               (function() {
                 try {
                   var saved = localStorage.getItem('theme');
-                  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    document.documentElement.classList.add('dark');
-                  } else {
+                  if (saved === 'light') {
                     document.documentElement.classList.remove('dark');
+                  } else {
+                    document.documentElement.classList.add('dark');
                   }
-                  var palette = localStorage.getItem('palette') || 'cyber-emerald';
-                  document.documentElement.setAttribute('data-palette', palette);
                 } catch (e) {}
               })();
             `,
           }}
         />
       </head>
-      <body>
+      <body className="font-sans antialiased bg-[var(--bg-void)] text-[var(--ink-primary)] selection:bg-[#D71920]/30 selection:text-white pb-24">
         <Background />
         <Navbar />
         {children}
