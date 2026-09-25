@@ -2,7 +2,6 @@ export * from "./button";
 export * from "./image-stream-hero";
 export * from "./interactive-hover-button";
 export * from "./floating-dock";
-export * from "./statistical-bars";
 export * from "./orbiting-circles";
 export * from "./smooth-cursor";
 export * from "./smooth-cursor-demo";

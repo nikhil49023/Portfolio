@@ -70,7 +70,7 @@ export default function Background() {
         + [MIST_LAYER // ATMOSPHERIC_LIGHT]
       </div>
       <div className="absolute top-5 right-6 font-mono text-[9px] text-slate-400 opacity-40 select-none tracking-widest hidden lg:block">
-        + [50Hz TELEMETRY // SILICON]
+        + [AGENTIC_FLOW // SILICON]
       </div>
     </div>
   );
