@@ -101,14 +101,14 @@ export const PROJECTS: Record<string, ProjectData> = {
     tagline: 'Autonomous Multi-UAV Swarm Monorepo (50Hz DDS, PX4, Gazebo 8)',
     type: 'Autonomous Robotics & Swarm GNC',
     category: 'Autonomous Systems & Robotics',
-    status: '212/212 Passing Tests',
+    status: 'GitHub: nikhil49023/SUTRA',
     badge: 'Flagship Swarm Stack',
     date: '2026',
     accent: '#38bdf8',
     accentDark: '#0369a1',
     description:
       'Project SUTRA is a production-grade multi-UAV autonomous swarm monorepo engineered for disaster search-and-rescue. Built with ROS 2 Humble/Jazzy, PX4 Autopilot offboard trajectory control at 50 Hz via MicroXRCE-DDS, Gazebo Sim 8 (Harmonic) physics, and Deep JSCC neural communication mesh.',
-    shortDesc: 'Multi-UAV autonomous swarm monorepo with 50Hz PX4 DDS control, Gazebo 8 SITL, ByteTrack MOT, and 212/212 tests passing.',
+    shortDesc: 'Multi-UAV autonomous swarm monorepo with 50Hz PX4 DDS control, Gazebo 8 SITL, ByteTrack MOT, and ROS 2 Humble.',
     longDescription: `
 Project SUTRA is an autonomous multi-UAV search-and-rescue swarm monorepo architected across 6 production-grade engineering subsystems. Engineered for GPS-denied, communications-severed disaster environments, the system operates without human pilots or cloud reliance.
 
@@ -120,18 +120,18 @@ Inter-drone telemetry is preserved across low SNR (-5 dB) jamming environments u
     highlights: [
       '50 Hz offboard setpoint streaming over MicroXRCE-DDS with zero telemetry drop',
       'Autonomous UAV swarm formation & dynamic obstacle avoidance in Gazebo Sim 8 Harmonic',
-      '212/212 unit, integration, and SITL flight simulation tests passing deterministically',
+      'Multi-vehicle trajectory tracking and failover RTL execution in Gazebo 8 Harmonic',
       'Deep JSCC neural mesh maintaining mission telemetry across harsh -5 dB SNR conditions',
     ],
     details: [
       'GNC & Flight Control: Deterministic C++ ROS 2 node graph publishing 50 Hz trajectory setpoints to PX4 Autopilot.',
       'Perception Stack: Real-time survivor detection via TensorRT YOLOv8 FP16 (38.4 FPS on Jetson Orin) with ByteTrack MOT.',
       'Mesh Networking: Deep JSCC joint source-channel encoder preserving high-fidelity telemetry in RF-jammed zones.',
-      'Verification Suite: 212 automated tests covering EKF2 odometry fusion, formation geometry, and failsafe RTL triggers.'
+      'Simulation Suite: Automated flight scenarios covering EKF2 odometry fusion, formation geometry, and failsafe RTL triggers.'
     ],
     stats: [
       { label: 'Offboard Loop Rate', value: '50 Hz DDS' },
-      { label: 'SITL Passing Tests', value: '212 / 212' },
+      { label: 'GitHub Monorepo', value: 'nikhil49023/SUTRA' },
       { label: 'Simulation Engine', value: 'Gazebo 8 Harmonic' },
       { label: 'Edge Detection Speed', value: '38.4 FPS INT8' },
     ],
@@ -175,15 +175,15 @@ Inter-drone telemetry is preserved across low SNR (-5 dB) jamming environments u
         icon: Globe
       },
       {
-        name: 'Deterministic Verification Gates',
-        desc: 'Rigorous 212/212 automated test harness validating state estimation, failover RTL, and formation stabilization.',
+        name: 'Simulation & GNC Validation',
+        desc: 'Rigorous Gazebo Harmonic simulation harness validating state estimation, failover RTL, and multi-UAV formation stabilization.',
         icon: Shield
       }
     ],
     commits: [
       { hash: 'e6a8259', message: 'feat(sutra): 50Hz offboard setpoint streaming & MicroXRCE-DDS bridge', date: '2026-09-02' },
       { hash: 'aa48ccb', message: 'feat(gnc): autonomous V-formation flight & leader-follower consensus', date: '2026-08-28' },
-      { hash: '11c6306', message: 'test(sitl): 212/212 unit & Gazebo 8 integration tests passing', date: '2026-08-25' }
+      { hash: '11c6306', message: 'feat(sitl): multi-UAV Gazebo Harmonic simulation and offboard GNC', date: '2026-08-25' }
     ],
     snippets: [
       {

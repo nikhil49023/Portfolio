@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { BookOpen, Sparkles, Terminal, Cpu, Database, Layers, BarChart3, Navigation, Radio, Compass } from 'lucide-react';
+import { BookOpen, Sparkles, Terminal, Cpu, Database, Layers, Navigation, Radio, Compass } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import StatisticalBars from '@/components/ui/statistical-bars';
 import { TextScramble } from '@/components/ui/text-scramble';
 import { hapticAudio } from '@/lib/audio';
 
@@ -56,7 +55,7 @@ const matrixData: SkillCategory[] = [
     badgeText: 'text-sky-600 dark:text-sky-400',
     native: {
       skills: ['ROS 2 Humble/Jazzy', 'PX4 Autopilot (v1.14+)', 'MicroXRCE-DDS 50Hz', 'Gazebo Sim 8 Harmonic', 'EKF2 Odometry'],
-      desc: 'Building deterministic GNC node graphs in ROS 2, 50Hz offboard setpoints over MicroXRCE-DDS, and Gazebo 8 SITL swarms (212 passing tests).'
+      desc: 'Building deterministic GNC node graphs in ROS 2, 50Hz offboard setpoints over MicroXRCE-DDS, and Gazebo 8 SITL multi-drone simulations.'
     },
     augmented: {
       skills: ['Deep JSCC Neural Mesh', 'ByteTrack MOT', 'TensorRT YOLOv8 FP16', '3D GIS GCS (Mapbox)'],
@@ -133,7 +132,6 @@ export default function Skills() {
   const containerRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const matrixWrapperRef = useRef<HTMLDivElement>(null);
-  const benchmarkWrapperRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     if (!containerRef.current) return;
@@ -163,20 +161,6 @@ export default function Skills() {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: matrixWrapperRef.current,
-          start: 'top 80%',
-        },
-      });
-    }
-
-    // Benchmark section reveal
-    if (benchmarkWrapperRef.current) {
-      gsap.from(benchmarkWrapperRef.current, {
-        opacity: 0,
-        y: 35,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: benchmarkWrapperRef.current,
           start: 'top 80%',
         },
       });
@@ -358,30 +342,6 @@ export default function Skills() {
               </div>
             );
           })}
-        </div>
-
-        {/* ── Sub-Section: Production Performance Benchmarks (Integrated StatisticalBars) ── */}
-        <div ref={benchmarkWrapperRef} className="pt-6">
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-6">
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-[#06B6D4]" />
-              <h3 className="text-xs font-mono tracking-widest uppercase text-[var(--ink-primary)] font-bold flex items-center gap-2">
-                <span>04.1 //</span>
-                <span>System Architecture Benchmarks</span>
-              </h3>
-            </div>
-            <div className="font-mono text-[10px] text-[var(--ink-muted)] flex items-center gap-2">
-              <BarChart3 size={11} className="text-[#06B6D4]" />
-              <span>PRODUCTION TELEMETRY · 3 DIMENSIONS</span>
-            </div>
-          </div>
-
-          {/* Machined Bezel Container for Statistical Bars */}
-          <div className="machined-bezel rounded-[24px] overflow-hidden shadow-lg">
-            <div className="machined-inner p-4 sm:p-8 rounded-[22px] bg-[var(--bg-surface)]/80 backdrop-blur-xl">
-              <StatisticalBars />
-            </div>
-          </div>
         </div>
 
       </div>

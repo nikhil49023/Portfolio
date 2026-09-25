@@ -77,7 +77,7 @@ export function About() {
     { category: 'Mobile & On-Device AI', value: 'Flutter, Android Native, LiteRT, SQLite AES-256 Vaults', meta: '100% local execution & DPDP compliance' },
     { category: 'Backend & Systems', value: 'Python 3.11, FastAPI, POSIX Linux, Docker, PostgreSQL', meta: 'High-throughput pipelines & services' },
     { category: 'Simulation & Robotics', value: 'ROS 2 Humble, Gazebo Sim 8, MicroXRCE-DDS SITL', meta: 'Multi-agent simulation & testing' },
-    { category: 'Quality & Verification', value: 'Playwright, Automated CI Test Gates, ESLint, TypeScript', meta: 'Deterministic test passes before shipping' },
+    { category: 'Code Quality & Type Safety', value: 'Playwright E2E, TypeScript, ESLint, Git Branch Protection', meta: 'Strict type contracts & compile-time guarantees' },
   ];
 
   const milestones = [
@@ -93,13 +93,13 @@ export function About() {
     },
     {
       date: '2026',
-      title: 'Prithvi Lifeline Architecture',
-      desc: 'Architected edge AI disaster response triage mesh proposal for the iQOO National Hackathon with off-grid fallback protocols.',
+      title: 'MLP from Scratch (github.com/nikhil49023/MLP)',
+      desc: 'Implemented analytical gradient derivation, forward/backward computation graphs, and AdamW optimizer from first principles without external ML libraries.',
     },
     {
       date: '2026',
-      title: 'Project SUTRA Swarm Simulation',
-      desc: 'Multi-UAV autonomous search and rescue simulation in ROS 2 Humble and Gazebo Sim 8 Harmonic with verified automated test suites.',
+      title: 'Project SUTRA Swarm (github.com/nikhil49023/SUTRA)',
+      desc: 'Multi-UAV autonomous search and rescue simulation in ROS 2 Humble and Gazebo Sim 8 Harmonic with 50Hz MicroXRCE-DDS offboard control.',
     },
     {
       date: '2025',

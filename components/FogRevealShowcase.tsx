@@ -131,7 +131,7 @@ export function FogRevealShowcase() {
             <div className="lg:col-span-5 bg-[var(--bg-surface)] p-6 md:p-8 rounded-3xl border border-[var(--border-medium)] shadow-md text-left">
               <div className="flex items-center justify-between border-b border-[var(--border-subtle)] pb-4 mb-5">
                 <span className="font-mono text-xs font-bold text-[var(--ink-primary)] tracking-wider">
-                  PRITHVI &amp; VITT // EDGE METRICS
+                  SUTRA &amp; VITT // EDGE METRICS
                 </span>
                 <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-sky-500/15 text-sky-700 border border-sky-500/30">
                   ON-DEVICE VAULT

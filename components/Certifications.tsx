@@ -172,7 +172,7 @@ const CATEGORIES: { key: CredentialLevel; label: string; count: number }[] = [
 export const MILESTONE_ITEMS: CarouselItem[] = [
   {
     id: 'sutra-swarm',
-    stat: '212 / 212 Passing Tests',
+    stat: 'github.com/nikhil49023/SUTRA',
     quote: '50 Hz offboard setpoints over MicroXRCE-DDS to PX4 with zero telemetry jitter in Gazebo Sim 8 SITL.',
     author: 'Project SUTRA',
     role: 'Multi-UAV Autonomous Swarm',
@@ -182,7 +182,7 @@ export const MILESTONE_ITEMS: CarouselItem[] = [
   },
   {
     id: 'vitt-fintech',
-    stat: 'National Finalist · OpenAI x IndiaAI',
+    stat: 'github.com/nikhil49023/VITT',
     quote: '100% on-device AI financial tracking with local AES-256 SQLite vaults and zero cloud data leakage.',
     author: 'Vitt Mobile',
     role: 'Sovereign On-Device FinTech',
@@ -191,14 +191,14 @@ export const MILESTONE_ITEMS: CarouselItem[] = [
     alt: 'Vitt sovereign edge AI financial intelligence',
   },
   {
-    id: 'prithvi-lifeline',
-    stat: 'iQOO National Hackathon Master Proposal',
-    quote: 'Off-grid emergency triage mesh integrating Edge AI on iQOO silicon with satellite & LoRa fallback protocols.',
-    author: 'Prithvi Lifeline',
-    role: 'Edge AI Disaster Mesh Network',
-    defaultImage: '/projects/prithvi/sleek_page-1.png',
-    selectedImage: '/projects/prithvi/proposal_page-1.png',
-    alt: 'Prithvi Lifeline disaster resilience system',
+    id: 'saara-cli',
+    stat: 'github.com/nikhil49023/Saara',
+    quote: 'Autonomous knowledge distillation CLI with 2,600+ PyPI downloads and 38 stable production releases.',
+    author: 'saara-ai CLI',
+    role: 'Autonomous Dataset Distillation',
+    defaultImage: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop',
+    selectedImage: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop',
+    alt: 'saara-ai technical knowledge distillation engine',
   },
   {
     id: 'gcp-master',
@@ -346,14 +346,14 @@ export function Certifications() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
             <div>
               <span className="text-[10px] font-mono tracking-widest text-[#D71920] font-bold uppercase inline-block mb-1">
-                SYSTEM CAPSTONES // BENCHMARK LEDGER
+                SYSTEM CAPSTONES // MILESTONE LEDGER
               </span>
               <h3 className="text-xl sm:text-2xl font-bold font-display text-[var(--ink-primary)] tracking-tight">
                 Verified Engineering Milestones
               </h3>
             </div>
             <span className="text-[10px] font-mono text-[var(--ink-muted)] shrink-0 hidden sm:inline-block">
-              SPRING-PHYSICS INTERACTIVE DECK · 5 BENCHMARKS
+              SPRING-PHYSICS INTERACTIVE DECK · 5 CAPSTONES
             </span>
           </div>
 
