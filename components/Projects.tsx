@@ -1,73 +1,156 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
-import { Eye, ArrowUpRight, Sparkles } from 'lucide-react';
+import React, { useRef } from 'react';
+import Image from 'next/image';
+import { ArrowUpRight, Github, ExternalLink, Sparkles, Shield, Cpu, Layers, Terminal } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { PROJECTS, ProjectData } from '@/lib/projects';
-import { ProjectDialogCarousel } from '@/components/ui/project-dialog-carousel';
+import {
+  ProgressSlider,
+  SliderContent,
+  SliderWrapper,
+  SliderBtnGroup,
+  SliderBtn,
+} from '@/components/ui/progressive-carousel';
 import { TextScramble } from '@/components/ui/text-scramble';
 import { hapticAudio } from '@/lib/audio';
+import { cn } from '@/lib/utils';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP);
 }
 
-export default function Projects() {
-  const projectList: ProjectData[] = Object.values(PROJECTS);
-  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
-  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+interface ProjectSlideItem {
+  sliderName: string;
+  num: string;
+  title: string;
+  category: string;
+  tagline: string;
+  desc: string;
+  img: string;
+  alt: string;
+  tags: string[];
+  metrics: { label: string; value: string }[];
+  primaryLink: { label: string; href: string };
+  secondaryLink?: { label: string; href: string };
+}
 
+const FEATURED_PROJECTS: ProjectSlideItem[] = [
+  {
+    sliderName: 'vitt',
+    num: '01',
+    title: 'Vitt Mobile',
+    category: 'Sovereign On-Device FinTech',
+    tagline: '100% Local AI Financial Intelligence',
+    desc: 'National Finalist at the OpenAI Academy x IndiaAI Buildathon. Engineered as a sovereign edge AI financial companion in Flutter, featuring local AES-256 SQLite vaults, automatic SMS parsing, zero cloud telemetry, and strict DPDP Act 2023 compliance.',
+    img: '/projects/vitt/hero-inspected.png',
+    alt: 'Vitt mobile sovereign financial intelligence app',
+    tags: ['Flutter / Android', 'On-Device AI', 'AES-256 Vault', 'DPDP Compliant'],
+    metrics: [
+      { label: 'Cloud Egress', value: '0 Bytes' },
+      { label: 'Recognition', value: 'National Finalist' },
+      { label: 'Architecture', value: 'Local-First SQLite' },
+    ],
+    primaryLink: { label: 'Explore GitHub', href: 'https://github.com/nikhil49023' },
+    secondaryLink: { label: 'Feature Vault', href: '/projects/vitt' },
+  },
+  {
+    sliderName: 'saara',
+    num: '02',
+    title: 'saara-ai CLI',
+    category: 'Autonomous Knowledge Engine',
+    tagline: 'Autonomous Documentation Distiller',
+    desc: 'High-throughput Python package with 2,600+ PyPI downloads and 38 stable releases. Runs autonomous agentic loops to crawl technical documentation, filter low-entropy noise, and compile high-dimensional Parquet vector knowledge bases for agent retrieval.',
+    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop',
+    alt: 'saara-ai autonomous knowledge distillation CLI',
+    tags: ['Python 3.11', 'PyPI (2,600+)', 'Agent Loops', 'Parquet Embeddings'],
+    metrics: [
+      { label: 'PyPI Downloads', value: '2,600+' },
+      { label: 'Releases', value: '38 Stable' },
+      { label: 'Pipeline', value: 'Autonomous Crawler' },
+    ],
+    primaryLink: { label: 'PyPI Package', href: 'https://pypi.org/project/saara-ai/' },
+    secondaryLink: { label: 'Source Code', href: 'https://github.com/nikhil49023/saara-ai' },
+  },
+  {
+    sliderName: 'prithvi',
+    num: '03',
+    title: 'Prithvi Lifeline',
+    category: 'Edge AI Disaster Mesh Network',
+    tagline: 'Off-Grid Tactical Resilience Protocol',
+    desc: 'Master proposal and edge architecture engineered for the iQOO National Hackathon. Designed to deliver offline disaster medical triage, decentralized device-to-device mesh routing, and on-chip neural inference when commercial cellular infrastructure is down.',
+    img: '/projects/prithvi/sleek_page-1.png',
+    alt: 'Prithvi Lifeline disaster resilience proposal architecture',
+    tags: ['Edge AI Mesh', 'Mobile Silicon', 'Off-Grid Triage', 'LoRa Fallback'],
+    metrics: [
+      { label: 'Target Silicon', value: 'iQOO Edge SoC' },
+      { label: 'Mesh Protocol', value: 'Peer-to-Peer / LoRa' },
+      { label: 'Status', value: 'National Proposal' },
+    ],
+    primaryLink: { label: 'Inspect Architecture', href: 'https://github.com/nikhil49023' },
+  },
+  {
+    sliderName: 'sutra',
+    num: '04',
+    title: 'Project SUTRA',
+    category: 'Autonomous Swarm Coordination',
+    tagline: 'Multi-UAV Simulation & SITL Architecture',
+    desc: 'Autonomous search-and-rescue swarm simulation platform built with ROS 2 Humble and Gazebo Sim 8 Harmonic. Implements offboard setpoint streaming, multi-vehicle spatial partitioning, and verified automated testing suites.',
+    img: '/projects/sutra/sutra_swarm_hero.jpg',
+    alt: 'Project SUTRA multi-drone autonomous swarm simulation',
+    tags: ['ROS 2 Humble', 'Gazebo Sim 8', 'MicroXRCE-DDS', 'Automated Testing'],
+    metrics: [
+      { label: 'Simulator', value: 'Gazebo 8 SITL' },
+      { label: 'Middleware', value: 'ROS 2 Humble' },
+      { label: 'Test Suite', value: 'Automated CI Gates' },
+    ],
+    primaryLink: { label: 'Simulation Repo', href: 'https://github.com/nikhil49023' },
+  },
+];
+
+export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
-  const listRef = useRef<HTMLDivElement>(null);
+  const sliderContainerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     if (!sectionRef.current) return;
 
-    // Header reveal
-    gsap.fromTo(
-      headerRef.current,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: 'top 85%',
-        },
-      }
-    );
-
-    // Staggered row reveal
-    if (listRef.current) {
-      const rows = listRef.current.children;
+    if (headerRef.current) {
       gsap.fromTo(
-        rows,
-        { opacity: 0, x: -30 },
+        headerRef.current,
+        { opacity: 0, y: 28 },
         {
           opacity: 1,
-          x: 0,
-          duration: 0.7,
-          stagger: 0.08,
+          y: 0,
+          duration: 0.8,
           ease: 'power3.out',
           scrollTrigger: {
-            trigger: listRef.current,
+            trigger: headerRef.current,
+            start: 'top 85%',
+          },
+        }
+      );
+    }
+
+    if (sliderContainerRef.current) {
+      gsap.fromTo(
+        sliderContainerRef.current,
+        { opacity: 0, y: 36 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sliderContainerRef.current,
             start: 'top 85%',
           },
         }
       );
     }
   }, { scope: sectionRef });
-
-  const handleOpenDialog = (proj: ProjectData) => {
-    hapticAudio.playTactileClick();
-    setSelectedProject(proj);
-    setIsDialogOpen(true);
-  };
 
   return (
     <section
@@ -76,149 +159,160 @@ export default function Projects() {
       className="section-premium border-t border-[var(--border-subtle)] bg-[var(--bg-void)] relative overflow-hidden select-none py-16 sm:py-20"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        
         {/* Section Header */}
         <div
           ref={headerRef}
-          className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-8 pb-4 border-b border-[var(--border-subtle)]"
+          className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-10 pb-4 border-b border-[var(--border-subtle)]"
         >
           <div className="flex items-center gap-3">
             <div className="w-2 h-2 bg-[#D71920] shadow-[0_0_8px_#D71920]" />
             <h2 className="text-xs font-mono tracking-widest uppercase text-[var(--ink-primary)] font-bold flex items-center gap-2">
               <span className="text-[#D71920]">02 //</span>
-              <TextScramble hoverTrigger duration={0.6}>Production Systems Index</TextScramble>
+              <TextScramble hoverTrigger duration={0.6}>Production Systems &amp; Software</TextScramble>
             </h2>
           </div>
           <div className="font-mono text-[10px] text-[var(--ink-muted)] flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
-            <span>INTERACTIVE HARDWARE LEDGER // CLICK TO INSPECT</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span>PROGRESSIVE SHOWCASE // 4 PRODUCTION SYSTEMS</span>
           </div>
         </div>
 
-        {/* ── AUTONOMOUS SYSTEMS & HARDWARE LEDGER (MACHINED DOUBLE-BEZEL) ── */}
-        <div className="machined-bezel">
-          <div
-            ref={listRef}
-            className="machined-inner divide-y divide-[var(--border-subtle)] dark:divide-white/5 overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+        {/* ── PROGRESS SLIDER (User-Specified Component) ── */}
+        <div ref={sliderContainerRef} className="w-full">
+          <ProgressSlider
+            vertical={false}
+            activeSlider="vitt"
+            duration={5500}
+            fastDuration={350}
+            className="flex flex-col gap-6"
           >
-            {projectList.map((proj, idx) => {
-              const Icon = proj.icon;
-              const num = String(idx + 1).padStart(2, '0');
-
-              return (
-                <div
-                  key={proj.slug}
-                  onClick={() => handleOpenDialog(proj)}
-                  className="group flex flex-col lg:flex-row lg:items-center justify-between p-5 sm:p-6 hover:bg-[var(--bg-raised)]/70 dark:hover:bg-white/[0.03] transition-all duration-200 gap-4 text-left cursor-pointer active:scale-[0.99]"
-                >
-                  {/* Left: Index, Icon, Name & Type */}
-                  <div className="flex items-start sm:items-center gap-4 lg:w-1/3">
-                    <span className="font-mono text-sm font-bold text-[#D71920]">
-                      [{num}]
-                    </span>
+            {/* Slide Content Cards */}
+            <SliderContent className="w-full">
+              {FEATURED_PROJECTS.map((project) => (
+                <SliderWrapper key={project.sliderName} value={project.sliderName}>
+                  <div className="w-full bg-white rounded-3xl border border-[var(--border-medium)] p-6 sm:p-8 lg:p-10 shadow-[0_10px_35px_rgba(15,23,42,0.06),0_4px_12px_rgba(15,23,42,0.03)] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     
-                    <div
-                      className="w-11 h-11 rounded-[14px] flex items-center justify-center border border-black/5 dark:border-white/10 bg-[var(--bg-void)] shrink-0 transition-transform duration-200 group-hover:scale-110 shadow-inner"
-                      style={{ color: proj.accent || '#D71920' }}
-                    >
-                      <Icon size={18} />
-                    </div>
-
-                    <div>
-                      <h4 className="font-display font-bold text-base sm:text-lg text-[var(--ink-primary)] group-hover:text-[#D71920] transition-colors flex items-center gap-2 flex-wrap">
-                        <span>{proj.name}</span>
-                        {proj.badge && (
-                          <span className="text-[9px] font-mono font-bold px-2 py-0.5 border border-[var(--border-subtle)] dark:border-white/10 bg-[var(--bg-void)] text-[var(--ink-primary)] rounded-full">
-                            {proj.badge}
+                    {/* Left Details Column */}
+                    <div className="lg:col-span-6 flex flex-col justify-between h-full space-y-6 text-left">
+                      <div>
+                        {/* Meta Tags */}
+                        <div className="flex flex-wrap items-center gap-2 mb-3">
+                          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#D71920] px-2.5 py-0.5 rounded-full bg-[#D71920]/10 border border-[#D71920]/20">
+                            {project.category}
                           </span>
-                        )}
-                        {proj.status && (
-                          <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-                            {proj.status}
+                          <span className="text-[10px] font-mono text-[var(--ink-muted)]">
+                            SYSTEM {project.num}
                           </span>
-                        )}
-                      </h4>
-                      <p className="text-[11px] font-mono text-[var(--ink-muted)]">
-                        {proj.type}
-                      </p>
-                    </div>
-                  </div>
+                        </div>
 
-                  {/* Center: Architecture & Stack */}
-                  <div className="lg:w-5/12 space-y-1.5">
-                    <div className="text-xs font-body text-[var(--ink-secondary)] line-clamp-1">
-                      {proj.shortDesc || proj.tagline}
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {proj.stack.slice(0, 4).map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-[9.5px] font-mono px-2.5 py-0.5 rounded-full border border-[var(--border-subtle)] dark:border-white/5 bg-[var(--bg-void)] text-[var(--ink-muted)]"
+                        {/* Title & Tagline */}
+                        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-[var(--ink-primary)] tracking-tight mb-2">
+                          {project.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm font-mono text-[var(--ink-muted)] font-medium mb-4">
+                          {project.tagline}
+                        </p>
+
+                        {/* Description */}
+                        <p className="text-xs sm:text-sm leading-relaxed text-[var(--ink-secondary)] font-body">
+                          {project.desc}
+                        </p>
+                      </div>
+
+                      {/* Tech Tags */}
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[10px] font-mono px-2.5 py-1 rounded-md bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--ink-secondary)] font-medium"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Metrics Ledger */}
+                      <div className="grid grid-cols-3 gap-3 pt-4 border-t border-[var(--border-subtle)]">
+                        {project.metrics.map((m) => (
+                          <div key={m.label} className="flex flex-col">
+                            <span className="text-[9px] font-mono uppercase tracking-wider text-[var(--ink-muted)]">
+                              {m.label}
+                            </span>
+                            <span className="text-xs sm:text-sm font-mono font-bold text-[var(--ink-primary)] mt-0.5">
+                              {m.value}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Action Links */}
+                      <div className="flex flex-wrap items-center gap-3 pt-2">
+                        <a
+                          href={project.primaryLink.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => hapticAudio.playTactileClick()}
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-bold uppercase tracking-wider bg-[var(--ink-primary)] text-white hover:bg-[#D71920] transition-colors shadow-sm cursor-pointer"
                         >
-                          {tech}
-                        </span>
-                      ))}
+                          <span>{project.primaryLink.label}</span>
+                          <ArrowUpRight size={13} />
+                        </a>
+                        {project.secondaryLink && (
+                          <a
+                            href={project.secondaryLink.href}
+                            onClick={() => hapticAudio.playTactileClick()}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-bold uppercase tracking-wider bg-[var(--bg-surface)] text-[var(--ink-secondary)] hover:text-[var(--ink-primary)] border border-[var(--border-subtle)] hover:border-[var(--ink-primary)] transition-colors cursor-pointer"
+                          >
+                            <span>{project.secondaryLink.label}</span>
+                          </a>
+                        )}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Right: Date, Status & Interactive Dialog Trigger */}
-                  <div className="lg:w-1/4 flex items-center justify-between lg:justify-end gap-3 pt-2 lg:pt-0 border-t lg:border-t-0 border-[var(--border-subtle)] dark:border-white/5">
-                    {proj.stats && proj.stats[0] && (
-                      <span className="hidden xl:inline-flex items-center text-[10px] font-mono px-2 py-0.5 rounded-full bg-[var(--bg-void)] border border-[var(--border-subtle)] text-[var(--ink-muted)]">
-                        {proj.stats[0].label}: <strong className="text-[var(--ink-primary)] ml-1">{proj.stats[0].value}</strong>
-                      </span>
-                    )}
-                    <span className="text-[10px] font-mono text-[var(--ink-muted)] shrink-0">
-                      {proj.date}
+                    {/* Right Media Preview Column */}
+                    <div className="lg:col-span-6 h-[260px] sm:h-[320px] lg:h-[380px] relative rounded-2xl overflow-hidden bg-slate-50 border border-[var(--border-subtle)] shadow-inner">
+                      <Image
+                        src={project.img}
+                        alt={project.alt}
+                        fill
+                        unoptimized
+                        className="object-cover size-full transition-transform duration-500 hover:scale-105"
+                      />
+                    </div>
+
+                  </div>
+                </SliderWrapper>
+              ))}
+            </SliderContent>
+
+            {/* Slider Bottom Tabs with Real-Time Progress Bar */}
+            <SliderBtnGroup className="w-full grid grid-cols-2 md:grid-cols-4 gap-3">
+              {FEATURED_PROJECTS.map((item) => (
+                <SliderBtn
+                  key={item.sliderName}
+                  value={item.sliderName}
+                  className="p-3.5 sm:p-4 text-left rounded-2xl bg-white border border-[var(--border-medium)] shadow-xs transition-all cursor-pointer relative overflow-hidden group"
+                  progressBarClass="bg-[#D71920] h-[3px] bottom-0 top-auto rounded-full"
+                >
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="text-[10px] font-mono font-bold text-[#D71920]">
+                      {item.num} //
                     </span>
-                    
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleOpenDialog(proj);
-                      }}
-                      className="group/btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--border-subtle)] dark:border-white/10 hover:border-[#D71920] bg-[var(--bg-void)] text-xs font-mono font-bold text-[var(--ink-primary)] hover:text-[#D71920] transition-all duration-200 cursor-pointer active:scale-[0.95] shrink-0"
-                    >
-                      <Eye size={12} className="text-[#D71920]" />
-                      <span>Inspect</span>
-                      <span className="w-5 h-5 rounded-full bg-white/10 dark:bg-white/10 flex items-center justify-center transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5">
-                        <ArrowUpRight size={10} />
-                      </span>
-                    </button>
+                    <span className="text-[9px] font-mono text-[var(--ink-muted)] truncate">
+                      {item.category.split(' ')[0]}
+                    </span>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                  <h4 className="text-xs sm:text-sm font-bold font-display text-[var(--ink-primary)] group-hover:text-[#D71920] transition-colors truncate">
+                    {item.title}
+                  </h4>
+                  <p className="text-[10.5px] font-body text-[var(--ink-muted)] line-clamp-1 mt-0.5">
+                    {item.tagline}
+                  </p>
+                </SliderBtn>
+              ))}
+            </SliderBtnGroup>
+          </ProgressSlider>
         </div>
-
-        {/* ── ARCHITECTURAL POINTER TO SYSTEMS PROVING GROUNDS ── */}
-        <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-[18px] border border-[var(--border-subtle)] bg-[var(--bg-surface)]/50 backdrop-blur-sm text-xs font-mono">
-          <div className="flex items-center gap-2.5 text-[var(--ink-secondary)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
-            <span className="text-[11px]">
-              BESPOKE INSTRUMENTATION (SAHI HUD &amp; DISTILLATION SIEVE) CONSOLIDATED
-            </span>
-          </div>
-          <a
-            href="#proving-grounds"
-            onClick={() => hapticAudio.playTactileClick()}
-            className="inline-flex items-center gap-1.5 text-[var(--ink-primary)] hover:text-[#D71920] transition-colors font-bold group shrink-0"
-          >
-            <span>Proceed to Systems Proving Grounds</span>
-            <ArrowUpRight size={12} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-        </div>
-
-        {/* Project Dialog Carousel Modal */}
-        {selectedProject && (
-          <ProjectDialogCarousel
-            project={selectedProject}
-            isOpen={isDialogOpen}
-            onClose={() => setIsDialogOpen(false)}
-          />
-        )}
-
       </div>
     </section>
   );
