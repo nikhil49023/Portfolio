@@ -24,44 +24,44 @@ const socialLinks = [
 
 const proofMetrics = [
   {
-    label: 'Loop Frequency',
+    label: 'Control Loop',
     value: '50 Hz DDS',
-    subtext: 'PX4 Offboard Control',
+    subtext: 'Zero-Jitter PX4 Swarms',
     icon: Radio,
-    accentClass: 'text-cyan-400',
+    accentClass: 'text-cyan-500',
   },
   {
-    label: 'Edge Inference',
+    label: 'Edge Vision',
     value: '38.4 FPS',
     subtext: 'TensorRT INT8 on Jetson',
     icon: Cpu,
-    accentClass: 'text-emerald-400',
+    accentClass: 'text-emerald-500',
   },
   {
-    label: 'Autonomous CLI',
+    label: 'CLI Tooling',
     value: '2,600+',
-    subtext: 'saara-ai / 38 Releases',
+    subtext: 'saara-ai on PyPI',
     icon: Package,
-    accentClass: 'text-amber-400',
+    accentClass: 'text-amber-500',
   },
   {
-    label: 'Aerial Dataset',
-    value: '6,327',
-    subtext: 'Annotated Drone Frames',
+    label: 'Vision Dataset',
+    value: '6,300+',
+    subtext: 'Annotated Aerial Frames',
     icon: Brain,
-    accentClass: 'text-purple-400',
+    accentClass: 'text-purple-500',
   },
   {
     label: 'Cloud Egress',
     value: '0 Bytes',
-    subtext: '100% On-Device Vault',
+    subtext: '100% Local Silicon Vault',
     icon: ShieldCheck,
     accentClass: 'text-emerald-500',
   },
   {
-    label: 'Automated Tests',
+    label: 'Automated Gates',
     value: '212 / 212',
-    subtext: 'Deterministic Passing Gates',
+    subtext: 'Zero-Failure Passing Tests',
     icon: Check,
     accentClass: 'text-[#D71920]',
   },
@@ -248,20 +248,20 @@ export default function Hero() {
             <div ref={badgeRef} className="mb-4">
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#D71920] font-bold px-3 py-1 rounded-full border border-[#D71920]/20 bg-[#D71920]/5 inline-flex items-center gap-1.5">
                 <span className="w-1 h-1 rounded-full bg-[#D71920]" />
-                DETERMINISTIC AUTONOMY &amp; SOVEREIGN EDGE AI
+                DETERMINISTIC AUTONOMY &amp; SOVEREIGN SILICON
               </span>
             </div>
 
             {/* Authoritative Display Name with Masked Staggered Lines */}
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-[var(--ink-primary)] mb-6 font-display uppercase leading-[0.92]">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[var(--ink-primary)] mb-5 font-display uppercase leading-[0.96]">
               <span className="block overflow-hidden pb-1">
                 <span ref={titleLine1Ref} className="inline-block transform-gpu">
-                  <TextScramble hoverTrigger duration={0.8}>Kilani Sai</TextScramble>
+                  <TextScramble hoverTrigger duration={0.8}>Autonomous Swarms.</TextScramble>
                 </span>
               </span>
               <span className="block overflow-hidden pb-1">
-                <span ref={titleLine2Ref} className="inline-block transform-gpu">
-                  <TextScramble hoverTrigger duration={0.8}>Nikhil</TextScramble>
+                <span ref={titleLine2Ref} className="inline-block transform-gpu text-[#D71920]">
+                  <TextScramble hoverTrigger duration={0.8}>Sovereign Edge AI.</TextScramble>
                 </span>
               </span>
             </h1>
@@ -269,9 +269,9 @@ export default function Hero() {
             {/* Editorial Thesis */}
             <p
               ref={thesisRef}
-              className="text-lg sm:text-xl leading-relaxed text-[var(--ink-secondary)] mb-8 max-w-2xl font-body"
+              className="text-base sm:text-lg leading-relaxed text-[var(--ink-secondary)] mb-8 max-w-2xl font-body"
             >
-              Engineering autonomous systems that operate without cloud dependencies, API latency, or safety nets. Real-time multi-UAV swarm robotics at 50 Hz, sub-watt edge ML on bare silicon, and sovereign architectures compliant with DPDP Act 2023.
+              I build drone swarms that fly when GPS dies, and edge AI that runs 100% on local silicon. Zero cloud lag. Zero data leakage. 50Hz control loops, deterministic C++, and 212/212 verified passing tests.
             </p>
 
             {/* Action Group */}
@@ -356,37 +356,37 @@ export default function Hero() {
                       <span className="text-cyan-500 text-[9px] font-bold">50Hz DDS</span>
                     </div>
                     <div className="text-[var(--ink-primary)] font-medium">
-                      PX4 Autopilot v1.14+, ROS 2 Humble/Jazzy, MicroXRCE-DDS Offboard Control, Gazebo Sim 8 SITL
+                      PX4 Autopilot v1.14+, ROS 2 Humble/Jazzy, MicroXRCE-DDS 50Hz Offboard, Gazebo Sim 8 SITL (212 Passing Tests)
                     </div>
                   </div>
 
                   <div className="pt-3 border-t border-[var(--border-subtle)] dark:border-white/5">
                     <div className="text-[var(--ink-muted)] uppercase text-[10px] tracking-widest mb-1 flex items-center justify-between">
-                      <span>02 // EMBEDDED PHYSICAL AI</span>
-                      <span className="text-emerald-500 text-[9px] font-bold">38.4 FPS</span>
+                      <span>02 // SOVEREIGN EDGE AI</span>
+                      <span className="text-emerald-500 text-[9px] font-bold">0 BYTES EGRESS</span>
                     </div>
                     <div className="text-[var(--ink-primary)] font-medium">
-                      NVIDIA Jetson Orin Nano, TensorRT INT8 Quantization, CUDA Graph Acceleration, ByteTrack MOT
+                      LiteRT &amp; Gemma 4 on local silicon, AES-256 SQLite vaults, DPDP Act 2023 compliant
                     </div>
                   </div>
 
                   <div className="pt-3 border-t border-[var(--border-subtle)] dark:border-white/5">
                     <div className="text-[var(--ink-muted)] uppercase text-[10px] tracking-widest mb-1 flex items-center justify-between">
-                      <span>03 // SOVEREIGN LOCAL SLMs</span>
-                      <span className="text-[#D71920] text-[9px] font-bold">ZERO-EGRESS</span>
+                      <span>03 // REAL-TIME VISION</span>
+                      <span className="text-purple-500 text-[9px] font-bold">38.4 FPS</span>
                     </div>
                     <div className="text-[var(--ink-primary)] font-medium">
-                      Vitt (LiteRT + Gemma 4), AES-256 Encrypted SQLite Vault, DPDP Act 2023 Compliant Offline Inference
+                      NVIDIA Jetson Orin Nano, TensorRT INT8, ByteTrack MOT, SAHI dynamic tiling
                     </div>
                   </div>
 
                   <div className="pt-3 border-t border-[var(--border-subtle)] dark:border-white/5">
                     <div className="text-[var(--ink-muted)] uppercase text-[10px] tracking-widest mb-1 flex items-center justify-between">
                       <span>04 // DATASET DISTILLATION</span>
-                      <span className="text-amber-500 text-[9px] font-bold">2.6K+ PYPI</span>
+                      <span className="text-amber-500 text-[9px] font-bold">2,600+ PYPI</span>
                     </div>
                     <div className="text-[var(--ink-primary)] font-medium">
-                      saara-ai v2.0 CLI (38 Releases on PyPI), Bounded Agentic Loops, Automated Parquet Corpora
+                      saara-ai CLI (38 releases on PyPI), bounded agent loops, automated Parquet corpora
                     </div>
                   </div>
                 </div>

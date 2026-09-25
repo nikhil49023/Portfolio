@@ -162,10 +162,10 @@ export default function Contact() {
           <div ref={leftColRef} className="lg:col-span-5 space-y-6">
             <div>
               <h3 className="text-2xl sm:text-3xl font-bold text-[var(--ink-primary)] uppercase mb-3 tracking-tight font-display">
-                Let&apos;s build something real.
+                Have a High-Stakes Project? Let&apos;s Talk.
               </h3>
               <p className="text-xs sm:text-sm leading-relaxed text-[var(--ink-secondary)] font-body">
-                I am always open to collaborate on open-source packages, on-device machine learning architectures, and edge systems engineering. Drop me a line directly or connect on registries.
+                Open for high-impact roles in Autonomous Systems, Robotics, Edge AI, and Fullstack Engineering. No corporate fluff — just clean architecture and deterministic code that ships.
               </p>
             </div>
 

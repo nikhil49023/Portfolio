@@ -40,11 +40,11 @@ const matrixData: SkillCategory[] = [
     badgeText: 'text-amber-500 dark:text-amber-400',
     native: {
       skills: ['C++17', 'Python 3.11', 'Linux Syscalls', 'Bash / Zsh', 'POSIX Threads'],
-      desc: 'Hand-engineering core algorithms, memory budgets, lock-free ring buffers, file descriptor operations, and real-time POSIX timers on Linux.'
+      desc: 'Writing high-performance algorithms, memory budgets, lock-free ring buffers, and real-time POSIX timers on Linux.'
     },
     augmented: {
       skills: ['TypeScript', 'Rust FFI', 'Dart 3.5', 'Bun'],
-      desc: 'Rapid scaffolding of interface definitions, type-safe API boundaries, and runtime interop bridges using AI agent loops.'
+      desc: 'Using AI agent swarms to scaffold type-safe TypeScript interfaces, Rust FFI bridges, and API contracts at 10x velocity.'
     }
   },
   {
@@ -56,11 +56,11 @@ const matrixData: SkillCategory[] = [
     badgeText: 'text-sky-600 dark:text-sky-400',
     native: {
       skills: ['ROS 2 Humble/Jazzy', 'PX4 Autopilot (v1.14+)', 'MicroXRCE-DDS 50Hz', 'Gazebo Sim 8 Harmonic', 'EKF2 Odometry'],
-      desc: 'Architecting deterministic guidance, navigation, and control (GNC) node graphs in C++17, lock-free ring buffers for 50Hz offboard setpoints, and multi-vehicle SITL swarm simulations.'
+      desc: 'Building deterministic GNC node graphs in ROS 2, 50Hz offboard setpoints over MicroXRCE-DDS, and Gazebo 8 SITL swarms (212 passing tests).'
     },
     augmented: {
       skills: ['Deep JSCC Neural Mesh', 'ByteTrack MOT', 'TensorRT YOLOv8 FP16', '3D GIS GCS (Mapbox)'],
-      desc: 'Orchestrating robust neural channel coding across RF-jammed channels (-5 dB SNR), real-time aerial target tracking, and 3D geospatial telemetry consoles.'
+      desc: 'Deploying TensorRT YOLOv8, ByteTrack MOT, and Deep JSCC neural wireless meshes over RF-jammed channels.'
     }
   },
   {
@@ -72,11 +72,11 @@ const matrixData: SkillCategory[] = [
     badgeText: 'text-cyan-600 dark:text-cyan-400',
     native: {
       skills: ['SQL (Postgres / SQLite)', 'B-Tree Indexing', '3NF Schemas', 'AES-256 Vault'],
-      desc: 'Designing strict relational schemas, complex joins, indexing strategies, and hardware-encrypted local databases compliant with DPDP Act 2023.'
+      desc: 'Engineering strict 3NF schemas, multi-table joins, B-Tree indexes, and local AES-256 encrypted SQLite vaults.'
     },
     augmented: {
       skills: ['Vector MBTiles', 'ChromaDB', 'Prisma ORM', 'Supabase'],
-      desc: 'Automating database migrations, synthesizing test seed fixtures, and setting up hybrid relational/vector search layers.'
+      desc: 'Automating schema migrations, synthesizing test seed datasets, and orchestrating hybrid vector/relational search.'
     }
   },
   {
@@ -88,11 +88,11 @@ const matrixData: SkillCategory[] = [
     badgeText: 'text-emerald-600 dark:text-emerald-400',
     native: {
       skills: ['YOLOv11-Nano', 'SAHI Tiling', 'PyTorch 2.5', 'INT8 TFLite', 'Google Coral TPU'],
-      desc: 'Curating aerial vision datasets, architecting SAHI sliding-window inference, and quantizing weights to INT8 for sub-watt micro-TPU execution.'
+      desc: 'Curating aerial vision datasets, SAHI sliding-window inference, and INT8 quantization for sub-watt micro-TPU chips.'
     },
     augmented: {
       skills: ['LiteRT (Gemma 4)', 'ONNX Runtime', 'Hugging Face Hub'],
-      desc: 'Orchestrating system-level on-device language models via LiteRT and packaging automated CI/CD model card pipelines.'
+      desc: 'Deploying local on-device SLMs with LiteRT (Gemma 4) and ONNX Runtime with zero cloud egress.'
     }
   },
   {
@@ -104,7 +104,7 @@ const matrixData: SkillCategory[] = [
     badgeText: 'text-purple-600 dark:text-purple-400',
     native: {
       skills: ['Docker Stacks', 'Local Firecrawl', 'Git Trunk Flow', 'Linux Daemons'],
-      desc: 'Deploying self-hosted container stacks, configuring local documentation scrapers, and structuring robust release pipelines.'
+      desc: 'Self-hosting Docker stacks, background Linux daemons, trunk-based Git workflows, and deterministic CI/CD gates.'
     },
     augmented: {
       skills: ['Model Context Protocol (MCP)', 'google-adk', 'vLLM Routing', 'crawl4ai'],

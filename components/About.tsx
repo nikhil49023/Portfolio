@@ -41,33 +41,33 @@ export function About() {
   const tenets = [
     {
       num: '01',
-      title: 'Zero-Cloud Egress & Sovereign Privacy',
-      tagline: '100% On-Device Neural Execution',
+      title: 'Your Data Never Leaves the Chip',
+      tagline: 'Zero Cloud Egress. 100% Private.',
       icon: Shield,
       accentColor: '#10B981', // Emerald
       badgeClass: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
-      desc: 'Architecting local-first intelligence where sensitive data never leaves physical silicon. Powered by LiteRT, Gemma 4, and AES-256 SQLite vaults compliant with the DPDP Act 2023.',
-      badge: 'LiteRT / Gemma 4',
+      desc: 'Cloud AI leaks user data and adds network lag. I run Gemma 4 and computer vision directly on physical chips with local AES-256 encrypted vaults. Fast, private, DPDP Act 2023 compliant.',
+      badge: 'Zero-Egress Silicon',
     },
     {
       num: '02',
-      title: 'Real-Time Deterministic Autonomy',
-      tagline: '50 Hz Control Loops Over Jitter',
+      title: '50Hz Autonomy or the Drone Crashes',
+      tagline: 'Zero-Jitter Control Loops.',
       icon: Navigation,
       accentColor: '#06B6D4', // Cyan
       badgeClass: 'text-cyan-500 bg-cyan-500/10 border-cyan-500/20',
-      desc: 'Engineering multi-UAV autonomous swarm flight stacks using ROS 2, MicroXRCE-DDS, and PX4 Autopilot. Offboard trajectory setpoints stream at 50 Hz with 212/212 unit, integration, and SITL tests passing deterministically.',
+      desc: 'When GPS dies in disaster zones, drones cannot wait for cloud APIs. I engineer real-time ROS 2 and MicroXRCE-DDS stacks streaming offboard commands to PX4 at 50 Hz. 212/212 tests pass deterministically.',
       badge: '50 Hz / 212 Tests',
     },
     {
       num: '03',
-      title: 'Deterministic Dataset Distillation',
-      tagline: 'High-Entropy Synthesis Beats Ephemeral Prompts',
+      title: 'Curated Data is the True Moat',
+      tagline: 'High-Entropy Datasets Beat Prompting.',
       icon: Layers,
       accentColor: '#F59E0B', // Amber
       badgeClass: 'text-amber-500 bg-amber-500/10 border-amber-500/20',
-      desc: 'Transforming unstructured technical documentation into structured Parquet and Hugging Face corpora via bounded autonomous research agent loops (saara-ai CLI, 38 releases on PyPI).',
-      badge: '38 Releases / 2.6k+ DL',
+      desc: 'Model weights are commodities; verifiable domain datasets are the real moat. I built saara-ai (38 releases, 2,600+ users) to transform raw documentation into mathematical training corpora automatically.',
+      badge: '2,600+ Tool Users',
     },
   ];
 
@@ -212,11 +212,11 @@ export function About() {
             </div>
 
             <p className="text-sm leading-relaxed text-[var(--ink-secondary)] font-body">
-              Autonomy is binary: at 50 Hz, either the flight controller calculates the correct trajectory setpoint or the vehicle drops. No cloud API can rescue a failing control loop with 200 milliseconds of network latency.
+              Autonomy is binary: at 50 Hz, the control loop either converges or the drone crashes. Cloud servers cannot save a drone with 200 milliseconds of network lag.
             </p>
 
             <p className="text-sm leading-relaxed text-[var(--ink-secondary)] font-body">
-              I bridge low-level systems programming (POSIX syscalls, memory budgets, lock-free ring buffers, C++17) with cutting-edge physical AI and multi-agent systems. I engineer sovereign software stacks where models execute <strong className="text-[var(--ink-primary)] font-bold">directly on physical silicon</strong>—eliminating API taxes, guaranteeing zero cloud egress, and surviving in communications-denied environments.
+              I bridge low-level systems engineering (C++17, memory budgets, lock-free queues) with on-device physical AI. Everything runs directly on bare silicon — zero cloud bills, zero data leaks, and zero downtime in GPS-denied environments.
             </p>
 
             {/* Micro-Telemetry Badge */}
