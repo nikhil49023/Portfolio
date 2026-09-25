@@ -297,6 +297,15 @@ export function FogReveal({
       const container = containerRef.current;
       if (!container) return;
 
+      if (plateBeforeRef.current) {
+        plateBeforeRef.current.style.opacity = '1';
+        plateBeforeRef.current.style.filter = 'blur(0px)';
+      }
+      if (plateAfterRef.current) {
+        plateAfterRef.current.style.opacity = '0';
+        plateAfterRef.current.style.filter = 'blur(0px)';
+      }
+
       const trigger = ScrollTrigger.create({
         id: 'fog-trigger',
         trigger: container,
@@ -378,6 +387,7 @@ export function FogReveal({
         {/* Plate 1: Initial Scene */}
         <div
           ref={plateBeforeRef}
+          style={{ opacity: 1 }}
           className={`absolute inset-0 transition-opacity duration-150 flex items-center justify-center p-6 md:p-12 ${
             activePlate === 'before' ? 'pointer-events-auto' : 'pointer-events-none'
           }`}
@@ -388,6 +398,7 @@ export function FogReveal({
         {/* Plate 2: Revealed Scene */}
         <div
           ref={plateAfterRef}
+          style={{ opacity: 0 }}
           className={`absolute inset-0 transition-opacity duration-150 flex items-center justify-center p-6 md:p-12 ${
             activePlate === 'after' ? 'pointer-events-auto' : 'pointer-events-none'
           }`}

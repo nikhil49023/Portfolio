@@ -29,6 +29,15 @@ const config: Config = {
           foreground: "var(--bg-void)",
         },
         "primary-foreground": "var(--bg-void)",
+        card: {
+          DEFAULT: "var(--bg-surface)",
+          foreground: "var(--ink-primary)",
+        },
+        secondary: {
+          DEFAULT: "var(--bg-raised)",
+          foreground: "var(--ink-secondary)",
+        },
+        "secondary-foreground": "var(--ink-secondary)",
         muted: {
           DEFAULT: "var(--bg-surface)",
           foreground: "var(--ink-muted)",

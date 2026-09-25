@@ -19,6 +19,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn } from '@/lib/utils';
 import { TextScramble } from '@/components/ui/text-scramble';
 import { hapticAudio } from '@/lib/audio';
+import { CalendlyCarousel, type CarouselItem } from '@/components/ui/connected-carousel';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -168,10 +169,64 @@ const CATEGORIES: { key: CredentialLevel; label: string; count: number }[] = [
   { key: 'beginner', label: 'Foundational', count: CERTS.filter((c) => c.level === 'beginner').length },
 ];
 
+export const MILESTONE_ITEMS: CarouselItem[] = [
+  {
+    id: 'sutra-swarm',
+    stat: '212 / 212 Passing Tests',
+    quote: '50 Hz offboard setpoints over MicroXRCE-DDS to PX4 with zero telemetry jitter in Gazebo Sim 8 SITL.',
+    author: 'Project SUTRA',
+    role: 'Multi-UAV Autonomous Swarm',
+    defaultImage: '/projects/sutra/sutra_swarm_hero.jpg',
+    selectedImage: '/projects/sutra/sutra_gcs_dashboard_preview.jpg',
+    alt: 'Project SUTRA autonomous drone swarm simulation',
+  },
+  {
+    id: 'vitt-fintech',
+    stat: 'National Finalist · OpenAI x IndiaAI',
+    quote: '100% on-device AI financial tracking with local AES-256 SQLite vaults and zero cloud data leakage.',
+    author: 'Vitt Mobile',
+    role: 'Sovereign On-Device FinTech',
+    defaultImage: '/projects/vitt/hero-inspected.png',
+    selectedImage: '/projects/vitt/feature-vault.png',
+    alt: 'Vitt sovereign edge AI financial intelligence',
+  },
+  {
+    id: 'prithvi-lifeline',
+    stat: 'iQOO National Hackathon Master Proposal',
+    quote: 'Off-grid emergency triage mesh integrating Edge AI on iQOO silicon with satellite & LoRa fallback protocols.',
+    author: 'Prithvi Lifeline',
+    role: 'Edge AI Disaster Mesh Network',
+    defaultImage: '/projects/prithvi/sleek_page-1.png',
+    selectedImage: '/projects/prithvi/proposal_page-1.png',
+    alt: 'Prithvi Lifeline disaster resilience system',
+  },
+  {
+    id: 'gcp-master',
+    stat: 'Enterprise Master Verified Credential',
+    quote: 'Production validation across Vertex AI Studio, autonomous agent loops, Cloud Run, and enterprise RAG pipelines.',
+    author: 'Google Cloud',
+    role: 'Gen AI & Production Agents',
+    defaultImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop',
+    selectedImage: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop',
+    alt: 'Google Cloud Enterprise AI Architecture',
+  },
+  {
+    id: 'aerial-eye',
+    stat: '38.4 FPS on NVIDIA Jetson Orin',
+    quote: 'Real-time multi-object tracking over 6,300+ aerial vision frames with SAHI slicing and TensorRT INT8 quantization.',
+    author: 'AerialEye Vision',
+    role: 'Edge MOT & TensorRT Pipeline',
+    defaultImage: '/projects/sutra/sutra_gnc_flight_concept.jpg',
+    selectedImage: '/projects/sutra/sutra_swarm_comms_concept.jpg',
+    alt: 'AerialEye Real-time Edge Perception',
+  },
+];
+
 export function Certifications() {
   const [selectedCategory, setSelectedCategory] = useState<CredentialLevel>('all');
   const containerRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const filterRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
@@ -194,6 +249,24 @@ export function Certifications() {
           ease: 'power3.out',
           scrollTrigger: {
             trigger: headerRef.current,
+            start: 'top 85%',
+          },
+        }
+      );
+    }
+
+    // Carousel showcase reveal
+    if (carouselRef.current) {
+      gsap.fromTo(
+        carouselRef.current,
+        { opacity: 0, y: 32 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: carouselRef.current,
             start: 'top 85%',
           },
         }
@@ -268,9 +341,48 @@ export function Certifications() {
           </div>
         </div>
 
-        {/* Category Filter Tabs */}
-        <div ref={filterRef} className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-[var(--border-subtle)]">
-          <div className="flex flex-wrap items-center gap-2">
+        {/* ── INTERACTIVE CONNECTED CAROUSEL SHOWCASE ── */}
+        <div ref={carouselRef} className="mb-14">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
+            <div>
+              <span className="text-[10px] font-mono tracking-widest text-[#D71920] font-bold uppercase inline-block mb-1">
+                SYSTEM CAPSTONES // BENCHMARK LEDGER
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold font-display text-[var(--ink-primary)] tracking-tight">
+                Verified Engineering Milestones
+              </h3>
+            </div>
+            <span className="text-[10px] font-mono text-[var(--ink-muted)] shrink-0 hidden sm:inline-block">
+              SPRING-PHYSICS INTERACTIVE DECK · 5 BENCHMARKS
+            </span>
+          </div>
+
+          <CalendlyCarousel
+            items={MILESTONE_ITEMS}
+            autoPlayInterval={6000}
+            pauseOnHover={true}
+          />
+        </div>
+
+        {/* ── CATEGORY FILTER & CREDENTIALS BENTO LEDGER ── */}
+        <div className="pt-12 border-t border-[var(--border-subtle)]">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-6">
+            <div>
+              <span className="text-[10px] font-mono tracking-widest text-[var(--ink-muted)] font-bold uppercase inline-block mb-1">
+                ACCREDITATION RECORD
+              </span>
+              <h3 className="text-lg sm:text-xl font-bold font-display text-[var(--ink-primary)] tracking-tight">
+                Cryptographic Credentials &amp; Certifications
+              </h3>
+            </div>
+            <div className="text-[11px] font-mono text-[var(--ink-muted)] flex items-center gap-1.5">
+              <ShieldCheck size={14} className="text-emerald-500" />
+              <span>8 Cryptographically Verified Badges</span>
+            </div>
+          </div>
+
+          {/* Category Filter Tabs */}
+          <div ref={filterRef} className="flex flex-wrap items-center gap-2 mb-8 pb-4 border-b border-[var(--border-subtle)]">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat.key}
@@ -287,17 +399,12 @@ export function Certifications() {
               </button>
             ))}
           </div>
-          <div className="text-[11px] font-mono text-[var(--ink-muted)] hidden sm:flex items-center gap-1.5">
-            <ShieldCheck size={14} className="text-emerald-500" />
-            <span>Cryptographically Verified Badges</span>
-          </div>
-        </div>
 
-        {/* ── BENTO CREDENTIAL LEDGER (Replaces Coverflow Carousel) ── */}
-        <div 
-          ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+          {/* Bento Grid */}
+          <div 
+            ref={gridRef}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
           {filteredCerts.map((cert) => {
             const Icon = cert.icon;
             const isAdvanced = cert.level === 'advanced';
@@ -386,6 +493,7 @@ export function Certifications() {
               </div>
             );
           })}
+          </div>
         </div>
 
       </div>

@@ -26,6 +26,7 @@ export * from "./terminal";
 export * from "./terminal-demo";
 export * from "./card-with-grid-ellipsis";
 export * from "./coverflow-carousel";
+export * from "./connected-carousel";
 export * from "./arc-beacon";
 export * from "./arc-beacon-demo";
 
