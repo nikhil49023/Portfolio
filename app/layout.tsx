@@ -37,19 +37,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 try {
-                  var saved = localStorage.getItem('theme');
-                  if (saved === 'light') {
-                    document.documentElement.classList.remove('dark');
-                  } else {
-                    document.documentElement.classList.add('dark');
-                  }
+                  document.documentElement.classList.remove('dark');
+                  localStorage.setItem('theme', 'light');
                 } catch (e) {}
               })();
             `,

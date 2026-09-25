@@ -10,8 +10,6 @@ import {
   IconMail,
   IconBrandGithub,
   IconFileText,
-  IconSun,
-  IconMoon,
   IconPrinter,
   IconArrowLeft,
   IconCpu,
@@ -20,7 +18,6 @@ import { FloatingDock, FloatingDockItem } from '@/components/ui/floating-dock';
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [activeSection, setActiveSection] = useState<string>('about');
 
   const isHome = pathname === '/';
@@ -28,8 +25,8 @@ export default function Navbar() {
   const isProjectDetail = pathname.startsWith('/projects/');
 
   useEffect(() => {
-    const isDark = document.documentElement.classList.contains('dark');
-    setTheme(isDark ? 'dark' : 'light');
+    document.documentElement.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
   }, []);
 
   // Set up ScrollSpy IntersectionObserver for home page sections
@@ -63,18 +60,6 @@ export default function Navbar() {
       observers.forEach((obs) => obs.disconnect());
     };
   }, [isHome]);
-
-  const toggleTheme = () => {
-    if (theme === 'dark') {
-      setTheme('light');
-      localStorage.setItem('theme', 'light');
-      document.documentElement.classList.remove('dark');
-    } else {
-      setTheme('dark');
-      localStorage.setItem('theme', 'dark');
-      document.documentElement.classList.add('dark');
-    }
-  };
 
   const handlePrint = () => {
     if (typeof window !== 'undefined') window.print();
@@ -140,18 +125,6 @@ export default function Navbar() {
       icon: <IconMail className="h-full w-full" />,
       href: isHome ? '#contact' : '/#contact',
       isActive: isHome && activeSection === 'contact',
-    },
-
-    // 6. Dark / Light Mode Toggle
-    {
-      title: theme === 'dark' ? 'Switch to Light' : 'Switch to Dark',
-      icon:
-        theme === 'dark' ? (
-          <IconSun className="h-full w-full text-amber-400" />
-        ) : (
-          <IconMoon className="h-full w-full text-blue-500" />
-        ),
-      onClick: toggleTheme,
     },
 
     // 7. Context Action (Print ATS on resume, otherwise link to resume)
