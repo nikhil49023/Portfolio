@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Background from "@/components/Background";
+import SmoothScroll from "@/components/SmoothScroll";
+import Cursor from "@/components/Cursor";
 
 export const metadata: Metadata = {
   title: "Kilani Sai Nikhil — Systems, Autonomous Robotics & Physical AI",
@@ -53,6 +55,8 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased bg-[var(--bg-void)] text-[var(--ink-primary)] selection:bg-[#D71920]/30 selection:text-white pb-24">
+        <SmoothScroll />
+        <Cursor />
         <Background />
         <Navbar />
         {children}
